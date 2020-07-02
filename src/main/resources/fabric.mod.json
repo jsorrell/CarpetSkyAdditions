@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "skyblock",
+  "version": "${version}",
+  "name": "SkyBlock",
+  "description": "Empty world generation and new ways to get certain items",
+  "authors": [
+    "jsorrell",
+    "skyrising",
+    "DeadlyMC"
+  ],
+  "contact": {
+    "sources": "https://github.com/jsorrell/skyblock",
+    "issues": "https://github.com/jsorrell/skyblock/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "skyblock.SkyBlockExtension"
+    ]
+  },
+  "mixins": [
+    "skyblock.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "carpet": "*"
+  },
+  "recommends": {
+    "fabric-resource-loader-v0": "*"
+  }
+}

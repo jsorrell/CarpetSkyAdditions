@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "skyblock.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "EnderDragonFightMixin",
+    "GeneratorOptionsMixin",
+    "DimensionTypeAccessor",
+    "ComposterBlockMixin",
+    "WanderingTraderEntityMixin"
+  ],
+  "client": [
+    "GeneratorTypeMixin",
+    "LevelPropertiesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
