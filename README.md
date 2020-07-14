@@ -29,7 +29,7 @@ Enable with ```/skyblock wanderingTraderSkyblockTrades true```
 #### Tier 2
 | Item               | Price | Trades until disabled |
 | ------------------ | ----- | --------------------- |
-| Lava Bucket        | 16    | 9                     |
+| Lava Bucket        | 16    | 11                    |
 | Jukebox            | 64    | 6                     |
 | Enchanting Table   | 64    | 6                     |
 | Heart of the Sea   | 64    | 6                     |
