@@ -64,7 +64,7 @@ public class Trades {
 
         tier2Trades.addAll(Arrays.asList(
                 // Tier 2 Trades
-                newProcessItemFactory(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 9),
+                newProcessItemFactory(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 11),
                 newSellItemFactory(Items.JUKEBOX, 64, 1, 6),
                 newSellItemFactory(Items.ENCHANTING_TABLE, 64, 1, 6),
                 newSellItemFactory(Items.HEART_OF_THE_SEA, 64, 1, 6),
