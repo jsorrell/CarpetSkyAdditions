@@ -3,6 +3,7 @@ package skyblock.mixin;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,10 +25,12 @@ public class EnderDragonFightMixin {
 
     @Inject(method = "generateEndPortal", at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/world/gen/feature/ConfiguredFeature;generate(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;)Z",
+            target = "Lnet/minecraft/world/gen/feature/ConfiguredFeature;generate(Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;)Z",
             shift = At.Shift.BEFORE))
+    @SuppressWarnings("unused")
     private void adjustExitPortalLocation(boolean open, CallbackInfo ci) {
-        if (this.world.getChunkManager().getChunkGenerator() instanceof SkyblockChunkGenerator) {
+        ChunkGenerator chunkGenerator = this.world.getChunkManager().getChunkGenerator();
+        if (chunkGenerator instanceof SkyblockChunkGenerator) {
             this.exitPortalLocation = new BlockPos(this.exitPortalLocation.getX(), exitPortalHeight, this.exitPortalLocation.getZ());
         }
     }

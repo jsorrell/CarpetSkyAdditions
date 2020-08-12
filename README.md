@@ -50,6 +50,8 @@ Enable with ```/skyblock wanderingTraderSkyblockTrades true```
 Enable with ```/skyblock usefulComposters true```
 - Provides a nicer way to get sand/red sand than the 64/24 you can get at a time from a wandering trader.
 - Makes dirt generation nicer too.
+- Compost result depends on the biome.
+Get sand in deserts, beaches, warm oceans etc, red sand from badlands, and dirt elsewhere.
 
 ## Installation
 - Install [Fabric](https://fabricmc.net/use)

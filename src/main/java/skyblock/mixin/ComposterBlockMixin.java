@@ -29,15 +29,14 @@ public class ComposterBlockMixin {
             target = "Lnet/minecraft/entity/ItemEntity;setToDefaultPickupDelay()V",
             shift = At.Shift.BEFORE
     ))
+    @SuppressWarnings("unused")
     private static void setComposterOutput(BlockState arg0, World world, BlockPos pos, CallbackInfoReturnable<BlockState> cir, float f, double d, double e, double g, ItemEntity dropItemEntity) {
         if (SkyBlockSettings.usefulComposters) {
-            Block dropBlock;
+            Block dropBlock = Blocks.DIRT;
 
-            Block surfaceBlock = world.getBiome(pos).getSurfaceConfig().getTopMaterial().getBlock();
+            Block surfaceBlock = world.getBiome(pos).getGenerationSettings().getSurfaceConfig().getTopMaterial().getBlock();
             if (possibleSurfaceDrops.contains(surfaceBlock)) {
                 dropBlock = surfaceBlock;
-            } else {
-                dropBlock = Blocks.DIRT;
             }
 
             dropItemEntity.setStack(new ItemStack(dropBlock));

@@ -3,32 +3,31 @@ package skyblock;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.TheEndBiomeSource;
 import net.minecraft.world.biome.source.VanillaLayeredBiomeSource;
 import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.gen.chunk.ChunkGeneratorType;
-import skyblock.mixin.DimensionTypeAccessor;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 
 public class SkyBlockUtils {
-    public static SimpleRegistry<DimensionOptions> getSkyblockSimpleRegistry(long seed) {
-        SimpleRegistry<DimensionOptions> simpleRegistry = new SimpleRegistry<>(Registry.DIMENSION_OPTIONS, Lifecycle.stable());
-        simpleRegistry.add(DimensionOptions.NETHER, new DimensionOptions(DimensionTypeAccessor::getTheNether, SkyBlockUtils.createNetherGenerator(seed)));
-        simpleRegistry.add(DimensionOptions.END, new DimensionOptions(DimensionTypeAccessor::getTheEnd, SkyBlockUtils.createEndGenerator(seed)));
-        simpleRegistry.markLoaded(DimensionOptions.NETHER);
-        simpleRegistry.markLoaded(DimensionOptions.END);
+    public static SimpleRegistry<DimensionOptions> getSkyblockSimpleRegistry(Registry<DimensionType> dimensionTypeRegistry, Registry<Biome> biomeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry, long seed) {
+        SimpleRegistry<DimensionOptions> simpleRegistry = new SimpleRegistry<>(Registry.DIMENSION_OPTIONS, Lifecycle.experimental());
+        simpleRegistry.add(DimensionOptions.NETHER, new DimensionOptions(() -> dimensionTypeRegistry.method_31140(DimensionType.THE_NETHER_REGISTRY_KEY), SkyBlockUtils.createNetherGenerator(biomeRegistry, settingsRegistry, seed)), Lifecycle.stable());
+        simpleRegistry.add(DimensionOptions.END, new DimensionOptions(() -> dimensionTypeRegistry.method_31140(DimensionType.THE_END_REGISTRY_KEY), SkyBlockUtils.createEndGenerator(biomeRegistry, settingsRegistry, seed)), Lifecycle.stable());
         return simpleRegistry;
     }
 
-    public static SkyblockChunkGenerator createOverworldGenerator(long seed) {
-        return new SkyblockChunkGenerator(seed, new VanillaLayeredBiomeSource(seed, false, false), ChunkGeneratorType.Preset.OVERWORLD.getChunkGeneratorType());
+    public static SkyblockChunkGenerator createOverworldGenerator(Registry<Biome> biomeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry, long seed) {
+        return new SkyblockChunkGenerator(seed, new VanillaLayeredBiomeSource(seed, false, false, biomeRegistry), () -> settingsRegistry.method_31140(ChunkGeneratorSettings.OVERWORLD));
     }
 
-    public static SkyblockChunkGenerator createNetherGenerator(long seed) {
-        return new SkyblockChunkGenerator(seed, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(seed), ChunkGeneratorType.Preset.NETHER.getChunkGeneratorType());
+    public static SkyblockChunkGenerator createNetherGenerator(Registry<Biome> biomeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry, long seed) {
+        return new SkyblockChunkGenerator(seed, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(biomeRegistry, seed), () -> settingsRegistry.method_31140(ChunkGeneratorSettings.NETHER));
     }
 
-    public static SkyblockChunkGenerator createEndGenerator(long seed) {
-        return new SkyblockChunkGenerator(seed, new TheEndBiomeSource(seed), ChunkGeneratorType.Preset.END.getChunkGeneratorType());
+    public static SkyblockChunkGenerator createEndGenerator(Registry<Biome> biomeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry, long seed) {
+        return new SkyblockChunkGenerator(seed, new TheEndBiomeSource(biomeRegistry, seed), () -> settingsRegistry.method_31140(ChunkGeneratorSettings.END));
     }
 }

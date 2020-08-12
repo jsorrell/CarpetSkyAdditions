@@ -17,13 +17,14 @@ import skyblock.SkyblockChunkGenerator;
 public abstract class LevelPropertiesMixin {
     @Shadow
     @Final
-    private GeneratorOptions field_25425;
+    private GeneratorOptions generatorOptions;
 
     // Removes the annoying "This is experimental; Thar Be Dragons" message before starting any world with a skyblock chunk generator
     @Environment(EnvType.CLIENT)
     @Inject(method = "method_29588", at = @At("HEAD"), cancellable = true)
+    @SuppressWarnings("unused")
     private void markAsStable(CallbackInfoReturnable<Lifecycle> cir) {
-        if (this.field_25425.getChunkGenerator() instanceof SkyblockChunkGenerator) {
+        if (this.generatorOptions.getChunkGenerator() instanceof SkyblockChunkGenerator) {
             cir.setReturnValue(Lifecycle.stable());
         }
     }

@@ -5,7 +5,6 @@
   "mixins": [
     "EnderDragonFightMixin",
     "GeneratorOptionsMixin",
-    "DimensionTypeAccessor",
     "ComposterBlockMixin",
     "WanderingTraderEntityMixin"
   ],

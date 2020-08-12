@@ -22,69 +22,71 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorType;
-import net.minecraft.world.gen.chunk.SurfaceChunkGenerator;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
+import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 // Normally, this will always fail validation and give warning on load.
 // This warning is disabled through a mixin.
 // See validation method DimensionOptions.method_29567
 public class SkyblockChunkGenerator extends ChunkGenerator {
     private final long seed;
-    private final ChunkGeneratorType chunkGeneratorType;
+    private final Supplier<ChunkGeneratorSettings> settings;
+//    private final ChunkGeneratorType chunkGeneratorType;
 
     // We reference this because SurfaceChunkGenerator final and so can't subclass it
-    private final SurfaceChunkGenerator reference;
+    private final NoiseChunkGenerator reference;
 
     public static final Codec<SkyblockChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             Codec.LONG.fieldOf("seed").stable().forGetter(SkyblockChunkGenerator::getSeed),
-            BiomeSource.field_24713.fieldOf("biome_source").forGetter(SkyblockChunkGenerator::getBiomeSource),
-            ChunkGeneratorType.field_24781.fieldOf("settings").forGetter(SkyblockChunkGenerator::getChunkGeneratorType)
+            BiomeSource.CODEC.fieldOf("biome_source").forGetter(SkyblockChunkGenerator::getBiomeSource),
+            ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(SkyblockChunkGenerator::getSettings)
     ).apply(instance, instance.stable(SkyblockChunkGenerator::new)));
 
-    public SkyblockChunkGenerator(long seed, BiomeSource biomeSource, ChunkGeneratorType chunkGeneratorType) {
-        super(biomeSource, chunkGeneratorType.getConfig());
+    public SkyblockChunkGenerator(long seed, BiomeSource biomeSource, Supplier<ChunkGeneratorSettings> settings) {
+        super(biomeSource, settings.get().getStructuresConfig());
         this.seed = seed;
-        this.chunkGeneratorType = chunkGeneratorType;
-        this.reference = new SurfaceChunkGenerator(biomeSource, seed, chunkGeneratorType);
-    }
-
-    public ChunkGeneratorType getChunkGeneratorType() {
-        return this.chunkGeneratorType;
+        this.settings = settings;
+        this.reference = new NoiseChunkGenerator(biomeSource, seed, settings);
     }
 
     public long getSeed() {
         return this.seed;
     }
 
+    public Supplier<ChunkGeneratorSettings> getSettings() {
+        return this.settings;
+    }
+
     @Override
-    protected Codec<? extends ChunkGenerator> method_28506() {
+    protected Codec<? extends ChunkGenerator> getCodec() {
         return CODEC;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
     public ChunkGenerator withSeed(long seed) {
-        return new SkyblockChunkGenerator(seed, this.biomeSource.withSeed(seed), this.getChunkGeneratorType());
+        return new SkyblockChunkGenerator(seed, this.biomeSource.withSeed(seed), this.settings);
     }
 
     @Override
     public void buildSurface(ChunkRegion region, Chunk chunk) {
         Arrays.fill(chunk.getSectionArray(), WorldChunk.EMPTY_SECTION);
 
-        if (region.getDimension().equals(DimensionType.getOverworldDimensionType())) {
+        if (region.getDimension().isNatural()) {
             BlockPos spawn = new BlockPos(region.getLevelProperties().getSpawnX(), region.getLevelProperties().getSpawnY(), region.getLevelProperties().getSpawnZ());
             if (chunk.getPos().getStartX() <= spawn.getX() && spawn.getX() <= chunk.getPos().getEndX()
                     && chunk.getPos().getStartZ() <= spawn.getZ() && spawn.getZ() <= chunk.getPos().getEndZ()) {
@@ -99,11 +101,11 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
 
     @Override
     public int getHeight(int x, int z, Heightmap.Type heightmapType) {
-        return 0;
+        return reference.getHeight(x, z, heightmapType);
     }
 
     @Override
-    public List<Biome.SpawnEntry> getEntitySpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos) {
+    public List<SpawnSettings.SpawnEntry> getEntitySpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos) {
         return reference.getEntitySpawnList(biome, accessor, group, pos);
     }
 
@@ -138,11 +140,10 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
         BlockPos pos = chunkPos.getCenterBlockPos();
 
         accessor.getStructuresWithChildren(ChunkSectionPos.from(pos), Registry.STRUCTURE_FEATURE.get(new Identifier("minecraft:stronghold"))).forEach((structureStart) -> {
-            System.out.println(structureStart.getPos());
             for (StructurePiece piece : structureStart.getChildren()) {
                 if (piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
                     BlockPos portalPos = new BlockPos(piece.getBoundingBox().minX, piece.getBoundingBox().minY, piece.getBoundingBox().minZ);
-                    generateStrongholdPortal(region, portalPos);
+                    generateStrongholdPortal(region, portalPos, this.seed);
                 }
             }
         });
@@ -167,11 +168,11 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
         }
     }
 
-    private static void generateStrongholdPortal(ServerWorldAccess world, BlockPos pos) {
+    private static void generateStrongholdPortal(ServerWorldAccess world, BlockPos pos, long seed) {
         boolean completePortal = true;
         boolean[] eyes = new boolean[12];
 
-        ChunkRandom random = new ChunkRandom();
+        ChunkRandom random = new ChunkRandom(seed);
 
         for (int i = 0; i < eyes.length; ++i) {
             eyes[i] = random.nextFloat() > 0.9F;
@@ -200,18 +201,21 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
             fillRelativeBlock(world, endPortal, pos, 4, 3, 9, 6, 3, 11);
         }
 
-        int spawnerPositionOption = random.nextInt(4);
+        int spawnerPositionOption = random.nextInt() % 4;
         int x, y = 4, z;
         switch (spawnerPositionOption) {
             case 0:
                 x = 5;
                 z = 6;
+                break;
             case 1:
                 x = 1;
                 z = 10;
+                break;
             case 2:
                 x = 5;
                 z = 14;
+                break;
             default:
                 x = 9;
                 z = 10;

@@ -5,9 +5,12 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.world.GeneratorType;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.registry.RegistryTracker;
+import net.minecraft.util.registry.DynamicRegistryManager;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GeneratorOptions;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -33,14 +36,12 @@ public abstract class GeneratorTypeMixin {
     @Final
     protected static List<GeneratorType> VALUES;
 
-    @Shadow
-    protected abstract ChunkGenerator method_29076(long l);
-
     public boolean isSkyblock() {
         return ((TranslatableText)this.translationKey).getKey().equals("generator.skyblock.skyblock");
     }
 
     @Inject(method = "<clinit>", at=@At("TAIL"))
+    @SuppressWarnings("unused")
     private static void addSkyblockGenerator(CallbackInfo ci) {
         // Return an instance of GeneratorType.DEFAULT which acts differently when it's called skyblock
         Class<?> clazz = GeneratorType.DEFAULT.getClass();
@@ -55,10 +56,11 @@ public abstract class GeneratorTypeMixin {
         VALUES.add(skyblockGeneratorType);
     }
 
-    @Inject(method = "method_29077", at = @At("HEAD"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void setToSkyblockChunkGenerator(RegistryTracker.Modifiable modifiable, long seed, boolean generateStructures, boolean bonusChest, CallbackInfoReturnable<GeneratorOptions> cir) {
+    @Inject(method = "method_29077", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
+    @SuppressWarnings("unused")
+    private void setToSkyblockChunkGenerator(DynamicRegistryManager.Impl impl, long seed, boolean generateStructures, boolean bonusChest, CallbackInfoReturnable<GeneratorOptions> cir, Registry<Biome> biomeRegistry, Registry<DimensionType> dimensionTypeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry) {
         if (this.isSkyblock()) {
-            cir.setReturnValue(new GeneratorOptions(seed, generateStructures, bonusChest, GeneratorOptions.method_28608(SkyBlockUtils.getSkyblockSimpleRegistry(seed), SkyBlockUtils.createOverworldGenerator(seed))));
+            cir.setReturnValue(new GeneratorOptions(seed, generateStructures, bonusChest, GeneratorOptions.method_28608(dimensionTypeRegistry, SkyBlockUtils.getSkyblockSimpleRegistry(dimensionTypeRegistry, biomeRegistry, settingsRegistry, seed), SkyBlockUtils.createOverworldGenerator(biomeRegistry, settingsRegistry, seed))));
         }
     }
 }
