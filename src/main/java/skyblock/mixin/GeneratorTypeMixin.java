@@ -56,7 +56,7 @@ public abstract class GeneratorTypeMixin {
         VALUES.add(skyblockGeneratorType);
     }
 
-    @Inject(method = "method_29077", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
+    @Inject(method = "createDefaultOptions", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
     @SuppressWarnings("unused")
     private void setToSkyblockChunkGenerator(DynamicRegistryManager.Impl impl, long seed, boolean generateStructures, boolean bonusChest, CallbackInfoReturnable<GeneratorOptions> cir, Registry<Biome> biomeRegistry, Registry<DimensionType> dimensionTypeRegistry, Registry<ChunkGeneratorSettings> settingsRegistry) {
         if (this.isSkyblock()) {

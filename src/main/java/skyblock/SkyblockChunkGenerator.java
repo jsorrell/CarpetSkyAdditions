@@ -137,7 +137,7 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
     @Override
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor) {
         ChunkPos chunkPos = new ChunkPos(region.getCenterChunkX(), region.getCenterChunkZ());
-        BlockPos pos = chunkPos.getCenterBlockPos();
+        BlockPos pos = new BlockPos(chunkPos.getStartX() + 8, 0, chunkPos.getStartZ() + 8);
 
         accessor.getStructuresWithChildren(ChunkSectionPos.from(pos), Registry.STRUCTURE_FEATURE.get(new Identifier("minecraft:stronghold"))).forEach((structureStart) -> {
             for (StructurePiece piece : structureStart.getChildren()) {
@@ -201,7 +201,7 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
             fillRelativeBlock(world, endPortal, pos, 4, 3, 9, 6, 3, 11);
         }
 
-        int spawnerPositionOption = random.nextInt() % 4;
+        int spawnerPositionOption = random.nextInt(4);
         int x, y = 4, z;
         switch (spawnerPositionOption) {
             case 0:
