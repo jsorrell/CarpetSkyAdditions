@@ -90,8 +90,10 @@ public class ComposterBlockMixin {
     ))
     @SuppressWarnings("unused")
     private static void setComposterOutput(BlockState arg0, World world, BlockPos pos, CallbackInfoReturnable<BlockState> cir, float f, double d, double e, double g, ItemEntity dropItemEntity) {
-        if (SkyBlockSettings.usefulComposters) {
-            dropItemEntity.setStack(new ItemStack(getComposterDrop(world, pos)));
+        if (SkyBlockSettings.doUsefulComposters) {
+            if (!SkyBlockSettings.usefulCompostersNeedRedstone || world.isReceivingRedstonePower(pos)) {
+                dropItemEntity.setStack(new ItemStack(getComposterDrop(world, pos)));
+            }
         }
     }
 
@@ -101,8 +103,10 @@ public class ComposterBlockMixin {
     ))
     @SuppressWarnings("unused")
     private void setInventory(BlockState state, WorldAccess world, BlockPos pos, CallbackInfoReturnable<SidedInventory> cir) {
-        if (SkyBlockSettings.usefulComposters) {
-            cir.setReturnValue(new FullComposterInventory(state, world, pos));
+        if (SkyBlockSettings.doUsefulComposters) {
+            if (!SkyBlockSettings.usefulCompostersNeedRedstone || ((World)world).isReceivingRedstonePower(pos)) {
+                cir.setReturnValue(new FullComposterInventory(state, world, pos));
+            }
         }
     }
 }
