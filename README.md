@@ -29,7 +29,7 @@ Enable with ```/skyblock wanderingTraderSkyblockTrades true```
 #### Tier 2
 | Item               | Price | Trades until disabled |
 | ------------------ | ----- | --------------------- |
-| Lava Bucket        | 16    | 9                     |
+| Lava Bucket        | 16    | 11                    |
 | Jukebox            | 64    | 6                     |
 | Enchanting Table   | 64    | 6                     |
 | Heart of the Sea   | 64    | 6                     |
@@ -47,9 +47,13 @@ Enable with ```/skyblock wanderingTraderSkyblockTrades true```
 
 
 ### Useful Composters
-Enable with ```/skyblock usefulComposters true```
+Enable with ```/skyblock usefulComposters true``` or ```/skyblock usefulComposters redstone```
 - Provides a nicer way to get sand/red sand than the 64/24 you can get at a time from a wandering trader.
 - Makes dirt generation nicer too.
+- Compost result depends on the biome.
+Get sand in deserts, beaches, warm oceans etc, red sand from badlands, and dirt elsewhere.
+  
+- When set to ```redstone```, the composter outputs bonemeal without a redstone signal.
 
 ## Installation
 - Install [Fabric](https://fabricmc.net/use)
