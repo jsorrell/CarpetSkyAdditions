@@ -18,7 +18,7 @@ public class SkyBlockExtension implements CarpetExtension, ModInitializer
     public void onInitialize() {
         // Lets have our own settings class independent from carpet.conf
         mySettingManager.parseSettingsClass(SkyBlockSettings.class);
-        Registry.register(Registry.CHUNK_GENERATOR, "skyblock", SkyblockChunkGenerator.CODEC);
+        Registry.register(Registry.CHUNK_GENERATOR, "skyblock", SkyBlockChunkGenerator.CODEC);
     }
 
     @Override

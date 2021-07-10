@@ -36,16 +36,16 @@ import java.util.function.Supplier;
 // Normally, this will always fail validation and give warning on load.
 // This warning is disabled through a mixin.
 // See validation method DimensionOptions.method_29567
-public class SkyblockChunkGenerator extends NoiseChunkGenerator {
+public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     private final long seed;
 
-    public static final Codec<SkyblockChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            BiomeSource.CODEC.fieldOf("biome_source").forGetter(SkyblockChunkGenerator::getBiomeSource),
-            Codec.LONG.fieldOf("seed").stable().forGetter(SkyblockChunkGenerator::getSeed),
-            ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(SkyblockChunkGenerator::getSettings)
-    ).apply(instance, instance.stable(SkyblockChunkGenerator::new)));
+    public static final Codec<SkyBlockChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            BiomeSource.CODEC.fieldOf("biome_source").forGetter(SkyBlockChunkGenerator::getBiomeSource),
+            Codec.LONG.fieldOf("seed").stable().forGetter(SkyBlockChunkGenerator::getSeed),
+            ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(SkyBlockChunkGenerator::getSettings)
+    ).apply(instance, instance.stable(SkyBlockChunkGenerator::new)));
 
-    public SkyblockChunkGenerator(BiomeSource biomeSource, long seed, Supplier<ChunkGeneratorSettings> settings) {
+    public SkyBlockChunkGenerator(BiomeSource biomeSource, long seed, Supplier<ChunkGeneratorSettings> settings) {
         super(biomeSource, seed, settings);
         this.seed = seed;
     }
@@ -66,7 +66,7 @@ public class SkyblockChunkGenerator extends NoiseChunkGenerator {
     @Override
     @Environment(EnvType.CLIENT)
     public ChunkGenerator withSeed(long seed) {
-        return new SkyblockChunkGenerator(this.biomeSource.withSeed(seed), seed, this.settings);
+        return new SkyBlockChunkGenerator(this.biomeSource.withSeed(seed), seed, this.settings);
     }
 
     @Override

@@ -13,8 +13,8 @@ public class SkyBlockSettings
 {
     public static final String SKYBLOCK = "skyblock";
     
-    @Rule(desc = "Add trades to the wandering trader for Skyblock", category = {SKYBLOCK, FEATURE})
-    public static boolean wanderingTraderSkyblockTrades = false;
+    @Rule(desc = "Add trades to the wandering trader for SkyBlock", category = {SKYBLOCK, FEATURE})
+    public static boolean wanderingTraderSkyBlockTrades = false;
 
 
     public static boolean doUsefulComposters = false;

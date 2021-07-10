@@ -1,21 +1,21 @@
-# Skyblock
+# SkyBlock
 
-Skyblock is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
+SkyBlock is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 
 It is a fork of [skyrising/skyblock](https://github.com/skyrising/skyblock)
 
 ## Features
 
-### Skyblock Generation
+### SkyBlock Generation
 
-- Set world type to Skyblock to generate an empty world (in all dimensions) with a single spawn platform.
+- Set world type to SkyBlock to generate an empty world (in all dimensions) with a single spawn platform.
 ![small spawn platform with grass, mycelium, nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
 - Keeps biomes, structure bounding boxes, end portal frames, and silverfish spawners.
 ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
 
 ### Additional Wandering Trader Trades
-Enable with ```/skyblock wanderingTraderSkyblockTrades true```
+Enable with ```/skyblock wanderingTraderSkyBlockTrades true```
 #### Tier 1
 | Item          | Price | Trades until disabled |
 | ------------- | ----- | --------------------- |
@@ -59,15 +59,15 @@ Get sand in deserts, beaches, warm oceans etc, red sand from badlands, and dirt 
 - Install [Fabric](https://fabricmc.net/use)
 - Download [fabric-carpet](https://github.com/gnembon/fabric-carpet/releases)
 - Optionally download [fabric-api](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files)
-- Download [Skyblock](https://github.com/jsorrell/skyblock/releases)
-- Place fabric-carpet, fabric-api, and Skyblock into `<minecraft-directory>/mods/`
+- Download [SkyBlock](https://github.com/jsorrell/skyblock/releases)
+- Place fabric-carpet, fabric-api, and SkyBlock into `<minecraft-directory>/mods/`
 
 ## Usage (World Generation)
 ### Singleplayer
 - `Create New World`
 - Optionally download [skyblock-datapack](https://github.com/jsorrell/skyblock-datapack) and select this as a datapack
 - `More World Options...`
-- Choose `World Type: Skyblock` (or `World Type: generator.skyblock.skyblock` if you didn't download `fabric-api`)
+- Choose `World Type: SkyBlock` (or `World Type: generator.skyblock.skyblock` if you didn't download `fabric-api`)
 
 ### Multiplayer
 - Open `server.properties`

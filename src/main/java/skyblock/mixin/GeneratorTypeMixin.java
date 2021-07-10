@@ -1,6 +1,5 @@
 package skyblock.mixin;
 
-import carpet.script.language.Sys;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.world.GeneratorType;
@@ -42,14 +41,14 @@ public abstract class GeneratorTypeMixin {
             Registry<Biome> biomeRegistry = registryManager.get(Registry.BIOME_KEY);
             Registry<DimensionType> dimensionTypeRegistry = registryManager.get(Registry.DIMENSION_TYPE_KEY);
             Registry<ChunkGeneratorSettings> settingsRegistry = registryManager.get(Registry.CHUNK_GENERATOR_SETTINGS_KEY);
-            SimpleRegistry<DimensionOptions> dimensionOptionsRegistry = SkyBlockUtils.getSkyblockSimpleRegistry(dimensionTypeRegistry, biomeRegistry, settingsRegistry, seed);
+            SimpleRegistry<DimensionOptions> dimensionOptionsRegistry = SkyBlockUtils.getSkyBlockSimpleRegistry(dimensionTypeRegistry, biomeRegistry, settingsRegistry, seed);
             return new GeneratorOptions(seed, generateStructures, bonusChest, GeneratorOptions.getRegistryWithReplacedOverworldGenerator(dimensionTypeRegistry, dimensionOptionsRegistry, SkyBlockUtils.createOverworldGenerator(biomeRegistry, settingsRegistry, seed)));
         }
     };
 
     @Inject(method = "<clinit>", at=@At("TAIL"))
     @SuppressWarnings("unused")
-    private static void addSkyblockGenerator(CallbackInfo ci) {
+    private static void addSkyBlockGenerator(CallbackInfo ci) {
         VALUES.add(SKYBLOCK);
     }
 }

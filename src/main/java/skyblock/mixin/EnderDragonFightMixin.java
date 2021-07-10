@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import skyblock.SkyblockChunkGenerator;
+import skyblock.SkyBlockChunkGenerator;
 
 @Mixin(EnderDragonFight.class)
 public class EnderDragonFightMixin {
@@ -30,7 +30,7 @@ public class EnderDragonFightMixin {
     @SuppressWarnings("unused")
     private void adjustExitPortalLocation(boolean open, CallbackInfo ci) {
         ChunkGenerator chunkGenerator = this.world.getChunkManager().getChunkGenerator();
-        if (chunkGenerator instanceof SkyblockChunkGenerator) {
+        if (chunkGenerator instanceof SkyBlockChunkGenerator) {
             this.exitPortalLocation = new BlockPos(this.exitPortalLocation.getX(), exitPortalHeight, this.exitPortalLocation.getZ());
         }
     }
