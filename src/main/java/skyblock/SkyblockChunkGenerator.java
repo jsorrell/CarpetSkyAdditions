@@ -10,16 +10,12 @@ import net.minecraft.block.EndPortalFrameBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
@@ -31,33 +27,27 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 // Normally, this will always fail validation and give warning on load.
 // This warning is disabled through a mixin.
 // See validation method DimensionOptions.method_29567
-public class SkyblockChunkGenerator extends ChunkGenerator {
+public class SkyblockChunkGenerator extends NoiseChunkGenerator {
     private final long seed;
-    private final Supplier<ChunkGeneratorSettings> settings;
-
-    // We reference this because SurfaceChunkGenerator final and so can't subclass it
-    private final NoiseChunkGenerator reference;
 
     public static final Codec<SkyblockChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            Codec.LONG.fieldOf("seed").stable().forGetter(SkyblockChunkGenerator::getSeed),
             BiomeSource.CODEC.fieldOf("biome_source").forGetter(SkyblockChunkGenerator::getBiomeSource),
+            Codec.LONG.fieldOf("seed").stable().forGetter(SkyblockChunkGenerator::getSeed),
             ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(SkyblockChunkGenerator::getSettings)
     ).apply(instance, instance.stable(SkyblockChunkGenerator::new)));
 
-    public SkyblockChunkGenerator(long seed, BiomeSource biomeSource, Supplier<ChunkGeneratorSettings> settings) {
-        super(biomeSource, biomeSource, settings.get().getStructuresConfig(), seed);
+    public SkyblockChunkGenerator(BiomeSource biomeSource, long seed, Supplier<ChunkGeneratorSettings> settings) {
+        super(biomeSource, seed, settings);
         this.seed = seed;
-        this.settings = settings;
-        this.reference = new NoiseChunkGenerator(biomeSource, seed, settings);
     }
 
     public long getSeed() {
@@ -76,7 +66,7 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
     @Override
     @Environment(EnvType.CLIENT)
     public ChunkGenerator withSeed(long seed) {
-        return new SkyblockChunkGenerator(seed, this.biomeSource.withSeed(seed), this.settings);
+        return new SkyblockChunkGenerator(this.biomeSource.withSeed(seed), seed, this.settings);
     }
 
     @Override
@@ -93,38 +83,8 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
-    }
-
-    @Override
-    public int getHeight(int x, int z, Heightmap.Type heightmapType) {
-        return reference.getHeight(x, z, heightmapType);
-    }
-
-    @Override
-    public List<SpawnSettings.SpawnEntry> getEntitySpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos) {
-        return reference.getEntitySpawnList(biome, accessor, group, pos);
-    }
-
-    @Override
-    public BlockView getColumnSample(int x, int z) {
-        return new BlockView() {
-            @Nullable
-            @Override
-            public BlockEntity getBlockEntity(BlockPos pos) {
-                return null;
-            }
-
-            @Override
-            public BlockState getBlockState(BlockPos pos) {
-                return Blocks.AIR.getDefaultState();
-            }
-
-            @Override
-            public FluidState getFluidState(BlockPos pos) {
-                return null;
-            }
-        };
+    public CompletableFuture<Chunk> populateNoise(Executor executor, StructureAccessor accessor, Chunk chunk) {
+        return CompletableFuture.completedFuture(chunk);
     }
 
     @Override
@@ -133,18 +93,18 @@ public class SkyblockChunkGenerator extends ChunkGenerator {
 
     @Override
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor) {
-        ChunkPos chunkPos = new ChunkPos(region.getCenterChunkX(), region.getCenterChunkZ());
-        BlockPos pos = new BlockPos(chunkPos.getStartX(), 0, chunkPos.getStartZ());
+        ChunkPos chunkPos = region.getCenterPos();
+        BlockPos pos = new BlockPos(chunkPos.getStartX(), region.getBottomY(), chunkPos.getStartZ());
 
         accessor.getStructuresWithChildren(ChunkSectionPos.from(pos), Registry.STRUCTURE_FEATURE.get(new Identifier("minecraft:stronghold"))).forEach((structureStart) -> {
             for (StructurePiece piece : structureStart.getChildren()) {
                 if (piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
-                    BlockPos portalPos = new BlockPos(piece.getBoundingBox().minX, piece.getBoundingBox().minY, piece.getBoundingBox().minZ);
+                    BlockPos portalPos = new BlockPos(piece.getBoundingBox().getMinX(), piece.getBoundingBox().getMinY(), piece.getBoundingBox().getMinZ());
                     if (piece.intersectsChunk(chunkPos, 0)) {
                         BlockBox box = new BlockBox(chunkPos.getStartX(), 0, chunkPos.getStartZ(), chunkPos.getStartX() + 15, region.getHeight(), chunkPos.getStartZ() + 15);
 
                         ChunkRandom random = new ChunkRandom();
-                        random.setCarverSeed(seed, region.getCenterChunkX(), region.getCenterChunkZ());
+                        random.setCarverSeed(seed, chunkPos.x, chunkPos.z);
                         generateStrongholdPortalInBox(region, portalPos, random, piece.getFacing(), box);
                     }
                 }

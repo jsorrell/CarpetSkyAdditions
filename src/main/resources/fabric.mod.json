@@ -23,6 +23,7 @@
   "mixins": [
     "skyblock.mixins.json"
   ],
+  "accessWidener" : "skyblock.accesswidener",
   "depends": {
     "fabricloader": "*",
     "carpet": "*"

@@ -14,24 +14,12 @@ repositories {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-def buildDate = new Date()
-if (project.mod_version.endsWith('-dev')) {
-	def df = new SimpleDateFormat(".yyyyMMdd.HHmmss")
-	df.setTimeZone(TimeZone.getTimeZone("UTC"))
-	project.mod_version += df.format(buildDate)
-}
-
-
-def branch = gitBranch()
-if (branch != "master") {
-	project.mod_version += "+" + branch;
-}
-
 archivesBaseName = project.name
 version = project.mod_version
 group = project.maven_group
 
 minecraft {
+	accessWidener =  file("src/main/resources/skyblock.accesswidener")
 }
 
 dependencies {
@@ -47,41 +35,12 @@ dependencies {
 	compileOnly "com.google.code.findbugs:jsr305:3.0.1"
 }
 
-static def gitCommit() {
-	def commit = ""
-	def proc = "git rev-parse HEAD".execute()
-	proc.in.eachLine { line -> commit = line }
-	proc.err.eachLine { line -> println line }
-	proc.waitFor()
-	commit
-}
-
-static def gitBranch() {
-	def branch = ""
-	def proc = "git rev-parse --abbrev-ref HEAD".execute()
-	proc.in.eachLine { line -> branch = line }
-	proc.err.eachLine { line -> println line }
-	proc.waitFor()
-	branch
-}
-
-static def gitStatus() {
-	def exitCode = "git diff --quiet".execute().waitFor() // not added
-	if (exitCode == 0) {
-		exitCode = "git diff --cached --quiet".execute().waitFor() // not committed
-	}
-	exitCode == 0
-}
-
 task generateJava(type: Copy) {
 	def df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 	df.setTimeZone(TimeZone.getTimeZone("UTC"))
 	def templateContext = [
 			version: project.version,
-			timestamp: df.format(buildDate),
-			branch: gitBranch(),
-			commit: gitCommit(),
-			working_dir_clean: gitStatus(),
+			timestamp: df.format(new Date()),
 			minecraft_version: project.minecraft_version,
 			yarn_mappings: project.yarn_mappings
 	]
@@ -110,44 +69,22 @@ processResources {
 	from(sourceSets.main.resources.srcDirs) {
 		exclude "fabric.mod.json"
 	}
+
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
 // this fixes some edge cases with special characters not displaying correctly
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
-}
+compileJava.options.encoding = "UTF-8"
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 // if it is present.
 // If you remove this task, sources will not be generated.
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = "sources"
-	from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: classes) {
+//	from sourceSets.main.allSource
+//}
 
 jar {
 	from "LICENSE"
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(jar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
 }
