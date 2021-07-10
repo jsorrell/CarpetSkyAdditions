@@ -59,12 +59,13 @@ public class Trades {
                 newSellItemFactory(Items.SUNFLOWER, 5, 1, 10),
                 newSellItemFactory(Items.LILAC, 5, 1, 10),
                 newSellItemFactory(Items.ROSE_BUSH, 5, 1, 10),
-                newSellItemFactory(Items.PEONY, 5, 1, 10)
+                newSellItemFactory(Items.PEONY, 5, 1, 10),
+                newSellItemFactory(Items.GLOW_LICHEN, 5, 1, 10)
         ));
 
         tier2Trades.addAll(Arrays.asList(
                 // Tier 2 Trades
-                newProcessItemFactory(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 11),
+                newProcessItemFactory(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 1),
                 newSellItemFactory(Items.JUKEBOX, 64, 1, 6),
                 newSellItemFactory(Items.ENCHANTING_TABLE, 64, 1, 6),
                 newSellItemFactory(Items.HEART_OF_THE_SEA, 64, 1, 6),

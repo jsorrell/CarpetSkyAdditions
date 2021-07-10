@@ -25,11 +25,12 @@ Enable with ```/skyblock wanderingTraderSkyBlockTrades true```
 | Lilac         | 5     | 10                    |
 | Rose Bush     | 5     | 10                    |
 | Peony         | 5     | 10                    |
+| Glow Lichen   | 5     | 10                    |
 
 #### Tier 2
 | Item               | Price | Trades until disabled |
 | ------------------ | ----- | --------------------- |
-| Lava Bucket        | 16    | 11                    |
+| Lava Bucket        | 16    | 1                     |
 | Jukebox            | 64    | 6                     |
 | Enchanting Table   | 64    | 6                     |
 | Heart of the Sea   | 64    | 6                     |
