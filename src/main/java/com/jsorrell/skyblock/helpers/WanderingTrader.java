@@ -22,8 +22,6 @@ public class WanderingTrader {
 
     tier1Trades.addAll(
         Arrays.asList(
-            // Duplicatable after one trade
-            new TradeOffers.SellItemFactory(Items.NETHER_WART, 1, 1, 12, 1),
             // Tall Flowers
             new TradeOffers.SellItemFactory(Items.SUNFLOWER, 1, 1, 12, 1),
             new TradeOffers.SellItemFactory(Items.LILAC, 1, 1, 12, 1),
