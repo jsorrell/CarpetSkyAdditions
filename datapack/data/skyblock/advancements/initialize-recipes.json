@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "unlockcustomrecipes": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "skyblock"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:stone"
+  },
+  "addition": {
+    "item": "minecraft:coal_block"
+  },
+  "result": {
+    "item": "minecraft:coal_ore"
+  }
+}

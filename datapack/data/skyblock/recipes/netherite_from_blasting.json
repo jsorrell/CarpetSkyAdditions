@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft:nether_star"
+  },
+  "result": "minecraft:ancient_debris",
+  "experience": 1,
+  "cookingtime": 100
+}

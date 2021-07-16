@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:deepslate"
+  },
+  "addition": {
+    "item": "minecraft:coal_block"
+  },
+  "result": {
+    "item": "minecraft:deepslate_coal_ore"
+  }
+}

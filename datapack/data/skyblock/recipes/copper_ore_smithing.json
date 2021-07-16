@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:stone"
+  },
+  "addition": {
+    "item": "minecraft:copper_block"
+  },
+  "result": {
+    "item": "minecraft:copper_ore"
+  }
+}
