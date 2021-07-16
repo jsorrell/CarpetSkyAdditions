@@ -1,17 +1,24 @@
 {
   "required": true,
-  "package": "skyblock.mixin",
+  "package": "com.jsorrell.skyblock.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "EnderDragonFightMixin",
     "ComposterBlockMixin",
+    "DolphinEntityLeadToNearbyTreasureGoalMixin",
+    "EnderDragonEntityMixin",
+    "EnderDragonFightMixin",
+    "EndIslandFeatureMixin",
+    "FoxEntityMixin",
+    "GeneratorOptionsMixin",
+    "ItemEntityMixin",
+    "LavaFluidMixin",
+    "LightningEntityMixin",
+    "LivingEntityMixin",
+    "RamImpactTaskMixin",
     "WanderingTraderEntityMixin"
   ],
   "client": [
-    "GeneratorTypeMixin"
-  ],
-  "server": [
-    "GeneratorOptionsMixin"
+    "GeneratorTypeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,3 +1,6 @@
 accessWidener   v1  named
 extendable class net/minecraft/world/gen/chunk/NoiseChunkGenerator
 accessible method net/minecraft/client/world/GeneratorType <init> (Ljava/lang/String;)V
+
+accessible class net/minecraft/village/TradeOffers$SellItemFactory
+accessible class net/minecraft/village/TradeOffers$ProcessItemFactory

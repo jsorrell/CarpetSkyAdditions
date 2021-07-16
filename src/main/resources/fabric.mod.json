@@ -3,11 +3,9 @@
   "id": "skyblock",
   "version": "${version}",
   "name": "SkyBlock",
-  "description": "Empty world generation and new ways to get certain items",
+  "description": "Empty world generation with new ways to obtain resources",
   "authors": [
-    "jsorrell",
-    "skyrising",
-    "DeadlyMC"
+    "jsorrell"
   ],
   "contact": {
     "sources": "https://github.com/jsorrell/skyblock",
@@ -17,13 +15,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "skyblock.SkyBlockExtension"
+      "com.jsorrell.skyblock.SkyBlockExtension"
     ]
   },
   "mixins": [
     "skyblock.mixins.json"
   ],
-  "accessWidener" : "skyblock.accesswidener",
+  "accessWidener": "skyblock.accesswidener",
   "depends": {
     "fabricloader": "*",
     "carpet": "*"

@@ -9,4 +9,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'skyblock'
+rootProject.name = 'com.jsorrell.skyblock'

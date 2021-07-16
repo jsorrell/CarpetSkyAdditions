@@ -65,7 +65,7 @@ processResources {
 		expand "version": project.version
 	}
 
-	// copy everything else, thats not the mcmod.info
+	// copy everything else, that's not the mcmod.info
 	from(sourceSets.main.resources.srcDirs) {
 		exclude "fabric.mod.json"
 	}
