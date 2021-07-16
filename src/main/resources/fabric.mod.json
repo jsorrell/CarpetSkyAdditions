@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "com.jsorrell.skyblock.SkyBlockExtension"
+    ],
+    "client": [
+      "com.jsorrell.skyblock.SkyBlockClient"
     ]
   },
   "mixins": [
