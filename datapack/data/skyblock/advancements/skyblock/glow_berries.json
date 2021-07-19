@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:skyblock/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:glow_berries"
+    },
+    "title": {
+      "translate": "Snatched from the Jaws"
+    },
+    "description": {
+      "translate": "Get Glow Berries from a Fox"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "glow_berries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_berries"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

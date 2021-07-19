@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:skyblock/the_end",
+  "display": {
+    "icon": {
+      "item": "minecraft:elytra"
+    },
+    "title": {
+      "translate": "Catch of the Day"
+    },
+    "description": {
+      "translate": "Fish for a pair of Elytra in the End"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "elytra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

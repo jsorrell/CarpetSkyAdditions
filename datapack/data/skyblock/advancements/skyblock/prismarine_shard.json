@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:skyblock/cauldron",
+  "display": {
+    "icon": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "title": {
+      "translate": "Guardians of the Galaxy"
+    },
+    "description": {
+      "translate": "Obtain prismarine from Guardians"
+    }
+  },
+  "criteria": {
+    "prismarine_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:prismarine_shard"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

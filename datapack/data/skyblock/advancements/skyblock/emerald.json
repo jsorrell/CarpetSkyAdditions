@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:skyblock/blast_furnace",
+  "display": {
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "title": {
+      "translate": "Emerald City"
+    },
+    "description": {
+      "translate": "Cure a Zombie Villager and trade for Emeralds"
+    }
+  },
+  "criteria": {
+    "emerald": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:emerald"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

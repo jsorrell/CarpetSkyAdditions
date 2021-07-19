@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:skyblock/prismarine_shard",
+  "display": {
+    "icon": {
+      "item": "minecraft:blast_furnace"
+    },
+    "title": {
+      "translate": "3...2...1 Blast Off!"
+    },
+    "description": {
+      "translate": "Craft a Blast Furnace for smelting golden tools"
+    }
+  },
+  "criteria": {
+    "blast_furnace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:blast_furnace"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

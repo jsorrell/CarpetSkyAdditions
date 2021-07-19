@@ -1,0 +1,35 @@
+{
+  "parent": "skyblock:skyblock/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "Get Down!"
+    },
+    "description": {
+      "translate": "Mobs spawn faster lower in the world"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "below_y_10": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "position": {
+                "y": {
+                  "max": 10
+                }
+              }
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  }
+}
