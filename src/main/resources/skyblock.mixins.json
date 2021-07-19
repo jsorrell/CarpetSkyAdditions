@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "ComposterBlockMixin",
+    "CriteriaAccessor",
     "DolphinEntityLeadToNearbyTreasureGoalMixin",
     "EnderDragonEntityMixin",
     "EnderDragonFightMixin",

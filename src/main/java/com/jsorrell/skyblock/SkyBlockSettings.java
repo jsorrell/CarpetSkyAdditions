@@ -43,36 +43,31 @@ public class SkyBlockSettings {
   /* Dolphins Find Hearts of the Sea */
   @Rule(
       desc = "Dolphins can find a heart of the sea when given fish",
-      category = {SKYBLOCK, FEATURE}
-  )
+      category = {SKYBLOCK, FEATURE})
   public static boolean renewableHeartsOfTheSea = true;
 
   /* Ender Dragons Can Drop Heads */
   @Rule(
       desc = "Ender Dragons killed by Charged Creepers drop their heads",
-      category = {SKYBLOCK, FEATURE}
-  )
+      category = {SKYBLOCK, FEATURE})
   public static boolean renewableDragonHeads = true;
 
   /* Shulker Spawning */
   @Rule(
       desc = "Shulkers spawn on obsidian pillar when Ender Dragon is re-killed",
-      category = {SKYBLOCK, FEATURE}
-  )
+      category = {SKYBLOCK, FEATURE})
   public static boolean shulkerSpawning = true;
 
   /* Anvils Compact Coal into Diamonds */
   @Rule(
       desc = "An Anvil falling on a full stack of Coal Blocks compacts it into a Diamond",
-      category = {SKYBLOCK, FEATURE}
-  )
+      category = {SKYBLOCK, FEATURE})
   public static boolean renewableDiamonds = true;
 
   /* Goats Ramming Break Nether Wart Blocks */
   @Rule(
       desc = "A Goat ramming a Nether Wart Block will break it apart",
-      category = {SKYBLOCK, FEATURE}
-  )
+      category = {SKYBLOCK, FEATURE})
   public static boolean rammingWart = true;
 
   /* Useful Composters */

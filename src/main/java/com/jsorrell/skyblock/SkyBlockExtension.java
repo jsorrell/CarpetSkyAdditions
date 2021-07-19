@@ -7,6 +7,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.registry.Registry;
 
+import com.jsorrell.skyblock.criterion.Criteria;
 import com.jsorrell.skyblock.gen.SkyBlockChunkGenerator;
 import com.jsorrell.skyblock.gen.SkyBlockGenerationSettings;
 
@@ -23,6 +24,7 @@ public class SkyBlockExtension implements CarpetExtension, ModInitializer {
     settingsManager.parseSettingsClass(SkyBlockSettings.class);
     Registry.register(
         Registry.CHUNK_GENERATOR, SkyBlockGenerationSettings.NAME, SkyBlockChunkGenerator.CODEC);
+    Criteria.registerAll();
   }
 
   @Override
