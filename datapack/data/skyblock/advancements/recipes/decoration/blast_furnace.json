@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "skyblock:blast_furnace"
+    ]
+  },
+  "criteria": {
+    "has_prismarine_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:prismarine_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "skyblock:blast_furnace"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_prismarine_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}
