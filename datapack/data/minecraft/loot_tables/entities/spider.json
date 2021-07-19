@@ -75,6 +75,9 @@
       ],
       "conditions": [
         {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
           "condition": "minecraft:entity_properties",
           "predicate": {
             "passenger": {

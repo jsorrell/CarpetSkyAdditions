@@ -75,7 +75,7 @@
             {
               "condition": "minecraft:location_check",
               "predicate": {
-                "dimension": "minecraft:end"
+                "dimension": "minecraft:the_end"
               }
             }
           ],
