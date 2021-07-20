@@ -1,6 +1,7 @@
 package com.jsorrell.skyblock.gen;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -26,6 +27,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Direction.Axis;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.ServerWorldAccess;
@@ -149,7 +152,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                     ChunkRandom random = new ChunkRandom();
                     random.setCarverSeed(seed, chunkPos.x, chunkPos.z);
                     generateStrongholdPortalInBox(
-                        region, portalPos, random, piece.getFacing(), box);
+                        region, portalPos, random, Objects.requireNonNull(piece.getFacing()), box);
                   }
                 }
               }
@@ -194,161 +197,64 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     }
   }
 
-  private static void generateStrongholdPortalInBox(
-      ServerWorldAccess world, BlockPos pos, Random random, Direction facing, BlockBox box) {
-    boolean completePortal = true;
-    boolean[] eyes = new boolean[12];
+  private static boolean generateStrongholdPortalFrameSideInBox(
+      ServerWorldAccess world, BlockPos centerPos, Random random, Direction side, BlockBox box) {
+    BlockState portalFrameBlock =
+        Blocks.END_PORTAL_FRAME
+            .getDefaultState()
+            .with(EndPortalFrameBlock.FACING, side.getOpposite());
 
-    for (int i = 0; i < eyes.length; ++i) {
-      eyes[i] = random.nextFloat() > 0.9F;
-      completePortal &= eyes[i];
+    boolean completePortal = true;
+
+    for (int i = -1; i < 2; ++i) {
+      boolean hasEye = random.nextFloat() > 0.9F;
+      completePortal &= hasEye;
+
+      portalFrameBlock = portalFrameBlock.with(EndPortalFrameBlock.EYE, hasEye);
+      Vec3i offset =
+          side.getVector().multiply(2).add(side.rotateClockwise(Axis.Y).getVector().multiply(i));
+      placeRelativeBlockInBox(
+          world, portalFrameBlock, centerPos, offset.getX(), 0, offset.getZ(), box);
     }
 
-    BlockState nearPortalFrame =
-        Blocks.END_PORTAL_FRAME.getDefaultState().with(EndPortalFrameBlock.FACING, facing);
-    BlockState farPortalFrame =
-        Blocks.END_PORTAL_FRAME
-            .getDefaultState()
-            .with(EndPortalFrameBlock.FACING, facing.getOpposite());
-    BlockState rightPortalFrame =
-        Blocks.END_PORTAL_FRAME
-            .getDefaultState()
-            .with(EndPortalFrameBlock.FACING, facing.rotateYCounterclockwise());
-    BlockState leftPortalFrame =
-        Blocks.END_PORTAL_FRAME
-            .getDefaultState()
-            .with(EndPortalFrameBlock.FACING, facing.rotateYClockwise());
+    return completePortal;
+  }
 
-    BlockPos spawnerPos;
+  private static void generateStrongholdPortalInBox(
+      ServerWorldAccess world,
+      BlockPos northWestCornerPos,
+      Random random,
+      Direction facing,
+      BlockBox box) {
 
+    BlockPos portalCenterPosition;
     switch (facing) {
       case EAST:
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[0]), pos, 8, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[1]), pos, 8, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[2]), pos, 8, 3, 4, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[3]), pos, 12, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[4]), pos, 12, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[5]), pos, 12, 3, 4, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[6]), pos, 9, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[7]), pos, 10, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[8]), pos, 11, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[9]), pos, 9, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[10]), pos, 10, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[11]), pos, 11, 3, 3, box);
-        if (completePortal) {
-          BlockState endPortal = Blocks.END_PORTAL.getDefaultState();
-          fillRelativeBlockInBox(world, endPortal, pos, 9, 4, 9, 11, 6, 11, box);
-        }
-        spawnerPos = pos.add(6, 3, 5);
+        portalCenterPosition = northWestCornerPos.add(10, 3, 5);
         break;
-
-      case NORTH:
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[0]), pos, 6, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[1]), pos, 5, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[2]), pos, 4, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[3]), pos, 6, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[4]), pos, 5, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[5]), pos, 4, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[6]), pos, 7, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[7]), pos, 7, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[8]), pos, 7, 3, 4, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[9]), pos, 3, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[10]), pos, 3, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[11]), pos, 3, 3, 4, box);
-        if (completePortal) {
-          BlockState endPortal = Blocks.END_PORTAL.getDefaultState();
-          fillRelativeBlockInBox(world, endPortal, pos, 4, 3, 4, 6, 3, 6, box);
-        }
-        spawnerPos = pos.add(5, 3, 9);
+      case SOUTH:
+        portalCenterPosition = northWestCornerPos.add(5, 3, 10);
         break;
-
       case WEST:
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[0]), pos, 7, 3, 4, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[1]), pos, 7, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[2]), pos, 7, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[3]), pos, 3, 3, 4, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[4]), pos, 3, 3, 5, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[5]), pos, 3, 3, 6, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[6]), pos, 6, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[7]), pos, 5, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[8]), pos, 4, 3, 3, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[9]), pos, 6, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[10]), pos, 5, 3, 7, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[11]), pos, 4, 3, 7, box);
-        if (completePortal) {
-          BlockState endPortal = Blocks.END_PORTAL.getDefaultState();
-          fillRelativeBlockInBox(world, endPortal, pos, 4, 3, 4, 6, 3, 6, box);
-        }
-        spawnerPos = pos.add(9, 3, 5);
-        break;
-
-      default: // SOUTH
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[0]), pos, 4, 3, 8, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[1]), pos, 5, 3, 8, box);
-        placeRelativeBlockInBox(
-            world, nearPortalFrame.with(EndPortalFrameBlock.EYE, eyes[2]), pos, 6, 3, 8, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[3]), pos, 4, 3, 12, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[4]), pos, 5, 3, 12, box);
-        placeRelativeBlockInBox(
-            world, farPortalFrame.with(EndPortalFrameBlock.EYE, eyes[5]), pos, 6, 3, 12, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[6]), pos, 3, 3, 9, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[7]), pos, 3, 3, 10, box);
-        placeRelativeBlockInBox(
-            world, rightPortalFrame.with(EndPortalFrameBlock.EYE, eyes[8]), pos, 3, 3, 11, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[9]), pos, 7, 3, 9, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[10]), pos, 7, 3, 10, box);
-        placeRelativeBlockInBox(
-            world, leftPortalFrame.with(EndPortalFrameBlock.EYE, eyes[11]), pos, 7, 3, 11, box);
-        if (completePortal) {
-          BlockState endPortal = Blocks.END_PORTAL.getDefaultState();
-          fillRelativeBlockInBox(world, endPortal, pos, 4, 3, 9, 6, 3, 11, box);
-        }
-        spawnerPos = pos.add(5, 3, 6);
+      case NORTH:
+      default:
+        portalCenterPosition = northWestCornerPos.add(5, 3, 5);
     }
+
+    boolean completePortal = true;
+
+    for (Direction d : Direction.values()) {
+      if (d.getAxis().isHorizontal()) {
+        completePortal &=
+            generateStrongholdPortalFrameSideInBox(world, portalCenterPosition, random, d, box);
+      }
+    }
+
+    if (completePortal) {
+      BlockState endPortal = Blocks.END_PORTAL.getDefaultState();
+      fillRelativeBlockInBox(world, endPortal, portalCenterPosition, -1, 0, 1, -1, 0, 1, box);
+    }
+    BlockPos spawnerPos = portalCenterPosition.subtract(facing.getVector().multiply(4));
 
     world.setBlockState(spawnerPos, Blocks.SPAWNER.getDefaultState(), 2);
     BlockEntity spawnerEntity = world.getBlockEntity(spawnerPos);
