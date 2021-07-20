@@ -41,7 +41,7 @@ public abstract class ItemEntityMixin extends Entity {
       at = @At(value = "HEAD"))
   private void compactCoalToDiamonds(
       DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.renewableDiamonds) {
+    if (SkyBlockSettings.renewableDiamonds) {
       if (source == DamageSource.ANVIL) {
         ItemStack stack = this.shadow$getStack();
         if (canCompactToDiamonds(stack)) {

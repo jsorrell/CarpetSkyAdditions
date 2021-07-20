@@ -23,7 +23,7 @@ public abstract class WanderingTraderEntityMixin {
               target =
                   "Lnet/minecraft/village/TradeOffers;WANDERING_TRADER_TRADES:Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;"))
   private Int2ObjectMap<TradeOffers.Factory[]> getTrades() {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.wanderingTraderSkyBlockTrades) {
+    if (SkyBlockSettings.wanderingTraderSkyBlockTrades) {
       return WanderingTrader.WANDERING_TRADER_SKYBLOCK_TRADES;
     } else {
       return TradeOffers.WANDERING_TRADER_TRADES;

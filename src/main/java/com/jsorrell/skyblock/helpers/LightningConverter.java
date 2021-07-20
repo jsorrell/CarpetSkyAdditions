@@ -46,9 +46,5 @@ public class LightningConverter {
         conversionOccurred = true;
       }
     }
-
-    if (conversionOccurred) {
-      world.setBlockState(hitBlockPos, Blocks.STONE.getDefaultState());
-    }
   }
 }

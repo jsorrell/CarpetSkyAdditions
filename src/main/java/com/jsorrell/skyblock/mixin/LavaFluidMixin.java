@@ -26,7 +26,7 @@ public class LavaFluidMixin {
   @Inject(method = "onRandomTick", locals = LocalCapture.CAPTURE_FAILSOFT, at = @At(value = "HEAD"))
   private void tryCreateGeode(
       World world, BlockPos pos, FluidState state, Random random, CallbackInfo ci) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.renewableBuddingAmethysts) {
+    if (SkyBlockSettings.renewableBuddingAmethysts) {
       if (random.nextInt(GeodeGenerator.CONVERSION_RATE) == 0) {
         if (GeodeGenerator.checkGeodeFormation(world, pos)) {
           world.setBlockState(pos, Blocks.BUDDING_AMETHYST.getDefaultState());

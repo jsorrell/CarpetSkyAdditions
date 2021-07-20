@@ -52,7 +52,7 @@ public class EnderDragonFightMixin {
               target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;previouslyKilled:Z",
               opcode = Opcodes.PUTFIELD))
   private void spawnShulkerOnDragonReKill(EnderDragonEntity dragon, CallbackInfo ci) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.shulkerSpawning) {
+    if (SkyBlockSettings.shulkerSpawning) {
       // On top of bedrock pillar
       BlockPos shulkerPosition = this.exitPortalLocation.add(0, 4, 0);
       if (this.previouslyKilled && this.world.getBlockState(shulkerPosition).isOf(Blocks.AIR)) {

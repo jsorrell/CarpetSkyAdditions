@@ -47,7 +47,7 @@ public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends Task
                   "Lnet/minecraft/entity/ai/brain/task/RamImpactTask;finishRam(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/mob/PathAwareEntity;)V",
               ordinal = 1))
   private void breakOpenNetherWart(ServerWorld world, E rammer, long time, CallbackInfo ci) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.rammingWart) {
+    if (SkyBlockSettings.rammingWart) {
       Brain<?> ramBrain = rammer.getBrain();
       if (!ramBrain.getOptionalMemory(MemoryModuleType.WALK_TARGET).isPresent()
           && ramBrain.getOptionalMemory(MemoryModuleType.RAM_TARGET).isPresent()

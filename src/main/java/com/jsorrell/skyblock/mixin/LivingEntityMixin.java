@@ -32,7 +32,7 @@ public abstract class LivingEntityMixin extends Entity {
               target =
                   "Lnet/minecraft/entity/damage/DamageSource;getAttacker()Lnet/minecraft/entity/Entity;"))
   public void rememberDragonKiller(DamageSource source, CallbackInfo ci, Entity killer) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.renewableDragonHeads) {
+    if (SkyBlockSettings.renewableDragonHeads) {
       if (this.getType() == EntityType.ENDER_DRAGON && killer instanceof CreeperEntity) {
         CreeperEntity killerCreeper = (CreeperEntity) killer;
         if (killerCreeper.shouldDropHead()) {

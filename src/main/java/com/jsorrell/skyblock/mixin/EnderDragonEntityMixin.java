@@ -33,7 +33,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity implements Monste
               shift = Shift.AFTER,
               ordinal = 1))
   protected void dropDragonHead(CallbackInfo ci) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.renewableDragonHeads) {
+    if (SkyBlockSettings.renewableDragonHeads) {
       if (DragonShouldDropHeadHelper.UUIDS.contains(this.getUuid())) {
         this.dropItem(Items.DRAGON_HEAD);
         DragonShouldDropHeadHelper.UUIDS.remove(this.getUuid());

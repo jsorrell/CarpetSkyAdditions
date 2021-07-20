@@ -41,7 +41,7 @@ public class ComposterBlockMixin {
       double e,
       double g,
       ItemEntity droppedItem) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.doUsefulComposters) {
+    if (SkyBlockSettings.doUsefulComposters) {
       if (!SkyBlockSettings.usefulCompostersNeedRedstone || world.isReceivingRedstonePower(pos)) {
         Biome biome = world.getBiome(pos);
         Item composterProduct = UsefulComposter.getComposterProduct(biome);

@@ -32,7 +32,7 @@ abstract class DolphinEntityLeadToNearbyTreasureGoalMixin extends Goal {
               target = "Lnet/minecraft/entity/passive/DolphinEntity;setHasFish(Z)V",
               shift = At.Shift.AFTER))
   private void giveDolphinHeartOfTheSea(CallbackInfo ci) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.renewableHeartsOfTheSea) {
+    if (SkyBlockSettings.renewableHeartsOfTheSea) {
       Random random = new Random();
       if (random.nextFloat() < CHANCE_TO_FIND_HEART_OF_THE_SEA) {
         ItemStack heartOfTheSea = new ItemStack(Items.HEART_OF_THE_SEA);

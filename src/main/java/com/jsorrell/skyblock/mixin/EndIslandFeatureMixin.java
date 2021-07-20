@@ -40,7 +40,7 @@ public abstract class EndIslandFeatureMixin extends Feature<DefaultFeatureConfig
       BlockPos blockPos,
       float islandSizeF,
       int level) {
-    if (SkyBlockSettings.enableSkyBlockFeatures && SkyBlockSettings.gatewaysSpawnChorus) {
+    if (SkyBlockSettings.gatewaysSpawnChorus) {
       if (level == 0) {
         ChunkRandom randomChorus = new ChunkRandom();
         ChunkPos chunkPos = new ChunkPos(blockPos);
