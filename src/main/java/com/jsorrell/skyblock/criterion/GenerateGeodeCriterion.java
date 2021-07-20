@@ -19,7 +19,7 @@ public class GenerateGeodeCriterion extends AbstractCriterion<GenerateGeodeCrite
   }
 
   public void trigger(ServerPlayerEntity player) {
-    this.test(player, conditions -> true);
+    this.trigger(player, conditions -> true);
   }
 
   public GenerateGeodeCriterion.Conditions conditionsFromJson(
