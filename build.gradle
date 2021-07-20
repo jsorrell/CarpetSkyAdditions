@@ -14,9 +14,8 @@ repositories {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-archivesBaseName = project.name
-version = project.mod_version
-group = project.maven_group
+archivesBaseName = project.archives_base_name
+version = project.minecraft_version + "-" + project.mod_version
 
 minecraft {
 	accessWidener =  file("src/main/resources/skyblock.accesswidener")
@@ -33,6 +32,13 @@ dependencies {
 
 	// javax.annotation.Nullable/Nonnull
 	compileOnly "com.google.code.findbugs:jsr305:3.0.1"
+}
+
+task zipDatapack(type: Zip) {
+	archiveFileName = project.archives_base_name + "-" + project.version + ".resources.zip"
+	group = "build"
+	destinationDirectory = file('build/')
+	from files('./datapack')
 }
 
 task generateJava(type: Copy) {
