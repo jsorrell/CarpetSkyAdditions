@@ -317,9 +317,9 @@ Installation will also enable these `fabric-carpet` features.
 
 With the `fabric-carpet` options below enabled, all blocks, items, and mobs obtainable in vanilla survival are obtainable in SkyBlock.
 - [desertShrubs](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#desertshrubs) for Dead Bushes
-  - run `/carpet setDefault desertShrubs true` to enable
+  - run `/carpet setDefault desertShrubs false` to disable
 - [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for Sponges
-  - run `/carpet setDefault renewableSponges true` to enable
+  - run `/carpet setDefault renewableSponges false` to disable
   
 ## Acknowledgements
 - [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea and some source code
