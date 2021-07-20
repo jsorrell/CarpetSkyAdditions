@@ -1,1 +1,0 @@
-skyblock setDefault enable true

@@ -35,7 +35,7 @@ dependencies {
 }
 
 task zipDatapack(type: Zip) {
-	archiveFileName = project.archives_base_name + "-" + project.version + ".resources.zip"
+	archiveFileName = project.archives_base_name + "-" + project.version + ".datapack.zip"
 	group = "build"
 	destinationDirectory = file('build/')
 	from files('./datapack')
