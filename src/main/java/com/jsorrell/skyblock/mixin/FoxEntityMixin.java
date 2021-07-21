@@ -14,6 +14,8 @@ import net.minecraft.item.Items;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 
+import com.jsorrell.skyblock.SkyBlockSettings;
+
 @Mixin(FoxEntity.class)
 public abstract class FoxEntityMixin extends Entity {
   private FoxEntityMixin(EntityType<?> type, World world) {
@@ -28,12 +30,14 @@ public abstract class FoxEntityMixin extends Entity {
       cancellable = true,
       at = @At(value = "INVOKE", target = "Ljava/util/Random;nextFloat()F", ordinal = 1))
   private void addFoxHeldItem(LocalDifficulty difficulty, CallbackInfo ci) {
-    float f = this.random.nextFloat();
-    ItemStack equippedItem;
-    if (f < GLOW_BERRY_CHANCE) {
-      equippedItem = new ItemStack(Items.GLOW_BERRIES);
-      this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
-      ci.cancel();
+    if (SkyBlockSettings.foxesSpawnWithGlowBerries) {
+      float f = this.random.nextFloat();
+      ItemStack equippedItem;
+      if (f < GLOW_BERRY_CHANCE) {
+        equippedItem = new ItemStack(Items.GLOW_BERRIES);
+        this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
+        ci.cancel();
+      }
     }
   }
 }

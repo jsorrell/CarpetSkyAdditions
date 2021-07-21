@@ -67,6 +67,12 @@ public class SkyBlockSettings {
       category = {SKYBLOCK, FEATURE})
   public static boolean rammingWart = false;
 
+  /* Foxes Spawn With Glow Berries */
+  @Rule(
+      desc = "A spawned fox has a chance to hold glow berries",
+      category = {SKYBLOCK, FEATURE})
+  public static boolean foxesSpawnWithGlowBerries = false;
+
   /* Useful Composters */
   public static boolean doUsefulComposters = false;
   public static boolean usefulCompostersNeedRedstone = false;
