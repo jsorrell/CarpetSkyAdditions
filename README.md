@@ -92,9 +92,9 @@ Provides *Glow Lichen*
 
 Disable with ```/skyblock setDefault lightningElectrifiesVines false```
 
-If lightning strikes glowstone with vines attached,
-the vines will turn into glow lichen.
-It can also strike a lightning rod on the glowstone.
+If lightning strikes Glowstone with vines attached,
+the vines will turn into Glow Lichen.
+It can also strike a Lightning Rod on the Glowstone.
 
 ---
 
@@ -105,7 +105,19 @@ Disable with ```/skyblock setDefault renewableBuddingAmethysts false```
 
 A lava block surrounded by Calcite which is then surrounded by Smooth Basalt
 will eventually turn into a Budding Amethyst.
-Conversion takes about 2 hours on average.
+
+##### How to build structure: #####
+
+![lava source](screenshots/amethyst_step_1_240.png?raw=true "Budding Amethyst Generation Step 1")
+---->
+![Lava surrounded by calcite](screenshots/amethyst_step_2_240.png?raw=true "Budding Amethyst Generation Step 2")
+---->
+![Calcite surrounded by smooth basalt](screenshots/amethyst_step_3_240.png?raw=true "Budding Amethyst Generation Step 3")
+
+After some time (2 hours on average), the Lava in the center will turn into a Budding Amethyst.
+
+![Lava has become budding amethyst](screenshots/amethyst_result_240.png?raw=true "Budding Amethyst Generation Result")
+
 
 ---
 
@@ -165,6 +177,16 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 
 ---
 
+#### Foxes Spawn With Glow Berries ####
+Provides *Glow Berries*
+
+Disable with ```/skyblock setDefault foxesSpawnWithGlowBerries false```
+
+When a fox spawns with an item, there is a 20% chance the item is Glow Berries. 
+The fox will eat them soon after spawning, so be quick.
+
+---
+
 #### Useful Composters (disabled by default) ####
 Provides additional *Sand*, *Red Sand*, and *Dirt*
 
@@ -194,7 +216,7 @@ In 1.17, Drowneds no longer drop Gold Ingots.
 This makes progression extremely slow and tedious as 16 Foxes spawning with Emeralds are required.
 By adding this Blast Furnace recipe, Golden Tools can be smelted into nuggets.
 
-![blast furnace recipe](screenshots/blast_furnace_recipe.png?raw=true "Blast Furnace Recipe")
+![Prismarine bricks in bottom row, cooked meat in the center, iron ingot elsewhere](screenshots/blast_furnace_recipe.png?raw=true "Blast Furnace Recipe")
 
 The center slot accepts any cooked meat.
 
@@ -303,6 +325,12 @@ they can drop any music disc, including Pigstep.
 Provides *Snout Banner Pattern*
 
 Title says it all.
+
+---
+
+#### Magma Cream Recipe Disabled ####
+
+The vanilla Magma Cream recipe is too easy. Make a Magma Cube farm instead.
 
 ---
 
