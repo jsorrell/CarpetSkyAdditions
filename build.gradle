@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 plugins {
-	id 'fabric-loom' version '0.9-SNAPSHOT'
+	id 'fabric-loom' version '0.11-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -11,14 +11,14 @@ repositories {
 	}
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.minecraft_version + "-" + project.mod_version
 
-minecraft {
-	accessWidener =  file("src/main/resources/skyblock.accesswidener")
+loom {
+	accessWidenerPath =  file("src/main/resources/skyblock.accesswidener")
 }
 
 dependencies {
@@ -31,7 +31,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	// javax.annotation.Nullable/Nonnull
-	compileOnly "com.google.code.findbugs:jsr305:3.0.1"
+	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 task zipDatapack(type: Zip) {
