@@ -188,23 +188,6 @@ The fox will eat them soon after spawning, so be quick.
 
 ---
 
-#### Useful Composters (disabled by default) ####
-Provides additional *Sand*, *Red Sand*, and *Dirt*
-
-Enable with ```/skyblock setDefault usefulComposters true``` or ```/skyblock setDefault usefulComposters redstone```
-
-Provides an easier way to get sand/red sand than the 64/24 you can get at a time from a wandering trader.
-
-The datapack now makes it so Husks drop Sand and Red Sand has a crafting recipe, so this is disabled by default.
-Additionally, Dirt farming is nicer since 1.17. 
-
-Compost result depends on the biome.
-Get sand in deserts, beaches, warm oceans etc, red sand from badlands, and dirt elsewhere.
-  
-When set to ```redstone```, the composter outputs Bonemeal without a redstone signal.
-
----
-
 ### Additional Datapack Features ###
 The included datapack provides additional recipes, and advancements.
 

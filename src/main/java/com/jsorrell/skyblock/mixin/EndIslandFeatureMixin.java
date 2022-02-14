@@ -1,25 +1,24 @@
 package com.jsorrell.skyblock.mixin;
 
-import java.util.Random;
-
+import com.jsorrell.skyblock.SkyBlockSettings;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.EndIslandFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.gen.random.AtomicSimpleRandom;
+import net.minecraft.world.gen.random.ChunkRandom;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.ChunkRandom;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.EndIslandFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
-
-import com.jsorrell.skyblock.SkyBlockSettings;
+import java.util.Random;
 
 @Mixin(EndIslandFeature.class)
 public abstract class EndIslandFeatureMixin extends Feature<DefaultFeatureConfig> {
@@ -42,7 +41,7 @@ public abstract class EndIslandFeatureMixin extends Feature<DefaultFeatureConfig
       int level) {
     if (SkyBlockSettings.gatewaysSpawnChorus) {
       if (level == 0) {
-        ChunkRandom randomChorus = new ChunkRandom();
+        ChunkRandom randomChorus = new ChunkRandom(new AtomicSimpleRandom(0L));
         ChunkPos chunkPos = new ChunkPos(blockPos);
         randomChorus.setPopulationSeed(world.getSeed(), chunkPos.getStartX(), chunkPos.getStartZ());
         int islandRadius = MathHelper.ceil(islandSizeF);
@@ -52,7 +51,7 @@ public abstract class EndIslandFeatureMixin extends Feature<DefaultFeatureConfig
         int zOffset = randomChorus.nextInt(2 * farthestZ) - farthestZ;
         BlockPos chorusPos = blockPos.add(xOffset, 1, zOffset);
         Feature.CHORUS_PLANT.generate(
-            new FeatureContext<>(world, null, randomChorus, chorusPos, null));
+            new FeatureContext<>(null, world, null, randomChorus, chorusPos, null));
       }
     }
   }
