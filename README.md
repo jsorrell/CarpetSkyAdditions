@@ -297,21 +297,23 @@ Cats will rarely bring the player an Enchanted Golden Apple as a morning gift.
 ---
 
 #### Piglins Give Gilded Blackstone ####
+
 Provides *Gilded Blackstone*
 
 Piglins will rarely give Gilded Blackstone when bartering.
 
 ---
 
-#### Creepers Drop Pigstep ####
-Provides the music disc *Pigstep*
+#### Creepers Drop All Music Disks in the Nether ####
 
-When Creepers are killed by Skeletons in the Nether,
-they can drop any music disc, including Pigstep.
+Provides the music discs *Pigstep* and *otherside*
+
+When Creepers are killed by Skeletons in the Nether, they can drop any music disc, including Pigstep and otherside.
 
 ---
 
 #### Zoglins Drop Snout Banner Patterns ####
+
 Provides *Snout Banner Pattern*
 
 Title says it all.
