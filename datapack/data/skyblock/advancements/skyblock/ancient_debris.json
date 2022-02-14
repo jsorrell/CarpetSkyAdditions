@@ -5,10 +5,10 @@
       "item": "minecraft:ancient_debris"
     },
     "title": {
-      "translate": "Hellish Gift"
+      "translate": "Brutiful"
     },
     "description": {
-      "translate": "Receive Ancient Debris as a Hero of the Village Gift in the Nether"
+      "translate": "Piglin Brutes spawn in Bastion Remnants and may drop Ancient Debris on death."
     },
     "frame": "challenge"
   },

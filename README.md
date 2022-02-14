@@ -239,11 +239,11 @@ Husks drop Sand because obtaining large amounts from a Wandering Trader is tedio
 
 ---
 
-#### Ancient Debris Given as a Hero of the Village Gift in the Nether ####
+#### Piglin Brutes Drop Ancient Debris ####
 Provides *Ancient Debris*
 
-Armorers, Toolsmiths, and Weaponsmiths will sometimes gift village heroes
-Ancient Debris while in the Nether.
+A Carpet setting enables Piglin Brutes to spawn in bastions.
+These Brutes have a chance to drop Ancient Debris.
 
 ---
 
@@ -349,6 +349,8 @@ With the `fabric-carpet` options below enabled, all blocks, items, and mobs obta
   - run `/carpet setDefault desertShrubs false` to disable
 - [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for Sponges
   - run `/carpet setDefault renewableSponges false` to disable
+- [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions) for Ancient Debris
+  - run `/carpet setDefault piglinsSpawningInBastions false` to disable
   
 ## Acknowledgements
 - [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea and some source code
