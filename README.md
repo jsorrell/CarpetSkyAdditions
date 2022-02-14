@@ -324,10 +324,18 @@ The vanilla Magma Cream recipe is too easy. Make a Magma Cube farm instead.
 
 ---
 
+#### War Pigs Advancement Changed ####
+
+In a SkyBlock world, the War Pigs advancement is unobtainable because it requires generated chests.
+
+The advancement is now obtainable by killing a Piglin Brute.
+
+----
+
 ### Numerous Added Advancements ###
 SkyBlock advancements help guide progression, as well as serve to document the mod's changes to vanilla.
 
-With all features enabled, all vanilla advancements except for `War Pigs` can be completed.
+With all features enabled, all vanilla advancements can be completed (although War Pigs is changed).
 
 
 ## Carpet Features
