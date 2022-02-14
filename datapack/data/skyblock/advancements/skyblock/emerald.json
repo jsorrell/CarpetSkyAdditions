@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:skyblock/blast_furnace",
+  "parent": "skyblock:skyblock/golden_apple",
   "display": {
     "icon": {
       "item": "minecraft:emerald"

@@ -212,17 +212,6 @@ When possible, changes were added to the datapack over the mod for ease of user 
 
 ---
 
-#### Additional Blast Furnace Recipe ####
-In 1.17, Drowneds no longer drop Gold Ingots.
-This makes progression extremely slow and tedious as 16 Foxes spawning with Emeralds are required.
-By adding this Blast Furnace recipe, Golden Tools can be smelted into nuggets.
-
-![Prismarine bricks in bottom row, cooked meat in the center, iron ingot elsewhere](screenshots/blast_furnace_recipe.png?raw=true "Blast Furnace Recipe")
-
-The center slot accepts any cooked meat.
-
----
-
 #### Calcite and Tuff Obtainable ####
 Provides *Calcite* and *Tuff*
 

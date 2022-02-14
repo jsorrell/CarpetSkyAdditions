@@ -1,24 +1,24 @@
 {
-  "parent": "skyblock:skyblock/prismarine_shard",
+  "parent": "skyblock:skyblock/lightning_rod",
   "display": {
     "icon": {
-      "item": "minecraft:blast_furnace"
+      "item": "minecraft:golden_apple"
     },
     "title": {
-      "translate": "3...2...1 Blast Off!"
+      "translate": "Panacea"
     },
     "description": {
-      "translate": "Craft a Blast Furnace for smelting golden tools"
+      "translate": "Kill some converted Zombified Piglins and craft a Golden Apple"
     }
   },
   "criteria": {
-    "blast_furnace": {
+    "golden_apple": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:blast_furnace"
+              "minecraft:golden_apple"
             ]
           }
         ]

@@ -2,13 +2,13 @@
   "parent": "skyblock:skyblock/cauldron",
   "display": {
     "icon": {
-      "item": "minecraft:prismarine_shard"
+      "item": "minecraft:lightning_rod"
     },
     "title": {
-      "translate": "Guardians of the Galaxy"
+      "translate": "IT'S ALIV... er Undead"
     },
     "description": {
-      "translate": "Obtain prismarine from Guardians"
+      "translate": "Craft a Lightning Rod to help in converting Pigs"
     }
   },
   "criteria": {
@@ -18,7 +18,7 @@
         "items": [
           {
             "items": [
-              "minecraft:prismarine_shard"
+              "minecraft:lightning_rod"
             ]
           }
         ]
