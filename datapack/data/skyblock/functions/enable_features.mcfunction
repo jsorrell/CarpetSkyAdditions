@@ -7,6 +7,6 @@ skyblock setDefault renewableDragonHeads true
 skyblock setDefault shulkerSpawning true
 skyblock setDefault renewableDiamonds true
 skyblock setDefault rammingWart true
-skyblock setDefault foxesSpawnWithGlowBerries true
+skyblock setDefault foxesSpawnWithBerries true
 carpet setDefault desertShrubs true
 carpet setDefault renewableSponges true

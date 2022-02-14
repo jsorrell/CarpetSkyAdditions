@@ -177,12 +177,13 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 
 ---
 
-#### Foxes Spawn With Glow Berries ####
-Provides *Glow Berries*
+#### Foxes Spawn With Berries ####
+Provides *Glow Berries* and *Sweet Berries*
 
-Disable with ```/skyblock setDefault foxesSpawnWithGlowBerries false```
+Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
 
-When a fox spawns with an item, there is a 20% chance the item is Glow Berries. 
+When a fox spawns with an item, there is a 15% chance the item is Glow Berries
+and another 15% chance it is Sweet Berries.
 The fox will eat them soon after spawning, so be quick.
 
 ---

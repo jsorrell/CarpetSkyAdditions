@@ -23,20 +23,20 @@ public abstract class FoxEntityMixin extends Entity {
   }
 
   // Chance given the 20% chance a fox is spawned holding any item
-  private static final float GLOW_BERRY_CHANCE = 0.2f;
+  private static final float BERRY_CHANCE = 0.3f;
 
   @Inject(
       method = "initEquipment",
       cancellable = true,
       at = @At(value = "INVOKE", target = "Ljava/util/Random;nextFloat()F", ordinal = 1))
   private void addFoxHeldItem(LocalDifficulty difficulty, CallbackInfo ci) {
-    if (SkyBlockSettings.foxesSpawnWithGlowBerries) {
+    if (SkyBlockSettings.foxesSpawnWithBerries) {
       float f = this.random.nextFloat();
       ItemStack equippedItem;
-      if (f < GLOW_BERRY_CHANCE) {
-        equippedItem = new ItemStack(Items.GLOW_BERRIES);
-        this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
-        ci.cancel();
+      if (f < BERRY_CHANCE) {
+         equippedItem = new ItemStack(f < BERRY_CHANCE / 2 ? Items.GLOW_BERRIES : Items.SWEET_BERRIES);
+         this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
+         ci.cancel();
       }
     }
   }

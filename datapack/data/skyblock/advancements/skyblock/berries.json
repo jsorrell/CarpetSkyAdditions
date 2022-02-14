@@ -8,18 +8,19 @@
       "translate": "Snatched from the Jaws"
     },
     "description": {
-      "translate": "Get Glow Berries from a Fox"
+      "translate": "Get Berries from a Fox"
     },
     "frame": "goal"
   },
   "criteria": {
-    "glow_berries": {
+    "berries": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:glow_berries"
+              "minecraft:glow_berries",
+              "minecraft:sweet_berries"
             ]
           }
         ]
