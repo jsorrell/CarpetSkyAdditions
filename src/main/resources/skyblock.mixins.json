@@ -15,6 +15,7 @@
     "LightningEntityMixin",
     "LivingEntityMixin",
     "RamImpactTaskMixin",
+    "SpawnRestrictionAccessor",
     "WanderingTraderEntityMixin"
   ],
   "client": [
