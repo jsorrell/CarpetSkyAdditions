@@ -13,8 +13,8 @@ the mod will not affect other saves on the client it is installed on.
 
 ## Installation
 - Install [Fabric](https://fabricmc.net/use)
-- Download [fabric-carpet](https://github.com/gnembon/fabric-carpet/releases)
-- Optionally download [fabric-api](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files)
+- Download [fabric-carpet](https://www.curseforge.com/minecraft/mc-mods/carpet/files/)
+- Download [fabric-api](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files)
 - Download [SkyBlock and the Datapack](https://github.com/jsorrell/skyblock/releases)
 - Place fabric-carpet, fabric-api, and SkyBlock into `<minecraft-directory>/mods/`
 
@@ -26,7 +26,7 @@ the mod will not affect other saves on the client it is installed on.
 - Select the downloaded Datapack
 - Set Allow Cheats to `ON` so you will be able to enable mod features
 - Click on `More World Options...`
-- Choose `World Type: SkyBlock` (or `World Type: generator.skyblock` if you didn't download `fabric-api`)
+- Choose `World Type: SkyBlock`
 - Create the world
 - Run `/function skyblock:enable_features` to enable SkyBlock features
 
@@ -73,16 +73,16 @@ Tall Flowers trades mimic Bedrock.
 ##### Additional Trades: #####
 
 ###### Tier 1
-| Item          | Price | Trades until disabled |
-| ------------- | ----- | --------------------- |
-| Lilac         | 1     | 12                    |
-| Rose Bush     | 1     | 12                    |
-| Peony         | 1     | 12                    |
-| Sunflower     | 1     | 12                    |
+| Item      | Price | Trades until disabled |
+|-----------|-------|-----------------------|
+| Lilac     | 1     | 12                    |
+| Rose Bush | 1     | 12                    |
+| Peony     | 1     | 12                    |
+| Sunflower | 1     | 12                    |
 
 ###### Tier 2
 | Output Item | Input Item | Price | Trades until disabled |
-| ----------- | ---------- | ----- | --------------------- |
+|-------------|------------|-------|-----------------------|
 | Lava Bucket | Bucket     | 16    | 1                     |
 
 ---
