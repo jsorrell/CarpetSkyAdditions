@@ -1,15 +1,18 @@
 package com.jsorrell.skyblock.mixin;
 
 import com.jsorrell.skyblock.gen.SkyBlockGenerationSettings;
+import net.minecraft.server.dedicated.ServerPropertiesHandler;
+import net.minecraft.structure.StructureSet;
 import net.minecraft.util.registry.DynamicRegistryManager;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.GeneratorOptions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import java.util.Properties;
 
 @Mixin(GeneratorOptions.class)
 public class GeneratorOptionsMixin {
@@ -21,23 +24,21 @@ public class GeneratorOptionsMixin {
       cancellable = true)
   private static void addSkyBlockGeneratorOptionWhenLoadingProperties(
       DynamicRegistryManager drm,
-      Properties properties,
+      ServerPropertiesHandler.WorldGenProperties worldGenProperties,
       CallbackInfoReturnable<GeneratorOptions> cir,
-      String string,
-      String string2,
-      boolean generateStructures,
-      String string4,
-      String generatorSettingsName,
-      long seed
+      long seed,
+      Registry<DimensionType> dimensionTypeRegistry,
+      Registry<Biome> biomeRegistry,
+      Registry<StructureSet> structureSetRegistry
   ) {
-    if (SkyBlockGenerationSettings.NAME.equals(generatorSettingsName)) {
-      GeneratorOptions x = new GeneratorOptions(
+    if (SkyBlockGenerationSettings.NAME.equals(worldGenProperties.levelType())) {
+      GeneratorOptions generatorOptions = new GeneratorOptions(
           seed,
-          generateStructures,
+          worldGenProperties.generateStructures(),
           false,
           SkyBlockGenerationSettings.getSkyBlockDimensionOptionsRegistry(drm, seed)
       );
-      cir.setReturnValue(x);
+      cir.setReturnValue(generatorOptions);
     }
   }
 }

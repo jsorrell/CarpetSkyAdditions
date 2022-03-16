@@ -11,12 +11,14 @@ import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
+import net.minecraft.structure.StructureSet;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.dynamic.RegistryLookupCodec;
+import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -24,6 +26,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.*;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.gen.random.ChunkRandom;
 import net.minecraft.world.gen.random.RandomSeed;
 import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
@@ -32,7 +35,6 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.function.Supplier;
 
 public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
   private final long seed;
@@ -40,27 +42,28 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   public static final Codec<SkyBlockChunkGenerator> CODEC =
       RecordCodecBuilder.create(
-          (instance) ->
-              instance
-                  .group(
-                      RegistryLookupCodec
-                          .of(Registry.NOISE_WORLDGEN)
-                          .forGetter(skyblockChunkGenerator -> skyblockChunkGenerator.noiseRegistry),
-                      BiomeSource.CODEC
-                          .fieldOf("biome_source")
-                          .forGetter(SkyBlockChunkGenerator::getBiomeSource),
-                      Codec.LONG
-                          .fieldOf("seed")
-                          .stable()
-                          .forGetter(SkyBlockChunkGenerator::getSeed),
-                      ChunkGeneratorSettings.REGISTRY_CODEC
-                          .fieldOf("settings")
-                          .forGetter(SkyBlockChunkGenerator::getSettings))
+          instance ->
+              NoiseChunkGenerator.method_41042(instance).and(
+                      instance
+                          .group(
+                              RegistryOps.createRegistryCodec(
+                                      Registry.NOISE_WORLDGEN)
+                                  .forGetter(skyblockChunkGenerator -> skyblockChunkGenerator.noiseRegistry),
+                              BiomeSource.CODEC
+                                  .fieldOf("biome_source")
+                                  .forGetter(SkyBlockChunkGenerator::getBiomeSource),
+                              Codec.LONG
+                                  .fieldOf("seed")
+                                  .stable()
+                                  .forGetter(SkyBlockChunkGenerator::getSeed),
+                              ChunkGeneratorSettings.REGISTRY_CODEC
+                                  .fieldOf("settings")
+                                  .forGetter(SkyBlockChunkGenerator::getSettings)))
                   .apply(instance, instance.stable(SkyBlockChunkGenerator::new)));
 
-  public SkyBlockChunkGenerator(Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry,
-                                BiomeSource biomeSource, long seed, Supplier<ChunkGeneratorSettings> settings) {
-    super(noiseRegistry, biomeSource, seed, settings);
+  public SkyBlockChunkGenerator(Registry<StructureSet> structureRegistry, Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry,
+                                BiomeSource biomeSource, long seed, RegistryEntry<ChunkGeneratorSettings> settings) {
+    super(structureRegistry, noiseRegistry, biomeSource, seed, settings);
     this.seed = seed;
     // Need noise registry kept so features generate in identical places to vanilla
     this.noiseRegistry = noiseRegistry;
@@ -70,7 +73,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     return this.seed;
   }
 
-  public Supplier<ChunkGeneratorSettings> getSettings() {
+  public RegistryEntry<ChunkGeneratorSettings> getSettings() {
     return this.settings;
   }
 
@@ -81,7 +84,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   @Override
   public ChunkGenerator withSeed(long seed) {
-    return new SkyBlockChunkGenerator(this.noiseRegistry, this.biomeSource.withSeed(seed), seed, this.settings);
+    return new SkyBlockChunkGenerator(this.field_37053, this.noiseRegistry, this.biomeSource.withSeed(seed), seed, this.settings);
   }
 
   @Override
@@ -133,11 +136,12 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     int startX = chunkPos.getStartX();
     int startZ = chunkPos.getStartZ();
     BlockBox chunkBoundary = new BlockBox(startX, chunk.getBottomY(), startZ, startX + 15, chunk.getTopY(), startZ + 15);
+    Registry<ConfiguredStructureFeature<?, ?>> configuredStructureFeatures = world.getRegistryManager().get(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY);
 
     accessor
         .getStructureStarts(
             ChunkSectionPos.from(pos),
-            Registry.STRUCTURE_FEATURE.get(new Identifier("minecraft:stronghold")))
+            configuredStructureFeatures.get(new Identifier("minecraft:stronghold")))
         .forEach(
             (structureStart) -> {
               for (StructurePiece piece : structureStart.getChildren()) {

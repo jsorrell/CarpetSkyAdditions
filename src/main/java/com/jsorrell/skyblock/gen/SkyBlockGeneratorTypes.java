@@ -18,7 +18,7 @@ public class SkyBlockGeneratorTypes {
 
         @Override
         public GeneratorOptions createDefaultOptions(
-            DynamicRegistryManager.Impl drm,
+            DynamicRegistryManager drm,
             long seed,
             boolean generateStructures,
             boolean bonusChest) {
