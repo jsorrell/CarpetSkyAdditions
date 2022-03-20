@@ -195,6 +195,13 @@ When possible, changes were added to the datapack over the mod for ease of user 
 
 ---
 
+#### Netherrack from Rotten Flesh ####
+Provides *Netherrack*
+
+Netherrack is craftable from 9 Rotten Flesh
+
+---
+
 #### Calcite and Tuff Obtainable ####
 Provides *Calcite* and *Tuff*
 
