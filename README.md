@@ -69,7 +69,7 @@ making as minimal and Minecrafty changes as possible.
 ---
 
 #### Additional Wandering Trader Trades ####
-Provides *tall flowers* and *Lava Buckets*
+Provides *tall flowers*
 
 Disable with ```/skyblock setDefault wanderingTraderSkyBlockTrades false```
 
