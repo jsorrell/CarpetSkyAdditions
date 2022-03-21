@@ -57,7 +57,7 @@ Only three things are generated:
   ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
 
 - Magma Cube spawners in Treasure Room Bastion Remnants
-  
+
 Even with every block removed, almost every block is obtainable and almost every mob is spawnable,
 using only *Vanilla* features.
 
@@ -84,11 +84,6 @@ Tall Flowers trades mimic Bedrock.
 | Rose Bush | 1     | 12                    |
 | Peony     | 1     | 12                    |
 | Sunflower | 1     | 12                    |
-
-###### Tier 2
-| Output Item | Input Item | Price | Trades until disabled |
-|-------------|------------|-------|-----------------------|
-| Lava Bucket | Bucket     | 16    | 1                     |
 
 ---
 
@@ -183,7 +178,6 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 ---
 
 #### Foxes Spawn With Sweet Berries ####
-
 Provides *Sweet Berries*
 
 Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
@@ -194,7 +188,6 @@ spawning, so be quick.
 ---
 
 #### Saplings Die on Sand ####
-
 Provides *Dead Bushes*
 
 Disable with ```/skyblock setDefault saplingsDieOnSand false```
@@ -206,7 +199,6 @@ After a time, the saplings will die and turn into Dead Bushes.
 ---
 
 #### Poisonous Potatoes Convert Spiders ####
-
 Provides *Cave Spiders*
 
 Disable with ```/skyblock setDefault poisonousPotatoesConvertSpiders false```
@@ -223,7 +215,16 @@ When possible, changes were added to the datapack over the mod for ease of user 
 
 ---
 
+#### Lava from Hero of the Village Gift ####
+
+Provides *Lava*
+
+Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
+
+---
+
 #### Netherrack from Rotten Flesh ####
+
 Provides *Netherrack*
 
 Netherrack is craftable from 9 Rotten Flesh
@@ -231,6 +232,7 @@ Netherrack is craftable from 9 Rotten Flesh
 ---
 
 #### Calcite and Tuff Obtainable ####
+
 Provides *Calcite* and *Tuff*
 
 Put Diorite in a Blast Furnace for Calcite.
@@ -269,7 +271,6 @@ Elytra can be caught rarely as treasure items when fishing in the End.
 ---
 
 #### Red Sand Recipe ####
-
 Provides additional *Red Sand*
 
 Sand combined 1-1 with Red Dye makes Red Sand.
@@ -277,7 +278,6 @@ Sand combined 1-1 with Red Dye makes Red Sand.
 ---
 
 #### Glow Berries Recipe ####
-
 Provides *Glow Berries*
 
 Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
@@ -285,7 +285,6 @@ Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
 ---
 
 #### Spider Jockeys Drop Cobwebs ####
-
 Provides *Cobwebs*
 
 When a player kills a Spider Jockey, the first half killed drops a cobweb.
@@ -375,7 +374,7 @@ With the `fabric-carpet` options below enabled, all blocks, items, and mobs obta
   - run `/carpet setDefault renewableSponges false` to disable
 - [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions) for Ancient Debris
   - run `/carpet setDefault piglinsSpawningInBastions false` to disable
-  
+
 ## Acknowledgements
 - [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea and some source code
 
