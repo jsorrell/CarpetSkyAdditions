@@ -28,11 +28,6 @@ public class WanderingTrader {
             new TradeOffers.SellItemFactory(Items.ROSE_BUSH, 1, 1, 12, 1),
             new TradeOffers.SellItemFactory(Items.PEONY, 1, 1, 12, 1)));
 
-    tier2Trades.addAll(
-        Arrays.asList(
-            // Tier 2 Trades
-            new TradeOffers.ProcessItemFactory(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 1, 1)));
-
     WANDERING_TRADER_SKYBLOCK_TRADES =
         new Int2ObjectOpenHashMap<>(
             ImmutableMap.of(

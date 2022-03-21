@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:skyblock/lava_bucket",
+  "parent": "skyblock:skyblock/emerald",
   "display": {
     "icon": {
       "item": "minecraft:pointed_dripstone"
@@ -8,7 +8,7 @@
       "translate": "What's The Point?"
     },
     "description": {
-      "translate": "Buy some Pointed Dripstone to Duplicate Lava"
+      "translate": "Buy some Pointed Dripstone from a Wandering Trader to Duplicate Lava"
     }
   },
   "criteria": {

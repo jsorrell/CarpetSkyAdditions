@@ -1,14 +1,14 @@
 {
-  "parent": "skyblock:skyblock/emerald",
+  "parent": "skyblock:skyblock/village_hero",
   "display": {
     "icon": {
       "item": "minecraft:lava_bucket"
     },
     "title": {
-      "translate": "Lava Lova"
+      "translate": "Lavely Gift"
     },
     "description": {
-      "translate": "Trade a Wandering Trader for a Lava Bucket"
+      "translate": "Obtain Lava as a Gift from a Toolsmith"
     }
   },
   "criteria": {
