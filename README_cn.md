@@ -105,12 +105,12 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 ---
 
-#### 末地传送门生成紫颂植物 ####
+#### 末地折跃门生成紫颂植物 ####
 提供*紫颂果*和*紫颂花*
 
 通过指令```/skyblock setDefault gatewaysSpawnChorus false```可禁用该特性
 
-当一个末地传送门在虚空上方生成时，其伴生的末地石小岛将会生成一颗紫颂树。
+当一个末地折跃门在虚空上方生成时，其伴生的末地石小岛将会生成一颗紫颂树。
 
 ---
 
