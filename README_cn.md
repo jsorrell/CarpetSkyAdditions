@@ -84,6 +84,8 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 如果闪电击中附着于萤石上的藤蔓，则藤蔓将会转变为发光地衣，击中萤石上的避雷针时该特性依旧有效。
 
+---
+
 #### 紫水晶母岩可再生 ####
 提供*紫水晶母岩*
 
