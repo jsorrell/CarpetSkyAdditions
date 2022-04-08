@@ -41,10 +41,10 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 只有两样东西会在世界生成时得到保留：
 + 一个小的出生点平台：
-![一个小出生点平台，包括草方块、菌丝、菌岩，以及一棵树](screenshots/spawn_platform.png?raw=true "Spawn Platform")
+![一个小出生点平台，包括草方块、菌丝、菌岩，以及一棵树](screenshots/spawn_platform.png?raw=true "出生点平台")
 
 + 所有传送门框架和蠹虫刷怪笼：
-![末地传送门框架将得到保留](screenshots/end_portal.png?raw=true "End Portal Frame")
+![末地传送门框架将得到保留](screenshots/end_portal.png?raw=true "末地传送门框架")
 
 尽管几乎所有方块都被移除了，但在仅使用*原版*特性下，几乎所有方块都可以被获取，几乎所有生物也可以生成。
 
@@ -93,15 +93,15 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 ##### 如何搭建该结构 #####
 
-![熔岩源](screenshots/amethyst_step_1_240.png?raw=true "Budding Amethyst Generation Step 1")
+![熔岩源](screenshots/amethyst_step_1_240.png?raw=true "紫水晶母岩再生步骤1")
 ---->
-![用方解石包围熔岩](screenshots/amethyst_step_2_240.png?raw=true "Budding Amethyst Generation Step 2")
+![用方解石包围熔岩](screenshots/amethyst_step_2_240.png?raw=true "紫水晶母岩再生步骤2")
 ---->
-![用平滑玄武岩包围方解石](screenshots/amethyst_step_3_240.png?raw=true "Budding Amethyst Generation Step 3")
+![用平滑玄武岩包围方解石](screenshots/amethyst_step_3_240.png?raw=true "紫水晶母岩再生步骤3")
 
 在一定时间后（平均约2小时），处于结构正中心的熔岩将会转变为紫水晶母岩
 
-![熔岩变成了紫水晶母岩](screenshots/amethyst_result_240.png?raw=true "Budding Amethyst Generation Result")
+![熔岩变成了紫水晶母岩](screenshots/amethyst_result_240.png?raw=true "紫水晶母岩再生结果")
 
 ---
 
