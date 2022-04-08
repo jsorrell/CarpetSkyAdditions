@@ -312,7 +312,7 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 + [desertShrubs](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#desertshrubs)选项启用以获得枯萎的灌木
   + 运行指令`/carpet setDefault desertShrubs false`可禁用该特性
-+ [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for Sponges选项启用以再生海绵
++ [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges)选项启用以再生海绵
   + 运行指令`/carpet setDefault renewableSponges false`可禁用该特性
 + [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions)选项启用以在堡垒遗迹中再生猪灵
   + 运行指令`/carpet setDefault piglinsSpawningInBastions false`可禁用该特性
@@ -323,4 +323,4 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 + [@gnembon](https://github.com/gnembon/fabric-carpet)为地毯模组的作者
 
 ## 许可
-该项目根据MIT许可条款获得授权
+该项目根据MIT许可条款进行许可
