@@ -1,0 +1,47 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "skyblock:grass_block"
+        ]
+    },
+    "criteria": {
+        "has_grass":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:grass"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_dirt":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items":[
+                    {
+                        "items": [
+                            "minecraft:dirt"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_the_receipe":{
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "skyblock:grass_block"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_grass",
+            "has_dirt",
+            "has_the_receipe"
+        ]
+    ]
+}

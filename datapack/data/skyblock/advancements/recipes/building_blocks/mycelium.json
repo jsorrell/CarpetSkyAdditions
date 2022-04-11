@@ -1,0 +1,55 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "skyblock:mycelium1",
+            "skyblock:mycelium2"
+        ]
+    },
+    "criteria": {
+        "has_red_mushroom_block":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:red_mushroom_block"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_brown_mushroom_block":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items":[
+                    {
+                        "items": [
+                            "minecraft:brown_mushroom_block"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_the_receipe1":{
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "skyblock:mycelium1"
+            }
+        },
+        "has_the_receipe2":{
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "skyblock:mycelium2"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_red_mushroom_block",
+            "has_brown_mushroom_block",
+            "has_the_recipe1",
+            "has_the_recipe2"
+        ]
+    ]
+}

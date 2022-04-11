@@ -1,0 +1,71 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "skyblock:dirt_path"
+        ]
+    },
+    "criteria": {
+        "has_hay_block":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:hay_block"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_cooked_meat":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items":[
+                    {
+                        "tag": "skyblock:cooked_meat"
+                    }
+                ]
+            }
+        },
+        "has_bone_block":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:bone_block"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_dirt":{
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:dirt"
+                        ]
+                    }
+                ]
+            }
+        },
+        "has_the_receipe":{
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "skyblock:dirt_path"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_hay_block",
+            "has_cooked_meat",
+            "has_bone_block",
+            "has_dirt",
+            "has_the_receipe"
+        ]
+    ]
+}
