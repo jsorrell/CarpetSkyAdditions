@@ -44,16 +44,19 @@ The mod and datapack are only required on the server.
 ## Features
 
 ### SkyBlock Generation
-A SkyBlock world generates exactly like a Default generation world, but with every block removed.
-Biomes and Structure Bounding Boxes are kept in place.
-This means Husks will still spawn in Deserts and Blazes will spawn in Nether Fortresses, for example.
+A SkyBlock world generates exactly like a Default generation world, but with every block removed. Biomes and Structure
+Bounding Boxes are kept in place. This means Husks will still spawn in Deserts and Blazes will spawn in Nether
+Fortresses, for example.
 
-Only two things are generated:
+Only three things are generated:
+
 - A small starting island where you spawn:
-![small spawn platform with grass, mycelium, nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
+  ![small spawn platform with grass, mycelium, nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
 - All end portal frames and silverfish spawners:
-![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
+  ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
+
+- Magma Cube spawners in Treasure Room Bastion Remnants
   
 Even with every block removed, almost every block is obtainable and almost every mob is spawnable,
 using only *Vanilla* features.
