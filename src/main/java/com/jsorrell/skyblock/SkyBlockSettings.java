@@ -72,4 +72,10 @@ public class SkyBlockSettings {
       desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
       category = {SKYBLOCK, FEATURE})
   public static boolean poisonousPotatoesConvertSpiders = false;
+
+  /* Saplings Placed on Sand Turn into Dead Bushes */
+  @Rule(
+      desc = "Saplings on Sand eventually turn into Dead Bushes",
+      category = {SKYBLOCK, FEATURE})
+  public static boolean saplingsDieOnSand = false;
 }

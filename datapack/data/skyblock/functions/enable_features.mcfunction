@@ -9,6 +9,6 @@ skyblock setDefault renewableDiamonds true
 skyblock setDefault rammingWart true
 skyblock setDefault foxesSpawnWithBerries true
 skyblock setDefault poisonousPotatoesConvertSpiders true
-carpet setDefault desertShrubs true
+skyblock setDefault saplingsDieOnSand true
 carpet setDefault renewableSponges true
 carpet setDefault piglinsSpawningInBastions true

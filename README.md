@@ -190,6 +190,18 @@ Berries. The fox will eat them soon after spawning, so be quick.
 
 ---
 
+#### Saplings Die on Sand ####
+
+Provides *Dead Bushes*
+
+Disable with ```/skyblock setDefault saplingsDieOnSand false```
+
+Saplings can be placed on Sand and Red Sand.
+
+After a time, the saplings will die and turn into Dead Bushes.
+
+---
+
 #### Poisonous Potatoes Convert Spiders ####
 
 Provides *Cave Spiders*
@@ -347,8 +359,6 @@ With all features enabled, all vanilla advancements can be completed (although W
 Installation will also enable these `fabric-carpet` features.
 
 With the `fabric-carpet` options below enabled, all blocks, items, and mobs obtainable in vanilla survival are obtainable in SkyBlock.
-- [desertShrubs](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#desertshrubs) for Dead Bushes
-  - run `/carpet setDefault desertShrubs false` to disable
 - [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for Sponges
   - run `/carpet setDefault renewableSponges false` to disable
 - [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions) for Ancient Debris
