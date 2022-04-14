@@ -63,7 +63,7 @@ public class SkyBlockSettings {
 
   /* Foxes Spawn With Berries */
   @Rule(
-      desc = "A spawned fox has a chance to hold berries",
+      desc = "A spawned Fox has a chance to hold Sweet Berries",
       category = {SKYBLOCK, FEATURE})
   public static boolean foxesSpawnWithBerries = false;
 

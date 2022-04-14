@@ -182,14 +182,14 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 
 ---
 
-#### Foxes Spawn With Berries ####
+#### Foxes Spawn With Sweet Berries ####
 
-Provides *Glow Berries* and *Sweet Berries*
+Provides *Sweet Berries*
 
 Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
 
-When a fox spawns with an item, there is a 15% chance the item is Glow Berries and another 15% chance it is Sweet
-Berries. The fox will eat them soon after spawning, so be quick.
+When a Fox spawns with an item, there is a 20% chance the item is Sweet Berries. The Fox will eat them soon after
+spawning, so be quick.
 
 ---
 
@@ -269,17 +269,26 @@ Elytra can be caught rarely as treasure items when fishing in the End.
 ---
 
 #### Red Sand Recipe ####
+
 Provides additional *Red Sand*
 
 Sand combined 1-1 with Red Dye makes Red Sand.
 
 ---
 
+#### Glow Berries Recipe ####
+
+Provides *Glow Berries*
+
+Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
+
+---
+
 #### Spider Jockeys Drop Cobwebs ####
+
 Provides *Cobwebs*
 
-When a player kills a Spider Jockey,
-the first half killed drops a cobweb.
+When a player kills a Spider Jockey, the first half killed drops a cobweb.
 
 ---
 

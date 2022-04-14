@@ -2,13 +2,13 @@
   "parent": "skyblock:skyblock/root",
   "display": {
     "icon": {
-      "item": "minecraft:glow_berries"
+      "item": "minecraft:sweet_berries"
     },
     "title": {
       "translate": "Snatched from the Jaws"
     },
     "description": {
-      "translate": "Get Berries from a Fox"
+      "translate": "Get Sweet Berries from a Fox"
     },
     "frame": "goal"
   },
@@ -19,7 +19,6 @@
         "items": [
           {
             "items": [
-              "minecraft:glow_berries",
               "minecraft:sweet_berries"
             ]
           }
