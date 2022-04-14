@@ -346,6 +346,14 @@ Title says it all.
 
 ---
 
+#### Flowering Azalea Leaves Drop Spore Blossoms ####
+
+Provides *Spore Blossoms*
+
+Flowering Azalea Leaves have a chance to drop Spore Blossoms, increased by Fortune.
+
+---
+
 #### Magma Cream Recipe Disabled ####
 
 The vanilla Magma Cream recipe is too easy. Make a Magma Cube farm instead.
