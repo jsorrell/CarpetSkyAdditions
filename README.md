@@ -180,17 +180,28 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 ---
 
 #### Foxes Spawn With Berries ####
+
 Provides *Glow Berries* and *Sweet Berries*
 
 Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
 
-When a fox spawns with an item, there is a 15% chance the item is Glow Berries
-and another 15% chance it is Sweet Berries.
-The fox will eat them soon after spawning, so be quick.
+When a fox spawns with an item, there is a 15% chance the item is Glow Berries and another 15% chance it is Sweet
+Berries. The fox will eat them soon after spawning, so be quick.
+
+---
+
+#### Poisonous Potatoes Convert Spiders ####
+
+Provides *Cave Spiders*
+
+Disable with ```/skyblock setDefault poisonousPotatoesConvertSpiders false```
+
+Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 ---
 
 ### Additional Datapack Features ###
+
 The included datapack provides additional recipes, and advancements.
 
 When possible, changes were added to the datapack over the mod for ease of user customization.

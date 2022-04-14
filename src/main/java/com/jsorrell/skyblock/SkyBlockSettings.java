@@ -66,4 +66,10 @@ public class SkyBlockSettings {
       desc = "A spawned fox has a chance to hold berries",
       category = {SKYBLOCK, FEATURE})
   public static boolean foxesSpawnWithBerries = false;
+
+  /* Poisonous Potatoes Convert Spiders into Cave Spiders */
+  @Rule(
+      desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
+      category = {SKYBLOCK, FEATURE})
+  public static boolean poisonousPotatoesConvertSpiders = false;
 }

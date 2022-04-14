@@ -16,6 +16,7 @@
     "LivingEntityMixin",
     "RamImpactTaskMixin",
     "SpawnRestrictionAccessor",
+    "SpiderEntityMixin",
     "WanderingTraderEntityMixin"
   ],
   "client": [
