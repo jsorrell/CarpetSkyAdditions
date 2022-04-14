@@ -1,5 +1,6 @@
 package com.jsorrell.skyblock.gen;
 
+import com.jsorrell.skyblock.mixin.SinglePoolElementAccessor;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
@@ -9,9 +10,12 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.StructureSet;
+import net.minecraft.structure.pool.SinglePoolElement;
+import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.math.*;
@@ -32,6 +36,7 @@ import net.minecraft.world.gen.random.RandomSeed;
 import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -138,12 +143,13 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     BlockBox chunkBoundary = new BlockBox(startX, chunk.getBottomY(), startZ, startX + 15, chunk.getTopY(), startZ + 15);
     Registry<ConfiguredStructureFeature<?, ?>> configuredStructureFeatures = world.getRegistryManager().get(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY);
 
+    // End Portals
     accessor
         .getStructureStarts(
             ChunkSectionPos.from(pos),
-            configuredStructureFeatures.get(new Identifier("minecraft:stronghold")))
+            configuredStructureFeatures.get(new Identifier("stronghold")))
         .forEach(
-            (structureStart) -> {
+            structureStart -> {
               for (StructurePiece piece : structureStart.getChildren()) {
                 if (piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
                   BlockPos portalPos =
@@ -156,6 +162,37 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                     random.setCarverSeed(seed, chunkPos.x, chunkPos.z);
                     generateStrongholdPortalInBox(
                         world, portalPos, random, Objects.requireNonNull(piece.getFacing()), chunkBoundary);
+                  }
+                }
+              }
+            });
+
+    // Magma Cube Spawner
+    accessor
+        .getStructureStarts(
+            ChunkSectionPos.from(pos),
+            configuredStructureFeatures.get(new Identifier("bastion_remnant")))
+        .forEach(
+            structureStart -> {
+              for (StructurePiece piece : structureStart.getChildren()) {
+                if (piece.intersectsChunk(chunkPos, 0) && piece instanceof PoolStructurePiece poolPiece) {
+                  StructurePoolElement element = poolPiece.getPoolElement();
+                  if (element instanceof SinglePoolElement singlePoolElement) {
+                    Optional<Identifier> left = ((SinglePoolElementAccessor) singlePoolElement).getLocation().left();
+                    if (left.isPresent() && left.get().equals(new Identifier("bastion/treasure/bases/lava_basin"))) {
+                      // Spawner in position (11, 7, 19) in nbt file
+                      BlockPos spawnerPos = ((PoolStructurePiece) piece).getPos().up(7);
+                      spawnerPos = spawnerPos.offset(piece.getRotation().rotate(Direction.EAST), 11);
+                      spawnerPos = spawnerPos.offset(piece.getRotation().rotate(Direction.SOUTH), 19);
+
+                      if (chunkBoundary.contains(spawnerPos)) {
+                        world.setBlockState(spawnerPos, Blocks.SPAWNER.getDefaultState(), 2);
+                        BlockEntity blockEntity = world.getBlockEntity(spawnerPos);
+                        if (blockEntity instanceof MobSpawnerBlockEntity spawnerEntity) {
+                          spawnerEntity.getLogic().setEntityId(EntityType.MAGMA_CUBE);
+                        }
+                      }
+                    }
                   }
                 }
               }
