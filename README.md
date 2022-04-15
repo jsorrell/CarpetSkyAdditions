@@ -5,15 +5,15 @@
 SkyBlock is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 originally based on [skyrising/skyblock](https://github.com/skyrising/skyblock).
 
-This mod aims to provide an expert level SkyBlock gameplay that depends on players' knowledge
-of Minecraft mechanics. In some cases, outside tools such as [Chunkbase](https://www.chunkbase.com/)
-or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpful.
-Usage of these is encouraged. Sometimes extended grinding or AFK sessions will be
-required for progression, although I've tried to minimize this in some cases.
-Unless a command is run to enable features or SkyBlock world generation is chosen,
-the mod will not affect other saves on the client it is installed on.
+This mod aims to provide an expert level SkyBlock gameplay that depends on players' knowledge of Minecraft mechanics. In
+some cases, outside tools such as [Chunkbase](https://www.chunkbase.com/)
+or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpful. Usage of these is encouraged.
+Sometimes extended grinding or AFK sessions will be required for progression, although I've tried to minimize this in
+some cases. Unless a command is run to enable features or SkyBlock world generation is chosen, the mod will not affect
+other saves on the client it is installed on.
 
 ## Installation
+
 - Install [Fabric](https://fabricmc.net/use)
 - Download [fabric-carpet](https://www.curseforge.com/minecraft/mc-mods/carpet/files/)
 - Download [fabric-api](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files)
@@ -23,6 +23,7 @@ the mod will not affect other saves on the client it is installed on.
 ## Usage
 
 ### Singleplayer
+
 - `Create New World`
 - Set the Difficulty to Hard (for more armor/weapon drops)
 - Select the downloaded Datapack
@@ -33,6 +34,7 @@ the mod will not affect other saves on the client it is installed on.
 - Run `/function skyblock:enable_features` to enable SkyBlock features
 
 ### Multiplayer
+
 The mod and datapack are only required on the server.
 
 - Open `server.properties`
@@ -44,6 +46,7 @@ The mod and datapack are only required on the server.
 ## Features
 
 ### SkyBlock Generation
+
 A SkyBlock world generates exactly like a Default generation world, but with every block removed. Biomes and Structure
 Bounding Boxes are kept in place. This means Husks will still spawn in Deserts and Blazes will spawn in Nether
 Fortresses, for example.
@@ -58,17 +61,18 @@ Only three things are generated:
 
 - Magma Cube spawners in Treasure Room Bastion Remnants
 
-Even with every block removed, almost every block is obtainable and almost every mob is spawnable,
-using only *Vanilla* features.
+Even with every block removed, almost every block is obtainable and almost every mob is spawnable, using only *Vanilla*
+features.
 
 ### Additional Mod Features ###
-SkyBlock generation does, however, leave a few unobtainable resources.
-In addition to generation, this mod also fills in the gaps,
-making as minimal and Minecrafty changes as possible.
+
+SkyBlock generation does, however, leave a few unobtainable resources. In addition to generation, this mod also fills in
+the gaps, making as minimal and Minecrafty changes as possible.
 
 ---
 
 #### Additional Wandering Trader Trades ####
+
 Provides *tall flowers*
 
 Disable with ```/skyblock setDefault wanderingTraderSkyBlockTrades false```
@@ -78,6 +82,7 @@ Tall Flowers trades mimic Bedrock.
 ##### Additional Trades: #####
 
 ###### Tier 1
+
 | Item      | Price | Trades until disabled |
 |-----------|-------|-----------------------|
 | Lilac     | 1     | 12                    |
@@ -88,23 +93,24 @@ Tall Flowers trades mimic Bedrock.
 ---
 
 #### Lightning Electrifies Vines ####
+
 Provides *Glow Lichen*
 
 Disable with ```/skyblock setDefault lightningElectrifiesVines false```
 
-If lightning strikes Glowstone with vines attached,
-the vines will turn into Glow Lichen.
-It can also strike a Lightning Rod on the Glowstone.
+If lightning strikes Glowstone with vines attached, the vines will turn into Glow Lichen. It can also strike a Lightning
+Rod on the Glowstone.
 
 ---
 
 #### Renewable Budding Amethysts ####
+
 Provides *Budding Amethysts*
 
 Disable with ```/skyblock setDefault renewableBuddingAmethysts false```
 
-A lava block surrounded by Calcite which is then surrounded by Smooth Basalt
-will eventually turn into a Budding Amethyst.
+A lava block surrounded by Calcite which is then surrounded by Smooth Basalt will eventually turn into a Budding
+Amethyst.
 
 ##### How to build structure: #####
 
@@ -122,6 +128,7 @@ After some time (2 hours on average), the Lava in the center will turn into a Bu
 ---
 
 #### End Gateways Spawn Chorus ####
+
 Provides *Chorus Fruit* and *Chorus Flowers*
 
 Disable with ```/skyblock setDefault gatewaysSpawnChorus false```
@@ -153,6 +160,7 @@ When an Ender Dragon is killed by a Charged Creeper, she will drop her head.
 ---
 
 #### Shulkers Spawn On Dragon Kill ####
+
 Provides *Shulkers*
 
 Disable with ```/skyblock setDefault shulkerSpawning false```
@@ -162,6 +170,7 @@ When an Ender Dragon is re-killed, a Shulker spawns on top of the Bedrock pillar
 ---
 
 #### Anvils Compact Coal into Diamonds ####
+
 Provides *Diamonds*
 
 Disable with ```/skyblock setDefault renewableDiamonds false```
@@ -171,6 +180,7 @@ A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
 ---
 
 #### Goats Ram Open Nether Wart Blocks ####
+
 Provides *Nether Wart*
 
 Disable with ```/skyblock setDefault rammingWart false```
@@ -180,6 +190,7 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 ---
 
 #### Foxes Spawn With Sweet Berries ####
+
 Provides *Sweet Berries*
 
 Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
@@ -190,6 +201,7 @@ spawning, so be quick.
 ---
 
 #### Saplings Die on Sand ####
+
 Provides *Dead Bushes*
 
 Disable with ```/skyblock setDefault saplingsDieOnSand false```
@@ -201,6 +213,7 @@ After a time, the saplings will die and turn into Dead Bushes.
 ---
 
 #### Poisonous Potatoes Convert Spiders ####
+
 Provides *Cave Spiders*
 
 Disable with ```/skyblock setDefault poisonousPotatoesConvertSpiders false```
@@ -244,6 +257,7 @@ Put Andesite in a Blast Furnace for Tuff.
 ---
 
 #### Husks Drop Sand ####
+
 Provides additional *Sand*
 
 Husks drop Sand because obtaining large amounts from a Wandering Trader is tedious.
@@ -251,14 +265,15 @@ Husks drop Sand because obtaining large amounts from a Wandering Trader is tedio
 ---
 
 #### Piglin Brutes Drop Ancient Debris ####
+
 Provides *Ancient Debris*
 
-A Carpet setting enables Piglin Brutes to spawn in bastions.
-These Brutes have a chance to drop Ancient Debris.
+A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
 
 ---
 
 #### Cobbled Deepslate is Craftable ####
+
 Provides *Cobbled Deepslate*
 
 Craft Cobbled Deepslate with 9 Cobblestone in a crafting grid.
@@ -266,6 +281,7 @@ Craft Cobbled Deepslate with 9 Cobblestone in a crafting grid.
 ---
 
 #### Elytra Obtainable by Fishing in the End ####
+
 Provides *Elytra*
 
 Elytra can be caught rarely as treasure items when fishing in the End.
@@ -273,6 +289,7 @@ Elytra can be caught rarely as treasure items when fishing in the End.
 ---
 
 #### Red Sand Recipe ####
+
 Provides additional *Red Sand*
 
 Sand combined 1-1 with Red Dye makes Red Sand.
@@ -280,6 +297,7 @@ Sand combined 1-1 with Red Dye makes Red Sand.
 ---
 
 #### Glow Berries Recipe ####
+
 Provides *Glow Berries*
 
 Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
@@ -287,6 +305,7 @@ Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
 ---
 
 #### Spider Jockeys Drop Cobwebs ####
+
 Provides *Cobwebs*
 
 When a player kills a Spider Jockey, the first half killed drops a cobweb.
@@ -294,6 +313,7 @@ When a player kills a Spider Jockey, the first half killed drops a cobweb.
 ---
 
 #### Cocoa Beans Obtainable by Fishing in Jungles ####
+
 Provides *Cocoa Beans*
 
 Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a Jungle.
@@ -301,16 +321,17 @@ Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a J
 ---
 
 #### Ores Obtainable in Smithing Table ####
+
 Provides *ores*
 
-All ores can be crafted in a smithing table using a block of the base stone material and
-a block of the ore's material.
+All ores can be crafted in a smithing table using a block of the base stone material and a block of the ore's material.
 
 For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
 
 ---
 
 #### Horse Armors are Craftable ####
+
 Provides *Iron Horse Armor*, *Golden Horse Armor*, and *Diamond Horse Armor*
 
 Craft Horse Armors with their respective materials in a **H** shape.
@@ -318,6 +339,7 @@ Craft Horse Armors with their respective materials in a **H** shape.
 ---
 
 #### Cats Gift Enchanted Golden Apples ####
+
 Provides *Enchanted Golden Apples*
 
 Cats will rarely bring the player an Enchanted Golden Apple as a morning gift.
@@ -371,21 +393,27 @@ The advancement is now obtainable by killing a Piglin Brute.
 ----
 
 ### Numerous Added Advancements ###
+
 SkyBlock advancements help guide progression, as well as serve to document the mod's changes to vanilla.
 
 With all features enabled, all vanilla advancements can be completed (although War Pigs is changed).
 
-
 ## Carpet Features
+
 Installation will also enable these `fabric-carpet` features.
 
-With the `fabric-carpet` options below enabled, all blocks, items, and mobs obtainable in vanilla survival are obtainable in SkyBlock.
-- [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for Sponges
+With the `fabric-carpet` options below enabled, all blocks, items, and mobs obtainable in vanilla survival are
+obtainable in SkyBlock.
+
+- [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges) for
+  Sponges
   - run `/carpet setDefault renewableSponges false` to disable
-- [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions) for Ancient Debris
+- [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions)
+  for Ancient Debris
   - run `/carpet setDefault piglinsSpawningInBastions false` to disable
 
 ## Acknowledgements
+
 - [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea and some source code
 
 - [@DeadlyMC](https://github.com/DeadlyMC/Skyblock-datapack) for the initial ideas for the datapack
@@ -393,4 +421,5 @@ With the `fabric-carpet` options below enabled, all blocks, items, and mobs obta
 - [@gnembon](https://github.com/gnembon/fabric-carpet) for `fabric-carpet`
 
 ## License
+
 This project is licensed under the terms of the MIT license.
