@@ -126,22 +126,24 @@ Provides *Chorus Fruit* and *Chorus Flowers*
 
 Disable with ```/skyblock setDefault gatewaysSpawnChorus false```
 
-When an End Gateway is taken to a position over the void, the Endstone island
-generated spawns with a Chorus Tree on it.
+When an End Gateway is taken to a position over the void, the Endstone island generated spawns with a Chorus Tree on it.
 
 ---
 
 #### Dolphins Find Hearts of the Sea ####
+
 Provides *Hearts of the Sea*
 
 Disable with ```/skyblock setDefault renewableHeartsOfTheSea false```
 
-When a dolphin gives up finding a treasure chest after being given a fish,
-they will find a Heart of the Sea.
+When a Dolphin is fed a fish, they may dig a Heart of the Sea out of Sand or Gravel on the sea floor.
+
+Must be in an Ocean biome -- they're Hearts of the Sea, not Hearts of the Jungle.
 
 ---
 
 #### Ender Dragons Can Drop Heads ####
+
 Provides *Dragon Heads*
 
 Disable with ```/skyblock setDefault renewableDragonHeads false```

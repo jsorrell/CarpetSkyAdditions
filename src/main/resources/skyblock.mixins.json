@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "CriteriaAccessor",
-    "DolphinEntityLeadToNearbyTreasureGoalMixin",
+    "DolphinEntityMixin",
     "EnderDragonEntityMixin",
     "EnderDragonFightMixin",
     "EndIslandFeatureMixin",
