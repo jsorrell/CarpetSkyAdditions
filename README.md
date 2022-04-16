@@ -90,6 +90,14 @@ Tall Flowers trades mimic Bedrock.
 | Peony     | 1     | 12                    |
 | Sunflower | 1     | 12                    |
 
+###### Tier 2
+
+| Item          | Price | Input Item | Trades until disabled |
+|---------------|-------|------------|-----------------------|
+| Lava Bucket\* | 16    | Bucket     | 12                    |
+
+\* The Lava Bucket trade needs `lavaFromWanderingTraders` enabled, which is disabled by default.
+
 ---
 
 #### Lightning Electrifies Vines ####

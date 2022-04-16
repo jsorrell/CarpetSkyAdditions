@@ -9,19 +9,25 @@ public class SkyBlockSettings {
 
   /* Wandering Trader */
   @Rule(
-      desc = "Add trades to the wandering trader for SkyBlock",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Add trades to the wandering trader for SkyBlock",
+    category = {SKYBLOCK, FEATURE})
   public static boolean wanderingTraderSkyBlockTrades = false;
+
+  /* Wandering Trader Lava */
+  @Rule(
+    desc = "Lets the Wandering Trader sell Lava, the old method",
+    category = {SKYBLOCK, FEATURE})
+  public static boolean lavaFromWanderingTrader = false;
 
   /* Lightning Electrifies Vines */
   @Rule(
-      desc = "Lightning striking glowstone with attached vines converts them to glow lichen",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Lightning striking glowstone with attached vines converts them to glow lichen",
+    category = {SKYBLOCK, FEATURE})
   public static boolean lightningElectrifiesVines = false;
 
   /* Renewable Budding Amethysts */
   @Rule(
-      desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
+    desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
       category = {SKYBLOCK, FEATURE})
   public static boolean renewableBuddingAmethysts = false;
 
