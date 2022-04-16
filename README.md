@@ -96,7 +96,7 @@ Tall Flowers trades mimic Bedrock.
 |---------------|-------|------------|-----------------------|
 | Lava Bucket\* | 16    | Bucket     | 12                    |
 
-\* The Lava Bucket trade needs `lavaFromWanderingTraders` enabled, which is disabled by default.
+\* The Lava Bucket trade needs `lavaFromWanderingTrader` enabled, which is disabled by default.
 
 ---
 
