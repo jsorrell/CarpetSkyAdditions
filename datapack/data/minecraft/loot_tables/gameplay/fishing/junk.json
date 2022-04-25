@@ -2,7 +2,7 @@
   "type": "minecraft:fishing",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -18,7 +18,8 @@
               "damage": {
                 "min": 0.0,
                 "max": 0.9
-              }
+              },
+              "add": false
             }
           ],
           "name": "minecraft:leather_boots"
@@ -38,8 +39,8 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{Potion:\"minecraft:water\"}"
+              "function": "minecraft:set_potion",
+              "id": "minecraft:water"
             }
           ],
           "name": "minecraft:potion"
@@ -56,9 +57,11 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
                 "max": 0.9
-              }
+              },
+              "add": false
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -78,7 +81,8 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 10
+              "count": 10,
+              "add": false
             }
           ],
           "name": "minecraft:ink_sac"
@@ -108,37 +112,13 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "minecraft:jungle_hills"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:jungle_edge"
+                    "biome": "minecraft:sparse_jungle"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "minecraft:bamboo_jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:modified_jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:modified_jungle_edge"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:bamboo_jungle_hills"
                   }
                 }
               ]
@@ -162,37 +142,13 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "biome": "minecraft:jungle_hills"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:jungle_edge"
+                    "biome": "minecraft:sparse_jungle"
                   }
                 },
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "minecraft:bamboo_jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:modified_jungle"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:modified_jungle_edge"
-                  }
-                },
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "biome": "minecraft:bamboo_jungle_hills"
                   }
                 }
               ]

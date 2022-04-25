@@ -2,7 +2,8 @@
   "type": "minecraft:fishing",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -20,9 +21,11 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
                 "max": 0.25
-              }
+              },
+              "add": false
             },
             {
               "function": "minecraft:enchant_with_levels",
@@ -41,7 +44,8 @@
               "damage": {
                 "min": 0.0,
                 "max": 0.25
-              }
+              },
+              "add": false
             },
             {
               "function": "minecraft:enchant_with_levels",
