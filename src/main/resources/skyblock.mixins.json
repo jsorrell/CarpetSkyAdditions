@@ -15,6 +15,7 @@
     "LavaFluidMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "MinecraftServerMixin",
     "RamImpactTaskMixin",
     "SaplingBlockMixin",
     "SinglePoolElementAccessor",

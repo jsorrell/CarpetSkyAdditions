@@ -6,10 +6,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
@@ -27,7 +23,9 @@ import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryEntryList;
-import net.minecraft.world.*;
+import net.minecraft.world.ChunkRegion;
+import net.minecraft.world.HeightLimitView;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -106,28 +104,6 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   @Override
   public void buildSurface(ChunkRegion region, StructureAccessor structures, Chunk chunk) {
-    if (region.getDimension().isNatural()) {
-      BlockPos spawn =
-        new BlockPos(
-          region.getLevelProperties().getSpawnX(),
-          region.getLevelProperties().getSpawnY(),
-          region.getLevelProperties().getSpawnZ());
-      if (chunk.getPos().getStartX() <= spawn.getX()
-        && spawn.getX() <= chunk.getPos().getEndX()
-        && chunk.getPos().getStartZ() <= spawn.getZ()
-        && spawn.getZ() <= chunk.getPos().getEndZ()) {
-        generateSpawnPlatform(
-          region,
-          spawn,
-          new BlockBox(
-            chunk.getPos().getStartX(),
-            chunk.getBottomY(),
-            chunk.getPos().getStartZ(),
-            chunk.getPos().getStartX() + 15,
-            chunk.getTopY(),
-            chunk.getPos().getStartZ() + 15));
-      }
-    }
   }
 
   @Override
@@ -270,62 +246,5 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   @Override
   public void populateEntities(ChunkRegion region) {
-  }
-
-  protected static void placeBlock(
-    WorldAccess world,
-    BlockState block,
-    BlockPos referencePos,
-    int x,
-    int y,
-    int z,
-    BlockBox box) {
-    BlockPos blockPos =
-      new BlockPos(referencePos.getX() + x, referencePos.getY() + y, referencePos.getZ() + z);
-    if (box.contains(blockPos)) {
-      world.setBlockState(blockPos, block, Block.NOTIFY_LISTENERS);
-    }
-  }
-
-  protected static void fillBlocks(
-    WorldAccess world,
-    BlockState block,
-    BlockPos referencePos,
-    int startX,
-    int startY,
-    int startZ,
-    int endX,
-    int endY,
-    int endZ,
-    BlockBox box) {
-    for (int x = startX; x <= endX; x++) {
-      for (int y = startY; y <= endY; y++) {
-        for (int z = startZ; z <= endZ; z++) {
-          placeBlock(world, block, referencePos, x, y, z, box);
-        }
-      }
-    }
-  }
-
-  protected static void generateSpawnPlatform(
-    ServerWorldAccess world, BlockPos spawnpoint, BlockBox bounds) {
-    BlockState leavesBlockState = Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, 1);
-    fillBlocks(
-      world, Blocks.GRASS_BLOCK.getDefaultState(), spawnpoint, -2, -1, -7, 2, -1, 2, bounds);
-    placeBlock(world, Blocks.MYCELIUM.getDefaultState(), spawnpoint, 0, -1, 0, bounds);
-    placeBlock(
-      world, Blocks.CRIMSON_NYLIUM.getDefaultState(), spawnpoint, -1, -1, 1, bounds);
-    placeBlock(
-      world, Blocks.WARPED_NYLIUM.getDefaultState(), spawnpoint, 1, -1, 1, bounds);
-    placeBlock(world, Blocks.DIRT.getDefaultState(), spawnpoint, 0, -1, -5, bounds);
-    fillBlocks(world, leavesBlockState, spawnpoint, -2, 3, -7, 2, 4, -3, bounds);
-    fillBlocks(world, leavesBlockState, spawnpoint, -1, 5, -5, 1, 6, -5, bounds);
-    fillBlocks(world, leavesBlockState, spawnpoint, 0, 5, -6, 0, 6, -4, bounds);
-    placeBlock(world, leavesBlockState, spawnpoint, -1, 5, -4, bounds);
-    placeBlock(world, leavesBlockState, spawnpoint, -1, 5, -6, bounds);
-    placeBlock(world, Blocks.AIR.getDefaultState(), spawnpoint, -2, 4, -3, bounds);
-    placeBlock(world, Blocks.AIR.getDefaultState(), spawnpoint, -2, 3, -7, bounds);
-    fillBlocks(
-      world, Blocks.OAK_LOG.getDefaultState(), spawnpoint, 0, 0, -5, 0, 5, -5, bounds);
   }
 }

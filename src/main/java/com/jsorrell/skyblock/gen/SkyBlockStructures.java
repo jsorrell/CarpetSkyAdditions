@@ -7,14 +7,19 @@ import net.minecraft.block.EndPortalFrameBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePiece;
+import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.ServerWorldAccess;
 
+import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Random;
 
 public class SkyBlockStructures {
@@ -25,8 +30,11 @@ public class SkyBlockStructures {
     protected BlockRotation rotation;
     protected BlockMirror mirror;
 
-    public SkyBlockStructure(Direction orientation, BlockBox boundingBox) {
+    public SkyBlockStructure(@Nullable Direction orientation, BlockBox boundingBox) {
       this.facing = orientation;
+      if (this.facing == null) {
+        this.facing = Direction.SOUTH;
+      }
       this.boundingBox = boundingBox;
       if (orientation == null) {
         this.rotation = BlockRotation.NONE;
@@ -62,9 +70,6 @@ public class SkyBlockStructures {
     }
 
     protected int applyXTransform(int x, int z) {
-      if (this.facing == null) {
-        return x;
-      }
       switch (this.facing) {
         case NORTH, SOUTH -> {
           return this.boundingBox.getMinX() + x;
@@ -80,16 +85,10 @@ public class SkyBlockStructures {
     }
 
     protected int applyYTransform(int y) {
-      if (this.facing == null) {
-        return y;
-      }
       return y + this.boundingBox.getMinY();
     }
 
     protected int applyZTransform(int x, int z) {
-      if (this.facing == null) {
-        return z;
-      }
       switch (this.facing) {
         case NORTH -> {
           return this.boundingBox.getMaxZ() - z;
@@ -213,13 +212,21 @@ public class SkyBlockStructures {
 
   public static class SilverfishSpawnerStructure extends SpawnerStructure {
     public SilverfishSpawnerStructure(StructurePiece piece) {
-      super(piece, new BlockPos(5, 3, 5), EntityType.SILVERFISH);
+      super(piece, new BlockPos(5, 3, 6), EntityType.SILVERFISH);
     }
   }
 
   public static class MagmaCubeSpawner extends SpawnerStructure {
     public MagmaCubeSpawner(StructurePiece piece) {
       super(piece, new BlockPos(11, 7, 19), EntityType.MAGMA_CUBE);
+    }
+  }
+
+  public record SpawnPlatform(BlockPos worldSpawn) {
+    public void generate(ServerWorldAccess world, Random random) {
+      Structure structure = Objects.requireNonNull(world.getServer()).getStructureManager().getStructure(new Identifier("skyblock", "spawn_platform")).orElseThrow();
+      BlockPos structureOrigin = worldSpawn.subtract(new BlockPos(4, 1, 1));
+      structure.place(world, structureOrigin, worldSpawn, new StructurePlacementData(), random, Block.NOTIFY_LISTENERS);
     }
   }
 }
