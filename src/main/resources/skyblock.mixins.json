@@ -8,6 +8,7 @@
     "EnderDragonEntityMixin",
     "EnderDragonFightMixin",
     "EndIslandFeatureMixin",
+    "FeaturePlacementContextMixin",
     "FoxEntityMixin",
     "GeneratorOptionsMixin",
     "ItemEntityMixin",

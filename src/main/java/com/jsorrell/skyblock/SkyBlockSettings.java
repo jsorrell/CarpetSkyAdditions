@@ -6,6 +6,27 @@ import static carpet.settings.RuleCategory.FEATURE;
 
 public class SkyBlockSettings {
   public static final String SKYBLOCK = "skyblock";
+  public static final String GENERATION = "generation";
+  /* Generation -- Only obeyed with SkyBlock world generation */
+  @Rule(
+    desc = "Generates End Portals",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateEndPortals = true;
+
+  @Rule(
+    desc = "Generates SilverFish Spawners",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateSilverfishSpawners = true;
+
+  @Rule(
+    desc = "Generates Magma Cube Spawners",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateMagmaCubeSpawners = false;
+
+  @Rule(
+    desc = "Generate Random End Gateways",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateRandomEndGateways = false;
 
   /* Wandering Trader */
   @Rule(
