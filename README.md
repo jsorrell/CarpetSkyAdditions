@@ -56,13 +56,14 @@ Only a few things are generated:
 - A small starting island where you spawn:
   ![small spawn platform with grass, mycelium, nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
-- All end portal frames (unless `generateEndPortals` is set to false) and silverfish spawners (
-  unless `generateSilverfishSpawners` is set to false):
+- End Portal Frames (unless `generateEndPortals` is set to `false`):
   ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
 
-- Magma Cube spawners in Treasure Room Bastion Remnants (only if `generateMagmaCubeSpawners` is set to true)
+- Silverfish spawners (unless `generateSilverfishSpawners` is set to `false`)
 
-- Random End Gateways throughout the End (only if `generateRandomEndGateways` is set to true)
+- Magma Cube spawners in Treasure Room Bastion Remnants (only if `generateMagmaCubeSpawners` is set to `true`)
+
+- Random End Gateways throughout the End (only if `generateRandomEndGateways` is set to `true`)
 
 Even with every block removed, almost every block is obtainable and almost every mob is spawnable, using only *Vanilla*
 features.
