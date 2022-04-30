@@ -365,7 +365,7 @@ Piglins will rarely give Gilded Blackstone when bartering.
 
 ---
 
-#### Creepers Drop All Music Disks in the Nether ####
+#### Creepers Drop All Music Discs in the Nether ####
 
 Provides the music discs *Pigstep* and *otherside*
 
