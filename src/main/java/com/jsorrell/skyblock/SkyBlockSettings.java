@@ -14,7 +14,7 @@ public class SkyBlockSettings {
   public static boolean generateEndPortals = true;
 
   @Rule(
-    desc = "Generates SilverFish Spawners",
+    desc = "Generates Silverfish Spawners",
     category = {SKYBLOCK, GENERATION})
   public static boolean generateSilverfishSpawners = true;
 
