@@ -28,7 +28,6 @@ public class MinecraftServerMixin {
   private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties, boolean bonusChest, boolean debugWorld, CallbackInfo ci) {
     if (world.getChunkManager().getChunkGenerator() instanceof SkyBlockChunkGenerator) {
       BlockPos worldSpawn = new BlockPos(worldProperties.getSpawnX(), worldProperties.getSpawnY(), worldProperties.getSpawnZ());
-      System.out.println(worldSpawn);
       new SkyBlockStructures.SpawnPlatform(worldSpawn).generate(world, world.random);
     }
   }
