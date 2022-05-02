@@ -22,66 +22,57 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Random;
 
-public class SkyBlockStructures {
 
-  protected static abstract class SkyBlockStructure {
-    protected Direction facing;
-    protected BlockBox boundingBox;
+public class SkyBlockStructures {
+  protected static class StructureOrientation {
     protected BlockRotation rotation;
     protected BlockMirror mirror;
 
-    public SkyBlockStructure(@Nullable Direction orientation, BlockBox boundingBox) {
-      this.facing = orientation;
-      if (this.facing == null) {
-        this.facing = Direction.SOUTH;
-      }
-      this.boundingBox = boundingBox;
-      if (orientation == null) {
-        this.rotation = BlockRotation.NONE;
-        this.mirror = BlockMirror.NONE;
+    public StructureOrientation(@Nullable BlockRotation rotation, @Nullable BlockMirror mirror) {
+      this.rotation = rotation == null ? BlockRotation.NONE : rotation;
+      this.mirror = mirror == null ? BlockMirror.NONE : mirror;
+    }
+
+    protected int applyXTransform(int x, int z, BlockBox boundingBox) {
+      if ((rotation == BlockRotation.NONE && mirror != BlockMirror.FRONT_BACK) || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.FRONT_BACK)) {
+        return boundingBox.getMinX() + x;
+      } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
+        return boundingBox.getMaxX() - x;
+      } else if ((rotation == BlockRotation.COUNTERCLOCKWISE_90 && mirror != BlockMirror.LEFT_RIGHT) || (rotation == BlockRotation.CLOCKWISE_90 && mirror == BlockMirror.LEFT_RIGHT)) {
+        return boundingBox.getMinX() + z;
       } else {
-        switch (orientation) {
-          case SOUTH -> {
-            this.mirror = BlockMirror.LEFT_RIGHT;
-            this.rotation = BlockRotation.NONE;
-          }
-          case WEST -> {
-            this.mirror = BlockMirror.LEFT_RIGHT;
-            this.rotation = BlockRotation.CLOCKWISE_90;
-          }
-          case EAST -> {
-            this.mirror = BlockMirror.NONE;
-            this.rotation = BlockRotation.CLOCKWISE_90;
-          }
-          default -> {
-            this.mirror = BlockMirror.NONE;
-            this.rotation = BlockRotation.NONE;
-          }
-        }
+        return boundingBox.getMaxX() - z;
       }
     }
 
-    public BlockBox getBoundingBox() {
-      return boundingBox;
+    protected int applyZTransform(int x, int z, BlockBox boundingBox) {
+      if ((rotation == BlockRotation.NONE && mirror != BlockMirror.LEFT_RIGHT) || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.LEFT_RIGHT)) {
+        return boundingBox.getMinZ() + z;
+      } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
+        return boundingBox.getMaxZ() - z;
+      } else if ((rotation == BlockRotation.CLOCKWISE_90 && mirror != BlockMirror.FRONT_BACK) || (rotation == BlockRotation.COUNTERCLOCKWISE_90 && mirror == BlockMirror.LEFT_RIGHT)) {
+        return boundingBox.getMinZ() + x;
+      } else {
+        return boundingBox.getMaxZ() - x;
+      }
     }
+  }
 
-    public Direction getFacing() {
-      return facing;
+  protected static abstract class SkyBlockStructure {
+    protected BlockBox boundingBox;
+    protected StructureOrientation orientation;
+    protected BlockRotation rotation;
+    protected BlockMirror mirror;
+
+    public SkyBlockStructure(StructurePiece piece) {
+      this.boundingBox = piece.getBoundingBox();
+      this.rotation = piece.getRotation();
+      this.mirror = piece.getMirror();
+      this.orientation = new StructureOrientation(this.rotation, this.mirror);
     }
 
     protected int applyXTransform(int x, int z) {
-      switch (this.facing) {
-        case NORTH, SOUTH -> {
-          return this.boundingBox.getMinX() + x;
-        }
-        case WEST -> {
-          return this.boundingBox.getMaxX() - z;
-        }
-        case EAST -> {
-          return this.boundingBox.getMinX() + z;
-        }
-      }
-      return x;
+      return this.orientation.applyXTransform(x, z, this.boundingBox);
     }
 
     protected int applyYTransform(int y) {
@@ -89,18 +80,7 @@ public class SkyBlockStructures {
     }
 
     protected int applyZTransform(int x, int z) {
-      switch (this.facing) {
-        case NORTH -> {
-          return this.boundingBox.getMaxZ() - z;
-        }
-        case SOUTH -> {
-          return this.boundingBox.getMinZ() + z;
-        }
-        case WEST, EAST -> {
-          return this.boundingBox.getMinZ() + x;
-        }
-      }
-      return z;
+      return this.orientation.applyZTransform(x, z, this.boundingBox);
     }
 
     protected BlockPos.Mutable offsetPos(int x, int y, int z) {
@@ -144,12 +124,8 @@ public class SkyBlockStructures {
   }
 
   public static class EndPortalStructure extends SkyBlockStructure {
-    public EndPortalStructure(Direction facing, BlockBox boundingBox) {
-      super(facing, boundingBox);
-    }
-
     public EndPortalStructure(StructurePiece piece) {
-      this(piece.getFacing(), piece.getBoundingBox());
+      super(piece);
     }
 
     @Override
@@ -164,21 +140,21 @@ public class SkyBlockStructures {
         hasEye[l] = random.nextFloat() > 0.9f;
         complete &= hasEye[l];
       }
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 8, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 8, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 8, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 12, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 12, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 12, bounds);
-      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[6]), 3, 3, 9, bounds);
-      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[7]), 3, 3, 10, bounds);
-      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[8]), 3, 3, 11, bounds);
-      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[9]), 7, 3, 9, bounds);
-      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[10]), 7, 3, 10, bounds);
-      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[11]), 7, 3, 11, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
+      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[6]), 3, 3, 4, bounds);
+      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[7]), 3, 3, 5, bounds);
+      this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[8]), 3, 3, 6, bounds);
+      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[9]), 7, 3, 4, bounds);
+      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[10]), 7, 3, 5, bounds);
+      this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[11]), 7, 3, 6, bounds);
 
       if (complete) {
-        this.fillBlocks(world, Blocks.END_PORTAL.getDefaultState(), 4, 3, 9, 6, 3, 11, bounds);
+        this.fillBlocks(world, Blocks.END_PORTAL.getDefaultState(), 4, 3, 4, 6, 3, 6, bounds);
       }
     }
   }
@@ -187,14 +163,10 @@ public class SkyBlockStructures {
     private final BlockPos spawnerPos;
     private final EntityType<?> spawnerType;
 
-    public SpawnerStructure(Direction orientation, BlockBox boundingBox, BlockPos spawnerPos, EntityType<?> spawnerType) {
-      super(orientation, boundingBox);
+    public SpawnerStructure(StructurePiece piece, BlockPos spawnerPos, EntityType<?> spawnerType) {
+      super(piece);
       this.spawnerPos = spawnerPos;
       this.spawnerType = spawnerType;
-    }
-
-    public SpawnerStructure(StructurePiece piece, BlockPos spawnerPos, EntityType<?> spawnerType) {
-      this(piece.getFacing(), piece.getBoundingBox(), spawnerPos, spawnerType);
     }
 
     @Override
@@ -212,7 +184,7 @@ public class SkyBlockStructures {
 
   public static class SilverfishSpawnerStructure extends SpawnerStructure {
     public SilverfishSpawnerStructure(StructurePiece piece) {
-      super(piece, new BlockPos(5, 3, 6), EntityType.SILVERFISH);
+      super(piece, new BlockPos(5, 3, 9), EntityType.SILVERFISH);
     }
   }
 
