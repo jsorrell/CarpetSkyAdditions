@@ -16,12 +16,15 @@
     "LightningEntityMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",
+    "MissingDimensionFixMixin",
     "RamImpactTaskMixin",
     "SaplingBlockMixin",
+    "SchemasMixin",
     "SinglePoolElementAccessor",
     "SpawnRestrictionAccessor",
     "SpiderEntityMixin",
-    "WanderingTraderEntityMixin"
+    "WanderingTraderEntityMixin",
+    "WorldGenSettingsHeightAndBiomeFixMixin"
   ],
   "client": [
     "GeneratorTypeAccessor"
