@@ -158,14 +158,13 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                 structureAccessor.getStructureStarts(chunkSectionPos, structureType).forEach(structureStart -> {
                   for (StructurePiece piece : structureStart.getChildren()) {
                     if (piece.intersectsChunk(chunkPos, 0) && piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
-                      ChunkRandom random = new ChunkRandom(new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
                       BlockBox chunkBox = getBlockBoxForChunk(chunk);
                       if (SkyBlockSettings.generateEndPortals) {
-                        new SkyBlockStructures.EndPortalStructure(piece).generate(world, chunkBox, random);
+                        new SkyBlockStructures.EndPortalStructure(piece).generate(world, chunkBox, chunkRandom);
                       }
 
                       if (SkyBlockSettings.generateSilverfishSpawners) {
-                        new SkyBlockStructures.SilverfishSpawnerStructure(piece).generate(world, chunkBox, null);
+                        new SkyBlockStructures.SilverfishSpawnerStructure(piece).generate(world, chunkBox, chunkRandom);
                       }
                     }
                   }
@@ -181,7 +180,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                         if (poolPiece.getPoolElement() instanceof SinglePoolElement singlePoolElement) {
                           Identifier pieceId = ((SinglePoolElementAccessor) singlePoolElement).getLocation().left().orElseThrow(AssertionError::new);
                           if (pieceId.equals(new Identifier("bastion/treasure/bases/lava_basin"))) {
-                            new SkyBlockStructures.MagmaCubeSpawner(piece).generate(world, getBlockBoxForChunk(chunk), null);
+                            new SkyBlockStructures.MagmaCubeSpawner(piece).generate(world, getBlockBoxForChunk(chunk), chunkRandom);
                           }
                         }
                       }
@@ -196,7 +195,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                         if (poolPiece.getPoolElement() instanceof SinglePoolElement singlePoolElement) {
                           Identifier pieceId = ((SinglePoolElementAccessor) singlePoolElement).getLocation().left().orElseThrow(AssertionError::new);
                           if (pieceId.getNamespace().equals("minecraft") && pieceId.getPath().startsWith("ancient_city/city_center/city_center")) {
-                            new SkyBlockStructures.AncientCityPortalStructure(piece).generate(world, getBlockBoxForChunk(chunk), null);
+                            new SkyBlockStructures.AncientCityPortalStructure(piece).generate(world, getBlockBoxForChunk(chunk), chunkRandom);
                           }
                         }
                       }
