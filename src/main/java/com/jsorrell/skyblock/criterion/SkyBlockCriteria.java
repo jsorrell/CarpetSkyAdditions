@@ -1,13 +1,13 @@
 package com.jsorrell.skyblock.criterion;
 
-import com.jsorrell.skyblock.mixin.CriteriaAccessor;
+import net.minecraft.advancement.criterion.Criteria;
 
-public class Criteria {
+public class SkyBlockCriteria {
   public static final GenerateGeodeCriterion GENERATE_GEODE = new GenerateGeodeCriterion();
   public static final ConvertSpiderCriterion CONVERT_SPIDER = new ConvertSpiderCriterion();
 
   public static void registerAll() {
-    CriteriaAccessor.register(GENERATE_GEODE);
-    CriteriaAccessor.register(CONVERT_SPIDER);
+    Criteria.register(GENERATE_GEODE);
+    Criteria.register(CONVERT_SPIDER);
   }
 }

@@ -19,6 +19,11 @@ public class SkyBlockSettings {
   public static boolean generateSilverfishSpawners = true;
 
   @Rule(
+    desc = "Generate Ancient City Portals",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateAncientCityPortals = true;
+
+  @Rule(
     desc = "Generates Magma Cube Spawners",
     category = {SKYBLOCK, GENERATION})
   public static boolean generateMagmaCubeSpawners = false;

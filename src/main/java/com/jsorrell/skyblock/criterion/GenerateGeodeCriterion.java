@@ -1,6 +1,7 @@
 package com.jsorrell.skyblock.criterion;
 
 import com.google.gson.JsonObject;
+import com.jsorrell.skyblock.util.SkyBlockIdentifier;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
@@ -10,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class GenerateGeodeCriterion extends AbstractCriterion<GenerateGeodeCriterion.Conditions> {
 
-  static final Identifier ID = new Identifier("skyblock", "generate_geode");
+  static final Identifier ID = new SkyBlockIdentifier("generate_geode");
 
   @Override
   public Identifier getId() {
@@ -22,9 +23,9 @@ public class GenerateGeodeCriterion extends AbstractCriterion<GenerateGeodeCrite
   }
 
   public Conditions conditionsFromJson(
-      JsonObject jsonObject,
-      EntityPredicate.Extended player,
-      AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+    JsonObject jsonObject,
+    EntityPredicate.Extended player,
+    AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
     return new Conditions(player);
   }
 

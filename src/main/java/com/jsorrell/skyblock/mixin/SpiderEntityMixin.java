@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.mixin;
 
 import com.jsorrell.skyblock.SkyBlockSettings;
-import com.jsorrell.skyblock.criterion.Criteria;
+import com.jsorrell.skyblock.criterion.SkyBlockCriteria;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -42,8 +42,8 @@ public abstract class SpiderEntityMixin extends HostileEntity {
         // Add particles
         caveSpider.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 0));
 
-        if (player instanceof ServerPlayerEntity) {
-          Criteria.CONVERT_SPIDER.trigger((ServerPlayerEntity) player, spider, caveSpider);
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+          SkyBlockCriteria.CONVERT_SPIDER.trigger(serverPlayer, spider, caveSpider);
         }
         this.playSound(SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE, 1.0f + this.random.nextFloat(), this.random.nextFloat() * 0.7f + 0.3f);
         return ActionResult.SUCCESS;

@@ -16,11 +16,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.AbstractRandom;
 import net.minecraft.world.ServerWorldAccess;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
-import java.util.Random;
 
 
 public class SkyBlockStructures {
@@ -120,7 +120,7 @@ public class SkyBlockStructures {
       }
     }
 
-    public abstract void generate(ServerWorldAccess world, BlockBox bounds, Random random);
+    public abstract void generate(ServerWorldAccess world, BlockBox bounds, AbstractRandom random);
   }
 
   public static class EndPortalStructure extends SkyBlockStructure {
@@ -129,7 +129,7 @@ public class SkyBlockStructures {
     }
 
     @Override
-    public void generate(ServerWorldAccess world, BlockBox bounds, Random random) {
+    public void generate(ServerWorldAccess world, BlockBox bounds, AbstractRandom random) {
       BlockState northFrame = Blocks.END_PORTAL_FRAME.getDefaultState().with(EndPortalFrameBlock.FACING, Direction.NORTH);
       BlockState southFrame = Blocks.END_PORTAL_FRAME.getDefaultState().with(EndPortalFrameBlock.FACING, Direction.SOUTH);
       BlockState eastFrame = Blocks.END_PORTAL_FRAME.getDefaultState().with(EndPortalFrameBlock.FACING, Direction.EAST);
@@ -140,12 +140,12 @@ public class SkyBlockStructures {
         hasEye[l] = random.nextFloat() > 0.9f;
         complete &= hasEye[l];
       }
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[6]), 3, 3, 4, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[7]), 3, 3, 5, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[8]), 3, 3, 6, bounds);
@@ -156,6 +156,23 @@ public class SkyBlockStructures {
       if (complete) {
         this.fillBlocks(world, Blocks.END_PORTAL.getDefaultState(), 4, 3, 4, 6, 3, 6, bounds);
       }
+    }
+  }
+
+  public static class AncientCityPortalStructure extends SkyBlockStructure {
+    public AncientCityPortalStructure(StructurePiece piece) {
+      super(piece);
+    }
+
+    @Override
+    public void generate(ServerWorldAccess world, BlockBox bounds, AbstractRandom random) {
+      // Horizontal Sides
+      this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 17, 10, 13, 17, 31, bounds);
+      this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 24, 10, 13, 24, 31, bounds);
+
+      // Vertical Sides
+      this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 10, 13, 23, 10, bounds);
+      this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 31, 13, 23, 31, bounds);
     }
   }
 
@@ -170,7 +187,7 @@ public class SkyBlockStructures {
     }
 
     @Override
-    public void generate(ServerWorldAccess world, BlockBox bounds, Random random) {
+    public void generate(ServerWorldAccess world, BlockBox bounds, AbstractRandom random) {
       BlockPos.Mutable spawnerAbsolutePos = this.offsetPos(spawnerPos.getX(), spawnerPos.getY(), spawnerPos.getZ());
       if (bounds.contains(spawnerAbsolutePos)) {
         world.setBlockState(spawnerAbsolutePos, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_LISTENERS);
@@ -195,7 +212,7 @@ public class SkyBlockStructures {
   }
 
   public record SpawnPlatform(BlockPos worldSpawn) {
-    public void generate(ServerWorldAccess world, Random random) {
+    public void generate(ServerWorldAccess world, AbstractRandom random) {
       Structure structure = Objects.requireNonNull(world.getServer()).getStructureManager().getStructure(new Identifier("skyblock", "spawn_platform")).orElseThrow();
       BlockPos structureOrigin = worldSpawn.subtract(new BlockPos(4, 1, 1));
       structure.place(world, structureOrigin, worldSpawn, new StructurePlacementData(), random, Block.NOTIFY_LISTENERS);

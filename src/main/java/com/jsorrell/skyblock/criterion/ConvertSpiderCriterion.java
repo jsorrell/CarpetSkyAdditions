@@ -1,6 +1,7 @@
 package com.jsorrell.skyblock.criterion;
 
 import com.google.gson.JsonObject;
+import com.jsorrell.skyblock.util.SkyBlockIdentifier;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.entity.mob.CaveSpiderEntity;
@@ -13,7 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class ConvertSpiderCriterion extends AbstractCriterion<ConvertSpiderCriterion.Conditions> {
-  static final Identifier ID = new Identifier("skyblock", "convert_spider");
+  static final Identifier ID = new SkyBlockIdentifier("convert_spider");
 
   @Override
   public Identifier getId() {
@@ -27,9 +28,9 @@ public class ConvertSpiderCriterion extends AbstractCriterion<ConvertSpiderCrite
   }
 
   public Conditions conditionsFromJson(
-      JsonObject jsonObject,
-      EntityPredicate.Extended playerPredicate,
-      AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+    JsonObject jsonObject,
+    EntityPredicate.Extended playerPredicate,
+    AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
     EntityPredicate.Extended spiderPredicate = EntityPredicate.Extended.getInJson(jsonObject, "spider", advancementEntityPredicateDeserializer);
     EntityPredicate.Extended caveSpiderPredicate = EntityPredicate.Extended.getInJson(jsonObject, "cave_spider", advancementEntityPredicateDeserializer);
     return new Conditions(playerPredicate, spiderPredicate, caveSpiderPredicate);
