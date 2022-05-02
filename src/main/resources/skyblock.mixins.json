@@ -18,6 +18,8 @@
     "MissingDimensionFixMixin",
     "RamImpactTaskMixin",
     "SaplingBlockMixin",
+    "Schema2551Mixin",
+    "Schema2832Mixin",
     "SchemasMixin",
     "SinglePoolElementAccessor",
     "SpawnRestrictionAccessor",

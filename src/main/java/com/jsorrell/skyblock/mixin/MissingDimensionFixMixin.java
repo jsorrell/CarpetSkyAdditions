@@ -1,5 +1,6 @@
 package com.jsorrell.skyblock.mixin;
 
+import com.jsorrell.skyblock.helpers.DuplicateMapKey;
 import com.mojang.datafixers.DataFix;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.datafixers.types.Type;
@@ -8,7 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(MissingDimensionFix.class)
@@ -23,8 +23,6 @@ public abstract class MissingDimensionFixMixin extends DataFix {
       ordinal = 0),
     index = 2)
   private Map<String, Type<?>> modifyTypes(Map<String, Type<?>> types) {
-    Map<String, Type<?>> newTypes = new HashMap<>(types);
-    newTypes.put("minecraft:skyblock", types.get("minecraft:noise"));
-    return newTypes;
+    return DuplicateMapKey.duplicateMapKey("minecraft:noise", "minecraft:skyblock", types);
   }
 }

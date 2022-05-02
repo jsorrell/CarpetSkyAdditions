@@ -8,6 +8,7 @@ import com.mojang.datafixers.types.Type;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.datafixer.TypeReferences;
 
+// Convert all instances of minecraft:skyblock to skyblock:skyblock
 public class SkyBlockGeneratorNameFix extends DataFix {
   private static final String NAME = "SkyBlockGeneratorNameFix";
 
