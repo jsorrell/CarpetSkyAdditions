@@ -140,12 +140,12 @@ public class SkyBlockStructures {
         hasEye[l] = random.nextFloat() > 0.9f;
         complete &= hasEye[l];
       }
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
-      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
-      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
+      this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
+      this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[6]), 3, 3, 4, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[7]), 3, 3, 5, bounds);
       this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[8]), 3, 3, 6, bounds);
