@@ -168,11 +168,9 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                 structureAccessor.getStructureStarts(chunkSectionPos, configuredStructureFeature).forEach(structureStart -> {
                   for (StructurePiece piece : structureStart.getChildren()) {
                     if (piece.intersectsChunk(chunkPos, 0) && piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
-                      ChunkRandom random = new ChunkRandom(new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
                       BlockBox chunkBox = getBlockBoxForChunk(chunk);
                       if (SkyBlockSettings.generateEndPortals) {
-                        random.setCarverSeed(seed, chunkPos.x, chunkPos.z);
-                        new SkyBlockStructures.EndPortalStructure(piece).generate(world, chunkBox, random);
+                        new SkyBlockStructures.EndPortalStructure(piece).generate(world, chunkBox, chunkRandom);
                       }
 
                       if (SkyBlockSettings.generateSilverfishSpawners) {
