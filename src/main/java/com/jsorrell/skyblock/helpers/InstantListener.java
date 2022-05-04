@@ -1,7 +1,5 @@
 package com.jsorrell.skyblock.helpers;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -9,7 +7,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.GameEventTags;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.GameEvent;
@@ -21,24 +18,13 @@ import java.util.Optional;
 public class InstantListener implements GameEventListener {
   protected final PositionSource positionSource;
   protected final int range;
-  protected final InstantListener.Callback callback;
+  protected final Callback callback;
   protected int distance;
 
-  public static Codec<InstantListener> createCodec(InstantListener.Callback callback) {
-    return RecordCodecBuilder.create(
-      instance ->
-        instance.group(
-            PositionSource.CODEC.fieldOf("source").forGetter(InstantListener::getPositionSource),
-            Codecs.NONNEGATIVE_INT.fieldOf("range").forGetter(InstantListener::getRange),
-            Codecs.NONNEGATIVE_INT.fieldOf("event_distance").orElse(0).forGetter(InstantListener::getDistance))
-          .apply(instance, (positionSource, range, distance) -> new InstantListener(positionSource, range, callback, distance)));
-  }
-
-  public InstantListener(PositionSource positionSource, int range, InstantListener.Callback callback, int distance) {
+  public InstantListener(PositionSource positionSource, int range, InstantListener.Callback callback) {
     this.positionSource = positionSource;
     this.range = range;
     this.callback = callback;
-    this.distance = distance;
   }
 
   @Override
@@ -51,23 +37,21 @@ public class InstantListener implements GameEventListener {
     return this.range;
   }
 
-  private int getDistance() {
-    return this.distance;
-  }
-
   @Override
-  public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d originPos) {
-    if (!this.callback.canAccept(event, emitter)) {
+  public boolean listen(ServerWorld world, GameEvent.class_7447 event) {
+    if (!this.callback.canAccept(event.method_43724(), event.method_43727())) {
       return false;
     }
+
     Optional<Vec3d> optionalPos = this.positionSource.getPos(world);
     if (optionalPos.isEmpty()) {
       return false;
     }
     Vec3d pos = optionalPos.get();
 
+    Vec3d originPos = event.method_43726();
     this.distance = MathHelper.floor(originPos.distanceTo(pos));
-    return this.callback.accept(world, this, originPos, event, emitter, this.distance);
+    return this.callback.accept(world, this, originPos, event.method_43724(), event.method_43727());
   }
 
   public interface Callback {
@@ -100,6 +84,6 @@ public class InstantListener implements GameEventListener {
       return true;
     }
 
-    boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter, int distance);
+    boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter);
   }
 }

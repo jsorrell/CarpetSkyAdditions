@@ -50,7 +50,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
 
   @Inject(method = "<init>", at = @At("TAIL"))
   private void addGameEventListener(EntityType<? extends VexEntity> entityType, World world, CallbackInfo ci) {
-    this.gameEventHandler = new EntityGameEventHandler<>(new InstantListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this, 0));
+    this.gameEventHandler = new EntityGameEventHandler<>(new InstantListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this));
     this.conversionRandom = new SimpleRandom(0);
   }
 
@@ -126,7 +126,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
   }
 
   @Override
-  public boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter, int distance) {
+  public boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter) {
     if (SkyBlockSettings.renewableAllays && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
       BlockState noteBlockState = world.getBlockState(new BlockPos(originPos));
       if (noteBlockState.isOf(Blocks.NOTE_BLOCK)) {
