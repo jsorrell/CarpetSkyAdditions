@@ -12,7 +12,7 @@ public class SkyBlockMinecartComparatorLogic implements MinecartComparatorLogic<
   @Override
   public int getComparatorValue(MinecartEntity minecart, BlockState state, BlockPos pos) {
     if (SkyBlockSettings.renewableAllays && minecart.getFirstPassenger() instanceof VexEntity vex) {
-      return ((VexEntityInterface) vex).getAllayConverter().getNextNote();
+      return ((VexEntityInterface) vex).getNextNote();
     }
     return 0;
   }
