@@ -1,9 +1,6 @@
 package com.jsorrell.skyblock.gen;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.EndPortalFrameBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
@@ -173,6 +170,9 @@ public class SkyBlockStructures {
       // Vertical Sides
       this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 10, 13, 23, 10, bounds);
       this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 31, 13, 23, 31, bounds);
+
+      // Sculk Shrieker
+      this.addBlock(world, Blocks.SCULK_SHRIEKER.getDefaultState().with(SculkShriekerBlock.CAN_SUMMON, true), 9, 8, 20, bounds);
     }
   }
 
