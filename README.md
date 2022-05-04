@@ -59,6 +59,9 @@ Only a few things are generated:
 - End Portal Frames (unless `generateEndPortals` is set to `false`):
   ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
 
+- Ancient City Portal Frames with a Sculk Shrieker (unless `generateAncientCityPortals` is set to `false`):
+  ![ancient city portal frame remains](screenshots/ancient_city_portal.png?raw=true "Ancient City Portal Frame")
+
 - Silverfish spawners (unless `generateSilverfishSpawners` is set to `false`)
 
 - Magma Cube spawners in Treasure Room Bastion Remnants (only if `generateMagmaCubeSpawners` is set to `true`)
