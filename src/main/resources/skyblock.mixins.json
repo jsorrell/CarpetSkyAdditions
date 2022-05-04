@@ -24,6 +24,7 @@
     "SinglePoolElementAccessor",
     "SpawnRestrictionAccessor",
     "SpiderEntityMixin",
+    "VexEntityMixin",
     "WanderingTraderEntityMixin",
     "WorldGenSettingsHeightAndBiomeFixMixin"
   ],

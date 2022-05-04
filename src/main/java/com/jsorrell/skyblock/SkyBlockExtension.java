@@ -5,8 +5,10 @@ import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import com.jsorrell.skyblock.criterion.SkyBlockCriteria;
 import com.jsorrell.skyblock.gen.SkyBlockWorldPresets;
+import com.jsorrell.skyblock.helpers.SkyBlockMinecartComparatorLogic;
 import com.jsorrell.skyblock.mixin.SpawnRestrictionAccessor;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.PiglinBruteEntity;
@@ -27,6 +29,7 @@ public class SkyBlockExtension implements CarpetExtension, ModInitializer {
     SpawnRestrictionAccessor.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PiglinBruteEntity::canSpawnInDark);
     SkyBlockWorldPresets.registerAll();
     SkyBlockCriteria.registerAll();
+    MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyBlockMinecartComparatorLogic());
   }
 
   @Override

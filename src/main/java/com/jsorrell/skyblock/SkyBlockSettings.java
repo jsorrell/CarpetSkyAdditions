@@ -101,13 +101,18 @@ public class SkyBlockSettings {
 
   /* Poisonous Potatoes Convert Spiders into Cave Spiders */
   @Rule(
-      desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
+    category = {SKYBLOCK, FEATURE})
   public static boolean poisonousPotatoesConvertSpiders = false;
 
   /* Saplings Placed on Sand Turn into Dead Bushes */
   @Rule(
-      desc = "Saplings on Sand eventually turn into Dead Bushes",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Saplings on Sand eventually turn into Dead Bushes",
+    category = {SKYBLOCK, FEATURE})
   public static boolean saplingsDieOnSand = false;
+
+  @Rule(
+    desc = "Vexes can be converted into Allays with music",
+    category = {SKYBLOCK, FEATURE})
+  public static boolean renewableAllays = false;
 }

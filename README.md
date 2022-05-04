@@ -234,6 +234,22 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 ---
 
+#### Vexes Can Be Allayed ####
+
+Provides *Allays*
+
+Disable with ```/skyblock setDefault renewableAllays false```
+
+Play Vexes the right sequence of 5 Note Block notes to convert them to Allays.
+
+Vexes listen to Note Blocks within a 16 block range and emit particles based on whether the correct note is played. The
+instrument is ignored and the octave is ignored, meaning F#<sub>3</sub> is treated the same as F#<sub>5</sub>.
+
+When a Vex is in a Minecart, a Comparator can be used with a Detector Rail to determine the next note in the sequence.
+The Comparator outputs a value from 0 (corresponding to F#) to 11 (corresponding to F)
+
+---
+
 ### Additional Datapack Features ###
 
 The included datapack provides additional recipes, and advancements.
