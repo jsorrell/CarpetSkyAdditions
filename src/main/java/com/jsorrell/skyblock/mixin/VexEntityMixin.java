@@ -41,6 +41,7 @@ import java.util.function.BiConsumer;
 public abstract class VexEntityMixin extends HostileEntity implements InstantListener.Callback, VexEntityInterface {
   protected EntityGameEventHandler<?> gameEventHandler;
   protected int numSuccessfulNotes;
+  private static final String NUM_SUCCESSFUL_NOTES_KEY = "ConversionNotes";
   protected AbstractRandom conversionRandom;
 
   protected VexEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
@@ -100,14 +101,16 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
 
   @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
   private void readMixinNbt(NbtCompound nbt, CallbackInfo ci) {
-    if (nbt.contains("ConversionNotes")) {
-      numSuccessfulNotes = nbt.getInt("ConversionNotes");
+    if (nbt.contains(NUM_SUCCESSFUL_NOTES_KEY)) {
+      numSuccessfulNotes = nbt.getInt(NUM_SUCCESSFUL_NOTES_KEY);
     }
   }
 
   @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
   private void writeMixinNbt(NbtCompound nbt, CallbackInfo ci) {
-    nbt.putInt("ConversionNotes", numSuccessfulNotes);
+    if (SkyBlockSettings.renewableAllays) {
+      nbt.putInt(NUM_SUCCESSFUL_NOTES_KEY, numSuccessfulNotes);
+    }
   }
 
   @Override
