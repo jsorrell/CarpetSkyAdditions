@@ -10,6 +10,8 @@ import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.gen.feature.EndPortalFeature;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,11 +22,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EnderDragonFight.class)
 public class EnderDragonFightMixin {
-
-  // This is the height in the structure where the actual portal will spawn.
-  // The structure continues above and below this.
-  private static final int EXIT_PORTAL_HEIGHT = 60;
-
   @Shadow
   private BlockPos exitPortalLocation;
 
@@ -37,9 +34,10 @@ public class EnderDragonFightMixin {
 
   @Inject(method = "generateEndPortal", at = @At(value = "HEAD"))
   private void setExitPortalLocation(boolean previouslyKilled, CallbackInfo ci) {
-    if (this.world.getChunkManager().getChunkGenerator() instanceof SkyBlockChunkGenerator) {
-      if (this.exitPortalLocation == null) {
-        this.exitPortalLocation = new BlockPos(0, EXIT_PORTAL_HEIGHT, 0);
+    if (this.world.getChunkManager().getChunkGenerator() instanceof SkyBlockChunkGenerator chunkGenerator) {
+      if (exitPortalLocation == null) {
+        int y = chunkGenerator.getHeightInGround(EndPortalFeature.ORIGIN.getX(), EndPortalFeature.ORIGIN.getZ(), Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, world);
+        exitPortalLocation = EndPortalFeature.ORIGIN.withY(y);
       }
     }
   }

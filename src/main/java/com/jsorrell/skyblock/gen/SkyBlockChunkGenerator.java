@@ -29,6 +29,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryEntryList;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
@@ -252,6 +253,18 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   @Override
   public void populateEntities(ChunkRegion region) {
+  }
+
+  public NoiseConfig getNoiseConfig(StructureWorldAccess world) {
+    return NoiseConfig.create(this.settings.value(), world.getRegistryManager().get(Registry.NOISE_KEY), world.getSeed());
+  }
+
+  public int getHeightOnGround(int x, int z, Heightmap.Type heightmap, StructureWorldAccess world) {
+    return super.getHeight(x, z, heightmap, world, getNoiseConfig(world));
+  }
+
+  public int getHeightInGround(int x, int z, Heightmap.Type heightmap, StructureWorldAccess world) {
+    return super.getHeight(x, z, heightmap, world, getNoiseConfig(world)) - 1;
   }
 
   static {
