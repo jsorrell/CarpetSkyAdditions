@@ -7,24 +7,25 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.GameEventTags;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.listener.GameEventListener;
 
-import java.util.Optional;
-
 public class InstantListener implements GameEventListener {
   protected final PositionSource positionSource;
   protected final int range;
   protected final Callback callback;
-  protected int distance;
+  protected boolean onCooldown;
 
   public InstantListener(PositionSource positionSource, int range, InstantListener.Callback callback) {
     this.positionSource = positionSource;
     this.range = range;
     this.callback = callback;
+  }
+
+  public void tick() {
+    onCooldown = false;
   }
 
   @Override
@@ -39,19 +40,18 @@ public class InstantListener implements GameEventListener {
 
   @Override
   public boolean listen(ServerWorld world, GameEvent.class_7447 event) {
-    if (!this.callback.canAccept(event.method_43724(), event.method_43727())) {
+    if (onCooldown) {
       return false;
     }
 
-    Optional<Vec3d> optionalPos = this.positionSource.getPos(world);
-    if (optionalPos.isEmpty()) {
+    if (!callback.canAccept(event.method_43724(), event.method_43727())) {
       return false;
     }
-    Vec3d pos = optionalPos.get();
 
     Vec3d originPos = event.method_43726();
-    this.distance = MathHelper.floor(originPos.distanceTo(pos));
-    return this.callback.accept(world, this, originPos, event.method_43724(), event.method_43727());
+    callback.accept(world, this, originPos, event.method_43724(), event.method_43727());
+    onCooldown = true;
+    return true;
   }
 
   public interface Callback {
@@ -84,6 +84,6 @@ public class InstantListener implements GameEventListener {
       return true;
     }
 
-    boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter);
+    void accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter);
   }
 }

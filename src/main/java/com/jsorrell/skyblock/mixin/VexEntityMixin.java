@@ -39,7 +39,7 @@ import java.util.function.BiConsumer;
 
 @Mixin(VexEntity.class)
 public abstract class VexEntityMixin extends HostileEntity implements InstantListener.Callback, VexEntityInterface {
-  protected EntityGameEventHandler<?> gameEventHandler;
+  protected EntityGameEventHandler<InstantListener> gameEventHandler;
   protected int numSuccessfulNotes;
   private static final String NUM_SUCCESSFUL_NOTES_KEY = "ConversionNotes";
   protected AbstractRandom conversionRandom;
@@ -54,6 +54,11 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
     this.conversionRandom = new SimpleRandom(0);
   }
 
+  @Inject(method = "tick", at = @At("TAIL"))
+  private void tickListener(CallbackInfo ci) {
+    this.gameEventHandler.getListener().tick();
+  }
+
   public int getNote(int noteNum) {
     conversionRandom.setSeed(getUuid().getLeastSignificantBits());
     conversionRandom.skip(noteNum);
@@ -64,7 +69,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
     return getNote(numSuccessfulNotes);
   }
 
-  protected boolean listenToNote(ServerWorld world, int note) {
+  protected void listenToNote(ServerWorld world, int note) {
     if (note % 12 == getNextNote()) {
       numSuccessfulNotes++;
       world.spawnParticles(ParticleTypes.HEART,
@@ -72,14 +77,12 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
       world.playSound(null, getPos().getX(), getPos().getY() + 0.4, getPos().getZ(), SoundEvents.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, SoundCategory.HOSTILE, 0.1f * (float) numSuccessfulNotes, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
       if (5 <= numSuccessfulNotes) {
         this.convertToAllay(world);
-        return true;
       }
     } else {
       world.spawnParticles(ParticleTypes.CRIT,
         getParticleX(1), getRandomBodyY() + 1, getParticleZ(1), 5, world.random.nextGaussian() * 0.02, world.random.nextGaussian() * 0.02, world.random.nextGaussian() * 0.02, 0.2);
       numSuccessfulNotes = 0;
     }
-    return false;
   }
 
   public void convertToAllay(ServerWorld world) {
@@ -126,14 +129,13 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
   }
 
   @Override
-  public boolean accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter) {
+  public void accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter) {
     if (SkyBlockSettings.renewableAllays && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
       BlockState noteBlockState = world.getBlockState(new BlockPos(originPos));
       if (noteBlockState.isOf(Blocks.NOTE_BLOCK)) {
         int note = noteBlockState.get(NoteBlock.NOTE);
-        return listenToNote(world, note);
+        listenToNote(world, note);
       }
     }
-    return false;
   }
 }
