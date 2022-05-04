@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.mixin;
 
 import com.jsorrell.skyblock.SkyBlockSettings;
-import com.jsorrell.skyblock.helpers.DragonShouldDropHeadHelper;
+import com.jsorrell.skyblock.fakes.EnderDragonEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,19 +22,19 @@ public abstract class LivingEntityMixin extends Entity {
   }
 
   @Inject(
-      method = "onDeath",
-      locals = LocalCapture.CAPTURE_FAILSOFT,
-      at =
-          @At(
-              value = "INVOKE_ASSIGN",
-              target =
-                  "Lnet/minecraft/entity/damage/DamageSource;getAttacker()Lnet/minecraft/entity/Entity;"))
+    method = "onDeath",
+    locals = LocalCapture.CAPTURE_FAILSOFT,
+    at =
+    @At(
+      value = "INVOKE_ASSIGN",
+      target =
+        "Lnet/minecraft/entity/damage/DamageSource;getAttacker()Lnet/minecraft/entity/Entity;"))
   public void rememberDragonKiller(DamageSource source, CallbackInfo ci, Entity killer) {
     if (SkyBlockSettings.renewableDragonHeads) {
       if (this.getType() == EntityType.ENDER_DRAGON && killer instanceof CreeperEntity killerCreeper) {
         if (killerCreeper.shouldDropHead()) {
           killerCreeper.onHeadDropped();
-          DragonShouldDropHeadHelper.UUIDS.add(this.getUuid());
+          ((EnderDragonEntityInterface) this).setShouldDropHead();
         }
       }
     }
