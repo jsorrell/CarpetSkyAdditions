@@ -419,6 +419,20 @@ Flowering Azalea Leaves have a chance to drop Spore Blossoms, increased by Fortu
 
 ---
 
+#### Endermen Can Pick Up Tall Grass and Large Ferns ####
+
+Provides *Tall Grass and Large Ferns*
+
+Endermen who have picked up Tall Grass and Large Ferns can be killed to retrieve those as an item.
+
+The mod fixes Endermen's handling of double-tall blocks, allowing them to be correctly placed down without being
+destroyed.
+
+However, it is not a client side mod, so the vanilla rendering bug is not
+fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
+
+---
+
 #### Magma Cream Recipe Disabled ####
 
 The vanilla Magma Cream recipe is too easy. Make a Magma Cube farm instead.

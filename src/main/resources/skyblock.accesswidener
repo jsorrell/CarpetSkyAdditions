@@ -3,3 +3,6 @@ extendable	class	net/minecraft/world/gen/chunk/NoiseChunkGenerator
 
 accessible	class	net/minecraft/village/TradeOffers$SellItemFactory
 accessible	class	net/minecraft/village/TradeOffers$ProcessItemFactory
+
+accessible	class	net/minecraft/entity/mob/EndermanEntity$PickUpBlockGoal
+accessible	class	net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal
