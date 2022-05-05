@@ -7,6 +7,8 @@
     "DolphinEntityMixin",
     "EnderDragonEntityMixin",
     "EnderDragonFightMixin",
+    "EndermanEntity_PickUpBlockGoalMixin",
+    "EndermanEntity_PlaceBlockGoalMixin",
     "EndIslandFeatureMixin",
     "FeaturePlacementContextMixin",
     "FoxEntityMixin",
