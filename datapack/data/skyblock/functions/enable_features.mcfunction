@@ -11,5 +11,6 @@ skyblock setDefault foxesSpawnWithBerries true
 skyblock setDefault poisonousPotatoesConvertSpiders true
 skyblock setDefault saplingsDieOnSand true
 skyblock setDefault renewableAllays true
+skyblock setDefault renewableEchoShards true
 carpet setDefault renewableSponges true
 carpet setDefault piglinsSpawningInBastions true

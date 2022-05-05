@@ -112,6 +112,11 @@ public class SkyBlockSettings {
   public static boolean saplingsDieOnSand = false;
 
   @Rule(
+    desc = "Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms",
+    category = {SKYBLOCK, FEATURE})
+  public static boolean renewableEchoShards = false;
+
+  @Rule(
     desc = "Vexes can be converted into Allays with music",
     category = {SKYBLOCK, FEATURE})
   public static boolean renewableAllays = false;

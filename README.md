@@ -227,6 +227,16 @@ After a time, the saplings will die and turn into Dead Bushes.
 
 ---
 
+#### Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms ####
+
+Provides *Echo Shards*
+
+Disable with ```/skyblock setDefault renewableEchoShards false```
+
+Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack.
+
+---
+
 #### Poisonous Potatoes Convert Spiders ####
 
 Provides *Cave Spiders*
