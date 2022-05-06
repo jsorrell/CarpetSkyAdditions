@@ -1,6 +1,11 @@
 package com.jsorrell.skyblock;
 
+import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
+import carpet.settings.Validator;
+import net.minecraft.server.command.ServerCommandSource;
+
+import java.util.Locale;
 
 import static carpet.settings.RuleCategory.FEATURE;
 
@@ -54,49 +59,49 @@ public class SkyBlockSettings {
   /* Renewable Budding Amethysts */
   @Rule(
     desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
-      category = {SKYBLOCK, FEATURE})
+    category = {SKYBLOCK, FEATURE})
   public static boolean renewableBuddingAmethysts = false;
 
   /* Chorus Plant Generation */
   @Rule(
-      desc = "Chorus Plants generate with End Gateways in void",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Chorus Plants generate with End Gateways in void",
+    category = {SKYBLOCK, FEATURE})
   public static boolean gatewaysSpawnChorus = false;
 
   /* Dolphins Find Hearts of the Sea */
   @Rule(
-      desc = "Dolphins can find a heart of the sea when given fish",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Dolphins can find a heart of the sea when given fish",
+    category = {SKYBLOCK, FEATURE})
   public static boolean renewableHeartsOfTheSea = false;
 
   /* Ender Dragons Can Drop Heads */
   @Rule(
-      desc = "Ender Dragons killed by Charged Creepers drop their heads",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Ender Dragons killed by Charged Creepers drop their heads",
+    category = {SKYBLOCK, FEATURE})
   public static boolean renewableDragonHeads = false;
 
   /* Shulker Spawning */
   @Rule(
-      desc = "Shulkers spawn on obsidian pillar when Ender Dragon is re-killed",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Shulkers spawn on obsidian pillar when Ender Dragon is re-killed",
+    category = {SKYBLOCK, FEATURE})
   public static boolean shulkerSpawning = false;
 
   /* Anvils Compact Coal into Diamonds */
   @Rule(
-      desc = "An Anvil falling on a full stack of Coal Blocks compacts it into a Diamond",
-      category = {SKYBLOCK, FEATURE})
+    desc = "An Anvil falling on a full stack of Coal Blocks compacts it into a Diamond",
+    category = {SKYBLOCK, FEATURE})
   public static boolean renewableDiamonds = false;
 
   /* Goats Ramming Break Nether Wart Blocks */
   @Rule(
-      desc = "A Goat ramming a Nether Wart Block will break it apart",
-      category = {SKYBLOCK, FEATURE})
+    desc = "A Goat ramming a Nether Wart Block will break it apart",
+    category = {SKYBLOCK, FEATURE})
   public static boolean rammingWart = false;
 
   /* Foxes Spawn With Berries */
   @Rule(
-      desc = "A spawned Fox has a chance to hold Sweet Berries",
-      category = {SKYBLOCK, FEATURE})
+    desc = "A spawned Fox has a chance to hold Sweet Berries",
+    category = {SKYBLOCK, FEATURE})
   public static boolean foxesSpawnWithBerries = false;
 
   /* Poisonous Potatoes Convert Spiders into Cave Spiders */
@@ -125,4 +130,29 @@ public class SkyBlockSettings {
     desc = "Netherrack generates as part of Nether Portals spawned floating",
     category = {SKYBLOCK, FEATURE})
   public static boolean renewableNetherrack = false;
+
+  private static class RenewableDeepslateSetting extends Validator<String> {
+    @Override
+    public String validate(ServerCommandSource source, ParsedRule<String> currentRule, String newValue, String string) {
+      SkyBlockSettings.doRenewableDeepslate = !newValue.toLowerCase(Locale.ROOT).equals("false");
+      SkyBlockSettings.renewableDeepslateFromSplash = newValue.toLowerCase(Locale.ROOT).equals("true");
+
+      return newValue;
+    }
+  }
+
+  @Rule(
+    desc = "Stone can be converted into deepslate with thick potions",
+    extra = {
+      "either by clicking/dispensing them or with splash potions",
+      "With no_splash: splash potion conversion is disabled"
+    },
+    category = {SKYBLOCK, FEATURE},
+    options = {"true", "false", "no_splash"},
+    validate = RenewableDeepslateSetting.class
+  )
+  public static String renewableDeepslate = "false";
+
+  public static boolean doRenewableDeepslate = false;
+  public static boolean renewableDeepslateFromSplash = false;
 }

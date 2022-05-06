@@ -227,6 +227,20 @@ After a time, the saplings will die and turn into Dead Bushes.
 
 ---
 
+#### Thick Potions convert Stone to Deepslate ####
+
+Provides *Deepslate*
+
+Disable with ```/skyblock setDefault renewableDeepslate false```
+
+Disable only splash with ```/skyblock setDefault renewableDeepslate no_splash```
+
+Right clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
+
+A Thick Splash Potion will convert all Stone blocks hit by the splash into Deepslate.
+
+---
+
 #### Netherrack Generates with Nether Portal Structures ####
 
 Provides *Netherrack*
@@ -304,14 +318,6 @@ Put Andesite in a Blast Furnace for Tuff.
 Provides *Ancient Debris*
 
 A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
-
----
-
-#### Cobbled Deepslate is Craftable ####
-
-Provides *Cobbled Deepslate*
-
-Craft Cobbled Deepslate with 9 Cobblestone in a crafting grid.
 
 ---
 
