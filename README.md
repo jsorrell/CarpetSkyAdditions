@@ -227,6 +227,16 @@ After a time, the saplings will die and turn into Dead Bushes.
 
 ---
 
+#### Netherrack Generates with Nether Portal Structures ####
+
+Provides *Netherrack*
+
+Disable with ```/skyblock setDefault renewableNetherrack false```
+
+When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
+
+---
+
 #### Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms ####
 
 Provides *Echo Shards*
@@ -276,14 +286,6 @@ When possible, changes were added to the datapack over the mod for ease of user 
 Provides *Lava*
 
 Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
-
----
-
-#### Netherrack from Rotten Flesh ####
-
-Provides *Netherrack*
-
-Netherrack is craftable from 9 Rotten Flesh
 
 ---
 

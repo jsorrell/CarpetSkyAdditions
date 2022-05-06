@@ -120,4 +120,9 @@ public class SkyBlockSettings {
     desc = "Vexes can be converted into Allays with music",
     category = {SKYBLOCK, FEATURE})
   public static boolean renewableAllays = false;
+
+  @Rule(
+    desc = "Netherrack generates as part of Nether Portals spawned floating",
+    category = {SKYBLOCK, FEATURE})
+  public static boolean renewableNetherrack = false;
 }

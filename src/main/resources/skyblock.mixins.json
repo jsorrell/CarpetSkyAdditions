@@ -18,6 +18,7 @@
     "LivingEntityMixin",
     "MinecraftServerMixin",
     "MissingDimensionFixMixin",
+    "PortalForcerMixin",
     "RamImpactTaskMixin",
     "SaplingBlockMixin",
     "Schema2551Mixin",

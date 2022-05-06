@@ -12,5 +12,6 @@ skyblock setDefault poisonousPotatoesConvertSpiders true
 skyblock setDefault saplingsDieOnSand true
 skyblock setDefault renewableAllays true
 skyblock setDefault renewableEchoShards true
+skyblock setDefault renewableNetherrack true
 carpet setDefault renewableSponges true
 carpet setDefault piglinsSpawningInBastions true
