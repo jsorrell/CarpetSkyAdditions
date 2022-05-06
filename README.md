@@ -297,14 +297,6 @@ Put Andesite in a Blast Furnace for Tuff.
 
 ---
 
-#### Husks Drop Sand ####
-
-Provides additional *Sand*
-
-Husks drop Sand because obtaining large amounts from a Wandering Trader is tedious.
-
----
-
 #### Piglin Brutes Drop Ancient Debris ####
 
 Provides *Ancient Debris*
@@ -326,14 +318,6 @@ Craft Cobbled Deepslate with 9 Cobblestone in a crafting grid.
 Provides *Elytra*
 
 Elytra can be caught rarely as treasure items when fishing in the End.
-
----
-
-#### Red Sand Recipe ####
-
-Provides additional *Red Sand*
-
-Sand combined 1-1 with Red Dye makes Red Sand.
 
 ---
 
