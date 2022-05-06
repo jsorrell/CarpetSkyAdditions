@@ -25,7 +25,6 @@ other saves on the client it is installed on.
 ### Singleplayer
 
 - `Create New World`
-- Set the Difficulty to Hard (for more armor/weapon drops)
 - Select the downloaded Datapack
 - Set Allow Cheats to `ON` so you will be able to enable mod features
 - Click on `More World Options...`
