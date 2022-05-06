@@ -390,11 +390,15 @@ Piglins will rarely give Gilded Blackstone when bartering.
 
 ---
 
-#### Creepers Drop All Music Discs in the Nether ####
+#### Creepers Drop Structure Specific Music Discs or Fragments in those Structures ####
 
-Provides the music discs *Pigstep* and *otherside*
+Provides the music discs *Pigstep*, *otherside*, and *5*
 
-When Creepers are killed by Skeletons in the Nether, they can drop any music disc, including Pigstep and otherside.
+When Creepers are killed by Skeletons in the Bastions, they can drop the Music Disc "Pigstep".
+
+When Creepers are killed by Skeletons in the Strongholds, they can drop the Music Disc "otherside".
+
+When Creepers are killed by Skeletons in the Ancient Cities, they can drop Disc Fragment 5.
 
 ---
 
