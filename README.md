@@ -315,11 +315,12 @@ Craft Cobbled Deepslate with 9 Cobblestone in a crafting grid.
 
 ---
 
-#### Elytra Obtainable by Fishing in the End ####
+#### Elytra Obtainable from Endermites ####
 
 Provides *Elytra*
 
-Elytra can be caught rarely as treasure items when fishing in the End.
+Player killing an Endermite affected by both Slow Falling and Levitation
+has a chance to drop an Elytra, increased by looting.
 
 ---
 

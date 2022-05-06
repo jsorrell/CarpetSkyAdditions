@@ -5,10 +5,10 @@
       "item": "minecraft:elytra"
     },
     "title": {
-      "translate": "Catch of the Day"
+      "translate": "High and Mitey"
     },
     "description": {
-      "translate": "Fish for a pair of Elytra in the End"
+      "translate": "Get a pair of Elytra from a flying Endermite"
     },
     "frame": "goal"
   },
