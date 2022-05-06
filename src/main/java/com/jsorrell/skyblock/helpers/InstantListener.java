@@ -39,17 +39,17 @@ public class InstantListener implements GameEventListener {
   }
 
   @Override
-  public boolean listen(ServerWorld world, GameEvent.class_7447 event) {
+  public boolean listen(ServerWorld world, GameEvent.Info event) {
     if (onCooldown) {
       return false;
     }
 
-    if (!callback.canAccept(event.method_43724(), event.method_43727())) {
+    if (!callback.canAccept(event.getGameEvent(), event.getEmitter())) {
       return false;
     }
 
-    Vec3d originPos = event.method_43726();
-    callback.accept(world, this, originPos, event.method_43724(), event.method_43727());
+    Vec3d originPos = event.getEmitterPos();
+    callback.accept(world, this, originPos, event.getGameEvent(), event.getEmitter());
     onCooldown = true;
     return true;
   }
