@@ -21,18 +21,15 @@ public abstract class FoxEntityMixin extends Entity {
     super(type, world);
   }
 
-  // Chance given the 20% chance a fox is spawned holding any item
-  private static final float BERRY_CHANCE = 0.2f;
-
   @Inject(
     method = "initEquipment",
     cancellable = true,
     at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/AbstractRandom;nextFloat()F", ordinal = 1))
   private void addFoxHeldItem(AbstractRandom random, LocalDifficulty localDifficulty, CallbackInfo ci) {
-    if (SkyBlockSettings.foxesSpawnWithBerries) {
+    if (0 < SkyBlockSettings.foxesSpawnWithBerriesChance) {
       float f = random.nextFloat();
       ItemStack equippedItem;
-      if (f < BERRY_CHANCE) {
+      if (f < SkyBlockSettings.foxesSpawnWithBerriesChance) {
         equippedItem = new ItemStack(Items.SWEET_BERRIES);
         this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
         ci.cancel();

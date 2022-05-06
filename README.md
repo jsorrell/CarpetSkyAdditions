@@ -210,6 +210,8 @@ Provides *Sweet Berries*
 
 Disable with ```/skyblock setDefault foxesSpawnWithBerries false```
 
+Set the chance with ```/skyblock setDefault foxesSpawnWithBerries <chance>```
+
 When a Fox spawns with an item, there is a 20% chance the item is Sweet Berries. The Fox will eat them soon after
 spawning, so be quick.
 

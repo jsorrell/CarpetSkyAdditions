@@ -99,10 +99,44 @@ public class SkyBlockSettings {
   public static boolean rammingWart = false;
 
   /* Foxes Spawn With Berries */
+  private static class FoxesSpawnWithBerriesSetting extends Validator<String> {
+    public String validate(ServerCommandSource source, ParsedRule<String> currentRule, String newValue, String string) {
+      float floatValue;
+      if (newValue.toLowerCase(Locale.ROOT).equals("true")) {
+        floatValue = 0.2f;
+      } else if (newValue.toLowerCase(Locale.ROOT).equals("false")) {
+        floatValue = 0f;
+      } else {
+        try {
+          floatValue = Float.parseFloat(newValue);
+        } catch (NumberFormatException e) {
+          return null;
+        }
+      }
+
+      if (floatValue < 0 || 1 < floatValue) {
+        return null;
+      }
+
+      foxesSpawnWithBerriesChance = floatValue;
+      return newValue;
+    }
+
+    @Override
+    public String description() {
+      return "Must be between 0 and 1, true, or false";
+    }
+  }
+
   @Rule(
     desc = "A spawned Fox has a chance to hold Sweet Berries",
-    category = {SKYBLOCK, FEATURE})
-  public static boolean foxesSpawnWithBerries = false;
+    category = {SKYBLOCK, FEATURE},
+    options = {"true", "false", "0.1", "1"},
+    strict = false,
+    validate = FoxesSpawnWithBerriesSetting.class
+  )
+  public static String foxesSpawnWithBerries = "false";
+  public static Float foxesSpawnWithBerriesChance;
 
   /* Poisonous Potatoes Convert Spiders into Cave Spiders */
   @Rule(
