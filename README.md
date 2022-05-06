@@ -253,7 +253,7 @@ When a Nether Portal generates in the void, in generates Netherrack around it, m
 
 ---
 
-#### Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms ####
+#### Creatures with Echolocation Drop Echo Shards when Killed with Sonic Booms ####
 
 Provides *Echo Shards*
 
