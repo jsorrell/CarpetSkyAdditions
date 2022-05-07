@@ -1,8 +1,8 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.criterion.SkyBlockCriteria;
 import com.jsorrell.skyblock.helpers.GeodeGenerator;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.LavaFluid;

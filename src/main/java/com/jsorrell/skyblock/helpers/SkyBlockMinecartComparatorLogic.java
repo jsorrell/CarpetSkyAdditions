@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.helpers;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.fakes.VexEntityInterface;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.VexEntity;

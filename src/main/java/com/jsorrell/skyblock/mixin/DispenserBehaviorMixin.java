@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.helpers.DeepslateConversionHelper;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

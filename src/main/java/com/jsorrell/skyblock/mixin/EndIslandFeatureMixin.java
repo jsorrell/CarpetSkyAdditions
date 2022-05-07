@@ -1,6 +1,6 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;

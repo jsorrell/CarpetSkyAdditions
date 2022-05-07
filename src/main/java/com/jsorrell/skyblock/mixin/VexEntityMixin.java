@@ -1,9 +1,9 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.criterion.SkyBlockCriteria;
 import com.jsorrell.skyblock.fakes.VexEntityInterface;
 import com.jsorrell.skyblock.helpers.InstantListener;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NoteBlock;

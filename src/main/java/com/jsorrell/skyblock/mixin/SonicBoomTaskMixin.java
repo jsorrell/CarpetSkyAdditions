@@ -1,6 +1,6 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.task.SonicBoomTask;
 import net.minecraft.entity.mob.WardenEntity;

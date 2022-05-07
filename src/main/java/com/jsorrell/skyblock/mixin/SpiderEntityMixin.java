@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.criterion.SkyBlockCriteria;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

@@ -1,8 +1,8 @@
 package com.jsorrell.skyblock.gen;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.mixin.JigsawStructureAccessor;
 import com.jsorrell.skyblock.mixin.SinglePoolElementAccessor;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import com.jsorrell.skyblock.util.SkyBlockIdentifier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

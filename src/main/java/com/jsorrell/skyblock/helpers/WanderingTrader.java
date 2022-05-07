@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.helpers;
 
 import com.google.common.collect.ImmutableMap;
-import com.jsorrell.skyblock.SkyBlockSettings;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.item.Items;

@@ -1,7 +1,7 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
 import com.jsorrell.skyblock.helpers.DolphinFindHeartGoal;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.WaterCreatureEntity;

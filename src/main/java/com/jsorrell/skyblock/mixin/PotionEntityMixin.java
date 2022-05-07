@@ -1,6 +1,6 @@
 package com.jsorrell.skyblock.mixin;
 
-import com.jsorrell.skyblock.SkyBlockSettings;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.thrown.PotionEntity;

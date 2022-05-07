@@ -1,15 +1,10 @@
 package com.jsorrell.skyblock.helpers;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.GlowLichenBlock;
-import net.minecraft.block.LightningRodBlock;
-import net.minecraft.block.VineBlock;
+import com.jsorrell.skyblock.settings.SkyBlockSettings;
+import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-
-import com.jsorrell.skyblock.SkyBlockSettings;
 
 public class LightningConverter {
   public static void strike(World world, BlockPos pos) {
