@@ -125,12 +125,12 @@ public class SkyBlockSettings {
     @Override
     public FieldPair fix(FieldPair fieldPair) {
       if (fieldPair.getName().equals("foxesSpawnWithBerries")) {
-        fieldPair.setName("foxesSpawnWithBerriesChance");
+        fieldPair.setName("foxesSpawnWithSweetBerriesChance");
 
         if ("true".equalsIgnoreCase(fieldPair.getValue())) {
           Field settingField;
           try {
-            settingField = SkyBlockSettings.class.getDeclaredField("foxesSpawnWithBerriesChance");
+            settingField = SkyBlockSettings.class.getDeclaredField("foxesSpawnWithSweetBerriesChance");
           } catch (Exception e) {
             return null;
           }
@@ -152,7 +152,7 @@ public class SkyBlockSettings {
     validate = Validator.PROBABILITY.class
   )
   @SkyBlockSetting(value = "0.2", fixer = SweetBerriesFixer.class)
-  public static double foxesSpawnWithBerriesChance = 0d;
+  public static double foxesSpawnWithSweetBerriesChance = 0d;
 
   /* Poisonous Potatoes Convert Spiders into Cave Spiders */
   @Rule(

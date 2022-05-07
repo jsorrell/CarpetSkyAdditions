@@ -26,10 +26,10 @@ public abstract class FoxEntityMixin extends Entity {
     cancellable = true,
     at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/AbstractRandom;nextFloat()F", ordinal = 1))
   private void addFoxHeldItem(AbstractRandom random, LocalDifficulty localDifficulty, CallbackInfo ci) {
-    if (0 < SkyBlockSettings.foxesSpawnWithBerriesChance) {
+    if (0 < SkyBlockSettings.foxesSpawnWithSweetBerriesChance) {
       float f = random.nextFloat();
       ItemStack equippedItem;
-      if (f < SkyBlockSettings.foxesSpawnWithBerriesChance) {
+      if (f < SkyBlockSettings.foxesSpawnWithSweetBerriesChance) {
         equippedItem = new ItemStack(Items.SWEET_BERRIES);
         this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
         ci.cancel();
