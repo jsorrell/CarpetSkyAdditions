@@ -35,10 +35,15 @@ other saves on the client it is installed on.
 
 The mod and datapack are only required on the server.
 
+- Start the server to generate a template `server.properties` file
+- Shut down the server
+- Delete `world` folder the server created
 - Open `server.properties`
-- Change `level-type=default` to `level-type=skyblock`
-- Make sure to delete or move the world folder in order to create a new world
-- Move the downloaded datapack to the `datapack` directory
+- Change `level-type=minecraft\:normal` to `level-type=skyblock\:skyblock`
+- Start the server to generate the `world` folder
+- Shut down the server again
+- Move the downloaded datapack to the `world -> datapacks` folder
+- The SkyBlock server should now be ready
 
 ## Features
 
