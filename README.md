@@ -5,12 +5,14 @@
 SkyBlock is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 originally based on [skyrising/skyblock](https://github.com/skyrising/skyblock).
 
-This mod aims to provide an expert level SkyBlock gameplay that depends on players' knowledge of Minecraft mechanics. In
-some cases, outside tools such as [Chunkbase](https://www.chunkbase.com/)
-or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpful. Usage of these is encouraged.
-Sometimes extended grinding or AFK sessions will be required for progression, although I've tried to minimize this in
-some cases. Unless a command is run to enable features or SkyBlock world generation is chosen, the mod will not affect
-other saves on the client it is installed on.
+This mod aims to provide an expert level SkyBlock gameplay that depends on players' knowledge of Minecraft mechanics.
+In some cases, outside tools such as [Chunkbase](https://www.chunkbase.com/)
+or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpful.
+Usage of these is encouraged.
+Sometimes extended grinding or AFK sessions will be required for progression.
+Unless SkyBlock world generation is chosen or features are specifically enabled, the mod will do nothing.
+This means in Single Player, SkyBlock and Non-SkyBlock worlds can be switch between easily without restarting the
+client.
 
 ## Installation
 
