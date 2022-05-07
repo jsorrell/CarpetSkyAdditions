@@ -30,7 +30,7 @@ public abstract class SpiderEntityMixin extends HostileEntity {
     if (SkyBlockSettings.poisonousPotatoesConvertSpiders) {
       ItemStack handStack = player.getStackInHand(hand);
       HostileEntity thiss = this;
-      if (handStack.isOf(Items.POISONOUS_POTATO) && thiss instanceof SpiderEntity spider && !(thiss instanceof CaveSpiderEntity)) {
+      if (handStack.isOf(Items.POISONOUS_POTATO) && thiss instanceof SpiderEntity spider && this.getType() == EntityType.SPIDER) {
         if (!player.getAbilities().creativeMode) {
           handStack.decrement(1);
         }
