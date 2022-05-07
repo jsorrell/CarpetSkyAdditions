@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.PiglinBruteEntity;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.AbstractRandom;
 import net.minecraft.world.ServerWorldAccess;
@@ -24,7 +25,7 @@ public class PiglinBruteSpawnPredicate implements SpawnRestriction.SpawnPredicat
       BlockPos aboveBlockPos = pos.up();
       return SpawnHelper.isClearForSpawn(world, pos, world.getBlockState(pos), world.getFluidState(pos), type) &&
         SpawnHelper.isClearForSpawn(world, aboveBlockPos, world.getBlockState(aboveBlockPos), world.getFluidState(aboveBlockPos), type) &&
-        PiglinBruteEntity.canSpawnInDark(type, world, spawnReason, pos, random);
+        PiglinEntity.canSpawn(EntityType.PIGLIN, world, spawnReason, pos, random); // Mimic piglin spawning restrictions b/c that's the closest mob
     }
 
     return true;
