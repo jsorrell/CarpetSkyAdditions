@@ -26,11 +26,10 @@ other saves on the client it is installed on.
 
 - `Create New World`
 - Select the downloaded Datapack
-- Set Allow Cheats to `ON` so you will be able to enable mod features
+- Set Allow Cheats to `ON` so you will be able to enable/disable mod features
 - Click on `More World Options...`
 - Choose `World Type: SkyBlock`
 - Create the world
-- Run `/function skyblock:enable_features` to enable SkyBlock features
 
 ### Multiplayer
 
@@ -40,7 +39,6 @@ The mod and datapack are only required on the server.
 - Change `level-type=default` to `level-type=skyblock`
 - Make sure to delete or move the world folder in order to create a new world
 - Move the downloaded datapack to the `datapack` directory
-- Run `function skyblock:enable_features` to enable SkyBlock features
 
 ## Features
 
