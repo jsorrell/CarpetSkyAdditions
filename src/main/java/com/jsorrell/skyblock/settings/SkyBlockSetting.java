@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SkyBlockSetting {
+@interface SkyBlockSetting {
   String value() default "";
 
   Class<? extends SettingFixer>[] fixer() default {};
