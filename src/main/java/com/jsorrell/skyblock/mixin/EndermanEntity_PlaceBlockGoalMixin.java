@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.random.AbstractRandom;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Final;
@@ -16,6 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.Random;
 
 @Mixin(EndermanEntity.PlaceBlockGoal.class)
 public abstract class EndermanEntity_PlaceBlockGoalMixin {
@@ -28,7 +29,7 @@ public abstract class EndermanEntity_PlaceBlockGoalMixin {
     locals = LocalCapture.CAPTURE_FAILSOFT,
     cancellable = true
   )
-  private void inject(CallbackInfo ci, AbstractRandom random, World world, int x, int y, int z, BlockPos placePosBottom, BlockState placeStateBottom, BlockPos belowPlacePos, BlockState belowPosState, BlockState heldBlockState) {
+  private void inject(CallbackInfo ci, Random random, World world, int x, int y, int z, BlockPos placePosBottom, BlockState placeStateBottom, BlockPos belowPlacePos, BlockState belowPosState, BlockState heldBlockState) {
     Block heldBlock = heldBlockState.getBlock();
     if (heldBlock instanceof TallPlantBlock || heldBlock instanceof DoorBlock) {
       BlockPos placePosTop = placePosBottom.up();
@@ -46,7 +47,7 @@ public abstract class EndermanEntity_PlaceBlockGoalMixin {
         }
         world.setBlockState(placePosBottom, heldBlockState);
         heldBlock.onPlaced(world, placePosBottom, heldBlockState, this.enderman, ItemStack.EMPTY);
-        world.emitGameEvent(GameEvent.BLOCK_PLACE, placePosBottom, GameEvent.Emitter.of(this.enderman, heldBlockState));
+        world.emitGameEvent(this.enderman, GameEvent.BLOCK_PLACE, placePosBottom);
         this.enderman.setCarriedBlock(null);
       }
       ci.cancel();

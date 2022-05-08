@@ -8,13 +8,14 @@ import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.AbstractRandom;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.Random;
 
 @Mixin(EndermanEntity.PickUpBlockGoal.class)
 public abstract class EndermanEntity_PickUpBlockGoalMixin {
@@ -23,7 +24,7 @@ public abstract class EndermanEntity_PickUpBlockGoalMixin {
     locals = LocalCapture.CAPTURE_FAILSOFT,
     cancellable = true
   )
-  private void inject(CallbackInfo ci, AbstractRandom random, World world, int x, int y, int z, BlockPos targetBlockPos, BlockState targetBlockState) {
+  private void inject(CallbackInfo ci, Random random, World world, int x, int y, int z, BlockPos targetBlockPos, BlockState targetBlockState) {
     Block targetBlock = targetBlockState.getBlock();
     if (targetBlock instanceof TallPlantBlock || targetBlock instanceof DoorBlock) {
       // Only allow picking up the bottom half
