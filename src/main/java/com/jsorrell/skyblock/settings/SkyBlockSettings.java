@@ -208,7 +208,54 @@ public class SkyBlockSettings {
   )
   @SkyBlockSetting("true")
   public static String renewableDeepslate = "false";
-
   public static boolean doRenewableDeepslate = false;
   public static boolean renewableDeepslateFromSplash = false;
+
+  /* Wandering Trader Spawn Chance */
+  public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
+    @Override
+    public Double validate(ServerCommandSource source, ParsedRule<Double> currentRule, Double newValue, String string) {
+      return (0.025 <= newValue && newValue <= 1) ? newValue : null;
+    }
+
+    @Override
+    public String description() {
+      return "Must be between 0.025 and 1";
+    }
+  }
+
+  @Rule(
+    desc = "Max wandering trader spawn chance",
+    extra = {
+      "This starts at 0.025 and increases by 0.025 each time a trader spawn fails",
+      "until the max chance is reached."
+    },
+    category = {SKYBLOCK, FEATURE},
+    options = {"0.075", "0.2", "1"},
+    strict = false,
+    validate = WanderingTraderSpawnChanceValidator.class
+  )
+  public static double maxWanderingTraderSpawnChance = 0.075;
+
+  /* Wandering Trader Spawn Rate */
+  public static class POSITIVE_NUMBER<T extends Number> extends Validator<T> {
+    @Override
+    public T validate(ServerCommandSource source, ParsedRule<T> currentRule, T newValue, String string) {
+      return 0 < newValue.doubleValue() ? newValue : null;
+    }
+
+    @Override
+    public String description() {
+      return "Must be a positive number";
+    }
+  }
+
+  @Rule(
+    desc = "How often the wandering trader attempts to spawn in ticks",
+    category = {SKYBLOCK, FEATURE},
+    options = {"6000", "24000", "72000"},
+    strict = false,
+    validate = POSITIVE_NUMBER.class
+  )
+  public static int wanderingTraderSpawnRate = 24000;
 }

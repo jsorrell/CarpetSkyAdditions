@@ -33,6 +33,7 @@
     "SpiderEntityMixin",
     "VexEntityMixin",
     "WanderingTraderEntityMixin",
+    "WanderingTraderManagerMixin",
     "WorldGenSettingsHeightAndBiomeFixMixin"
   ],
   "injectors": {
