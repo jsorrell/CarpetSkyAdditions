@@ -1,0 +1,133 @@
+{
+  "parent": "skyblock:skyblock/gilded_blackstone",
+  "display": {
+    "icon": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "title": {
+      "translate": "Barter 100"
+    },
+    "description": {
+      "translate": "Receive all items exclusively available from Piglin Bartering"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "blackstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:blackstone"
+            ]
+          }
+        ]
+      }
+    },
+    "gravel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gravel"
+            ]
+          }
+        ]
+      }
+    },
+    "soul_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:soul_sand"
+            ]
+          }
+        ]
+      }
+    },
+    "crying_obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crying_obsidian"
+            ]
+          }
+        ]
+      }
+    },
+    "soul_speed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:soul_speed"
+              }
+            ]
+          },
+          {
+            "stored_enchantments": [
+              {
+                "enchantment": "minecraft:soul_speed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "soul_speed_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "stored_enchantments": [
+              {
+                "enchantment": "minecraft:soul_speed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "gilded_blackstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gilded_blackstone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "blackstone"
+    ],
+    [
+      "gravel"
+    ],
+    [
+      "soul_sand"
+    ],
+    [
+      "crying_obsidian"
+    ],
+    [
+      "soul_speed",
+      "soul_speed_book"
+    ],
+    [
+      "gilded_blackstone"
+    ]
+  ]
+}
