@@ -1,8 +1,9 @@
 # SkyBlock
 
-[English](README.md)|**中文**
+[English](README.md) | **中文 (需要更新)**
 
-SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)修改而来的依赖[fabric-carpet](https://github.com/gnembon/fabric-carpet)的模组。
+SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)
+修改而来的依赖[fabric-carpet](https://github.com/gnembon/fabric-carpet)的模组。
 
 该模组致力于在原版基础上为玩家提供专业的的空岛游戏体验。在某些时候诸如[Chunkbase](https://www.chunkbase.com/)或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)这类工具会很有用，建议搭配使用。尽管我已经尽力去将这方面的不良体验最小化，但某些时候游戏的进度依旧会比较折磨或者需要挂机一定时间。
 除非你使用指令开启其相关功能或者在世界生成时选择了**空岛**，否则该模组不会对客户端已经安装的其他存档造成任何影响。
