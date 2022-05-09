@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:progression/shulker",
+  "parent": "skyblock:progression/kill_shulker",
   "display": {
     "icon": {
       "item": "minecraft:elytra"
