@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/the_nether",
+  "display": {
+    "icon": {
+      "item": "minecraft:piglin_banner_pattern"
+    },
+    "title": {
+      "translate": "Why'd It Have That?"
+    },
+    "description": {
+      "translate": "Kill a Zoglin to get a Snout Banner Pattern"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_piglin_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:piglin_banner_pattern"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

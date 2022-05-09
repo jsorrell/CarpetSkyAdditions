@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/the_nether",
+  "display": {
+    "icon": {
+      "item": "minecraft:gravel"
+    },
+    "title": {
+      "translate": "Graveler"
+    },
+    "description": {
+      "translate": "Receive Gravel from Bartering"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_gravel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gravel"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

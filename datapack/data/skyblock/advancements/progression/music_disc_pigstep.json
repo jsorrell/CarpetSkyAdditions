@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/the_nether",
+  "display": {
+    "icon": {
+      "item": "minecraft:music_disc_pigstep"
+    },
+    "title": {
+      "translate": "Chart Topper"
+    },
+    "description": {
+      "translate": "Get Pigstep when a Skeleton kills a Creeper in a Bastion"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_music_disk_pigstep": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:music_disc_pigstep"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

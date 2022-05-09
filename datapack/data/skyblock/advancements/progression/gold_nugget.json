@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/lightning_rod",
+  "display": {
+    "icon": {
+      "item": "minecraft:gold_nugget"
+    },
+    "title": {
+      "translate": "IT'S ALIV... er Undead"
+    },
+    "description": {
+      "translate": "Strike some Pigs with Lightning to convert them to Zombified Piglins, then kill them for Gold"
+    }
+  },
+  "criteria": {
+    "has_gold_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gold_nugget"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

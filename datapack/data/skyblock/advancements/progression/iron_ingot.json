@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_zombie",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_ingot"
+    },
+    "title": {
+      "translate": "Steal Hardware"
+    },
+    "description": {
+      "translate": "Kill Zombies to get Iron"
+    }
+  },
+  "criteria": {
+    "has_iron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

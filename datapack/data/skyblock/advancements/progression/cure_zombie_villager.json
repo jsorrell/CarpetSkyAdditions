@@ -1,0 +1,19 @@
+{
+  "parent": "skyblock:progression/boat_with_witch",
+  "display": {
+    "icon": {
+      "item": "minecraft:bell"
+    },
+    "title": {
+      "translate": "Panacea"
+    },
+    "description": {
+      "translate": "Cure a Zombie Villager using a Weakness Potion thrown by a Witch"
+    }
+  },
+  "criteria": {
+    "cured_zombie_villager": {
+      "trigger": "minecraft:cured_zombie_villager"
+    }
+  }
+}

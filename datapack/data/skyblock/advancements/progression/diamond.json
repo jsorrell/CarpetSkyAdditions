@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/kill_wither_skeleton",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond"
+    },
+    "title": {
+      "translate": "Synthetic Diamonds!"
+    },
+    "description": {
+      "translate": "Compress a stack of Coal Blocks with... what else? A Falling Anvil"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

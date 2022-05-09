@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/cauldron",
+  "display": {
+    "icon": {
+      "item": "minecraft:water_bucket"
+    },
+    "title": {
+      "translate": "Water!"
+    },
+    "description": {
+      "translate": "Get a Water Bucket from a Full Cauldron"
+    }
+  },
+  "criteria": {
+    "has_water_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:water_bucket"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

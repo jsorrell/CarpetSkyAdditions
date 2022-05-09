@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_spider",
+  "display": {
+    "icon": {
+      "item": "minecraft:red_bed"
+    },
+    "title": {
+      "translate": "The OG Bed"
+    },
+    "description": {
+      "translate": "Make a Bed of the right color"
+    }
+  },
+  "criteria": {
+    "has_red_bed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:red_bed"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

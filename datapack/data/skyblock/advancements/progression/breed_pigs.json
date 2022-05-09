@@ -1,0 +1,24 @@
+{
+  "parent": "skyblock:progression/zombie_crop",
+  "display": {
+    "icon": {
+      "item": "minecraft:porkchop"
+    },
+    "title": {
+      "translate": "Swine Flu"
+    },
+    "description": {
+      "translate": "Breed the first of many Pigs"
+    }
+  },
+  "criteria": {
+    "bred_pigs": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "minecraft:pig"
+        }
+      }
+    }
+  }
+}

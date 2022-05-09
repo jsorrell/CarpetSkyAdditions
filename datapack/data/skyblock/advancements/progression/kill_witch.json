@@ -1,0 +1,31 @@
+{
+  "parent": "skyblock:progression/go_down",
+  "display": {
+    "icon": {
+      "item": "minecraft:potion",
+      "nbt": "{Potion:\"minecraft:healing\"}"
+    },
+    "title": {
+      "translate": "Witch Hunt"
+    },
+    "description": {
+      "translate": "Kill a Witch"
+    }
+  },
+  "criteria": {
+    "kill_witch": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:witch"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

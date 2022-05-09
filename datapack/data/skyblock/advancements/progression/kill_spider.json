@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/go_down",
+  "display": {
+    "icon": {
+      "item": "minecraft:string"
+    },
+    "title": {
+      "translate": "Eight Legged Freak"
+    },
+    "description": {
+      "translate": "Kill a Spider for its String"
+    }
+  },
+  "criteria": {
+    "kill_spider": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:spider"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

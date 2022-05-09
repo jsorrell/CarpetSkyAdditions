@@ -1,0 +1,41 @@
+{
+  "parent": "skyblock:progression/bone_meal",
+  "display": {
+    "icon": {
+      "item": "minecraft:large_fern"
+    },
+    "title": {
+      "translate": "Who Needs Village Chests?"
+    },
+    "description": {
+      "translate": "Get Tall Grass and Large Ferns by Killing Endermen Holding them"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_tall_grass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:tall_grass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_large_fern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:large_fern"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

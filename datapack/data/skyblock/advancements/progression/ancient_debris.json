@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/the_nether",
+  "display": {
+    "icon": {
+      "item": "minecraft:ancient_debris"
+    },
+    "title": {
+      "translate": "Brutiful"
+    },
+    "description": {
+      "translate": "Get Ancient Debris from a Piglin Brute in a Bastion Remnant"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "ancient_debris": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ancient_debris"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "skyblock:progression/golden_apple",
+  "display": {
+    "icon": {
+      "item": "minecraft:splash_potion",
+      "nbt": "{Potion:\"minecraft:weakness\"}"
+    },
+    "title": {
+      "translate": "Witch Cannon"
+    },
+    "description": {
+      "translate": "Ride a boat with a Witch to avoid to her potions"
+    }
+  },
+  "criteria": {
+    "riding_boat_with_witch": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "vehicle": {
+                "type": "minecraft:boat",
+                "passenger": {
+                  "type": "minecraft:witch"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

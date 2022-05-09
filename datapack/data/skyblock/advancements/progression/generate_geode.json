@@ -1,0 +1,20 @@
+{
+  "parent": "skyblock:progression/blasted_rock",
+  "display": {
+    "icon": {
+      "item": "minecraft:budding_amethyst"
+    },
+    "title": {
+      "translate": "Gemology"
+    },
+    "description": {
+      "translate": "Generate an Amethyst Geode"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "generate_geode": {
+      "trigger": "skyblock:generate_geode"
+    }
+  }
+}

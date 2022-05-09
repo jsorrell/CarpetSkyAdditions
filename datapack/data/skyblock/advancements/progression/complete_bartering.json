@@ -1,0 +1,126 @@
+{
+  "parent": "skyblock:progression/quartz",
+  "display": {
+    "icon": {
+      "item": "minecraft:gilded_blackstone"
+    },
+    "title": {
+      "translate": "Barter 100"
+    },
+    "description": {
+      "translate": "Receive all items exclusively available from Bartering"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_blackstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:blackstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gravel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gravel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_soul_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:soul_sand"
+            ]
+          }
+        ]
+      }
+    },
+    "has_crying_obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crying_obsidian"
+            ]
+          }
+        ]
+      }
+    },
+    "has_soul_speed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:soul_speed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "has_soul_speed_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "stored_enchantments": [
+              {
+                "enchantment": "minecraft:soul_speed"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "has_gilded_blackstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gilded_blackstone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blackstone"
+    ],
+    [
+      "has_gravel"
+    ],
+    [
+      "has_soul_sand"
+    ],
+    [
+      "has_crying_obsidian"
+    ],
+    [
+      "has_soul_speed",
+      "has_soul_speed_book"
+    ],
+    [
+      "has_gilded_blackstone"
+    ]
+  ]
+}

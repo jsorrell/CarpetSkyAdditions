@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/go_down",
+  "display": {
+    "icon": {
+      "item": "minecraft:sculk_catalyst"
+    },
+    "title": {
+      "translate": "Monster of the Deep"
+    },
+    "description": {
+      "translate": "Kill a Warden for a Sculk Catalyst"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_sculk_catalyst": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sculk_catalyst"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

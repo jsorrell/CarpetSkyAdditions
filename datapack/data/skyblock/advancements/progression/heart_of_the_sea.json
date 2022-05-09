@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/sand",
+  "display": {
+    "icon": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "title": {
+      "translate": "Heart of a Dolphin"
+    },
+    "description": {
+      "translate": "Gift a Dolphin. Maybe they'll return the favor"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_heart_of_the_sea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:heart_of_the_sea"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

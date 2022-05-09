@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_witch",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone"
+    },
+    "title": {
+      "translate": "Can't Do Much With This... Yet"
+    },
+    "description": {
+      "translate": "Get some Redstone from a Witch"
+    }
+  },
+  "criteria": {
+    "has_redstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/kill_zombie",
+  "display": {
+    "icon": {
+      "item": "minecraft:carrot"
+    },
+    "title": {
+      "translate": "Death of a Gardener"
+    },
+    "description": {
+      "translate": "Get a Carrot or Potato from a zombie and start a farm for breeding pigs"
+    }
+  },
+  "criteria": {
+    "has_zombie_crop": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:carrot",
+              "minecraft:potato"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

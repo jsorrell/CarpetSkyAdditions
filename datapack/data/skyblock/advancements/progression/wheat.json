@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/bone_meal",
+  "display": {
+    "icon": {
+      "item": "minecraft:wheat"
+    },
+    "title": {
+      "translate": "Animal Feed"
+    },
+    "description": {
+      "translate": "Start a Wheat farm"
+    }
+  },
+  "criteria": {
+    "has_wheat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:wheat"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

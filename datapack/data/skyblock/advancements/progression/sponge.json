@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/water_bucket",
+  "display": {
+    "icon": {
+      "item": "minecraft:sponge"
+    },
+    "title": {
+      "translate": "Too Much Water!"
+    },
+    "description": {
+      "translate": "Convert a Guardian to an Elder Guardian with lightning and kill it for a Sponge"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_sponge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sponge"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

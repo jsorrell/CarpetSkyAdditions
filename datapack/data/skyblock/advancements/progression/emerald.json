@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/cure_zombie_villager",
+  "display": {
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "title": {
+      "translate": "Emerald City"
+    },
+    "description": {
+      "translate": "Trade for Emeralds"
+    }
+  },
+  "criteria": {
+    "has_emerald": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:emerald"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

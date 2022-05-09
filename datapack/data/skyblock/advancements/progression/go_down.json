@@ -1,0 +1,34 @@
+{
+  "parent": "skyblock:progression/oak_trapdoor",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "Get Down!"
+    },
+    "description": {
+      "translate": "Mobs spawn faster lower in the world"
+    }
+  },
+  "criteria": {
+    "is_low": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "position": {
+                "y": {
+                  "max": -54
+                }
+              }
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  }
+}

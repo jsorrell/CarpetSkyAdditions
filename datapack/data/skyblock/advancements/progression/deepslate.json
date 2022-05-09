@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/cobblestone",
+  "display": {
+    "icon": {
+      "item": "minecraft:deepslate"
+    },
+    "title": {
+      "translate": "That's Deep, Bro"
+    },
+    "description": {
+      "translate": "Convert Stone to Deepslate with a Thick Potion"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_deepslate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:deepslate",
+              "minecraft:cobbled_deepslate"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

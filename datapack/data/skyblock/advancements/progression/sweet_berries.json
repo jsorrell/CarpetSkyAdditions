@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/silk_touch",
+  "display": {
+    "icon": {
+      "item": "minecraft:sweet_berries"
+    },
+    "title": {
+      "translate": "Snatched from the Jaws"
+    },
+    "description": {
+      "translate": "Get Sweet Berries from a Fox"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_sweet_berries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sweet_berries"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

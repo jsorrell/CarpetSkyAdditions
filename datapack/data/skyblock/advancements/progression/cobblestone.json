@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/lava_bucket",
+  "display": {
+    "icon": {
+      "item": "minecraft:cobblestone"
+    },
+    "title": {
+      "translate": "Space Age"
+    },
+    "description": {
+      "translate": "Build a Cobblestone generator"
+    }
+  },
+  "criteria": {
+    "has_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stone",
+              "minecraft:cobblestone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

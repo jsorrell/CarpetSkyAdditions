@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/gravel",
+  "display": {
+    "icon": {
+      "item": "minecraft:quartz"
+    },
+    "title": {
+      "translate": "Observers and Comparators"
+    },
+    "description": {
+      "translate": "Get Nether Quartz from Bartering"
+    }
+  },
+  "criteria": {
+    "has_quartz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:quartz"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

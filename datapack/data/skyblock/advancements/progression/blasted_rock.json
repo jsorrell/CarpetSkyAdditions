@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/quartz",
+  "display": {
+    "icon": {
+      "item": "minecraft:calcite"
+    },
+    "title": {
+      "translate": "Cooking Stone in a Stone Oven"
+    },
+    "description": {
+      "translate": "Blast Diorite or Andesite to get Calcite or Tuff"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_blasted_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:calcite",
+              "minecraft:tuff"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

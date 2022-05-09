@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/wandering_trader",
+  "display": {
+    "icon": {
+      "item": "minecraft:sand"
+    },
+    "title": {
+      "translate": "It Gets Everywhere"
+    },
+    "description": {
+      "translate": "Buy Sand from the Wandering Trader"
+    }
+  },
+  "criteria": {
+    "has_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sand",
+              "minecraft:red_sand"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

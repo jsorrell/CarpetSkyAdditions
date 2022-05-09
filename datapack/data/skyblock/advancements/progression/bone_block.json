@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/bone_meal",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone_block"
+    },
+    "title": {
+      "translate": "Lightning-Proof"
+    },
+    "description": {
+      "translate": "Craft Bone Blocks from Bone Meal for Extra Fireproof Blocks"
+    }
+  },
+  "criteria": {
+    "has_bone_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bone_block"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

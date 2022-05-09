@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/the_end",
+  "display": {
+    "icon": {
+      "item": "minecraft:dragon_head"
+    },
+    "title": {
+      "translate": "Creepers... and Dragons"
+    },
+    "description": {
+      "translate": "Kill a Dragon with a Charged Creeper to get its head"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_dragon_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dragon_head"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

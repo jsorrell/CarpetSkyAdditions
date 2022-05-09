@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_skeleton",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone_meal"
+    },
+    "title": {
+      "translate": "Fertilizer"
+    },
+    "description": {
+      "translate": "Craft Bone Meal from Bones to grow trees faster"
+    }
+  },
+  "criteria": {
+    "has_bone_meal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bone_meal"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

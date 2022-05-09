@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/village_hero",
+  "display": {
+    "icon": {
+      "item": "minecraft:lava_bucket"
+    },
+    "title": {
+      "translate": "Lavely Gift"
+    },
+    "description": {
+      "translate": "Obtain Lava as a Gift from a Toolsmith"
+    }
+  },
+  "criteria": {
+    "has_lava_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:lava_bucket"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

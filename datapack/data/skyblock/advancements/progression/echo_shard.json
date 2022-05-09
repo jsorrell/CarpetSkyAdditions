@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/sculk_catalyst",
+  "display": {
+    "icon": {
+      "item": "minecraft:echo_shard"
+    },
+    "title": {
+      "translate": "Echolocation Overload"
+    },
+    "description": {
+      "translate": "Kill a Bat or Dolphin with a Warden's Sonic Boom to get an Echo Shard"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_echo_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:echo_shard"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

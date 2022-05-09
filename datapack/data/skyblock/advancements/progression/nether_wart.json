@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/netherrack",
+  "display": {
+    "icon": {
+      "item": "minecraft:nether_wart"
+    },
+    "title": {
+      "translate": "Billy, I Need You"
+    },
+    "description": {
+      "translate": "Have a Goat ram into a Nether Wart Block"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_nether_wart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:nether_wart"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

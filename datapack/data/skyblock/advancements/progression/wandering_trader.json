@@ -1,0 +1,25 @@
+{
+  "parent": "skyblock:progression/emerald",
+  "display": {
+    "icon": {
+      "item": "minecraft:red_banner",
+      "nbt": "{BlockEntityTag:{Patterns:[{Pattern:ss,Color:4},{Pattern:ls,Color:11},{Pattern:rs,Color:11}]}}"
+    },
+    "title": {
+      "translate": "Thank You, Come Again"
+    },
+    "description": {
+      "translate": "Make your first of many trades with a Wandering Trader"
+    }
+  },
+  "criteria": {
+    "trade_with_wandering_trader": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": {
+          "type": "minecraft:wandering_trader"
+        }
+      }
+    }
+  }
+}

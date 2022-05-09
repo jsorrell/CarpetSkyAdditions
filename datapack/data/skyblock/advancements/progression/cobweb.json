@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/go_down",
+  "display": {
+    "icon": {
+      "item": "minecraft:cobweb"
+    },
+    "title": {
+      "translate": "World Wide Web"
+    },
+    "description": {
+      "translate": "Kill a Spider Jockey for Cobweb"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_cobweb": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cobweb"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

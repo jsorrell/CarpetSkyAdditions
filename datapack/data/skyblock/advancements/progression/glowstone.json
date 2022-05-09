@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_witch",
+  "display": {
+    "icon": {
+      "item": "minecraft:glowstone"
+    },
+    "title": {
+      "translate": "And Then There Was Light"
+    },
+    "description": {
+      "translate": "Craft some Glowstone for lighting"
+    }
+  },
+  "criteria": {
+    "has_glowstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glowstone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

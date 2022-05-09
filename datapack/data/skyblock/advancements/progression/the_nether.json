@@ -1,0 +1,22 @@
+{
+  "parent": "skyblock:progression/pointed_dripstone",
+  "display": {
+    "icon": {
+      "item": "minecraft:red_nether_bricks"
+    },
+    "title": {
+      "translate": "It's Empty Too"
+    },
+    "description": {
+      "translate": "Enter the Nether"
+    }
+  },
+  "criteria": {
+    "entered_nether": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_nether"
+      }
+    }
+  }
+}

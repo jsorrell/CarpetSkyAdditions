@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/emerald",
+  "display": {
+    "icon": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "title": {
+      "translate": "Hello Kitty"
+    },
+    "description": {
+      "translate": "Receive an Enchanted Golden Apple from a Cat in the morning"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_enchanted_golden_apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:enchanted_golden_apple"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

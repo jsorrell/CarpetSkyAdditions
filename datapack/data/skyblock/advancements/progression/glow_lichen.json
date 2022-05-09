@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/lightning_rod",
+  "display": {
+    "icon": {
+      "item": "minecraft:glow_lichen"
+    },
+    "title": {
+      "translate": "Electrifying"
+    },
+    "description": {
+      "translate": "Energize some Vines into Glow Lichen"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_glow_lichen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_lichen"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

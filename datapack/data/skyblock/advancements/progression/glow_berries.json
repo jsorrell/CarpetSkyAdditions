@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/sweet_berries",
+  "display": {
+    "icon": {
+      "item": "minecraft:glow_berries"
+    },
+    "title": {
+      "translate": "Glowification"
+    },
+    "description": {
+      "translate": "Craft Sweet Berries with a Glow Ink Sac to get Glow Berries"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_glow_berries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_berries"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

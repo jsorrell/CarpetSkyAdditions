@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/iron_ingot",
+  "display": {
+    "icon": {
+      "item": "minecraft:cauldron"
+    },
+    "title": {
+      "translate": "Please Rain..."
+    },
+    "description": {
+      "translate": "Craft a Cauldron to catch rain"
+    }
+  },
+  "criteria": {
+    "has_cauldron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cauldron"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/kill_drowned",
+  "display": {
+    "icon": {
+      "item": "minecraft:lightning_rod"
+    },
+    "title": {
+      "translate": "IT'S ALIV... er Undead"
+    },
+    "description": {
+      "translate": "Craft a Lightning Rod to help in converting Pigs"
+    }
+  },
+  "criteria": {
+    "has_lightning_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:lightning_rod"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

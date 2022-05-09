@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/shulker",
+  "display": {
+    "icon": {
+      "item": "minecraft:elytra"
+    },
+    "title": {
+      "translate": "High and Mitey"
+    },
+    "description": {
+      "translate": "Get a pair of Elytra from a flying Endermite"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_elytra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

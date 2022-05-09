@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/music_disc_otherside",
+  "display": {
+    "icon": {
+      "item": "minecraft:music_disc_5"
+    },
+    "title": {
+      "translate": "Weird Taste in Music"
+    },
+    "description": {
+      "translate": "Get Fragments for Disc 5 when a Skeleton kills a Creeper in an Ancient City. Then craft the whole Disc"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_music_disk_5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:music_disc_5"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

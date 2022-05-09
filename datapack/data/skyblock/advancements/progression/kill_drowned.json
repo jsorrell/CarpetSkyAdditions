@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/water_bucket",
+  "display": {
+    "icon": {
+      "item": "minecraft:copper_ingot"
+    },
+    "title": {
+      "translate": "Aquaman's Nemesis"
+    },
+    "description": {
+      "translate": "Kill a Drowned for Copper"
+    }
+  },
+  "criteria": {
+    "kill_drowned": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:drowned"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

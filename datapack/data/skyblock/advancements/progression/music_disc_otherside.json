@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/music_disc_pigstep",
+  "display": {
+    "icon": {
+      "item": "minecraft:music_disc_otherside"
+    },
+    "title": {
+      "translate": "Otherworldy Sounds"
+    },
+    "description": {
+      "translate": "Get otherside when a Skeleton kills a Creeper in a Stronghold"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_music_disk_otherside": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:music_disc_otherside"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

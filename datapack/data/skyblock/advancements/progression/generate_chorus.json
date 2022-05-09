@@ -1,0 +1,23 @@
+{
+  "parent": "skyblock:progression/the_end",
+  "display": {
+    "icon": {
+      "item": "minecraft:chorus_flower"
+    },
+    "title": {
+      "translate": "Who Planted This Here?"
+    },
+    "description": {
+      "translate": "Use an End Gateway to generate an island containing Chorus"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "entered_end_gateway": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:end_gateway"
+      }
+    }
+  }
+}

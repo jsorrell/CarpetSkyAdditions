@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/diamond",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_horse_armor"
+    },
+    "title": {
+      "translate": "Cover Shadowfax With Diamonds"
+    },
+    "description": {
+      "translate": "Craft Diamond Horse Armor for your Horse"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_diamond_horse_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond_horse_armor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

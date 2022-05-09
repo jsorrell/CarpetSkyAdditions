@@ -1,0 +1,65 @@
+{
+  "parent": "skyblock:progression/wandering_trader",
+  "display": {
+    "icon": {
+      "item": "minecraft:rose_bush"
+    },
+    "title": {
+      "translate": "Florist"
+    },
+    "description": {
+      "translate": "Buy all types of tall flowers from the Wandering Trader"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_rose_bush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rose_bush"
+            ]
+          }
+        ]
+      }
+    },
+    "has_sunflower": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sunflower"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lilac": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:lilac"
+            ]
+          }
+        ]
+      }
+    },
+    "has_peony": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:peony"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

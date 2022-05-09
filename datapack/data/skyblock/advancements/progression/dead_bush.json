@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/sand",
+  "display": {
+    "icon": {
+      "item": "minecraft:dead_bush"
+    },
+    "title": {
+      "translate": "Herbicidal Maniac"
+    },
+    "description": {
+      "translate": "Kill a Sapling by Placing it on Sand"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_dead_bush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dead_bush"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

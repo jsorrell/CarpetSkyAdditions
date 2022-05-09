@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/wandering_trader",
+  "display": {
+    "icon": {
+      "item": "minecraft:moss_block"
+    },
+    "title": {
+      "translate": "Moss Def a Good Buy"
+    },
+    "description": {
+      "translate": "Buy a Moss Block from the Wandering Trader"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_moss_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:moss_block"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

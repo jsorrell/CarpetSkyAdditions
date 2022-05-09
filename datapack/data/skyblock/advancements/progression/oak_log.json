@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_log"
+    },
+    "title": {
+      "translate": "The First of Many"
+    },
+    "description": {
+      "translate": "Get your first oak log"
+    }
+  },
+  "criteria": {
+    "has_oak_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:oak_log"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

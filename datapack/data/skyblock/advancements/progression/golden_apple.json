@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/gold_nugget",
+  "display": {
+    "icon": {
+      "item": "minecraft:golden_apple"
+    },
+    "title": {
+      "translate": "Panacea"
+    },
+    "description": {
+      "translate": "Craft a Golden Apple"
+    }
+  },
+  "criteria": {
+    "has_golden_apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:golden_apple"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

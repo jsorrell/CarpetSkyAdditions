@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/cure_zombie_villager",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_block"
+    },
+    "title": {
+      "translate": "Ironic"
+    },
+    "description": {
+      "translate": "Make an Iron Farm and get a full stack of Iron Ingots"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_iron_stack": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    }
+  }
+}

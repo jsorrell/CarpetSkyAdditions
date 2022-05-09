@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/moss_block",
+  "display": {
+    "icon": {
+      "item": "minecraft:spore_blossom"
+    },
+    "title": {
+      "translate": "Pretty in Pink"
+    },
+    "description": {
+      "translate": "Get a Spore Blossom from Flowering Azalea Leaves"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_spore_blossom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:spore_blossom"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

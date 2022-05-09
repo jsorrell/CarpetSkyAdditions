@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/water_bucket",
+  "display": {
+    "icon": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "title": {
+      "translate": "Beware Of Piranhas"
+    },
+    "description": {
+      "translate": "Fish for Cocoa Beans in a Jungle"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_cocoa_beans": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cocoa_beans"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

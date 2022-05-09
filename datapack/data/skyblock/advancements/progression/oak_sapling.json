@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/oak_log",
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_sapling"
+    },
+    "title": {
+      "translate": "The Circle of Life"
+    },
+    "description": {
+      "translate": "Get your first oak sapling to grow another tree"
+    }
+  },
+  "criteria": {
+    "has_oak_sapling": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:oak_sapling"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
