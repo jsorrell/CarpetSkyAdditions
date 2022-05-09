@@ -27,7 +27,10 @@ public abstract class SaplingBlockMixin extends PlantBlock {
   @Override
   protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
     if (SkyBlockSettings.saplingsDieOnSand) {
-      return floor.isOf(Blocks.SAND) || floor.isOf(Blocks.RED_SAND) || super.canPlantOnTop(floor, world, pos);
+      PlantBlock thiss = this;
+      if (!(thiss instanceof PropaguleBlock)) {
+        return floor.isOf(Blocks.SAND) || floor.isOf(Blocks.RED_SAND) || super.canPlantOnTop(floor, world, pos);
+      }
     }
     return super.canPlantOnTop(floor, world, pos);
   }
