@@ -275,6 +275,22 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 ---
 
+#### Dead Coral and Coral Fans Erode into Sand ####
+
+Provides additional *Sand* and *Red Sand*
+
+Disable with ```/skyblock setDefault renewableSand false```
+
+Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
+Fire versions spawn Red Sand instead.
+
+The Coral has a 3% chance to break after spawning Sand.
+
+This replaces the old method where Husks dropped Sand because another standard mob farm is boring.
+Infinitely automatic farms are still possible, but not trivial.
+
+---
+
 #### Vexes Can Be Allayed ####
 
 Provides *Allays*
