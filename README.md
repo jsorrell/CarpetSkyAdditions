@@ -58,7 +58,7 @@ Fortresses, for example.
 Only a few things are generated:
 
 - A small starting island where you spawn:
-  ![small spawn platform with grass, mycelium, nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
+  ![small spawn platform with grass, both types of nylium, and a tree](screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
 - End Portal Frames (unless `generateEndPortals` is set to `false`):
   ![end portal frame remains](screenshots/end_portal.png?raw=true "End Portal Frame")
@@ -252,6 +252,16 @@ Provides *Netherrack*
 Disable with ```/skyblock setDefault renewableNetherrack false```
 
 When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
+
+---
+
+#### Huge Mushrooms Spread Mycelium ####
+
+Provides *Mycelium*
+
+Disable with ```/skyblock setDefault hugeMushroomsSpreadMycelium false```
+
+When a Huge Mushroom grows, it spreads Mycelium nearby, similar to how Mega Spruces Trees spread Podzol.
 
 ---
 

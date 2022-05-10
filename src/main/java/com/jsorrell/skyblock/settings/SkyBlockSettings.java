@@ -187,6 +187,12 @@ public class SkyBlockSettings {
   public static boolean coralErosion = false;
 
   @Rule(
+    desc = "Huge Mushrooms nearby convert soil to Mycelium",
+    category = {SKYBLOCK, FEATURE})
+  @SkyBlockSetting("true")
+  public static boolean hugeMushroomsSpreadMycelium = false;
+
+  @Rule(
     desc = "Netherrack generates as part of Nether Portals spawned floating",
     category = {SKYBLOCK, FEATURE})
   @SkyBlockSetting("true")
