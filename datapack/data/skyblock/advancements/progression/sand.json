@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:progression/wandering_trader",
+  "parent": "skyblock:progression/water_bucket",
   "display": {
     "icon": {
       "item": "minecraft:sand"
@@ -8,7 +8,7 @@
       "translate": "It Gets Everywhere"
     },
     "description": {
-      "translate": "Buy Sand from the Wandering Trader"
+      "translate": "Erode Dead Coral into Sand by letting Water flow out of it"
     }
   },
   "criteria": {

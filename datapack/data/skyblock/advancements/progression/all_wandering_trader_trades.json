@@ -50,30 +50,6 @@
         ]
       }
     },
-    "has_sand": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:sand"
-            ]
-          }
-        ]
-      }
-    },
-    "has_red_sand": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:red_sand"
-            ]
-          }
-        ]
-      }
-    },
     "has_sugar_cane": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

@@ -286,8 +286,13 @@ Fire versions spawn Red Sand instead.
 
 The Coral has a 3% chance to break after spawning Sand.
 
-This replaces the old method where Husks dropped Sand because another standard mob farm is boring.
-Infinitely automatic farms are still possible, but not trivial.
+Infinitely automatic farms are possible, but not trivial.
+
+This method was added because:
+
+- Getting Sand purely from the Wandering Trader is not sufficient.
+- Gravity block duping and Trader multi-use bugs are unintended and could be fixed at any time.
+- The old method where Husks dropped Sand is boring as it's just another standard mob farm.
 
 ---
 
