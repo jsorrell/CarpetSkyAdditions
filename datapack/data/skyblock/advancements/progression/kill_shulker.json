@@ -8,7 +8,7 @@
       "translate": "Shulking in the Shadows"
     },
     "description": {
-      "translate": "Kill a Shulker that spawns when a respawned dragon dies"
+      "translate": "Kill a Shulker that spawns when a respawned Ender Dragon dies"
     },
     "frame": "goal",
     "show_toast": true,
