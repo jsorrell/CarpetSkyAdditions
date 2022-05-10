@@ -22,7 +22,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
 
   @Override
   public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-    if (SkyBlockSettings.renewableSand) {
+    if (SkyBlockSettings.coralErosion) {
       world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
     super.onBlockAdded(state, world, pos, oldState, notify);
@@ -30,7 +30,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
 
   @Override
   public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-    if (SkyBlockSettings.renewableSand) {
+    if (SkyBlockSettings.coralErosion) {
       world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
     return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -38,7 +38,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
 
   @Override
   public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, AbstractRandom random) {
-    if (SkyBlockSettings.renewableSand) {
+    if (SkyBlockSettings.coralErosion) {
       if (DeadCoralToSandHelper.tryDropSand(state, world, pos, random)) {
         world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));
       }

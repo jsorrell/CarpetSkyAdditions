@@ -184,7 +184,7 @@ public class SkyBlockSettings {
     desc = "Dead Coral with Water flowing out of it erodes into Sand",
     category = {SKYBLOCK, FEATURE})
   @SkyBlockSetting("true")
-  public static boolean renewableSand = false;
+  public static boolean coralErosion = false;
 
   @Rule(
     desc = "Netherrack generates as part of Nether Portals spawned floating",

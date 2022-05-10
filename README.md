@@ -11,7 +11,7 @@ or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpf
 Usage of these is encouraged.
 Sometimes extended grinding or AFK sessions will be required for progression.
 Unless SkyBlock world generation is chosen or features are specifically enabled, the mod will do nothing.
-This means in Single Player, SkyBlock and Non-SkyBlock worlds can be switch between easily without restarting the
+This means in Single Player, SkyBlock and Non-SkyBlock worlds can be switched between easily without restarting the
 client.
 
 ## Installation
@@ -279,7 +279,7 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 Provides additional *Sand* and *Red Sand*
 
-Disable with ```/skyblock setDefault renewableSand false```
+Disable with ```/skyblock setDefault coralErosion false```
 
 Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
 Fire versions spawn Red Sand instead.
