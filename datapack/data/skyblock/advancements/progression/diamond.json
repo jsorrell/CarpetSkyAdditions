@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:progression/kill_wither_skeleton",
+  "parent": "skyblock:progression/coal",
   "display": {
     "icon": {
       "item": "minecraft:diamond"
