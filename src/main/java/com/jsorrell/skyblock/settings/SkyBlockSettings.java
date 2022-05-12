@@ -14,33 +14,33 @@ import static carpet.settings.RuleCategory.FEATURE;
 
 public class SkyBlockSettings {
   public static final Logger LOG = LoggerFactory.getLogger(Build.NAME);
-  public static final String SKYBLOCK = "skyblock";
   public static final String GENERATION = "generation";
+  public static final String WANDERING_TRADER = "wandering_trader";
 
   /* Generation -- Only obeyed with SkyBlock world generation */
   @Rule(
     desc = "Generates End Portals",
-    category = {SKYBLOCK, GENERATION})
+    category = {GENERATION})
   public static boolean generateEndPortals = true;
 
   @Rule(
     desc = "Generates Silverfish Spawners",
-    category = {SKYBLOCK, GENERATION})
+    category = {GENERATION})
   public static boolean generateSilverfishSpawners = true;
 
   @Rule(
     desc = "Generate Ancient City Portals",
-    category = {SKYBLOCK, GENERATION})
+    category = {GENERATION})
   public static boolean generateAncientCityPortals = true;
 
   @Rule(
     desc = "Generates Magma Cube Spawners",
-    category = {SKYBLOCK, GENERATION})
+    category = {GENERATION})
   public static boolean generateMagmaCubeSpawners = false;
 
   @Rule(
     desc = "Generate Random End Gateways",
-    category = {SKYBLOCK, GENERATION})
+    category = {GENERATION})
   public static boolean generateRandomEndGateways = false;
 
   /* Features -- can be used in any generation, SkyBlock or not.
@@ -63,69 +63,69 @@ public class SkyBlockSettings {
 
   @Rule(
     desc = "Add Tall Flower trades to the Wandering Trader",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE, WANDERING_TRADER})
   @SkyBlockSetting(value = "true", fixer = TallFlowersTradesNameFix.class)
   public static boolean tallFlowersFromWanderingTrader = false;
 
   /* Wandering Trader Lava */
   @Rule(
     desc = "Lets the Wandering Trader sell Lava, the old method",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE, WANDERING_TRADER})
   public static boolean lavaFromWanderingTrader = false;
 
   /* Lightning Electrifies Vines */
   @Rule(
     desc = "Lightning striking glowstone with attached vines converts them to glow lichen",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean lightningElectrifiesVines = false;
 
   /* Renewable Budding Amethysts */
   @Rule(
     desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableBuddingAmethysts = false;
 
   /* Chorus Plant Generation */
   @Rule(
     desc = "Chorus Plants generate with End Gateways in void",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean gatewaysSpawnChorus = false;
 
   /* Dolphins Find Hearts of the Sea */
   @Rule(
     desc = "Dolphins can find a heart of the sea when given fish",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableHeartsOfTheSea = false;
 
   /* Ender Dragons Can Drop Heads */
   @Rule(
     desc = "Ender Dragons killed by Charged Creepers drop their heads",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableDragonHeads = false;
 
   /* Shulker Spawning */
   @Rule(
     desc = "Shulkers spawn on obsidian pillar when Ender Dragon is re-killed",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean shulkerSpawning = false;
 
   /* Anvils Compact Coal into Diamonds */
   @Rule(
     desc = "An Anvil falling on a full stack of Coal Blocks compacts it into a Diamond",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableDiamonds = false;
 
   /* Goats Ramming Break Nether Wart Blocks */
   @Rule(
     desc = "A Goat ramming a Nether Wart Block will break it apart",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean rammingWart = false;
 
@@ -160,7 +160,7 @@ public class SkyBlockSettings {
 
   @Rule(
     desc = "A spawned Fox has a chance to hold Sweet Berries",
-    category = {SKYBLOCK, FEATURE},
+    category = {FEATURE},
     options = {"0", "0.2", "1"},
     strict = false,
     validate = Validator.PROBABILITY.class
@@ -171,44 +171,44 @@ public class SkyBlockSettings {
   /* Poisonous Potatoes Convert Spiders into Cave Spiders */
   @Rule(
     desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean poisonousPotatoesConvertSpiders = false;
 
   /* Saplings Placed on Sand Turn into Dead Bushes */
   @Rule(
     desc = "Saplings on Sand eventually turn into Dead Bushes",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean saplingsDieOnSand = false;
 
   @Rule(
     desc = "Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableEchoShards = false;
 
   @Rule(
     desc = "Vexes can be converted into Allays with music",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableAllays = false;
 
   @Rule(
     desc = "Dead Coral with Water flowing out of it erodes into Sand",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean coralErosion = false;
 
   @Rule(
     desc = "Huge Mushrooms nearby convert soil to Mycelium",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean hugeMushroomsSpreadMycelium = false;
 
   @Rule(
     desc = "Netherrack generates as part of Nether Portals spawned floating",
-    category = {SKYBLOCK, FEATURE})
+    category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableNetherrack = false;
 
@@ -228,7 +228,7 @@ public class SkyBlockSettings {
       "either by clicking/dispensing them or with splash potions",
       "With no_splash: splash potion conversion is disabled"
     },
-    category = {SKYBLOCK, FEATURE},
+    category = {FEATURE},
     options = {"true", "false", "no_splash"},
     validate = RenewableDeepslateSetting.class
   )
@@ -256,7 +256,7 @@ public class SkyBlockSettings {
       "This starts at 0.025 and increases by 0.025 each time a trader spawn fails",
       "until the max chance is reached."
     },
-    category = {SKYBLOCK, FEATURE},
+    category = {WANDERING_TRADER},
     options = {"0.075", "0.2", "1"},
     strict = false,
     validate = WanderingTraderSpawnChanceValidator.class
@@ -278,7 +278,7 @@ public class SkyBlockSettings {
 
   @Rule(
     desc = "How often the wandering trader attempts to spawn in ticks",
-    category = {SKYBLOCK, FEATURE},
+    category = {WANDERING_TRADER},
     options = {"6000", "24000", "72000"},
     strict = false,
     validate = POSITIVE_NUMBER.class
