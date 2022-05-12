@@ -43,16 +43,29 @@ public class SkyBlockSettings {
     category = {SKYBLOCK, GENERATION})
   public static boolean generateRandomEndGateways = false;
 
-  /* Features -- can be use in any generation, SkyBlock or not.
+  /* Features -- can be used in any generation, SkyBlock or not.
    *  These all default to false so non-SkyBlock worlds don't accidentally use them.
    *  When a SkyBlock world is created, some are enabled by default using the SkyBlockSetting annotation. */
 
   /* Wandering Trader */
+  private static class TallFlowersTradesNameFix extends SettingFixer {
+    @Override
+    public String[] alternateNames() {
+      return new String[]{"wanderingTraderSkyBlockTrades"};
+    }
+
+    @Override
+    public FieldPair fix(FieldPair fieldPair) {
+      fieldPair.setName("tallFlowersFromWanderingTrader");
+      return fieldPair;
+    }
+  }
+
   @Rule(
-    desc = "Add trades to the wandering trader for SkyBlock",
+    desc = "Add Tall Flower trades to the Wandering Trader",
     category = {SKYBLOCK, FEATURE})
-  @SkyBlockSetting("true")
-  public static boolean wanderingTraderSkyBlockTrades = false;
+  @SkyBlockSetting(value = "true", fixer = TallFlowersTradesNameFix.class)
+  public static boolean tallFlowersFromWanderingTrader = false;
 
   /* Wandering Trader Lava */
   @Rule(

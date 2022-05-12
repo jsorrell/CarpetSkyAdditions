@@ -18,10 +18,9 @@ public class WanderingTrader {
     List<TradeOffers.Factory> tier2Trades =
       new ArrayList<>(Arrays.asList(TradeOffers.WANDERING_TRADER_TRADES.get(2)));
 
-    if (SkyBlockSettings.wanderingTraderSkyBlockTrades) {
+    if (SkyBlockSettings.tallFlowersFromWanderingTrader) {
       tier1Trades.addAll(
         Arrays.asList(
-          // Tall Flowers
           new TradeOffers.SellItemFactory(Items.SUNFLOWER, 1, 1, 12, 1),
           new TradeOffers.SellItemFactory(Items.LILAC, 1, 1, 12, 1),
           new TradeOffers.SellItemFactory(Items.ROSE_BUSH, 1, 1, 12, 1),

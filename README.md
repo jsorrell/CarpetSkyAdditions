@@ -82,17 +82,15 @@ the gaps, making as minimal and Minecrafty changes as possible.
 
 ---
 
-#### Additional Wandering Trader Trades ####
+#### Tall Flowers from Wandering Trader ####
 
 Provides *tall flowers*
 
-Disable with ```/skyblock setDefault wanderingTraderSkyBlockTrades false```
+Disable with ```/skyblock setDefault tallFlowersFromWanderingTrader false```
 
 Tall Flowers trades mimic Bedrock.
 
-##### Additional Trades: #####
-
-###### Tier 1
+##### Additional Tier 1 Trades: #####
 
 | Item      | Price | Trades until disabled |
 |-----------|-------|-----------------------|
@@ -101,13 +99,21 @@ Tall Flowers trades mimic Bedrock.
 | Peony     | 1     | 12                    |
 | Sunflower | 1     | 12                    |
 
-###### Tier 2
+---
 
-| Item          | Price | Input Item | Trades until disabled |
-|---------------|-------|------------|-----------------------|
-| Lava Bucket\* | 16    | Bucket     | 1                     |
+#### Lava from Wandering Trader  ####
 
-\* The Lava Bucket trade needs `lavaFromWanderingTrader` enabled, which is disabled by default.
+Provides *Lava*
+
+Enable with ```/skyblock setDefault lavaFromWanderingTrader true```
+
+***Disabled by Default - Get Lava from a Hero of the Village Reward Instead***
+
+##### Additional Tier 2 Trade: #####
+
+| Item        | Price | Input Item | Trades until disabled |
+|-------------|-------|------------|-----------------------|
+| Lava Bucket | 16    | Bucket     | 1                     |
 
 ---
 
