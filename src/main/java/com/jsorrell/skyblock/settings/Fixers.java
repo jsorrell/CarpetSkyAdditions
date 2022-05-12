@@ -17,7 +17,7 @@ public final class Fixers {
     Map<String, ArrayList<SettingFixer>> fixerMap = getFixerMap();
     if (fixerMap.size() == 0) return;
 
-    Path configPath = rootSavePath.resolve(Build.ID + ".conf");
+    Path configPath = rootSavePath.resolve(Build.MODID + ".conf");
     // Read from File
     List<String> rules;
     try {

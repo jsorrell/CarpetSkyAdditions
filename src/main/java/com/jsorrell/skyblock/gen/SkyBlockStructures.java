@@ -1,5 +1,6 @@
 package com.jsorrell.skyblock.gen;
 
+import com.jsorrell.skyblock.util.SkyBlockIdentifier;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
@@ -9,7 +10,6 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -213,7 +213,7 @@ public class SkyBlockStructures {
 
   public record SpawnPlatform(BlockPos worldSpawn) {
     public void generate(ServerWorldAccess world, AbstractRandom random) {
-      Structure structure = Objects.requireNonNull(world.getServer()).getStructureManager().getStructure(new Identifier("skyblock", "spawn_platform")).orElseThrow();
+      Structure structure = Objects.requireNonNull(world.getServer()).getStructureManager().getStructure(new SkyBlockIdentifier("spawn_platform")).orElseThrow();
       BlockPos structureOrigin = worldSpawn.subtract(new BlockPos(4, 1, 1));
       structure.place(world, structureOrigin, worldSpawn, new StructurePlacementData(), random, Block.NOTIFY_LISTENERS);
     }

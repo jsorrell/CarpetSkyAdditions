@@ -1,9 +1,11 @@
 package com.jsorrell.skyblock.util;
 
-public class SkyBlockIdentifier extends net.minecraft.util.Identifier {
-  public static final String NAMESPACE = "skyblock";
+import com.jsorrell.skyblock.Build;
 
-  public SkyBlockIdentifier(String id) {
-    super(NAMESPACE, id);
+public class SkyBlockIdentifier extends net.minecraft.util.Identifier {
+  public static final String NAMESPACE = Build.MODID;
+
+  public SkyBlockIdentifier(String path) {
+    super(NAMESPACE, path);
   }
 }

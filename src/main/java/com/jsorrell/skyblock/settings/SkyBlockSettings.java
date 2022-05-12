@@ -3,6 +3,7 @@ package com.jsorrell.skyblock.settings;
 import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
 import carpet.settings.Validator;
+import com.jsorrell.skyblock.Build;
 import net.minecraft.server.command.ServerCommandSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import java.lang.reflect.Field;
 import static carpet.settings.RuleCategory.FEATURE;
 
 public class SkyBlockSettings {
-  public static final Logger LOG = LoggerFactory.getLogger("skyblock");
+  public static final Logger LOG = LoggerFactory.getLogger(Build.NAME);
   public static final String SKYBLOCK = "skyblock";
   public static final String GENERATION = "generation";
 

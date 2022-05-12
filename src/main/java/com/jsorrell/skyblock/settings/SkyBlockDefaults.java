@@ -15,7 +15,7 @@ import java.nio.file.StandardOpenOption;
 
 public final class SkyBlockDefaults {
   public static void writeDefaults(Path rootSavePath) throws IOException {
-    writeSkyBlockDefaults(rootSavePath.resolve(Build.ID + ".conf"));
+    writeSkyBlockDefaults(rootSavePath.resolve(Build.MODID + ".conf"));
     writeCarpetDefaults(rootSavePath.resolve("carpet.conf"));
   }
 

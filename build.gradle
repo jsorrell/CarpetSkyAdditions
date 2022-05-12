@@ -1,14 +1,14 @@
 import java.text.SimpleDateFormat
 
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
-	id 'maven-publish'
+  id 'fabric-loom' version '0.12-SNAPSHOT'
+  id 'maven-publish'
 }
 
 repositories {
-	maven {
-		url 'https://masa.dy.fi/maven'
-	}
+  maven {
+    url 'https://masa.dy.fi/maven'
+  }
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -18,65 +18,68 @@ archivesBaseName = project.archives_base_name
 version = project.minecraft_version + "-" + project.mod_version
 
 loom {
-	accessWidenerPath =  file("src/main/resources/skyblock.accesswidener")
+  accessWidenerPath = file("src/main/resources/skyblock.accesswidener")
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+  //to change the versions see the gradle.properties file
+  minecraft "com.mojang:minecraft:${project.minecraft_version}"
+  mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+  modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+  modImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
 
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// javax.annotation.Nullable/Nonnull
-	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+  // javax.annotation.Nullable/Nonnull
+  compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
-task zipDatapack(type: Zip) {
-	archiveFileName = project.archives_base_name + "-" + project.version + ".datapack.zip"
-	group = "build"
-	destinationDirectory = file('build/')
-	from files('./datapack')
+task embedDatapack(type: Copy) {
+  from './datapack'
+  into "$buildDir/generated/resources/resourcepacks/${project.datapack_name}"
 }
 
-task generateJava(type: Copy) {
-	def df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-	df.setTimeZone(TimeZone.getTimeZone("UTC"))
-	def templateContext = [
-			version: project.version,
-			timestamp: df.format(new Date()),
-			minecraft_version: project.minecraft_version,
-			yarn_mappings: project.yarn_mappings
-	]
-	inputs.properties templateContext // for gradle up-to-date check
-	from 'src/template/java'
-	into "$buildDir/generated/java"
-	expand templateContext
+task fillBuildTemplate(type: Copy) {
+  def df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+  df.setTimeZone(TimeZone.getTimeZone("UTC"))
+  def templateContext = [
+    id                    : project.mod_id,
+    name                  : project.mod_name,
+    version               : project.version,
+    timestamp             : df.format(new Date()),
+    minecraft_version     : project.minecraft_version,
+    yarn_mappings         : project.yarn_mappings,
+    embedded_datapack_name: project.datapack_name,
+  ]
+  inputs.properties templateContext // for gradle up-to-date check
+  from 'src/template/java'
+  into "$buildDir/generated/java"
+  expand templateContext
 }
+
+sourceSets.main.resources.srcDir "$buildDir/generated/resources"
+processResources.dependsOn embedDatapack
 
 sourceSets.main.java.srcDir "$buildDir/generated/java"
-compileJava.dependsOn generateJava
+compileJava.dependsOn fillBuildTemplate
 
 processResources {
-	// this will ensure that this task is re-run when there's a change
-	inputs.property "version", project.version
+  // this will ensure that this task is re-run when there's a change
+  inputs.property "version", project.version
 
-	// replace stuff in fabric.mod.json, nothing else
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
+  // replace stuff in fabric.mod.json, nothing else
+  from(sourceSets.main.resources.srcDirs) {
+    include "fabric.mod.json"
 
-		// add mod metadata
-		expand "version": project.version
-	}
+    // add mod metadata
+    expand "version": project.version
+  }
 
-	// copy everything else, that's not the mcmod.info
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
+  from(sourceSets.main.resources.srcDirs) {
+    exclude "fabric.mod.json"
+  }
 
-	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
@@ -92,5 +95,5 @@ compileJava.options.encoding = "UTF-8"
 //}
 
 jar {
-	from "LICENSE"
+  from "LICENSE"
 }
