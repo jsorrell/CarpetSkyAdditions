@@ -25,7 +25,7 @@
   "depends": {
     "fabricloader": "*",
     "fabric": "*",
-    "minecraft": "1.19-alpha.22.18.a",
+    "minecraft": "1.19-alpha.22.19.a",
     "carpet": "*"
   }
 }
