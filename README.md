@@ -471,12 +471,6 @@ fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
 
 ---
 
-#### Magma Cream Recipe Disabled ####
-
-The vanilla Magma Cream recipe is too easy. Make a Magma Cube farm instead.
-
----
-
 #### War Pigs Advancement Changed ####
 
 In a SkyBlock world, the War Pigs advancement is unobtainable because it requires generated chests.
