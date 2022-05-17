@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "Kill a Piglin Brute that spawns in a Bastion Remnant"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "kill_piglin_brute": {
@@ -24,10 +20,5 @@
         }
       }
     }
-  },
-  "has_requirements": [
-    [
-      "kill_piglin_brute"
-    ]
-  ]
+  }
 }

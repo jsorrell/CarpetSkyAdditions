@@ -2,8 +2,7 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -12,8 +11,8 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 2.0
+                "min": 0,
+                "max": 2
               },
               "add": false
             },
@@ -21,8 +20,8 @@
               "function": "minecraft:looting_enchant",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
+                "min": 0,
+                "max": 1
               }
             }
           ],
@@ -31,8 +30,7 @@
       ]
     },
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -41,8 +39,8 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 2.0
+                "min": 0,
+                "max": 2
               },
               "add": false
             },
@@ -50,8 +48,8 @@
               "function": "minecraft:looting_enchant",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
+                "min": 0,
+                "max": 1
               }
             }
           ],
@@ -60,8 +58,7 @@
       ]
     },
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -80,6 +77,18 @@
             }
           },
           "entity": "this"
+        },
+        {
+          "condition": "inverted",
+          "term": {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "vehicle": {
+                "nbt": "{Health:0f}"
+              }
+            },
+            "entity": "this"
+          }
         }
       ]
     }
