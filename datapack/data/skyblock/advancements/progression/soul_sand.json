@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/gravel",
+  "display": {
+    "icon": {
+      "item": "minecraft:soul_sand"
+    },
+    "title": {
+      "translate": "Bubbler"
+    },
+    "description": {
+      "translate": "Get Soul Sand from Bartering"
+    }
+  },
+  "criteria": {
+    "has_soul_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:soul_sand"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

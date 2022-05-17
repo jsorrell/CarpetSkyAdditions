@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/soul_sand",
+  "display": {
+    "icon": {
+      "item": "minecraft:soul_soil"
+    },
+    "title": {
+      "translate": "A Changing Soul"
+    },
+    "description": {
+      "translate": "Convert Soul Sand to Soul Soil by crafting and breaking a Soul Campfire"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_soul_soil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:soul_soil"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
