@@ -31,10 +31,10 @@ It's hard to move Mobs without Water or Pistons, so you'll likely have to rely o
 
 Once you have 7 Iron, craft a Cauldron.
 When nearby a player, a Cauldron has a 1/81920 chance each tick to fill with single layer of water when rained upon.
-On average this means a single Cauldron takes over 3 hours of raining time to fully fill with water.
+On average, this means a single Cauldron takes over 3 hours of raining time to fully fill with water.
 As you wait for the Cauldron to fill, continue killing Zombies to get enough Iron for a bucket.
 A single Water source can be duplicated a few ways,
-such as by using water bottles to fill the Cauldron or by placing the Water source on the top of a 2-tall hole
+such as by using Water Bottles to fill the Cauldron or by placing the Water source on the top of a 2-tall hole
 and growing Seagrass on the bottom.
 
 ### 6. Make a Drowned Farm
@@ -44,13 +44,14 @@ Kill Drowneds for the Copper to make one.
 
 ### 7. Convert Pigs into Zombified Piglins
 
+Pigs convert into Zombified Piglins when Lighting strikes within 4 blocks of them.
 You need 16 Gold Ingots or 144 Gold Nuggets to craft 2 Golden Apples.
 Zombified Piglins drop 0.725 Gold Nuggets on average when killed without looting, so you need to convert about 200 Pigs.
 Craft 2 Golden Apples once you have enough gold.
 
 ### 8. Cure 2 Zombie Villagers into Villagers
 
-Isolate 2 Zombie Villagers ready to be cured. Then get a Witch in a Boat.
+Isolate 2 Zombie Villagers to be cured. Then get a Witch in a Boat.
 If you join a Witch in a Boat, the Witch will still throw her potions, but can't hit you.
 If you have less than 8 half-hearts of health, a Witch can throw a weakness potion.
 Use a weakness potion thrown by a Witch and the Golden Apples you crafted to cure the Zombie Villagers.
@@ -61,13 +62,13 @@ Ensure you have a safe supply of villagers. Trade for Emeralds so Wandering Trad
 
 ### 10. Obtain Lava
 
-Kill a Pillager captain at a Pillager Outpost to get the Bad Omen effect, then start a raid by entering a "Village".
+Kill a Pillager captain at a Pillager Outpost to get the Bad Omen effect, then start and defeat a raid by entering a "
+Village".
 Once you have the Hero of the Village effect, stand by a Toolsmith and they may gift you a Lava Bucket.
 
 ### 11. Enter the Nether
 
-Get 10 Lava, either through Villager Gifts or by buying Pointed Dripstone from the Wandering Trader and duplicating
-Lava.
+Get 10 Lava, either through Hero of the Village Gifts or by buying Pointed Dripstone from the Wandering Trader.
 Use the Lava to make a Nether Portal frame.
 Light the portal with Lightning or using Lava to set wood on fire adjacent to the frame.
 

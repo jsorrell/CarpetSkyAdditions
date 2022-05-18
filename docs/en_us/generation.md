@@ -4,7 +4,7 @@ A SkyBlock world generates exactly like a Default generation world, but with eve
 Bounding Boxes are kept in place. This means Husks will still spawn in Deserts and Blazes will spawn in Nether
 Fortresses, for example.
 
-The only difference is that End Portal eyes are randomized -- I'm looking into a solution for this.
+The only difference is that End Portal eyes are randomized -- this may change in the future.
 
 Only a few things are generated:
 
@@ -22,6 +22,3 @@ Only a few things are generated:
 - Magma Cube spawners in Treasure Room Bastion Remnants (only if `generateMagmaCubeSpawners` is set to `true`)
 
 - Random End Gateways throughout the End (only if `generateRandomEndGateways` is set to `true`)
-
-Even with every block removed, almost every block is obtainable and almost every mob is spawnable, using only *Vanilla*
-features.

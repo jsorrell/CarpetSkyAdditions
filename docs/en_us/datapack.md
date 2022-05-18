@@ -6,7 +6,7 @@
 
 Provides *Lava*
 
-Disable by deleting  ```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village``` from the datapack.
+Disable by deleting  ```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village```
 
 Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
 
@@ -17,7 +17,6 @@ Lava Buckets can be received as a Hero of the Village gift from Armorers, Weapon
 Provides *Calcite* and *Tuff*
 
 Disable by deleting  ```data/skyblock/recipes/[tuff_from_blasting_andesite.json + calcite_from_blasting_diorite.json]```
-from the datapack.
 
 Put Diorite in a Blast Furnace for Calcite.
 
@@ -29,7 +28,7 @@ Put Andesite in a Blast Furnace for Tuff.
 
 Provides *Ancient Debris*
 
-Disable by deleting  ```data/minecraft/loot_tables/entities/piglin_brute.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/entities/piglin_brute.json```
 
 A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
 
@@ -39,7 +38,7 @@ A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a
 
 Provides *Elytra*
 
-Disable by deleting  ```data/minecraft/loot_tables/entities/endermite.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/entities/endermite.json```
 
 Player killing an Endermite affected by both Slow Falling and Levitation
 has a chance to drop an Elytra, increased by looting.
@@ -50,7 +49,7 @@ has a chance to drop an Elytra, increased by looting.
 
 Provides *Glow Berries*
 
-Disable by deleting  ```data/skyblock/recipes/glow_berries.json``` from the datapack.
+Disable by deleting  ```data/skyblock/recipes/glow_berries.json```
 
 Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
 
@@ -60,7 +59,7 @@ Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
 
 Provides *Cobwebs*
 
-Disable by deleting  ```data/minecraft/loot_tables/entities/[skeleton.json + spider.json]``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/entities/[skeleton.json + spider.json]```
 
 When a player kills a Spider Jockey, the first half killed drops a cobweb.
 
@@ -70,7 +69,7 @@ When a player kills a Spider Jockey, the first half killed drops a cobweb.
 
 Provides *Cocoa Beans*
 
-Disable by deleting  ```data/minecraft/loot_tables/gameplay/fishing/junk.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/fishing/junk.json```
 
 Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a Jungle.
 
@@ -80,7 +79,7 @@ Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a J
 
 Provides *ores*
 
-Disable by deleting  ```data/skyblock/recipes/*_ore_smithing.json``` from the datapack.
+Disable by deleting  ```data/skyblock/recipes/*_ore_smithing.json```
 
 All ores can be crafted in a smithing table using a block of the base stone material and a block of the ore's material.
 
@@ -92,7 +91,7 @@ For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
 
 Provides *Iron Horse Armor*, *Golden Horse Armor*, and *Diamond Horse Armor*
 
-Disable by deleting  ```data/skyblock/recipes/*_horse_armor.json``` from the datapack.
+Disable by deleting  ```data/skyblock/recipes/*_horse_armor.json```
 
 Craft Horse Armors with their respective materials in a **H** shape.
 
@@ -102,7 +101,7 @@ Craft Horse Armors with their respective materials in a **H** shape.
 
 Provides *Enchanted Golden Apples*
 
-Disable by deleting  ```data/minecraft/loot_tables/gameplay/cat_morning_gift.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/cat_morning_gift.json```
 
 Cats will rarely bring the player an Enchanted Golden Apple as a morning gift.
 
@@ -112,7 +111,7 @@ Cats will rarely bring the player an Enchanted Golden Apple as a morning gift.
 
 Provides *Gilded Blackstone*
 
-Disable by deleting  ```data/minecraft/loot_tables/gameplay/piglin_bartering.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/piglin_bartering.json```
 
 Piglins will rarely give Gilded Blackstone when bartering.
 
@@ -122,7 +121,7 @@ Piglins will rarely give Gilded Blackstone when bartering.
 
 Provides the music discs *Pigstep*, *otherside*, and *5*
 
-Disable by deleting  ```data/minecraft/loot_tables/entities/creeper.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/entities/creeper.json```
 
 When Creepers are killed by Skeletons in the Bastions, they can drop the Music Disc "Pigstep".
 
@@ -136,7 +135,7 @@ When Creepers are killed by Skeletons in the Ancient Cities, they can drop Disc 
 
 Provides *Snout Banner Pattern*
 
-Disable by deleting  ```data/minecraft/loot_tables/entities/zoglin.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/entities/zoglin.json```
 
 Title says it all.
 
@@ -146,7 +145,7 @@ Title says it all.
 
 Provides *Spore Blossoms*
 
-Disable by deleting  ```data/minecraft/loot_tables/blocks/flowering_azaliea_leaves.json``` from the datapack.
+Disable by deleting  ```data/minecraft/loot_tables/blocks/flowering_azaliea_leaves.json```
 
 Flowering Azalea Leaves have a chance to drop Spore Blossoms, increased by Fortune.
 
@@ -156,7 +155,7 @@ Flowering Azalea Leaves have a chance to drop Spore Blossoms, increased by Fortu
 
 Provides *Tall Grass and Large Ferns*
 
-Disable by deleting  ```data/minecraft/tags/blocks/enderman_holdable.json``` from the datapack.
+Disable by deleting  ```data/minecraft/tags/blocks/enderman_holdable.json```
 
 Endermen who have picked up Tall Grass and Large Ferns can be killed to retrieve those as an item.
 
