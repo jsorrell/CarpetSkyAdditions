@@ -1,6 +1,6 @@
 # SkyBlock
 
-[English](README.md) | **中文 (需要更新)**
+[English](/README.md) | **中文 (需要更新)**
 
 SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)
 修改而来的依赖[fabric-carpet](https://github.com/gnembon/fabric-carpet)的模组。
@@ -96,15 +96,15 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)
 
 ##### 如何搭建该结构 #####
 
-![熔岩源](screenshots/amethyst_step_1_240.png?raw=true "紫水晶母岩再生步骤1")
+![熔岩源](../screenshots/amethyst_step_1_240.png?raw=true "紫水晶母岩再生步骤1")
 ---->
-![用方解石包围熔岩](screenshots/amethyst_step_2_240.png?raw=true "紫水晶母岩再生步骤2")
+![用方解石包围熔岩](../screenshots/amethyst_step_2_240.png?raw=true "紫水晶母岩再生步骤2")
 ---->
-![用平滑玄武岩包围方解石](screenshots/amethyst_step_3_240.png?raw=true "紫水晶母岩再生步骤3")
+![用平滑玄武岩包围方解石](../screenshots/amethyst_step_3_240.png?raw=true "紫水晶母岩再生步骤3")
 
 在一定时间后（平均约2小时），处于结构正中心的熔岩将会转变为紫水晶母岩
 
-![熔岩变成了紫水晶母岩](screenshots/amethyst_result_240.png?raw=true "紫水晶母岩再生结果")
+![熔岩变成了紫水晶母岩](../screenshots/amethyst_result_240.png?raw=true "紫水晶母岩再生结果")
 
 ---
 

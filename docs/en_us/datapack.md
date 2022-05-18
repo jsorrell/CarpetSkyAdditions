@@ -1,0 +1,178 @@
+## Datapack Features
+
+---
+
+#### Lava from Hero of the Village Gift ####
+
+Provides *Lava*
+
+Disable by deleting  ```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village``` from the datapack.
+
+Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
+
+---
+
+#### Calcite and Tuff Obtainable ####
+
+Provides *Calcite* and *Tuff*
+
+Disable by deleting  ```data/skyblock/recipes/[tuff_from_blasting_andesite.json + calcite_from_blasting_diorite.json]```
+from the datapack.
+
+Put Diorite in a Blast Furnace for Calcite.
+
+Put Andesite in a Blast Furnace for Tuff.
+
+---
+
+#### Piglin Brutes Drop Ancient Debris ####
+
+Provides *Ancient Debris*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/piglin_brute.json``` from the datapack.
+
+A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
+
+---
+
+#### Elytra Obtainable from Endermites ####
+
+Provides *Elytra*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/endermite.json``` from the datapack.
+
+Player killing an Endermite affected by both Slow Falling and Levitation
+has a chance to drop an Elytra, increased by looting.
+
+---
+
+#### Glow Berries Recipe ####
+
+Provides *Glow Berries*
+
+Disable by deleting  ```data/skyblock/recipes/glow_berries.json``` from the datapack.
+
+Sweet Berries crafted with Glow Ink Sacs give Glow Berries.
+
+---
+
+#### Spider Jockeys Drop Cobwebs ####
+
+Provides *Cobwebs*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/[skeleton.json + spider.json]``` from the datapack.
+
+When a player kills a Spider Jockey, the first half killed drops a cobweb.
+
+---
+
+#### Cocoa Beans Obtainable by Fishing in Jungles ####
+
+Provides *Cocoa Beans*
+
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/fishing/junk.json``` from the datapack.
+
+Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a Jungle.
+
+---
+
+#### Ores Obtainable in Smithing Table ####
+
+Provides *ores*
+
+Disable by deleting  ```data/skyblock/recipes/*_ore_smithing.json``` from the datapack.
+
+All ores can be crafted in a smithing table using a block of the base stone material and a block of the ore's material.
+
+For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
+
+---
+
+#### Horse Armors are Craftable ####
+
+Provides *Iron Horse Armor*, *Golden Horse Armor*, and *Diamond Horse Armor*
+
+Disable by deleting  ```data/skyblock/recipes/*_horse_armor.json``` from the datapack.
+
+Craft Horse Armors with their respective materials in a **H** shape.
+
+---
+
+#### Cats Gift Enchanted Golden Apples ####
+
+Provides *Enchanted Golden Apples*
+
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/cat_morning_gift.json``` from the datapack.
+
+Cats will rarely bring the player an Enchanted Golden Apple as a morning gift.
+
+---
+
+#### Piglins Give Gilded Blackstone ####
+
+Provides *Gilded Blackstone*
+
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/piglin_bartering.json``` from the datapack.
+
+Piglins will rarely give Gilded Blackstone when bartering.
+
+---
+
+#### Creepers Drop Structure Specific Music Discs or Fragments in those Structures ####
+
+Provides the music discs *Pigstep*, *otherside*, and *5*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/creeper.json``` from the datapack.
+
+When Creepers are killed by Skeletons in the Bastions, they can drop the Music Disc "Pigstep".
+
+When Creepers are killed by Skeletons in the Strongholds, they can drop the Music Disc "otherside".
+
+When Creepers are killed by Skeletons in the Ancient Cities, they can drop Disc Fragment 5.
+
+---
+
+#### Zoglins Drop Snout Banner Patterns ####
+
+Provides *Snout Banner Pattern*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/zoglin.json``` from the datapack.
+
+Title says it all.
+
+---
+
+#### Flowering Azalea Leaves Drop Spore Blossoms ####
+
+Provides *Spore Blossoms*
+
+Disable by deleting  ```data/minecraft/loot_tables/blocks/flowering_azaliea_leaves.json``` from the datapack.
+
+Flowering Azalea Leaves have a chance to drop Spore Blossoms, increased by Fortune.
+
+---
+
+#### Endermen Can Pick Up Tall Grass and Large Ferns ####
+
+Provides *Tall Grass and Large Ferns*
+
+Disable by deleting  ```data/minecraft/tags/blocks/enderman_holdable.json``` from the datapack.
+
+Endermen who have picked up Tall Grass and Large Ferns can be killed to retrieve those as an item.
+
+The mod fixes Endermen's handling of double-tall blocks, allowing them to be correctly placed down without being
+destroyed.
+
+However, it is not a client side mod, so the vanilla rendering bug is not
+fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
+
+---
+
+#### War Pigs Advancement Changed ####
+
+In a SkyBlock world, the War Pigs advancement is unobtainable because it requires generated chests.
+
+The advancement is now obtainable by killing a Piglin Brute.
+
+----
+
