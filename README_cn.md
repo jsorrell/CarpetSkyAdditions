@@ -2,6 +2,8 @@
 
 [English](README.md)|**中文**
 
+本中文说明最后更新于版本1.18.2-3.2.4
+
 SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)修改而来的依赖[fabric-carpet](https://github.com/gnembon/fabric-carpet)的模组。
 
 该模组致力于在原版基础上为玩家提供专业的空岛游戏体验。在某些时候，诸如[Chunkbase](https://www.chunkbase.com/)或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)这类工具会很有用，建议搭配使用。尽管我已经尽力去将这方面的不良体验最小化，但某些时候游戏的进度依旧会比较折磨或者需要挂机一定时间。
@@ -15,7 +17,7 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 + 将fabric-carpet，fabric-api和SkyBlock模组放进到`<minecraft文件目录>/mods/`文件夹内
 
 #### 可选项 ####
-+ 下载成就汉化包
++ 下载[成就汉化包](https://github.com/YipKei/skyblock/releases/tag/1.18.2-3.2.4)
 + 将成就汉化包在游戏中添加入资源包中以实现成就的汉化
 
 ## 使用
