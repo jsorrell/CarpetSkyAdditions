@@ -1,14 +1,43 @@
 ## Datapack Features
 
+### Modifying
+
+To customize the datapack,
+download the
+datapack [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2Fskyblock%2Ftree%2FHEAD%2Fdatapack)
+and edit to your liking.
+Disable the built in datapack and enable your edited one instead.
+
 ---
 
-#### Lava from Hero of the Village Gift ####
+#### Villagers Gift Lava Buckets ####
 
 Provides *Lava*
 
 Disable by deleting  ```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village```
 
 Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
+
+---
+
+#### Elytra Obtainable from Endermites ####
+
+Provides *Elytra*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/endermite.json```
+
+Player killing an Endermite affected by both Slow Falling and Levitation
+has a chance to drop an Elytra, increased by looting.
+
+---
+
+#### Piglin Brutes Drop Ancient Debris ####
+
+Provides *Ancient Debris*
+
+Disable by deleting  ```data/minecraft/loot_tables/entities/piglin_brute.json```
+
+A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
 
 ---
 
@@ -24,28 +53,7 @@ Put Andesite in a Blast Furnace for Tuff.
 
 ---
 
-#### Piglin Brutes Drop Ancient Debris ####
-
-Provides *Ancient Debris*
-
-Disable by deleting  ```data/minecraft/loot_tables/entities/piglin_brute.json```
-
-A Carpet setting enables Piglin Brutes to spawn in bastions. These Brutes have a chance to drop Ancient Debris.
-
----
-
-#### Elytra Obtainable from Endermites ####
-
-Provides *Elytra*
-
-Disable by deleting  ```data/minecraft/loot_tables/entities/endermite.json```
-
-Player killing an Endermite affected by both Slow Falling and Levitation
-has a chance to drop an Elytra, increased by looting.
-
----
-
-#### Glow Berries Recipe ####
+#### Glow Berries Craftable ####
 
 Provides *Glow Berries*
 
@@ -75,7 +83,7 @@ Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a J
 
 ---
 
-#### Ores Obtainable in Smithing Table ####
+#### Ores are Craftable in a Smithing Table ####
 
 Provides *ores*
 
@@ -87,7 +95,7 @@ For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
 
 ---
 
-#### Horse Armors are Craftable ####
+#### Horse Armor is Craftable ####
 
 Provides *Iron Horse Armor*, *Golden Horse Armor*, and *Diamond Horse Armor*
 
@@ -174,4 +182,3 @@ In a SkyBlock world, the War Pigs advancement is unobtainable because it require
 The advancement is now obtainable by killing a Piglin Brute.
 
 ----
-

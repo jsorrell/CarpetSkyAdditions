@@ -2,7 +2,72 @@
 
 ---
 
-#### Tall Flowers from Wandering Trader ####
+#### Dead Coral and Coral Fans Erode into Sand ####
+
+Provides additional *Sand* and *Red Sand*
+
+Disable with ```/skyblock removeDefault coralErosion```
+
+Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
+Fire versions spawn Red Sand instead.
+
+The Coral has a 3% chance to break after spawning Sand.
+
+Infinitely automatic farms are possible, but not trivial.
+
+This method was added because:
+
+- Getting Sand purely from the Wandering Trader is not sufficient.
+- Gravity block duping and Trader multi-use bugs are unintended and could be fixed at any time.
+- The old method where Husks dropped Sand is boring as it's just another standard mob farm.
+
+---
+
+#### Shulkers Spawn On Dragon Kill ####
+
+Provides *Shulkers*
+
+Disable with ```/skyblock removeDefault shulkerSpawning```
+
+When an Ender Dragon is re-killed, a Shulker spawns on top of the Bedrock pillar.
+
+---
+
+#### Goats Break Apart Nether Wart Blocks By Ramming Them ####
+
+Provides *Nether Wart*
+
+Disable with ```/skyblock removeDefault rammingWart```
+
+When a Goat rams a Nether Wart Block, it will break into Nether Wart.
+
+---
+
+#### Thick Potions Convert Stone into Deepslate ####
+
+Provides *Deepslate*
+
+Disable with ```/skyblock removeDefault renewableDeepslate```
+
+Disable only splash with ```/skyblock setDefault renewableDeepslate no_splash```
+
+Right clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
+
+A Thick Splash Potion will convert all Stone blocks hit by the splash into Deepslate.
+
+---
+
+#### Netherrack Generates with Nether Portal Structures ####
+
+Provides *Netherrack*
+
+Disable with ```/skyblock removeDefault renewableNetherrack```
+
+When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
+
+---
+
+#### Wandering Traders Sell Tall Flowers ####
 
 Provides *tall flowers*
 
@@ -21,19 +86,42 @@ Tall Flowers trades mimic Bedrock.
 
 ---
 
-#### Lava from Wandering Trader  ####
+#### Vexes Can Be Allayed ####
 
-Provides *Lava*
+Provides *Allays*
 
-Enable with ```/skyblock setDefault lavaFromWanderingTrader true```
+Disable with ```/skyblock removeDefault renewableAllays```
 
-***Disabled by Default - Get Lava from a Hero of the Village Reward Instead***
+Play Vexes the right sequence of 5 Note Block notes to convert them to Allays.
 
-##### Additional Tier 2 Trade: #####
+Vexes listen to Note Blocks within a 16 block range and emit particles based on whether the correct note is played. The
+instrument is ignored and the octave is ignored, meaning F#<sub>3</sub> is treated the same as F#<sub>5</sub>.
 
-| Item        | Price | Input Item | Trades until disabled |
-|-------------|-------|------------|-----------------------|
-| Lava Bucket | 16    | Bucket     | 1                     |
+When a Vex is in a Minecart, a Comparator can be used with a Detector Rail to determine the next note in the sequence.
+The Comparator outputs a value from 0 (corresponding to F#) to 11 (corresponding to F)
+
+---
+
+#### Foxes Spawn With Sweet Berries ####
+
+Provides *Sweet Berries*
+
+Disable with ```/skyblock removeDefault foxesSpawnWithSweetBerriesChance```
+
+Set the chance with ```/skyblock setDefault foxesSpawnWithSweetBerriesChance <chance>```.
+
+When a Fox spawns with an item, there is a 20% chance the item is Sweet Berries. The Fox will eat them soon after
+spawning, so be quick.
+
+---
+
+#### Anvils Compact Coal into Diamonds ####
+
+Provides *Diamonds*
+
+Disable with ```/skyblock removeDefault renewableDiamonds```
+
+A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
 
 ---
 
@@ -48,31 +136,7 @@ Rod on the Glowstone.
 
 ---
 
-#### Renewable Budding Amethysts ####
-
-Provides *Budding Amethysts*
-
-Disable with ```/skyblock removeDefault renewableBuddingAmethysts```
-
-A lava block surrounded by Calcite which is then surrounded by Smooth Basalt will eventually turn into a Budding
-Amethyst.
-
-##### How to build structure: #####
-
-![lava source](screenshots/amethyst_step_1_240.png?raw=true "Budding Amethyst Generation Step 1")
----->
-![Lava surrounded by calcite](screenshots/amethyst_step_2_240.png?raw=true "Budding Amethyst Generation Step 2")
----->
-![Calcite surrounded by smooth basalt](screenshots/amethyst_step_3_240.png?raw=true "Budding Amethyst Generation Step 3")
-
-After some time (2 hours on average), the Lava in the center will turn into a Budding Amethyst.
-
-![Lava has become budding amethyst](screenshots/amethyst_result_240.png?raw=true "Budding Amethyst Generation Result")
-
-
----
-
-#### End Gateways Spawn Chorus ####
+#### Chorus Trees Generate on End Islands ####
 
 Provides *Chorus Fruit* and *Chorus Flowers*
 
@@ -94,56 +158,26 @@ Must be in an Ocean biome -- they're Hearts of the Sea, not Hearts of the Jungle
 
 ---
 
-#### Ender Dragons Can Drop Heads ####
+#### Budding Amethysts Can Be Generated ####
 
-Provides *Dragon Heads*
+Provides *Budding Amethysts*
 
-Disable with ```/skyblock removeDefault renewableDragonHeads```
+Disable with ```/skyblock removeDefault renewableBuddingAmethysts```
 
-When an Ender Dragon is killed by a Charged Creeper, she will drop her head.
+A lava block surrounded by Calcite which is then surrounded by Smooth Basalt will eventually turn into a Budding
+Amethyst.
 
----
+##### How to build structure: #####
 
-#### Shulkers Spawn On Dragon Kill ####
+![lava source](../screenshots/amethyst_step_1_240.png?raw=true "Budding Amethyst Generation Step 1")
+---->
+![Lava surrounded by calcite](../screenshots/amethyst_step_2_240.png?raw=true "Budding Amethyst Generation Step 2")
+---->
+![Calcite surrounded by smooth basalt](../screenshots/amethyst_step_3_240.png?raw=true "Budding Amethyst Generation Step 3")
 
-Provides *Shulkers*
+After some time (2 hours on average), the Lava in the center will turn into a Budding Amethyst.
 
-Disable with ```/skyblock removeDefault shulkerSpawning```
-
-When an Ender Dragon is re-killed, a Shulker spawns on top of the Bedrock pillar.
-
----
-
-#### Anvils Compact Coal into Diamonds ####
-
-Provides *Diamonds*
-
-Disable with ```/skyblock removeDefault renewableDiamonds```
-
-A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
-
----
-
-#### Goats Ram Open Nether Wart Blocks ####
-
-Provides *Nether Wart*
-
-Disable with ```/skyblock removeDefault rammingWart```
-
-When a Goat rams a Nether Wart Block, it will break into Nether Wart.
-
----
-
-#### Foxes Spawn With Sweet Berries ####
-
-Provides *Sweet Berries*
-
-Disable with ```/skyblock removeDefault foxesSpawnWithSweetBerriesChance```
-
-Set the chance with ```/skyblock setDefault foxesSpawnWithSweetBerriesChance <chance>```.
-
-When a Fox spawns with an item, there is a 20% chance the item is Sweet Berries. The Fox will eat them soon after
-spawning, so be quick.
+![Lava has become budding amethyst](../screenshots/amethyst_result_240.png?raw=true "Budding Amethyst Generation Result")
 
 ---
 
@@ -159,27 +193,13 @@ After a time, the saplings will die and turn into Dead Bushes.
 
 ---
 
-#### Thick Potions convert Stone to Deepslate ####
+#### Ender Dragons Can Drop their Head ####
 
-Provides *Deepslate*
+Provides *Dragon Heads*
 
-Disable with ```/skyblock removeDefault renewableDeepslate```
+Disable with ```/skyblock removeDefault renewableDragonHeads```
 
-Disable only splash with ```/skyblock setDefault renewableDeepslate no_splash```
-
-Right clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
-
-A Thick Splash Potion will convert all Stone blocks hit by the splash into Deepslate.
-
----
-
-#### Netherrack Generates with Nether Portal Structures ####
-
-Provides *Netherrack*
-
-Disable with ```/skyblock removeDefault renewableNetherrack```
-
-When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
+When an Ender Dragon is killed by a Charged Creeper, she will drop her head.
 
 ---
 
@@ -213,40 +233,21 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 ---
 
-#### Dead Coral and Coral Fans Erode into Sand ####
+#### Wandering Traders Sell Lava  ####
 
-Provides additional *Sand* and *Red Sand*
+Provides *Lava*
 
-Disable with ```/skyblock removeDefault coralErosion```
+Enable with ```/skyblock setDefault lavaFromWanderingTrader true```
 
-Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
-Fire versions spawn Red Sand instead.
+***Disabled by Default - Get Lava from a Hero of the Village Gift Instead***
 
-The Coral has a 3% chance to break after spawning Sand.
+##### Additional Tier 2 Trade: #####
 
-Infinitely automatic farms are possible, but not trivial.
-
-This method was added because:
-
-- Getting Sand purely from the Wandering Trader is not sufficient.
-- Gravity block duping and Trader multi-use bugs are unintended and could be fixed at any time.
-- The old method where Husks dropped Sand is boring as it's just another standard mob farm.
+| Item        | Price | Input Item | Trades until disabled |
+|-------------|-------|------------|-----------------------|
+| Lava Bucket | 16    | Bucket     | 1                     |
 
 ---
-
-#### Vexes Can Be Allayed ####
-
-Provides *Allays*
-
-Disable with ```/skyblock removeDefault renewableAllays```
-
-Play Vexes the right sequence of 5 Note Block notes to convert them to Allays.
-
-Vexes listen to Note Blocks within a 16 block range and emit particles based on whether the correct note is played. The
-instrument is ignored and the octave is ignored, meaning F#<sub>3</sub> is treated the same as F#<sub>5</sub>.
-
-When a Vex is in a Minecart, a Comparator can be used with a Detector Rail to determine the next note in the sequence.
-The Comparator outputs a value from 0 (corresponding to F#) to 11 (corresponding to F)
 
 ### Carpet Features
 
