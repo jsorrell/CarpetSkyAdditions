@@ -6,6 +6,7 @@ To customize the datapack,
 download the
 datapack [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2Fskyblock%2Ftree%2FHEAD%2Fdatapack)
 and edit to your liking.
+
 Disable the built in datapack and enable your edited one instead.
 
 ---
@@ -180,5 +181,3 @@ fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
 In a SkyBlock world, the War Pigs advancement is unobtainable because it requires generated chests.
 
 The advancement is now obtainable by killing a Piglin Brute.
-
-----

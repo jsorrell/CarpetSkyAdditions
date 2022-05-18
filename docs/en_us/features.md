@@ -1,7 +1,5 @@
 ## Mod Features
 
----
-
 #### Dead Coral and Coral Fans Erode into Sand ####
 
 Provides additional *Sand* and *Red Sand*
@@ -246,8 +244,6 @@ Enable with ```/skyblock setDefault lavaFromWanderingTrader true```
 | Item        | Price | Input Item | Trades until disabled |
 |-------------|-------|------------|-----------------------|
 | Lava Bucket | 16    | Bucket     | 1                     |
-
----
 
 ### Carpet Features
 
