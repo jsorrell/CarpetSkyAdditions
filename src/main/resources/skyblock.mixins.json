@@ -4,19 +4,29 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "CriteriaAccessor",
-    "DolphinEntityLeadToNearbyTreasureGoalMixin",
+    "DolphinEntityMixin",
     "EnderDragonEntityMixin",
     "EnderDragonFightMixin",
+    "EndermanEntity_PickUpBlockGoalMixin",
+    "EndermanEntity_PlaceBlockGoalMixin",
     "EndIslandFeatureMixin",
+    "FeaturePlacementContextMixin",
     "FoxEntityMixin",
     "GeneratorOptionsMixin",
     "ItemEntityMixin",
     "LavaFluidMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "MinecraftServerMixin",
+    "MissingDimensionFixMixin",
     "RamImpactTaskMixin",
+    "SaplingBlockMixin",
+    "SchemasMixin",
+    "SinglePoolElementAccessor",
     "SpawnRestrictionAccessor",
-    "WanderingTraderEntityMixin"
+    "SpiderEntityMixin",
+    "WanderingTraderEntityMixin",
+    "WorldGenSettingsHeightAndBiomeFixMixin"
   ],
   "client": [
     "GeneratorTypeAccessor"

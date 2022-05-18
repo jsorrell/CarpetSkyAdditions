@@ -6,22 +6,49 @@ import static carpet.settings.RuleCategory.FEATURE;
 
 public class SkyBlockSettings {
   public static final String SKYBLOCK = "skyblock";
+  public static final String GENERATION = "generation";
+  /* Generation -- Only obeyed with SkyBlock world generation */
+  @Rule(
+    desc = "Generates End Portals",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateEndPortals = true;
+
+  @Rule(
+    desc = "Generates Silverfish Spawners",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateSilverfishSpawners = true;
+
+  @Rule(
+    desc = "Generates Magma Cube Spawners",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateMagmaCubeSpawners = false;
+
+  @Rule(
+    desc = "Generate Random End Gateways",
+    category = {SKYBLOCK, GENERATION})
+  public static boolean generateRandomEndGateways = false;
 
   /* Wandering Trader */
   @Rule(
-      desc = "Add trades to the wandering trader for SkyBlock",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Add trades to the wandering trader for SkyBlock",
+    category = {SKYBLOCK, FEATURE})
   public static boolean wanderingTraderSkyBlockTrades = false;
+
+  /* Wandering Trader Lava */
+  @Rule(
+    desc = "Lets the Wandering Trader sell Lava, the old method",
+    category = {SKYBLOCK, FEATURE})
+  public static boolean lavaFromWanderingTrader = false;
 
   /* Lightning Electrifies Vines */
   @Rule(
-      desc = "Lightning striking glowstone with attached vines converts them to glow lichen",
-      category = {SKYBLOCK, FEATURE})
+    desc = "Lightning striking glowstone with attached vines converts them to glow lichen",
+    category = {SKYBLOCK, FEATURE})
   public static boolean lightningElectrifiesVines = false;
 
   /* Renewable Budding Amethysts */
   @Rule(
-      desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
+    desc = "Surrounding lava by calcite and smooth basalt forms budding amethysts",
       category = {SKYBLOCK, FEATURE})
   public static boolean renewableBuddingAmethysts = false;
 
@@ -63,7 +90,19 @@ public class SkyBlockSettings {
 
   /* Foxes Spawn With Berries */
   @Rule(
-      desc = "A spawned fox has a chance to hold berries",
+      desc = "A spawned Fox has a chance to hold Sweet Berries",
       category = {SKYBLOCK, FEATURE})
   public static boolean foxesSpawnWithBerries = false;
+
+  /* Poisonous Potatoes Convert Spiders into Cave Spiders */
+  @Rule(
+      desc = "Spiders convert into Cave Spiders when given Poisonous Potatoes",
+      category = {SKYBLOCK, FEATURE})
+  public static boolean poisonousPotatoesConvertSpiders = false;
+
+  /* Saplings Placed on Sand Turn into Dead Bushes */
+  @Rule(
+      desc = "Saplings on Sand eventually turn into Dead Bushes",
+      category = {SKYBLOCK, FEATURE})
+  public static boolean saplingsDieOnSand = false;
 }

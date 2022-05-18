@@ -1,26 +1,25 @@
 {
-  "parent": "skyblock:skyblock/root",
+  "parent": "skyblock:skyblock/emerald",
   "display": {
     "icon": {
-      "item": "minecraft:glow_berries"
+      "item": "minecraft:spore_blossom"
     },
     "title": {
-      "translate": "Snatched from the Jaws"
+      "translate": "Pretty in Pink"
     },
     "description": {
-      "translate": "Get Berries from a Fox"
+      "translate": "Get a Spore Blossom from Flowering Azalea Leaves"
     },
     "frame": "goal"
   },
   "criteria": {
-    "berries": {
+    "spore_blossom": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:glow_berries",
-              "minecraft:sweet_berries"
+              "minecraft:spore_blossom"
             ]
           }
         ]

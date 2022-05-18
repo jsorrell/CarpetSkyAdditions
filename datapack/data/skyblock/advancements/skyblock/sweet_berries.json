@@ -1,24 +1,25 @@
 {
-  "parent": "skyblock:skyblock/village_hero",
+  "parent": "skyblock:skyblock/root",
   "display": {
     "icon": {
-      "item": "minecraft:lava_bucket"
+      "item": "minecraft:sweet_berries"
     },
     "title": {
-      "translate": "Lavely Gift"
+      "translate": "Snatched from the Jaws"
     },
     "description": {
-      "translate": "Obtain Lava as a Gift from a Toolsmith"
-    }
+      "translate": "Get Sweet Berries from a Fox"
+    },
+    "frame": "goal"
   },
   "criteria": {
-    "lava_bucket": {
+    "berries": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:lava_bucket"
+              "minecraft:sweet_berries"
             ]
           }
         ]
