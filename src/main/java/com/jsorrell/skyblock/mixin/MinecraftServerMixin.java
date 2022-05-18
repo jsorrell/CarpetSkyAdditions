@@ -35,7 +35,7 @@ public abstract class MinecraftServerMixin {
   public abstract Path getSavePath(WorldSavePath worldSavePath);
 
   @Inject(method = "loadWorld", at = @At("HEAD"))
-  private void test(CallbackInfo ci) {
+  private void fixSettingsFile(CallbackInfo ci) {
     Path worldSavePath = this.getSavePath(WorldSavePath.ROOT);
     // Fix existing settings
     try {
