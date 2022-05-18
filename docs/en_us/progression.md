@@ -1,13 +1,13 @@
 ## General Progression Steps
 
-### 1. Get a steady supply of wood
+### 1. Get a Steady Supply of Wood
 
 You want as many saplings planted as possible because at the beginning you will spend most of your time waiting for
 trees to grow.
 Make sure to keep your Nylium and Grass safe because it's all you're going to get.
 Maybe place a non-solid block on the Nylium so you don't accidentally destroy it.
 
-### 2. Get to a low Y level
+### 2. Get to a Low Y Level
 
 You can build downward by crawling (using trapdoors) and placing blocks on the bottom of top-half slabs.
 At a low Y level, mobs spawn faster and you're going to need a lot of mob spawns.
@@ -31,7 +31,7 @@ It's hard to move Mobs without Water or Pistons, so you'll likely have to rely o
 
 Once you have 7 Iron, craft a Cauldron.
 When nearby a player, a Cauldron has a 1/81920 chance each tick to fill with single layer of water when rained upon.
-On average, this means a single Cauldron takes over 3 hours of raining time to fully fill with water.
+This means a single Cauldron takes over 3 hours of raining time to fully fill with water on average.
 As you wait for the Cauldron to fill, continue killing Zombies to get enough Iron for a bucket.
 A single Water source can be duplicated a few ways,
 such as by using Water Bottles to fill the Cauldron or by placing the Water source on the top of a 2-tall hole
