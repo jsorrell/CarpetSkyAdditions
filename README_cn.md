@@ -4,7 +4,7 @@
 
 SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)修改而来的依赖[fabric-carpet](https://github.com/gnembon/fabric-carpet)的模组。
 
-该模组致力于在原版基础上为玩家提供专业的的空岛游戏体验。在某些时候诸如[Chunkbase](https://www.chunkbase.com/)或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)这类工具会很有用，建议搭配使用。尽管我已经尽力去将这方面的不良体验最小化，但某些时候游戏的进度依旧会比较折磨或者需要挂机一定时间。
+该模组致力于在原版基础上为玩家提供专业的空岛游戏体验。在某些时候，诸如[Chunkbase](https://www.chunkbase.com/)或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)这类工具会很有用，建议搭配使用。尽管我已经尽力去将这方面的不良体验最小化，但某些时候游戏的进度依旧会比较折磨或者需要挂机一定时间。
 除非你使用指令开启其相关功能或者在世界生成时选择了**空岛**，否则该模组不会对客户端已经安装的其他存档造成任何影响。
 
 ## 安装
@@ -14,6 +14,10 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 + 下载[SkyBlock模组及其数据包](https://github.com/jsorrell/skyblock/releases)
 + 将fabric-carpet，fabric-api和SkyBlock模组放进到`<minecraft文件目录>/mods/`文件夹内
 
+#### 可选项 ####
++ 下载成就汉化包
++ 将成就汉化包在游戏中添加入资源包中以实现成就的汉化
+
 ## 使用
 
 ### 单人游戏
@@ -22,15 +26,15 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 + 在**数据包**选项中拖入前面下载好的数据包
 + 将**允许作弊**选项调整为开启，以确保你能在游戏内启用模组提供的空岛特性（你也可以在进入游戏后选择对局域网开放，并在那里允许作弊，以免游戏过程中误使用指令）
 + 点击`更多世界选项`
-+ 选择`世界类型：空岛`
++ 选择`世界类型：SkyBlock`
 + 创建世界
 + 进入游戏后使用指令`/function skyblock:enable_features`以启用空岛特性
 
 ### 多人游戏
 模组与数据包仅需要在服务端进行设置
-+ 以文本编辑器打开`server.properties`（如果没有更好的文本编辑器就请使用记事本打开）
++ 以文本编辑器打开`server.properties`（如果没有更好的文本编辑器时请使用记事本打开）
 + 将`level-type=default`修改为`level-type=skyblock`
-+ 确保你已经删除或移除了旧有的世界文件夹以创建新的世界
++ 确保你已经删除或移走了旧有的世界文件夹以创建新的世界
 + 将前面下载好的数据包放进世界存档文件夹中的`datapack`文件夹中
 + 在控制台执行指令`function skyblock:enable_features`以启用空岛特性（或在客户端以OP权限执行`/function skyblock:enable_features`）
 
@@ -39,17 +43,23 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 ### 空岛生成
 空岛世界的生成与常规世界完全一致，但所有方块均被移除，所有群系以及结构生成框架均得到保留。这意味着尸壳将正常于沙漠生成，烈焰人也会在下界堡垒中刷出，其余生物也如此。
 
-只有两样东西会在世界生成时得到保留：
+只有少量事物会在伴随世界生成：
 + 一个小的出生点平台：
 ![一个小出生点平台，包括草方块、菌丝、菌岩，以及一棵树](screenshots/spawn_platform.png?raw=true "出生点平台")
 
-+ 所有传送门框架和蠹虫刷怪笼：
++ 末地传送门框架（除非属性`generateEndPortals`被设置为`false`）：
 ![末地传送门框架将得到保留](screenshots/end_portal.png?raw=true "末地传送门框架")
+
++ 蠹虫刷怪笼（除非属性`generateSilverfishSpawners`被设置为`false`）
+
++ 堡垒遗迹的宝藏室中的岩浆刷怪笼（仅当属性`generateMagmaCubeSpawners`设置为`true`时生效）
+
++ 末地中的所有随机返回折跃门（仅当属性`generateRandomEndGateways`设置为`true`时生效）
 
 尽管几乎所有方块都被移除了，但在仅使用*原版*特性下，几乎所有方块都可以被获取，几乎所有生物也可以生成。
 
 ### 模组追加特性 ###
-尽管如此，空岛的生成依旧留下了一些原版可以正常获取但现在无法获得的资源。因此，除了生成世界外，这个模组在尽力确保原汁原味的原版生存基础上填补了这些空缺
+尽管如此，空岛的生成依旧会导致一些原版可以正常获取的资源无法获取。因此，除了生成世界外，这个模组在尽力确保原汁原味的原版生存基础上填补了这些空缺
 
 ---
 
@@ -74,6 +84,10 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 | 获得物品 | 消耗物品 | 价格 | 失效前可交易次数 |
 |---------|---------|------|-----------------|
 | 熔岩桶   | 桶      | 16   | 1               |
+
+\* 熔岩桶交易需要特性 `lavaFromWanderingTrader`的开启，该属性默认关闭
+
+熔岩桶在较高版本的空岛模组中可以通过新的方式获得，详见[村庄英雄礼物将会提供熔岩桶](#村庄英雄礼物将会提供熔岩桶)
 
 ---
 
@@ -121,7 +135,9 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 通过指令```/skyblock setDefault renewableHeartsOfTheSea false```可禁用该特性
 
-当海豚被喂食鱼后无法找到宝箱时，它会找到海洋之心。
+当海豚被喂食鱼后，它会在海底的沙子或砂砾中找到一个海洋之心。
+
+必须在海洋群系——这玩意儿是海洋之心，而不是丛林之心
 
 ---
 
@@ -171,12 +187,39 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 ---
 
+#### 树苗会在沙子上枯死 ####
+提供*枯萎的灌木*
+
+通过指令```/skyblock setDefault saplingsDieOnSand false```可禁用该特性
+
+树苗可以放在沙子和红沙上。
+
+一段时间后它们会枯萎并转化为枯死的灌木
+
+---
+
+#### 毒马铃薯转化蜘蛛 ####
+
+提供*洞穴蜘蛛*
+
+通过指令```/skyblock setDefault poisonousPotatoesConvertSpiders false```可禁用该特性
+
+对蜘蛛使用毒马铃薯可将其转化为洞穴蜘蛛
+
+---
+
 ### 数据包特性追加 ###
 数据包提供了额外的配方和进度。
 
 在条件允许的前提下，我们会通过mod来修改数据包内容以方便用户。（因为生成时选择的数据包无法更改）
 
 ---
+
+#### 村庄英雄礼物将会提供熔岩桶 ####
+
+提供*熔岩*
+
+熔岩桶将可以作为村庄英雄的礼物从盔甲匠、武器匠和工具匠那里获得。
 
 #### 腐肉合成下界岩 ####
 提供*下界岩*
@@ -229,14 +272,21 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 ---
 
-#### 蜘蛛骑士掉落蜘蛛网 ####
-提供*蜘蛛网*
+#### 发光浆果配方 ####
+提供*发光浆果*
 
-当玩家杀死一个蜘蛛骑士时，前半段击杀将会掉落蜘蛛网。
+使用荧光墨囊和甜浆果合成发光浆果
 
 ---
 
-#### 可可豆可在丛林被钓出以再生 ####
+#### 蜘蛛骑士掉落蜘蛛网 ####
+提供*蜘蛛网*
+
+当玩家杀死一个蜘蛛骑士时，先被击杀的部分将会掉落蜘蛛网。
+
+---
+
+#### 可可豆可在丛林被钓出 ####
 提供*可可豆*
 
 与基岩版匹配，可可豆可以作为丛林特色物品在丛林中钓鱼被钓出。
@@ -287,6 +337,24 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 ---
 
+#### 盛开的杜鹃花丛掉落孢子花 ####
+提供*孢子花*
+
+盛开的杜鹃花丛被破坏时有概率掉落孢子花，这一过程受时运附魔的影响
+
+---
+
+#### 末影人可以拾取高草丛和大型蕨 ####
+提供*高草丛*和*大型蕨*
+
+杀死拾起高草丛和大型蕨的末影人可以将它们作为掉落物获取。
+
+模组修复了末影人对两格高方块的处理，使其能正确的放置而不会被破坏。
+
+但这一修复并非针对客户端，因此原版的渲染修复并未修复（[MC-193497](https://bugs.mojang.com/browse/MC-193497)）
+
+---
+
 #### 原版岩浆膏配方移除 ####
 
 原版岩浆膏配方太过简单。请自行建造岩浆怪农场获取。
@@ -312,11 +380,9 @@ SkyBlock是一个由[skyrising/skyblock](https://github.com/skyrising/skyblock)�
 
 启用以下`fabric-carpet`选项后，所有原版生存的方块、物品和生物都可以在空岛中正常生成
 
-+ [desertShrubs](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#desertshrubs)选项启用以获得枯萎的灌木
-  + 运行指令`/carpet setDefault desertShrubs false`可禁用该特性
-+ [renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges)选项启用以再生海绵
++ 启用[renewableSponges](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#renewablesponges)选项以再生海绵
   + 运行指令`/carpet setDefault renewableSponges false`可禁用该特性
-+ [piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions)选项启用以在堡垒遗迹中再生猪灵
++ 启用[piglinsSpawningInBastions](https://github.com/gnembon/fabric-carpet/wiki/Current-Available-Settings#piglinsSpawningInBastions)选项以在堡垒遗迹中再生猪灵
   + 运行指令`/carpet setDefault piglinsSpawningInBastions false`可禁用该特性
 
 ## 致谢
