@@ -109,11 +109,24 @@ public class SkyBlockSettings {
   public static boolean renewableDragonHeads = false;
 
   /* Shulker Spawning */
+  private static class ShulkerSpawningNameFix extends SettingFixer {
+    @Override
+    public String[] alternateNames() {
+      return new String[]{"shulkerSpawning"};
+    }
+
+    @Override
+    public FieldPair fix(FieldPair fieldPair) {
+      fieldPair.setName("shulkerSpawnsOnDragonKill");
+      return fieldPair;
+    }
+  }
+
   @Rule(
     desc = "Shulkers spawn on obsidian pillar when Ender Dragon is re-killed",
     category = {FEATURE})
-  @SkyBlockSetting("true")
-  public static boolean shulkerSpawning = false;
+  @SkyBlockSetting(value = "true", fixer = ShulkerSpawningNameFix.class)
+  public static boolean shulkerSpawnsOnDragonKill = false;
 
   /* Anvils Compact Coal into Diamonds */
   @Rule(
@@ -183,7 +196,7 @@ public class SkyBlockSettings {
   public static boolean saplingsDieOnSand = false;
 
   @Rule(
-    desc = "Creatures with Echolocation Drop Echo Shardes when Killed with Sonic Booms",
+    desc = "Creatures with Echolocation Drop Echo Shards when Killed with Sonic Booms",
     category = {FEATURE})
   @SkyBlockSetting("true")
   public static boolean renewableEchoShards = false;
