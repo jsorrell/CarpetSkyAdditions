@@ -221,6 +221,16 @@ Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack
 
 ---
 
+#### Enchanting Tables can Enchant Items with Swift Sneak in Ancient Cities ####
+
+Provides *Swift Sneak*
+
+Disable with ```/skyblock removeDefault swiftSneakFromEnchantingTable```
+
+An Enchantment Table placed within an Ancient City can enchant items with Swift Sneak.
+
+---
+
 #### Poisonous Potatoes Convert Spiders ####
 
 Provides *Cave Spiders*

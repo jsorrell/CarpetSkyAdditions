@@ -250,6 +250,13 @@ public class SkyBlockSettings {
   public static boolean doRenewableDeepslate = false;
   public static boolean renewableDeepslateFromSplash = false;
 
+  @Rule(
+    desc = "Enchanting Tables can enchant items with Swift Sneak in Ancient Cities",
+    category = {FEATURE}
+  )
+  @SkyBlockSetting("true")
+  public static boolean swiftSneakFromEnchantingTable = false;
+
   /* Wandering Trader Spawn Chance */
   public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
     @Override

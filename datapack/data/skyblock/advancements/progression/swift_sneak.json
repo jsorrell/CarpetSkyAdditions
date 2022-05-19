@@ -1,0 +1,32 @@
+{
+  "parent": "skyblock:progression/diamond",
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_leggings",
+      "nbt": "{Enchantments:[{lvl:3s, id:\"minecraft:swift_sneak\"}]}"
+    },
+    "title": {
+      "translate": "Silent but Deadly"
+    },
+    "description": {
+      "translate": "Enchant Leggings with Swift Sneak"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_swift_sneak": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:swift_sneak"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
