@@ -221,13 +221,13 @@ Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack
 
 ---
 
-#### Enchanting Tables can Enchant Items with Swift Sneak in Ancient Cities ####
+#### Enchanting Tables Near Wardens can Enchant Items with Swift Sneak ####
 
 Provides *Swift Sneak*
 
-Disable with ```/skyblock removeDefault swiftSneakFromEnchantingTable```
+Disable with ```/skyblock removeDefault renewableSwiftSneak```
 
-An Enchantment Table placed within an Ancient City can enchant items with Swift Sneak.
+An Enchanting Table placed within 8 blocks of a Warden can enchant items with Swift Sneak.
 
 ---
 

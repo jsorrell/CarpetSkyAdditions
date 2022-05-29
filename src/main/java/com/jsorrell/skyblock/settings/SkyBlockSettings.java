@@ -246,16 +246,17 @@ public class SkyBlockSettings {
     validate = RenewableDeepslateSetting.class
   )
   @SkyBlockSetting("true")
+  @SuppressWarnings("unused")
   public static String renewableDeepslate = "false";
   public static boolean doRenewableDeepslate = false;
   public static boolean renewableDeepslateFromSplash = false;
 
   @Rule(
-    desc = "Enchanting Tables can enchant items with Swift Sneak in Ancient Cities",
+    desc = "Enchanting Tables Near Wardens can Enchant Items with Swift Sneak",
     category = {FEATURE}
   )
   @SkyBlockSetting("true")
-  public static boolean swiftSneakFromEnchantingTable = false;
+  public static boolean renewableSwiftSneak = false;
 
   /* Wandering Trader Spawn Chance */
   public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
