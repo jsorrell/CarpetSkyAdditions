@@ -1,10 +1,10 @@
-# SkyBlock
+# Carpet SkyBlock Utils
 
 [![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/skyblock/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/skyblock/releases)
 
 **English** | [中文 (需要更新)](docs/zh_cn/README.md)
 
-SkyBlock is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
+SkyBlock Utils is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 originally based on [skyrising/skyblock](https://github.com/skyrising/skyblock).
 
 This mod aims to provide an expert-level SkyBlock gameplay that depends on players' knowledge of Minecraft mechanics.

@@ -51,7 +51,7 @@ task fillBuildTemplate(type: Copy) {
     yarn_mappings         : project.yarn_mappings,
     embedded_datapack_name: project.datapack_name,
   ]
-  inputs.properties templateContext // for gradle up-to-date check
+  inputs.properties templateContext
   from 'src/template/java'
   into "$buildDir/generated/java"
   expand templateContext
@@ -64,15 +64,18 @@ sourceSets.main.java.srcDir "$buildDir/generated/java"
 compileJava.dependsOn fillBuildTemplate
 
 processResources {
-  // this will ensure that this task is re-run when there's a change
-  inputs.property "version", project.version
+  def templateContext = [
+    id     : project.mod_id,
+    name   : project.mod_name,
+    version: project.version
+  ]
+
+  inputs.properties templateContext
 
   // replace stuff in fabric.mod.json, nothing else
   from(sourceSets.main.resources.srcDirs) {
     include "fabric.mod.json"
-
-    // add mod metadata
-    expand "version": project.version
+    expand templateContext
   }
 
   from(sourceSets.main.resources.srcDirs) {
