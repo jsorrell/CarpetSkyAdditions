@@ -3,7 +3,7 @@ package com.jsorrell.skyblock.mixin;
 import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.WanderingTraderManager;
 import net.minecraft.world.level.ServerWorldProperties;
@@ -34,7 +34,7 @@ public abstract class WanderingTraderManagerMixin {
 
   @Shadow
   @Final
-  private AbstractRandom random;
+  private Random random;
 
   @Shadow
   protected abstract boolean trySpawn(ServerWorld world);
@@ -45,8 +45,8 @@ public abstract class WanderingTraderManagerMixin {
 
   // For some reason vanilla has 2 probability guards that do nothing but makes the chance not be able to go above 0.1
   // Merging these two checks will slightly change the chance of resetting the spawn chance when no players are online
-  @Redirect(method = "trySpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/AbstractRandom;nextInt(I)I"))
-  private int skipSecondChanceCheck(AbstractRandom random, int bound) {
+  @Redirect(method = "trySpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
+  private int skipSecondChanceCheck(Random random, int bound) {
     return 100 < this.spawnChance ? 0 : random.nextInt(bound);
   }
 

@@ -4,7 +4,7 @@ import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,7 +40,7 @@ public abstract class SaplingBlockMixin extends PlantBlock {
     at = @At("HEAD"),
     cancellable = true
   )
-  private void killIfOnSand(BlockState blockState, ServerWorld world, BlockPos pos, AbstractRandom random, CallbackInfo ci) {
+  private void killIfOnSand(BlockState blockState, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
     if (SkyBlockSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
       if (random.nextFloat() < 0.2) {
         world.setBlockState(pos, Blocks.DEAD_BUSH.getDefaultState(), Block.NOTIFY_ALL);

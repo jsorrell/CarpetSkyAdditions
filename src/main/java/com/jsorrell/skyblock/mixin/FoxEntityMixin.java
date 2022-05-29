@@ -7,7 +7,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,8 +24,8 @@ public abstract class FoxEntityMixin extends Entity {
   @Inject(
     method = "initEquipment",
     cancellable = true,
-    at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/AbstractRandom;nextFloat()F", ordinal = 1))
-  private void addFoxHeldItem(AbstractRandom random, LocalDifficulty localDifficulty, CallbackInfo ci) {
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextFloat()F", ordinal = 1))
+  private void addFoxHeldItem(Random random, LocalDifficulty localDifficulty, CallbackInfo ci) {
     if (0 < SkyBlockSettings.foxesSpawnWithSweetBerriesChance) {
       float f = random.nextFloat();
       ItemStack equippedItem;

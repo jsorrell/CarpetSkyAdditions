@@ -9,7 +9,7 @@ import net.minecraft.block.DeadCoralFanBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,7 +37,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   }
 
   @Override
-  public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, AbstractRandom random) {
+  public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
     if (SkyBlockSettings.coralErosion) {
       if (DeadCoralToSandHelper.tryDropSand(state, world, pos, random)) {
         world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));

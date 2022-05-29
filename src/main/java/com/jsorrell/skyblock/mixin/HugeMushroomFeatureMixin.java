@@ -4,7 +4,7 @@ import com.jsorrell.skyblock.settings.SkyBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.HugeMushroomFeature;
@@ -23,7 +23,7 @@ import java.util.Set;
 
 @Mixin(HugeMushroomFeature.class)
 public class HugeMushroomFeatureMixin {
-  private void generateMycelium(WorldAccess world, AbstractRandom random, BlockPos pos) {
+  private void generateMycelium(WorldAccess world, Random random, BlockPos pos) {
     AlterGroundTreeDecorator decorator = new AlterGroundTreeDecorator(BlockStateProvider.of(Blocks.MYCELIUM));
     decorator.generate(new TreeDecorator.Generator(world, ((blockPos, blockState) -> {
       world.setBlockState(blockPos, blockState, Block.NOTIFY_ALL);
@@ -31,7 +31,7 @@ public class HugeMushroomFeatureMixin {
   }
 
   @Inject(method = "generate", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
-  private void generateMycelium(FeatureContext<HugeMushroomFeatureConfig> context, CallbackInfoReturnable<Boolean> cir, StructureWorldAccess world, BlockPos pos, AbstractRandom random) {
+  private void generateMycelium(FeatureContext<HugeMushroomFeatureConfig> context, CallbackInfoReturnable<Boolean> cir, StructureWorldAccess world, BlockPos pos, Random random) {
     if (SkyBlockSettings.hugeMushroomsSpreadMycelium) {
       generateMycelium(world, random, pos);
     }

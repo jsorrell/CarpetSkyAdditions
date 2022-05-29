@@ -22,8 +22,8 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.AbstractRandom;
-import net.minecraft.util.math.random.SimpleRandom;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.event.EntityPositionSource;
 import net.minecraft.world.event.GameEvent;
@@ -42,7 +42,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
   protected EntityGameEventHandler<InstantListener> gameEventHandler;
   protected int numSuccessfulNotes;
   private static final String NUM_SUCCESSFUL_NOTES_KEY = "ConversionNotes";
-  protected AbstractRandom conversionRandom;
+  protected Random conversionRandom;
 
   protected VexEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
     super(entityType, world);
@@ -51,7 +51,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
   @Inject(method = "<init>", at = @At("TAIL"))
   private void addGameEventListener(EntityType<? extends VexEntity> entityType, World world, CallbackInfo ci) {
     this.gameEventHandler = new EntityGameEventHandler<>(new InstantListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this));
-    this.conversionRandom = new SimpleRandom(0);
+    this.conversionRandom = new CheckedRandom(0);
   }
 
   @Inject(method = "tick", at = @At("TAIL"))

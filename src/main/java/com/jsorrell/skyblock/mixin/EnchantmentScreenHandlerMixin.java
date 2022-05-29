@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.EnchantmentScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.gen.structure.StructureTypeKeys;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,8 +24,8 @@ public class EnchantmentScreenHandlerMixin {
   @Final
   private ScreenHandlerContext context;
 
-  @Redirect(method = "generateEnchantments", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;generateEnchantments(Lnet/minecraft/util/math/random/AbstractRandom;Lnet/minecraft/item/ItemStack;IZ)Ljava/util/List;"))
-  private List<EnchantmentLevelEntry> addSwiftSneak(AbstractRandom random, ItemStack stack, int level, boolean treasureAllowed) {
+  @Redirect(method = "generateEnchantments", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;generateEnchantments(Lnet/minecraft/util/math/random/Random;Lnet/minecraft/item/ItemStack;IZ)Ljava/util/List;"))
+  private List<EnchantmentLevelEntry> addSwiftSneak(Random random, ItemStack stack, int level, boolean treasureAllowed) {
     if (SkyBlockSettings.swiftSneakFromEnchantingTable) {
       boolean inAncientCity = this.context.get((world, pos) -> {
         assert world instanceof ServerWorld;

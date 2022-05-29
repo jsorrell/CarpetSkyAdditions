@@ -9,7 +9,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
-import net.minecraft.class_7510;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
@@ -26,6 +25,8 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.math.random.ChunkRandom;
+import net.minecraft.util.math.random.RandomSeed;
+import net.minecraft.util.math.random.Xoroshiro128PlusPlusRandom;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryEntryList;
@@ -45,9 +46,8 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.util.PlacedFeatureIndexer;
 import net.minecraft.world.gen.noise.NoiseConfig;
-import net.minecraft.world.gen.random.RandomSeed;
-import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
 import net.minecraft.world.gen.structure.JigsawStructure;
 import net.minecraft.world.gen.structure.StrongholdStructure;
 import net.minecraft.world.gen.structure.StructureType;
@@ -63,7 +63,7 @@ import java.util.stream.Collectors;
 
 public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
   private final Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry;
-  private final Supplier<List<class_7510.IndexedFeatures>> indexedFeatureSupplier;
+  private final Supplier<List<PlacedFeatureIndexer.IndexedFeatures>> indexedFeatureSupplier;
 
   public static final Codec<SkyBlockChunkGenerator> CODEC =
     RecordCodecBuilder.create(
@@ -85,7 +85,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     super(structureRegistry, noiseRegistry, biomeSource, settings);
     // Duplicate noiseRegistry and field_39412 from super b/c it has private access
     this.noiseRegistry = noiseRegistry;
-    this.indexedFeatureSupplier = Suppliers.memoize(() -> class_7510.method_44210(List.copyOf(populationSource.getBiomes()), biomeEntry -> biomeEntry.value().getGenerationSettings().getFeatures(), true));
+    this.indexedFeatureSupplier = Suppliers.memoize(() -> PlacedFeatureIndexer.collectIndexedFeatures(List.copyOf(populationSource.getBiomes()), biomeEntry -> biomeEntry.value().getGenerationSettings().getFeatures(), true));
   }
 
   public RegistryEntry<ChunkGeneratorSettings> getSettings() {
@@ -130,7 +130,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
     Registry<StructureType> structureTypes = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
     Map<Integer, List<StructureType>> structureTypesByStep = structureTypes.stream().collect(Collectors.groupingBy(structureType -> structureType.getFeatureGenerationStep().ordinal()));
-    List<class_7510.IndexedFeatures> indexedFeatures = this.indexedFeatureSupplier.get();
+    List<PlacedFeatureIndexer.IndexedFeatures> indexedFeatures = this.indexedFeatureSupplier.get();
 
     ChunkRandom chunkRandom = new ChunkRandom(new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
     long populationSeed = chunkRandom.setPopulationSeed(world.getSeed(), minChunkPos.getX(), minChunkPos.getZ());
@@ -222,13 +222,13 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
           List<RegistryEntryList<PlacedFeature>> biomeFeatureStepList = biome.getGenerationSettings().getFeatures();
           if (genStep >= biomeFeatureStepList.size()) continue;
           RegistryEntryList<PlacedFeature> biomeFeaturesForStep = biomeFeatureStepList.get(genStep);
-          class_7510.IndexedFeatures indexedFeature = indexedFeatures.get(genStep);
+          PlacedFeatureIndexer.IndexedFeatures indexedFeature = indexedFeatures.get(genStep);
           biomeFeaturesForStep.stream().map(RegistryEntry::value).forEach(placedFeature -> intSet.add(indexedFeature.indexMapping().applyAsInt(placedFeature)));
         }
         int n = intSet.size();
         int[] is = intSet.toIntArray();
         Arrays.sort(is);
-        class_7510.IndexedFeatures indexedFeature = indexedFeatures.get(genStep);
+        PlacedFeatureIndexer.IndexedFeatures indexedFeature = indexedFeatures.get(genStep);
         for (int o = 0; o < n; ++o) {
           int p = is[o];
           PlacedFeature placedFeature = indexedFeature.features().get(p);

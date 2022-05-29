@@ -8,13 +8,13 @@ import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.PiglinBruteEntity;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.SpawnHelper;
 
 public class PiglinBruteSpawnPredicate implements SpawnRestriction.SpawnPredicate<PiglinBruteEntity> {
   @Override
-  public boolean test(EntityType<PiglinBruteEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, AbstractRandom random) {
+  public boolean test(EntityType<PiglinBruteEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
     // Conditionally implement registering SpawnRestriction.Location.ON_GROUND
     if (CarpetSettings.piglinsSpawningInBastions) {
       BlockPos underBlockPos = pos.down();

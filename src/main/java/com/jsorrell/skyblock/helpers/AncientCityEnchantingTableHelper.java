@@ -11,7 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Util;
 import net.minecraft.util.collection.Weighting;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
 public class AncientCityEnchantingTableHelper {
   // Copied verbatim from EnchantmentHelper
   // TODO find a cleaner way to do this
-  public static List<EnchantmentLevelEntry> generateEnchantments(AbstractRandom random, ItemStack stack, int level, boolean treasureAllowed) {
+  public static List<EnchantmentLevelEntry> generateEnchantments(Random random, ItemStack stack, int level, boolean treasureAllowed) {
     ArrayList<EnchantmentLevelEntry> list = Lists.newArrayList();
     Item item = stack.getItem();
     int i = item.getEnchantability();

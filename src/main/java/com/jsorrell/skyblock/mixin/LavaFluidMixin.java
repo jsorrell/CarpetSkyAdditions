@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,7 +25,7 @@ import java.util.Iterator;
 public class LavaFluidMixin {
   @Inject(method = "onRandomTick", locals = LocalCapture.CAPTURE_FAILSOFT, at = @At(value = "HEAD"))
   private void tryCreateGeode(
-    World world, BlockPos pos, FluidState state, AbstractRandom random, CallbackInfo ci) {
+    World world, BlockPos pos, FluidState state, Random random, CallbackInfo ci) {
     if (SkyBlockSettings.renewableBuddingAmethysts) {
       if (random.nextInt(GeodeGenerator.CONVERSION_RATE) == 0) {
         if (GeodeGenerator.checkGeodeFormation(world, pos)) {

@@ -11,17 +11,17 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.AbstractRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class DeadCoralToSandHelper {
   protected static final double BREAK_CHANCE = 0.03;
 
-  public static int getSandDropDelay(AbstractRandom random) {
+  public static int getSandDropDelay(Random random) {
     return 40 + random.nextInt(40);
   }
 
-  public static boolean tryDropSand(BlockState state, World world, BlockPos pos, AbstractRandom random) {
+  public static boolean tryDropSand(BlockState state, World world, BlockPos pos, Random random) {
     FluidState fluidState = world.getFluidState(pos);
     if (!fluidState.isOf(Fluids.WATER)) {
       return false;

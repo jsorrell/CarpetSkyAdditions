@@ -17,14 +17,14 @@ public class SkyBlockWorldPresets {
   public static final RegistryKey<WorldPreset> SKYBLOCK = RegistryKey.of(Registry.WORLD_PRESET_KEY, new SkyBlockIdentifier("skyblock"));
 
   private static final DimensionOptions OVERWORLD_OPTIONS = new DimensionOptions(
-    BuiltinRegistries.DIMENSION_TYPE.method_44298(DimensionTypes.OVERWORLD),
-    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, MultiNoiseBiomeSource.Preset.OVERWORLD.getBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.method_44298(ChunkGeneratorSettings.OVERWORLD)));
+    BuiltinRegistries.DIMENSION_TYPE.getOrCreateEntry(DimensionTypes.OVERWORLD),
+    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, MultiNoiseBiomeSource.Preset.OVERWORLD.getBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.getOrCreateEntry(ChunkGeneratorSettings.OVERWORLD)));
   private static final DimensionOptions NETHER_OPTIONS = new DimensionOptions(
-    BuiltinRegistries.DIMENSION_TYPE.method_44298(DimensionTypes.THE_NETHER),
-    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.method_44298(ChunkGeneratorSettings.NETHER)));
+    BuiltinRegistries.DIMENSION_TYPE.getOrCreateEntry(DimensionTypes.THE_NETHER),
+    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.getOrCreateEntry(ChunkGeneratorSettings.NETHER)));
   private static final DimensionOptions END_OPTIONS = new DimensionOptions(
-    BuiltinRegistries.DIMENSION_TYPE.method_44298(DimensionTypes.THE_END),
-    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, new TheEndBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.method_44298(ChunkGeneratorSettings.END)));
+    BuiltinRegistries.DIMENSION_TYPE.getOrCreateEntry(DimensionTypes.THE_END),
+    new SkyBlockChunkGenerator(BuiltinRegistries.STRUCTURE_SET, BuiltinRegistries.NOISE_PARAMETERS, new TheEndBiomeSource(BuiltinRegistries.BIOME), BuiltinRegistries.CHUNK_GENERATOR_SETTINGS.getOrCreateEntry(ChunkGeneratorSettings.END)));
 
   public static void registerAll() {
     BuiltinRegistries.add(BuiltinRegistries.WORLD_PRESET, SkyBlockWorldPresets.SKYBLOCK, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, OVERWORLD_OPTIONS, DimensionOptions.NETHER, NETHER_OPTIONS, DimensionOptions.END, END_OPTIONS)));
