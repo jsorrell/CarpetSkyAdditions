@@ -5,9 +5,9 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockBox;
@@ -213,7 +213,7 @@ public class SkyBlockStructures {
 
   public record SpawnPlatform(BlockPos worldSpawn) {
     public void generate(ServerWorldAccess world, Random random) {
-      Structure structure = Objects.requireNonNull(world.getServer()).getStructureManager().getStructure(new SkyBlockIdentifier("spawn_platform")).orElseThrow();
+      StructureTemplate structure = Objects.requireNonNull(world.getServer()).getStructureTemplateManager().getTemplate(new SkyBlockIdentifier("spawn_platform")).orElseThrow();
       BlockPos structureOrigin = worldSpawn.subtract(new BlockPos(4, 1, 1));
       structure.place(world, structureOrigin, worldSpawn, new StructurePlacementData(), random, Block.NOTIFY_LISTENERS);
     }

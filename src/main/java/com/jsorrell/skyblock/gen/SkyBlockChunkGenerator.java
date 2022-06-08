@@ -50,7 +50,7 @@ import net.minecraft.world.gen.feature.util.PlacedFeatureIndexer;
 import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.structure.JigsawStructure;
 import net.minecraft.world.gen.structure.StrongholdStructure;
-import net.minecraft.world.gen.structure.StructureType;
+import net.minecraft.world.gen.structure.Structure;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -71,13 +71,9 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
         NoiseChunkGenerator.createStructureSetRegistryGetter(instance).and(
             instance
               .group(
-                RegistryOps.createRegistryCodec(
-                    Registry.NOISE_KEY)
-                  .forGetter(generator -> generator.noiseRegistry),
-                (BiomeSource.CODEC.fieldOf("biome_source")).forGetter(generator -> generator.populationSource),
-                (ChunkGeneratorSettings.REGISTRY_CODEC
-                  .fieldOf("settings"))
-                  .forGetter(SkyBlockChunkGenerator::getSettings)))
+                RegistryOps.createRegistryCodec(Registry.NOISE_KEY).forGetter(generator -> generator.noiseRegistry),
+                (BiomeSource.CODEC.fieldOf("biome_source")).forGetter(ChunkGenerator::getBiomeSource),
+                (ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings")).forGetter(SkyBlockChunkGenerator::getSettings)))
           .apply(instance, instance.stable(SkyBlockChunkGenerator::new)));
 
   public SkyBlockChunkGenerator(Registry<StructureSet> structureRegistry, Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry,
@@ -85,7 +81,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     super(structureRegistry, noiseRegistry, biomeSource, settings);
     // Duplicate noiseRegistry and field_39412 from super b/c it has private access
     this.noiseRegistry = noiseRegistry;
-    this.indexedFeatureSupplier = Suppliers.memoize(() -> PlacedFeatureIndexer.collectIndexedFeatures(List.copyOf(populationSource.getBiomes()), biomeEntry -> biomeEntry.value().getGenerationSettings().getFeatures(), true));
+    this.indexedFeatureSupplier = Suppliers.memoize(() -> PlacedFeatureIndexer.collectIndexedFeatures(List.copyOf(biomeSource.getBiomes()), biomeEntry -> biomeEntry.value().getGenerationSettings().getFeatures(), true));
   }
 
   public RegistryEntry<ChunkGeneratorSettings> getSettings() {
@@ -128,8 +124,8 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     ChunkSectionPos chunkSectionPos = ChunkSectionPos.from(chunkPos, world.getBottomSectionCoord());
     BlockPos minChunkPos = chunkSectionPos.getMinPos();
 
-    Registry<StructureType> structureTypes = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
-    Map<Integer, List<StructureType>> structureTypesByStep = structureTypes.stream().collect(Collectors.groupingBy(structureType -> structureType.getFeatureGenerationStep().ordinal()));
+    Registry<Structure> structureRegistry = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
+    Map<Integer, List<Structure>> structuresByStep = structureRegistry.stream().collect(Collectors.groupingBy(structureType -> structureType.getFeatureGenerationStep().ordinal()));
     List<PlacedFeatureIndexer.IndexedFeatures> indexedFeatures = this.indexedFeatureSupplier.get();
 
     ChunkRandom chunkRandom = new ChunkRandom(new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
@@ -143,7 +139,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
         chunkSection.getBiomeContainer().method_39793(registryEntry -> biomeSet.add(registryEntry.value()));
       }
     });
-    biomeSet.retainAll(this.populationSource.getBiomes().stream().map(RegistryEntry::value).collect(Collectors.toSet()));
+    biomeSet.retainAll(this.biomeSource.getBiomes().stream().map(RegistryEntry::value).collect(Collectors.toSet()));
 
     int numIndexedFeatures = indexedFeatures.size();
     try {
@@ -152,15 +148,15 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
       for (int genStep = 0; genStep < numSteps; ++genStep) {
         int m = 0;
         if (structureAccessor.shouldGenerateStructures()) {
-          List<StructureType> structureTypesForStep = structureTypesByStep.getOrDefault(genStep, Collections.emptyList());
-          for (StructureType structureType : structureTypesForStep) {
+          List<Structure> structuresForStep = structuresByStep.getOrDefault(genStep, Collections.emptyList());
+          for (Structure structure : structuresForStep) {
             chunkRandom.setDecoratorSeed(populationSeed, m, genStep);
-            Supplier<String> featureNameSupplier = () -> structureTypes.getKey(structureType).map(Object::toString).orElseGet(structureType::toString);
+            Supplier<String> featureNameSupplier = () -> structureRegistry.getKey(structure).map(Object::toString).orElseGet(structure::toString);
             try {
               // Stronghold
-              if (structureType instanceof StrongholdStructure && (SkyBlockSettings.generateEndPortals || SkyBlockSettings.generateSilverfishSpawners)) {
+              if (structure instanceof StrongholdStructure && (SkyBlockSettings.generateEndPortals || SkyBlockSettings.generateSilverfishSpawners)) {
                 world.setCurrentlyGeneratingStructureName(featureNameSupplier);
-                structureAccessor.getStructureStarts(chunkSectionPos, structureType).forEach(structureStart -> {
+                structureAccessor.getStructureStarts(chunkSectionPos, structure).forEach(structureStart -> {
                   for (StructurePiece piece : structureStart.getChildren()) {
                     if (piece.intersectsChunk(chunkPos, 0) && piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
                       BlockBox chunkBox = getBlockBoxForChunk(chunk);
@@ -174,12 +170,12 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                     }
                   }
                 });
-              } else if (structureType instanceof JigsawStructure) {
-                RegistryEntry<StructurePool> startPool = ((JigsawStructureAccessor) structureType).getStartPool();
+              } else if (structure instanceof JigsawStructure) {
+                RegistryEntry<StructurePool> startPool = ((JigsawStructureAccessor) structure).getStartPool();
                 // Bastion Remnants
                 if (SkyBlockSettings.generateMagmaCubeSpawners && startPool.matchesId(new Identifier("bastion/starts"))) {
                   world.setCurrentlyGeneratingStructureName(featureNameSupplier);
-                  structureAccessor.getStructureStarts(chunkSectionPos, structureType).forEach(structureStart -> {
+                  structureAccessor.getStructureStarts(chunkSectionPos, structure).forEach(structureStart -> {
                     for (StructurePiece piece : structureStart.getChildren()) {
                       if (piece.intersectsChunk(chunkPos, 0) && piece instanceof PoolStructurePiece poolPiece) {
                         if (poolPiece.getPoolElement() instanceof SinglePoolElement singlePoolElement) {
@@ -194,7 +190,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
                   // Ancient Cities
                 } else if (SkyBlockSettings.generateAncientCityPortals && startPool.matchesId(new Identifier("ancient_city/city_center"))) {
                   world.setCurrentlyGeneratingStructureName(featureNameSupplier);
-                  structureAccessor.getStructureStarts(chunkSectionPos, structureType).forEach(structureStart -> {
+                  structureAccessor.getStructureStarts(chunkSectionPos, structure).forEach(structureStart -> {
                     for (StructurePiece piece : structureStart.getChildren()) {
                       if (piece.intersectsChunk(chunkPos, 0) && piece instanceof PoolStructurePiece poolPiece) {
                         if (poolPiece.getPoolElement() instanceof SinglePoolElement singlePoolElement) {
