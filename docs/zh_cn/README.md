@@ -17,7 +17,7 @@ SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/s
 在使用时依赖于`fabric-carpet`和`fabric-api`两个模组的安装。
 安装后，需要运行指令`datapack enable "skyblock/skyblock"`以启用数据包。
 
-[详细安装细节](docs/zh_cn/installation_cn.md)
+[详细安装细节](installation_cn.md)
 
 ## 特性
 
@@ -25,6 +25,7 @@ SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/s
 空岛世界的生成与常规世界完全一致，但所有方块均被移除，所有群系以及结构生成框架均得到保留。这意味着尸壳将正常于沙漠生成，烈焰人也会在下界堡垒中刷出，其余生物也如此。
 
 即便是移除了几乎所有的方块，你依旧可以体验到原版游戏中的绝大多数内容。
+[更多生成细节](generation_cn.md)
 
 ### 玩法变更
 
@@ -46,13 +47,13 @@ SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/s
 
 *当玩家使用默认设置安装时，原版游戏中可获得的所有方块、物品、生物和进度都可在空岛世界中获得。
 
-[模组特性列表](docs/zh_cn/features_cn.md)
+[模组特性列表](features_cn.md)
 
-[数据包特性列表](docs/zh_cn/datapack_cn.md)
+[数据包特性列表](datapack_cn.md)
 
 ### 游戏流程指南
 
-如果你在游戏过程中对游戏流程产生了疑问，可以通过查看[游戏流程指南](docs/zh_cn/progression_cn.md)来了解下一步的游戏内容。
+如果你在游戏过程中对游戏流程产生了疑问，可以通过查看[游戏流程指南](progression_cn.md)来了解下一步的游戏内容。
 
 ## 致谢
 + [@skyrising](https://github.com/skyrising/skyblock)提供该mod的最初灵感和一些源代码
