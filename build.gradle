@@ -34,6 +34,13 @@ dependencies {
   compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
+task zipTranslationPack(type: Zip) {
+  archiveFileName = project.archives_base_name + "-" + project.version + ".translations.zip"
+  group = "build"
+  destinationDirectory = file("$buildDir/")
+  from files('./datapack-translations')
+}
+
 task embedDatapack(type: Copy) {
   from './datapack'
   into "$buildDir/generated/resources/resourcepacks/${project.datapack_name}"
