@@ -74,6 +74,8 @@ If you get stuck, a general progression walkthrough is available [here](docs/en_
 
 - [@gnembon](https://github.com/gnembon/fabric-carpet) for `fabric-carpet`
 
+- @YipKei for Chinese (Simplified) translations
+
 ## License
 
 This project is licensed under the terms of the MIT license.
