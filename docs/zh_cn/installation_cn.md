@@ -13,6 +13,7 @@
 + 点击`更多世界选项`
 + 选择`世界类型：SkyBlock`
 + 创建世界
++ **可选**  下载[成就汉化包](https://github.com/jsorrell/skyblock/releases)，并将其放入`resourcepacks`文件夹中。
 
 ### 多人游戏
 
