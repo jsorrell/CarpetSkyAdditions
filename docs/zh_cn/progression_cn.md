@@ -23,7 +23,7 @@
 你需要10个铁锭以制作一个炼药锅和一个桶。
 每个被玩家击杀的僵尸都有1/120的几率掉落一个铁锭（需要玩家击杀，摔死的不掉）。这意味着按期望来看您需要杀死1200只僵尸。
 因为没有水或者活塞来推动生物，所以您可能不得不依靠寻路机制来建立农场。
-gnembon的[这个视频](https://www.youtube.com/watch?v=gibE51sgutg)或许是一个不错的讲解。
+ilmango的[这个视频](https://www.youtube.com/watch?v=gibE51sgutg)或许是一个不错的讲解。
 为无法使用YouTube服务的用户提供的[B站搬运](https://www.bilibili.com/video/BV1r4411Y7F9)版本。
 
 ### 5. 合成一个炼药锅来接雨水
