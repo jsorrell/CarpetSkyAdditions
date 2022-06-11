@@ -25,7 +25,7 @@ You're going to need 10 Iron to make a Cauldron and a Bucket.
 Each Zombie killed by a player has a 1/120 chance to drop an Iron Ingot (player kills, not fall damage).
 That on average means you need to kill 1200 Zombies.
 It's hard to move Mobs without Water or Pistons, so you'll likely have to rely on pathfinding mechanics to make a farm.
-[This video](https://www.youtube.com/watch?v=UwCKkL7dlKU) by gnembon is a good place to start.
+[This video](https://www.youtube.com/watch?v=gibE51sgutg) by gnembon is a good place to start.
 
 ### 5. Craft a Cauldron to Catch Water
 
