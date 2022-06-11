@@ -14,8 +14,12 @@ SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/s
 ## 安装
 
 这是一个Fabric模组并需要以其他模组类似的方式安装。
+
 在使用时依赖于`fabric-carpet`和`fabric-api`两个模组的安装。
+
 安装后，需要运行指令`datapack enable "skyblock/skyblock"`以启用数据包。
+
+将翻译包放入资源包文件夹中可以实现成就的汉化。
 
 [详细安装细节](installation_cn.md)
 
