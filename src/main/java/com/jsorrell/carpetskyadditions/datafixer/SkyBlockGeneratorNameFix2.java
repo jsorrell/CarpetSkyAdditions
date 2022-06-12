@@ -8,7 +8,7 @@ import com.mojang.datafixers.types.Type;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.datafixer.TypeReferences;
 
-// Convert all instances of skyblock:skyblock to carpet-sky-additions:skyblock
+// Convert all instances of skyblock:skyblock to carpetskyadditions:skyblock
 public class SkyBlockGeneratorNameFix2 extends DataFix {
   private static final String NAME = "SkyBlockGeneratorNameFix2";
 
