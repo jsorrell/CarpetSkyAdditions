@@ -1,6 +1,6 @@
 # Carpet Sky Additions (Previously SkyBlock)
 
-[![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/skyblock/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/skyblock/releases)
+[![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/CarpetSkyAdditions/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/CarpetSkyAdditions/releases)
 
 **English** | [中文](docs/zh_cn/README.md)
 

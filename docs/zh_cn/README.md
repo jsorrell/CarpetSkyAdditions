@@ -17,7 +17,7 @@ SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/s
 
 在使用时依赖于`fabric-carpet`和`fabric-api`两个模组的安装。
 
-安装后，需要运行指令`datapack enable "skyblock/skyblock"`以启用数据包。
+安装后，需要运行指令`datapack enable "carpetskyadditions/skyblock"`以启用数据包。
 
 将翻译包放入资源包文件夹中可以实现成就的汉化。
 
