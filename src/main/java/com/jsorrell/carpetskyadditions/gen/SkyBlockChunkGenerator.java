@@ -4,7 +4,6 @@ import com.google.common.base.Suppliers;
 import com.jsorrell.carpetskyadditions.mixin.JigsawStructureAccessor;
 import com.jsorrell.carpetskyadditions.mixin.SinglePoolElementAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
@@ -268,6 +267,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
   }
 
   static {
-    Registry.register(Registry.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
+    // FIXME Update namespace in 1.19.1
+    Registry.register(Registry.CHUNK_GENERATOR, new Identifier("skyblock", "skyblock"), SkyBlockChunkGenerator.CODEC);
   }
 }
