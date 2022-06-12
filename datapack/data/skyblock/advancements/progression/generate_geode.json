@@ -14,7 +14,7 @@
   },
   "criteria": {
     "generate_geode": {
-      "trigger": "skyblock:generate_geode"
+      "trigger": "carpetskyadditions:generate_geode"
     }
   }
 }

@@ -1,13 +1,14 @@
-# Carpet SkyBlock Utils
+# Carpet Sky Additions (Previously SkyBlock)
 
 [![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/skyblock/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/skyblock/releases)
 
 **English** | [中文](docs/zh_cn/README.md)
 
-SkyBlock Utils is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
+Carpet Sky Additions is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 originally based on [skyrising/skyblock](https://github.com/skyrising/skyblock).
 
-This mod aims to provide an expert-level SkyBlock gameplay that depends on players' knowledge of Minecraft mechanics.
+This mod aims to provide an expert-level SkyBlock style gameplay that depends on players' knowledge of Minecraft
+mechanics.
 In some cases, outside tools such as [Chunkbase](https://www.chunkbase.com/)
 or [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud) will be helpful.
 Usage of these is encouraged.
@@ -20,7 +21,7 @@ client.
 
 This is a Fabric Mod and installed as such. It requires `fabric-carpet` and the `fabric-api` installed as well.
 
-Once installed, run `datapack enable "skyblock/skyblock"` to enable the datapack
+Once installed, run `datapack enable "carpetskyadditions/skyblock"` to enable the datapack
 
 [Detailed Installation Instructions](docs/en_us/installation.md)
 
@@ -64,7 +65,6 @@ obtainable in SkyBlock generation.*
 ### Progression Walkthrough
 
 If you get stuck, a general progression walkthrough is available [here](docs/en_us/progression.md).
-
 
 ## Acknowledgements
 

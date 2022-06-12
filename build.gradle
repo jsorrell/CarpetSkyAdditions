@@ -18,7 +18,7 @@ archivesBaseName = project.archives_base_name
 version = project.minecraft_version + "-" + project.mod_version
 
 loom {
-  accessWidenerPath = file("src/main/resources/skyblock.accesswidener")
+  accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 }
 
 dependencies {

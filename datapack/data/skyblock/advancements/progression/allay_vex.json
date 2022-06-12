@@ -14,7 +14,7 @@
   },
   "criteria": {
     "allay_vex": {
-      "trigger": "skyblock:allay_vex"
+      "trigger": "carpetskyadditions:allay_vex"
     }
   }
 }

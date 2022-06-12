@@ -14,7 +14,7 @@
   },
   "criteria": {
     "convert_spider": {
-      "trigger": "skyblock:convert_spider"
+      "trigger": "carpetskyadditions:convert_spider"
     }
   }
 }
