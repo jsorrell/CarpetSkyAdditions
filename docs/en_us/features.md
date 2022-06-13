@@ -4,7 +4,7 @@
 
 Provides additional *Sand* and *Red Sand*
 
-Disable with ```/skyblock removeDefault coralErosion```
+Disable with ```/carpetskyadditions removeDefault coralErosion```
 
 Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
 Fire versions spawn Red Sand instead.
@@ -25,7 +25,7 @@ This method was added because:
 
 Provides *Shulkers*
 
-Disable with ```/skyblock removeDefault shulkerSpawning```
+Disable with ```/carpetskyadditions removeDefault shulkerSpawning```
 
 When an Ender Dragon is re-killed, a Shulker spawns on top of the Bedrock pillar.
 
@@ -35,7 +35,7 @@ When an Ender Dragon is re-killed, a Shulker spawns on top of the Bedrock pillar
 
 Provides *Nether Wart*
 
-Disable with ```/skyblock removeDefault rammingWart```
+Disable with ```/carpetskyadditions removeDefault rammingWart```
 
 When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 
@@ -45,9 +45,9 @@ When a Goat rams a Nether Wart Block, it will break into Nether Wart.
 
 Provides *Deepslate*
 
-Disable with ```/skyblock removeDefault renewableDeepslate```
+Disable with ```/carpetskyadditions removeDefault renewableDeepslate```
 
-Disable only splash with ```/skyblock setDefault renewableDeepslate no_splash```
+Disable only splash with ```/carpetskyadditions setDefault renewableDeepslate no_splash```
 
 Right clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
 
@@ -59,7 +59,7 @@ A Thick Splash Potion will convert all Stone blocks hit by the splash into Deeps
 
 Provides *Netherrack*
 
-Disable with ```/skyblock removeDefault renewableNetherrack```
+Disable with ```/carpetskyadditions removeDefault renewableNetherrack```
 
 When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
 
@@ -69,7 +69,7 @@ When a Nether Portal generates in the void, in generates Netherrack around it, m
 
 Provides *tall flowers*
 
-Disable with ```/skyblock removeDefault tallFlowersFromWanderingTrader```
+Disable with ```/carpetskyadditions removeDefault tallFlowersFromWanderingTrader```
 
 Tall Flowers trades mimic Bedrock.
 
@@ -88,7 +88,7 @@ Tall Flowers trades mimic Bedrock.
 
 Provides *Allays*
 
-Disable with ```/skyblock removeDefault renewableAllays```
+Disable with ```/carpetskyadditions removeDefault renewableAllays```
 
 Play Vexes the right sequence of 5 Note Block notes to convert them to Allays.
 
@@ -104,9 +104,9 @@ The Comparator outputs a value from 0 (corresponding to F#) to 11 (corresponding
 
 Provides *Sweet Berries*
 
-Disable with ```/skyblock removeDefault foxesSpawnWithSweetBerriesChance```
+Disable with ```/carpetskyadditions removeDefault foxesSpawnWithSweetBerriesChance```
 
-Set the chance with ```/skyblock setDefault foxesSpawnWithSweetBerriesChance <chance>```.
+Set the chance with ```/carpetskyadditions setDefault foxesSpawnWithSweetBerriesChance <chance>```.
 
 When a Fox spawns with an item, there is a 20% chance the item is Sweet Berries. The Fox will eat them soon after
 spawning, so be quick.
@@ -117,7 +117,7 @@ spawning, so be quick.
 
 Provides *Diamonds*
 
-Disable with ```/skyblock removeDefault renewableDiamonds```
+Disable with ```/carpetskyadditions removeDefault renewableDiamonds```
 
 A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
 
@@ -127,7 +127,7 @@ A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
 
 Provides *Glow Lichen*
 
-Disable with ```/skyblock removeDefault lightningElectrifiesVines```
+Disable with ```/carpetskyadditions removeDefault lightningElectrifiesVines```
 
 If lightning strikes Glowstone with vines attached, the vines will turn into Glow Lichen. It can also strike a Lightning
 Rod on the Glowstone.
@@ -138,7 +138,7 @@ Rod on the Glowstone.
 
 Provides *Chorus Fruit* and *Chorus Flowers*
 
-Disable with ```/skyblock removeDefault gatewaysSpawnChorus```
+Disable with ```/carpetskyadditions removeDefault gatewaysSpawnChorus```
 
 When an End Gateway is taken to a position over the void, the Endstone island generated spawns with a Chorus Tree on it.
 
@@ -148,7 +148,7 @@ When an End Gateway is taken to a position over the void, the Endstone island ge
 
 Provides *Hearts of the Sea*
 
-Disable with ```/skyblock removeDefault renewableHeartsOfTheSea```
+Disable with ```/carpetskyadditions removeDefault renewableHeartsOfTheSea```
 
 When a Dolphin is fed a fish, they may dig a Heart of the Sea out of Sand or Gravel on the sea floor.
 
@@ -160,7 +160,7 @@ Must be in an Ocean biome -- they're Hearts of the Sea, not Hearts of the Jungle
 
 Provides *Budding Amethysts*
 
-Disable with ```/skyblock removeDefault renewableBuddingAmethysts```
+Disable with ```/carpetskyadditions removeDefault renewableBuddingAmethysts```
 
 A lava block surrounded by Calcite which is then surrounded by Smooth Basalt will eventually turn into a Budding
 Amethyst.
@@ -183,7 +183,7 @@ After some time (2 hours on average), the Lava in the center will turn into a Bu
 
 Provides *Dead Bushes*
 
-Disable with ```/skyblock removeDefault saplingsDieOnSand```
+Disable with ```/carpetskyadditions removeDefault saplingsDieOnSand```
 
 Saplings can be placed on Sand and Red Sand.
 
@@ -195,7 +195,7 @@ After a time, the saplings will die and turn into Dead Bushes.
 
 Provides *Dragon Heads*
 
-Disable with ```/skyblock removeDefault renewableDragonHeads```
+Disable with ```/carpetskyadditions removeDefault renewableDragonHeads```
 
 When an Ender Dragon is killed by a Charged Creeper, she will drop her head.
 
@@ -205,7 +205,7 @@ When an Ender Dragon is killed by a Charged Creeper, she will drop her head.
 
 Provides *Mycelium*
 
-Disable with ```/skyblock removeDefault hugeMushroomsSpreadMycelium```
+Disable with ```/carpetskyadditions removeDefault hugeMushroomsSpreadMycelium```
 
 When a Huge Mushroom grows, it spreads Mycelium nearby, similar to how Mega Spruces Trees spread Podzol.
 
@@ -215,7 +215,7 @@ When a Huge Mushroom grows, it spreads Mycelium nearby, similar to how Mega Spru
 
 Provides *Echo Shards*
 
-Disable with ```/skyblock removeDefault renewableEchoShards```
+Disable with ```/carpetskyadditions removeDefault renewableEchoShards```
 
 Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack.
 
@@ -225,7 +225,7 @@ Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack
 
 Provides *Swift Sneak*
 
-Disable with ```/skyblock removeDefault renewableSwiftSneak```
+Disable with ```/carpetskyadditions removeDefault renewableSwiftSneak```
 
 An Enchanting Table placed within 8 blocks of a Warden can enchant items with Swift Sneak.
 
@@ -235,7 +235,7 @@ An Enchanting Table placed within 8 blocks of a Warden can enchant items with Sw
 
 Provides *Cave Spiders*
 
-Disable with ```/skyblock removeDefault poisonousPotatoesConvertSpiders```
+Disable with ```/carpetskyadditions removeDefault poisonousPotatoesConvertSpiders```
 
 Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
@@ -245,7 +245,7 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 Provides *Lava*
 
-Enable with ```/skyblock setDefault lavaFromWanderingTrader true```
+Enable with ```/carpetskyadditions setDefault lavaFromWanderingTrader true```
 
 ***Disabled by Default - Get Lava from a Hero of the Village Gift Instead***
 

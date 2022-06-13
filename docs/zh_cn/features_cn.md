@@ -4,7 +4,7 @@
 
 提供额外的*沙子*与*红沙*
 
-通过指令```/skyblock removeDefault coralErosion```可禁用该特性。
+通过指令```/carpetskyadditions removeDefault coralErosion```可禁用该特性。
 
 失活的珊瑚和失活的珊瑚扇在有水流出的时候每隔几秒就会生成沙子。
 火珊瑚会生成红沙。
@@ -25,7 +25,7 @@
 
 提供*潜影贝*
 
-通过指令```/skyblock removeDefault shulkerSpawning```可禁用该特性
+通过指令```/carpetskyadditions removeDefault shulkerSpawning```可禁用该特性
 
 当末影龙被再次击杀时，一只潜影贝会在基岩祭坛的顶部生成。
 
@@ -35,7 +35,7 @@
 
 提供*地狱疣*
 
-通过指令```/skyblock removeDefault rammingWart```可禁用该特性
+通过指令```/carpetskyadditions removeDefault rammingWart```可禁用该特性
 
 当山羊撞击地狱疣块时，它会分解为地狱疣。
 
@@ -45,9 +45,9 @@
 
 提供*深板岩*
 
-通过指令```/skyblock removeDefault renewableDeepslate```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableDeepslate```可禁用该特性
 
-通过指令```/skyblock setDefault renewableDeepslate no_splash```仅禁用溅射药水生效
+通过指令```/carpetskyadditions setDefault renewableDeepslate no_splash```仅禁用溅射药水生效
 
 右键点击或通过发射器使用的浓稠药水可以将对应的石头转化成为深板岩
 
@@ -59,7 +59,7 @@
 
 提供*下界岩*
 
-通过指令```/skyblock removeDefault renewableNetherrack```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableNetherrack```可禁用该特性
 
 当在虚空生成下界传送门时，其周围会生成下界岩。
 这与基岩版的设计保持一致。
@@ -70,7 +70,7 @@
 
 提供*高花*
 
-通过指令```/skyblock removeDefault tallFlowersFromWanderingTrader```可禁用该特性
+通过指令```/carpetskyadditions removeDefault tallFlowersFromWanderingTrader```可禁用该特性
 
 高花交易模仿自基岩版
 
@@ -89,7 +89,7 @@
 
 提供*悦灵*
 
-通过指令```/skyblock removeDefault renewableAllays```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableAllays```可禁用该特性
 
 使用5个音符盒对恼鬼弹奏正确的旋律可以将他们转化成悦灵。
 
@@ -103,9 +103,9 @@
 
 提供*甜浆果*
 
-通过指令```/skyblock removeDefault foxesSpawnWithSweetBerriesChance```可禁用该特性
+通过指令```/carpetskyadditions removeDefault foxesSpawnWithSweetBerriesChance```可禁用该特性
 
-通过指令```/skyblock setDefault foxesSpawnWithSweetBerriesChance <chance>```可调整生成甜浆果的概率
+通过指令```/carpetskyadditions setDefault foxesSpawnWithSweetBerriesChance <chance>```可调整生成甜浆果的概率
 
 当一只狐狸携带物品生成时，有20%的概率为甜浆果。
 狐狸在生成之后很快就会吃掉它，所以请动作快点。
@@ -116,7 +116,7 @@
 
 提供*钻石*
 
-通过指令```/skyblock removeDefault renewableDiamonds```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableDiamonds```可禁用该特性
 
 下落的铁砧可将整组煤炭块转化为钻石。
 
@@ -126,7 +126,7 @@
 
 提供*发光地衣*
 
-通过指令```/skyblock removeDefault lightningElectrifiesVines```可禁用该特性
+通过指令```/carpetskyadditions removeDefault lightningElectrifiesVines```可禁用该特性
 
 如果闪电击中附着于萤石上的藤蔓，则藤蔓将会转变为发光地衣，击中萤石上的避雷针时该特性依旧有效。
 
@@ -136,7 +136,7 @@
 
 提供*紫颂果*和*紫颂花*
 
-通过指令```/skyblock removeDefault gatewaysSpawnChorus```可禁用该特性
+通过指令```/carpetskyadditions removeDefault gatewaysSpawnChorus```可禁用该特性
 
 当一个末地折跃门在虚空上方生成时，其伴生的末地石小岛将会生成一株紫颂植物。
 
@@ -146,7 +146,7 @@
 
 提供*海洋之心*
 
-通过指令```/skyblock removeDefault renewableHeartsOfTheSea```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableHeartsOfTheSea```可禁用该特性
 
 当海豚被喂食鱼后，它会在海底的沙子或砂砾中找到一个海洋之心。
 
@@ -158,7 +158,7 @@
 
 提供*紫水晶母岩*
 
-通过指令```/skyblock removeDefault renewableBuddingAmethysts```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableBuddingAmethysts```可禁用该特性
 
 当熔岩方块被方解石包围后，外围再被平滑玄武岩包围时，最终会变为一个紫水晶母岩方块
 
@@ -180,7 +180,7 @@
 
 提供*枯萎的灌木*
 
-通过指令```/skyblock removeDefault saplingsDieOnSand```可禁用该特性
+通过指令```/carpetskyadditions removeDefault saplingsDieOnSand```可禁用该特性
 
 树苗可以放在沙子和红沙上。
 
@@ -192,7 +192,7 @@
 
 提供*龙首*
 
-通过指令```/skyblock removeDefault renewableDragonHeads```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableDragonHeads```可禁用该特性
 
 当末影龙被**闪电苦力怕**击杀时，她会掉落她的头颅。
 
@@ -202,7 +202,7 @@
 
 提供*菌丝*
 
-通过指令```/skyblock removeDefault hugeMushroomsSpreadMycelium```可禁用该特性
+通过指令```/carpetskyadditions removeDefault hugeMushroomsSpreadMycelium```可禁用该特性
 
 当巨型蘑菇长成时，它会往附近的方块上扩散菌丝，该机制类似于巨型云杉扩散灰化土。
 
@@ -212,7 +212,7 @@
 
 提供*回响碎片*
 
-通过指令```/skyblock removeDefault renewableEchoShards```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableEchoShards```可禁用该特性
 
 蝙蝠和海豚在被监守者释放的音爆杀死时会掉落回响碎片
 
@@ -222,7 +222,7 @@
 
 提供*迅捷潜行*
 
-通过指令```/skyblock removeDefault renewableSwiftSneak```可禁用该特性
+通过指令```/carpetskyadditions removeDefault renewableSwiftSneak```可禁用该特性
 
 处于监守者周围8格范围内的附魔台可以为其上的物品提供迅捷潜行的附魔。
 
@@ -232,7 +232,7 @@
 
 提供*洞穴蜘蛛*
 
-通过指令```/skyblock removeDefault poisonousPotatoesConvertSpiders```可禁用该特性
+通过指令```/carpetskyadditions removeDefault poisonousPotatoesConvertSpiders```可禁用该特性
 
 对蜘蛛使用毒马铃薯可将其转化为洞穴蜘蛛
 
@@ -242,7 +242,7 @@
 
 提供*熔岩*
 
-通过指令```/skyblock setDefault lavaFromWanderingTrader true```启用该特性
+通过指令```/carpetskyadditions setDefault lavaFromWanderingTrader true```启用该特性
 
 ***默认禁用 - 取而代之的是通过村庄英雄的礼物来获取熔岩***
 
