@@ -68,7 +68,7 @@ If you get stuck, a general progression walkthrough is available [here](docs/en_
 
 ## Acknowledgements
 
-- [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea and some source code
+- [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea
 
 - [@DeadlyMC](https://github.com/DeadlyMC/Skyblock-datapack) for the initial ideas for the datapack
 
