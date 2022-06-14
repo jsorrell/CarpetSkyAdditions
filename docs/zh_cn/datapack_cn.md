@@ -2,7 +2,8 @@
 
 ### 自定义
 
-如需自定义数据包，请[于此](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2Fskyblock%2Ftree%2FHEAD%2Fdatapack)下载，并根据个人喜好进行编辑。
+如需自定义数据包，请[于此](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2FCarpetSkyAdditions%2Ftree%2FHEAD%2Fdatapack)
+下载，并根据个人喜好进行编辑。
 
 禁用内置数据包后启用您编辑的数据包即可使用自定义数据包。
 

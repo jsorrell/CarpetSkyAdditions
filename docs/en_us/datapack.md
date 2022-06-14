@@ -4,7 +4,7 @@
 
 To customize the datapack,
 download the
-datapack [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2Fskyblock%2Ftree%2FHEAD%2Fdatapack)
+datapack [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2FCarpetSkyAdditions%2Ftree%2FHEAD%2Fdatapack)
 and edit to your liking.
 
 Disable the built in datapack and enable your edited one instead.
