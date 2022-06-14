@@ -5,14 +5,22 @@ import com.jsorrell.carpetskyadditions.gen.SkyBlockStructures;
 import com.jsorrell.carpetskyadditions.settings.Fixers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.settings.SkyBlockDefaults;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.LootableContainerBlockEntity;
+import net.minecraft.loot.LootTables;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.WorldSavePath;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.SaveProperties;
 import net.minecraft.world.dimension.DimensionOptions;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.level.ServerWorldProperties;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -62,16 +70,32 @@ public abstract class MinecraftServerMixin {
   @Inject(
     method = "setupSpawn",
     locals = LocalCapture.CAPTURE_FAILHARD,
-    at =
-    @At(
-      value = "JUMP",
-      opcode = Opcodes.IFEQ,
-      ordinal = 1,
-      shift = At.Shift.BEFORE))
+    at = @At(value = "HEAD"),
+    cancellable = true)
   private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties, boolean bonusChest, boolean debugWorld, CallbackInfo ci) {
-    if (world.getChunkManager().getChunkGenerator() instanceof SkyBlockChunkGenerator) {
-      BlockPos worldSpawn = new BlockPos(worldProperties.getSpawnX(), worldProperties.getSpawnY(), worldProperties.getSpawnZ());
-      new SkyBlockStructures.SpawnPlatform(worldSpawn).generate(world, world.random);
+    ServerChunkManager chunkManager = world.getChunkManager();
+    ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
+    if (!(chunkGenerator instanceof SkyBlockChunkGenerator)) return;
+
+    ChunkPos chunkPos = new ChunkPos(chunkManager.getNoiseConfig().getMultiNoiseSampler().findBestSpawnPosition());
+    int spawnHeight = chunkGenerator.getSpawnHeight(world);
+    BlockPos worldSpawn = chunkPos.getStartPos().add(8, spawnHeight, 8);
+    worldProperties.setSpawnPos(worldSpawn, 0.0f);
+
+    new SkyBlockStructures.SpawnPlatform(worldSpawn).generate(world, world.random);
+
+    // Might as well make this an option
+    if (bonusChest) {
+      BlockPos bonusChestPos = worldSpawn.south();
+      world.setBlockState(bonusChestPos, Blocks.CHEST.getDefaultState(), Block.NOTIFY_LISTENERS);
+      LootableContainerBlockEntity.setLootTable(world, world.random, bonusChestPos, LootTables.SPAWN_BONUS_CHEST);
+      BlockState torchState = Blocks.TORCH.getDefaultState();
+      for (Direction direction : Direction.Type.HORIZONTAL) {
+        BlockPos torchPos = bonusChestPos.offset(direction);
+        world.setBlockState(torchPos, torchState, Block.NOTIFY_LISTENERS);
+      }
     }
+
+    ci.cancel();
   }
 }
