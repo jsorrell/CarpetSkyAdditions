@@ -10,8 +10,8 @@ import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class Schema3097 extends IdentifierNormalizingSchema {
-  public Schema3097(int versionKey, Schema parent) {
+public class Schema3106 extends IdentifierNormalizingSchema {
+  public Schema3106(int versionKey, Schema parent) {
     super(versionKey, parent);
   }
 
