@@ -89,7 +89,7 @@
 
 提供*悦灵*
 
-通过指令```/carpetskyadditions removeDefault renewableAllays```可禁用该特性
+通过指令```/carpetskyadditions removeDefault allayableVexes```可禁用该特性
 
 使用5个音符盒对恼鬼弹奏正确的旋律可以将他们转化成悦灵。
 

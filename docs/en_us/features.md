@@ -88,7 +88,7 @@ Tall Flowers trades mimic Bedrock.
 
 Provides *Allays*
 
-Disable with ```/carpetskyadditions removeDefault renewableAllays```
+Disable with ```/carpetskyadditions removeDefault allayableVexes```
 
 Play Vexes the right sequence of 5 Note Block notes to convert them to Allays.
 

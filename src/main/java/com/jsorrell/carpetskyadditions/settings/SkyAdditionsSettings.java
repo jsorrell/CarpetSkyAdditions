@@ -201,11 +201,24 @@ public class SkyAdditionsSettings {
   @SkyAdditionsSetting("true")
   public static boolean renewableEchoShards = false;
 
+  private static class AllayableVexesFixer extends SettingFixer {
+    @Override
+    public String[] alternateNames() {
+      return new String[]{"renewableAllays"};
+    }
+
+    @Override
+    public FieldPair fix(FieldPair fieldPair) {
+      fieldPair.setName("allayableVexes");
+      return fieldPair;
+    }
+  }
+
   @Rule(
     desc = "Vexes can be converted into Allays with music",
     category = {FEATURE})
-  @SkyAdditionsSetting("true")
-  public static boolean renewableAllays = false;
+  @SkyAdditionsSetting(value = "true", fixer = AllayableVexesFixer.class)
+  public static boolean allayableVexes = false;
 
   @Rule(
     desc = "Dead Coral with Water flowing out of it erodes into Sand",

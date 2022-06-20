@@ -111,7 +111,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
 
   @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
   private void writeMixinNbt(NbtCompound nbt, CallbackInfo ci) {
-    if (SkyAdditionsSettings.renewableAllays) {
+    if (SkyAdditionsSettings.allayableVexes) {
       nbt.putInt(NUM_SUCCESSFUL_NOTES_KEY, numSuccessfulNotes);
     }
   }
@@ -130,7 +130,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
 
   @Override
   public void accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter) {
-    if (SkyAdditionsSettings.renewableAllays && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
+    if (SkyAdditionsSettings.allayableVexes && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
       BlockState noteBlockState = world.getBlockState(new BlockPos(originPos));
       if (noteBlockState.isOf(Blocks.NOTE_BLOCK)) {
         int note = noteBlockState.get(NoteBlock.NOTE);
