@@ -1,6 +1,8 @@
 # Carpet Sky Additions (Previously SkyBlock)
 
 [![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/CarpetSkyAdditions/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/CarpetSkyAdditions/releases)
+[![CurseForge downloads](http://cf.way2muchnoise.eu/full_633402_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/carpet-sky-additions)
+[![Modrinth downloads](https://img.shields.io/modrinth/dt/3oX3JnAP?label=Modrinth%20Downloads)](https://modrinth.com/mod/carpet-sky-additions)
 
 **English** | [中文](docs/zh_cn/README.md)
 
@@ -19,11 +21,14 @@ client.
 
 ## Installation
 
-This is a Fabric Mod and installed as such. It requires `fabric-carpet` and the `fabric-api` installed as well.
+[![Vanilla Sky: Everything from Nothing](http://cf.way2muchnoise.eu/title/624853.svg)](https://www.curseforge.com/minecraft/modpacks/vanilla-sky)
 
-Once installed, run `datapack enable "carpetskyadditions/skyblock"` to enable the datapack
+The easiest way to use this mod is to install the modpack called ***Vanilla Sky: Everything from Nothing*** which is
+available on CurseForge.
 
-[Detailed Installation Instructions](docs/en_us/installation.md)
+To create a new SkyBlock world, choose `World Type: SkyBlock` and enable the datapack `"carpetskyadditions/skyblock"`.
+
+For custom or server installations, follow the [Detailed Installation Instructions](docs/en_us/installation.md)
 
 ## Features
 

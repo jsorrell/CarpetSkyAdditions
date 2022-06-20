@@ -1,17 +1,24 @@
 # 地毯端空岛拓展
 
+[![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/CarpetSkyAdditions/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/CarpetSkyAdditions/releases)
+[![CurseForge downloads](http://cf.way2muchnoise.eu/full_633402_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/carpet-sky-additions)
+[![Modrinth downloads](https://img.shields.io/modrinth/dt/3oX3JnAP?label=Modrinth%20Downloads)](https://modrinth.com/mod/carpet-sky-additions)
+
 [English](/README.md) | **中文**
 
 SkyBlock应用是一个基于[skyrising/skyblock](https://github.com/skyrising/skyblock)
 发展而来的[fabric-carpet](https://github.com/gnembon/fabric-carpet)拓展模组。
 
-该模组致力于在原版基础上为玩家提供专业的的空岛游戏体验，这取决于玩家对于Minecraft游戏机制（以及特性）的了解。在某些时候诸如[Chunkbase](https://www.chunkbase.com/)或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)等外部工具会很有用，建议搭配他们来获得更好的游戏体验。
+该模组致力于在原版基础上为玩家提供专业的的空岛游戏体验，这取决于玩家对于Minecraft游戏机制（以及特性）的了解。在某些时候诸如[Chunkbase](https://www.chunkbase.com/)
+或[MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud)等外部工具会很有用，建议搭配他们来获得更好的游戏体验。
 
 尽管我已经尽力去将这方面的不良体验最小化，但某些时候游戏的进度依旧会比较折磨或者需要一定时间的挂机（AFK）。
 除非你在世界生成时选择了**空岛**或专门启用了该模组相关的特性，否则该模组不会对游戏内容进行任何修改。
 这意味着空岛世界和非空岛世界可以被随意切换而无需重启客户端。
 
 ## 安装
+
+[![Vanilla Sky: Everything from Nothing](http://cf.way2muchnoise.eu/title/624853.svg)](https://www.curseforge.com/minecraft/modpacks/vanilla-sky)
 
 这是一个Fabric模组并需要以其他模组类似的方式安装。
 
