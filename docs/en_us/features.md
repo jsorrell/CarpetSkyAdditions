@@ -55,13 +55,16 @@ A Thick Splash Potion will convert all Stone blocks hit by the splash into Deeps
 
 ---
 
-#### Netherrack Generates with Nether Portal Structures ####
+#### Netherrack and Nylium Generates with Nether Portal Structures ####
 
-Provides *Netherrack*
+Provides *Netherrack and Nylium*
 
 Disable with ```/carpetskyadditions removeDefault renewableNetherrack```
 
-When a Nether Portal generates in the void, in generates Netherrack around it, matching the behavior of Bedrock.
+When a Nether Portal generates in the void, it generates a few blocks of Netherrack or Nylium around it.
+
+Which block is generated depends on the Biome -- Crimson Nylium in Crimson Forests, Warped Nylium in Warped Forests,
+Netherrack elsewhere.
 
 ---
 

@@ -8,7 +8,7 @@
 
 只有少量事物会在伴随世界生成：
 + 一个小的出生点平台：
-  ![一个小出生点平台，包括草方块、菌丝、菌岩，以及一棵树](../screenshots/spawn_platform.png?raw=true "出生点平台")
+  ![一个小出生点平台，包括草方块，以及一棵树](../screenshots/spawn_platform.png?raw=true "出生点平台")
 
 + 末地传送门框架（除非属性`generateEndPortals`被设置为`false`）：
   ![末地传送门框架将得到保留](../screenshots/end_portal.png?raw=true "末地传送门框架")

@@ -4,8 +4,7 @@
 
 You want as many saplings planted as possible because at the beginning you will spend most of your time waiting for
 trees to grow.
-Make sure to keep your Nylium and Grass safe because it's all you're going to get.
-Maybe place a non-solid block on the Nylium so you don't accidentally destroy it.
+Make sure to keep your Grass safe because it's all you're going to get.
 
 ### 2. Get to a Low Y Level
 

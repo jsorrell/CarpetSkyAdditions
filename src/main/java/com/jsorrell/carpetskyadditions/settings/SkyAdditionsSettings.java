@@ -233,7 +233,7 @@ public class SkyAdditionsSettings {
   public static boolean hugeMushroomsSpreadMycelium = false;
 
   @Rule(
-    desc = "Netherrack generates as part of Nether Portals spawned floating",
+    desc = "Netherrack or Nylium generates as part of Nether Portals spawned floating",
     category = {FEATURE})
   @SkyAdditionsSetting("true")
   public static boolean renewableNetherrack = false;

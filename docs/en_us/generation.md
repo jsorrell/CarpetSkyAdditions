@@ -9,7 +9,7 @@ The only difference is that End Portal eyes are randomized -- this may change in
 Only a few things are generated:
 
 - A small starting island where you spawn:
-  ![small spawn platform with grass, both types of nylium, and a tree](../screenshots/spawn_platform.png?raw=true "Spawn Platform")
+  ![small spawn platform with grass and an oak tree](../screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
 - End Portal Frames (unless `generateEndPortals` is set to `false`):
   ![end portal frame remains](../screenshots/end_portal.png?raw=true "End Portal Frame")
