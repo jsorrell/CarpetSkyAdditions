@@ -15,7 +15,7 @@ Disable the built in datapack and enable your edited one instead.
 
 Provides *Lava*
 
-Disable by deleting  ```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village```
+Disable by deleting  ```data/minecraft/loot_tables/gameplay/hero_of_the_village```
 
 Lava Buckets can be received as a Hero of the Village gift from Armorers, Weaponsmiths, and Toolsmiths.
 
