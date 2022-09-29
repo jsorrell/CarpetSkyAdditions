@@ -2,7 +2,8 @@ package com.jsorrell.carpetskyadditions;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import carpet.settings.SettingsManager;
+import carpet.api.settings.SettingsManager;
+import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.gen.SkyAdditionsWorldPresets;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
@@ -19,6 +20,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.world.Heightmap;
 
+import java.util.Map;
+
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   private static SettingsManager settingsManager;
 
@@ -29,7 +32,6 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   @Override
   public void onInitialize() {
     settingsManager = new SettingsManager(Build.VERSION, Build.MODID, Build.NAME);
-    settingsManager.parseSettingsClass(SkyAdditionsSettings.class);
     // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
     SpawnRestrictionAccessor.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new PiglinBruteSpawnPredicate());
     SkyAdditionsWorldPresets.registerAll();
@@ -44,8 +46,18 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   }
 
   @Override
-  public SettingsManager customSettingsManager() {
+  public void onGameStarted() {
+    settingsManager.parseSettingsClass(SkyAdditionsSettings.class);
+  }
+
+  @Override
+  public SettingsManager extensionSettingsManager() {
     return settingsManager;
+  }
+
+  @Override
+  public Map<String, String> canHasTranslations(String lang) {
+    return Translations.getTranslationFromResourcePath(String.format("assets/%s/lang/%s.json", Build.MODID, lang));
   }
 
   @Override
