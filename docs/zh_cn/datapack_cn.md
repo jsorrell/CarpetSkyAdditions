@@ -13,7 +13,7 @@
 
 提供*熔岩*
 
-通过在数据包中删除```data -> minecraft -> loot_tables -> gameplay -> hero_of_the_village```可移除该特性
+通过在数据包中删除```data/minecraft/loot_tables/gameplay/hero_of_the_village```可移除该特性
 
 熔岩桶将可以作为村庄英雄的礼物从盔甲匠、武器匠和工具匠那里获得。
 
