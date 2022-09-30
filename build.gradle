@@ -28,7 +28,11 @@ dependencies {
   modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
   modImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
 
-  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+  modImplementation(fabricApi.module("fabric-object-builder-api-v1", project.fabric_api_version))
+  modImplementation(fabricApi.module("fabric-registry-sync-v0", project.fabric_api_version))
+  modImplementation(fabricApi.module("fabric-transitive-access-wideners-v1", project.fabric_api_version))
+
+  modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version))
 
   // javax.annotation.Nullable/Nonnull
   compileOnly "com.google.code.findbugs:jsr305:3.0.2"
