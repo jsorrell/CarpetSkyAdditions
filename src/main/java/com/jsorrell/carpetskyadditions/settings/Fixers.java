@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public final class Fixers {
+  // TODO should we also fix global defaults?
   public static void fixSettings(Path rootSavePath) throws IOException {
     Map<String, ArrayList<SettingFixer>> fixerMap = getFixerMap();
     if (fixerMap.size() == 0) return;

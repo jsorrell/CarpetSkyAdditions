@@ -59,11 +59,6 @@ public abstract class MinecraftServerMixin {
       } catch (IOException e) {
         SkyAdditionsSettings.LOG.error("Failed write default configs", e);
       }
-      try {
-        SkyBlockDefaults.writeDefaults(worldSavePath);
-      } catch (IOException e) {
-        SkyAdditionsSettings.LOG.error("Failed write default configs", e);
-      }
     }
   }
 
