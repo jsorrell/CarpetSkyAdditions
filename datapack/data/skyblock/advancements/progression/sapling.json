@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:progression/oak_log",
+  "parent": "skyblock:progression/log",
   "display": {
     "icon": {
       "item": "minecraft:oak_sapling"

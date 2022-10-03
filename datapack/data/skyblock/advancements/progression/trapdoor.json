@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/sapling",
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_trapdoor"
+    },
+    "title": {
+      "translate": "Crawling Down"
+    },
+    "description": {
+      "translate": "Crawl and place blocks on the bottom of top-side Trapdoors to build downward"
+    }
+  },
+  "criteria": {
+    "has_oak_trapdoor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:oak_trapdoor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

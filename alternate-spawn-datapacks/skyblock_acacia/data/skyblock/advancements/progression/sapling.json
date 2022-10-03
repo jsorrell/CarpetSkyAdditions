@@ -1,0 +1,28 @@
+{
+  "parent": "skyblock:progression/log",
+  "display": {
+    "icon": {
+      "item": "minecraft:acacia_sapling"
+    },
+    "title": {
+      "translate": "The Circle of Life"
+    },
+    "description": {
+      "translate": "Get your first Acacia Sapling to grow another tree"
+    }
+  },
+  "criteria": {
+    "has_acacia_sapling": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:acacia_sapling"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

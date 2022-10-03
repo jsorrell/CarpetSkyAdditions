@@ -43,6 +43,11 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
       .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), container, ResourcePackActivationType.NORMAL))
       .filter(success -> !success)
       .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in resource pack."));
+
+    FabricLoader.getInstance().getModContainer(Build.MODID)
+      .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), container, ResourcePackActivationType.NORMAL))
+      .filter(success -> !success)
+      .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in resource pack."));
   }
 
   @Override

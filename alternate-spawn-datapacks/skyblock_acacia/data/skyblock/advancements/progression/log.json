@@ -1,24 +1,24 @@
 {
-  "parent": "skyblock:progression/oak_sapling",
+  "parent": "skyblock:progression/root",
   "display": {
     "icon": {
-      "item": "minecraft:oak_trapdoor"
+      "item": "minecraft:acacia_log"
     },
     "title": {
-      "translate": "Crawling Down"
+      "translate": "The First of Many"
     },
     "description": {
-      "translate": "Crawl and place blocks on the bottom of top-side Trapdoors to build downward"
+      "translate": "Get your first Acacia Log"
     }
   },
   "criteria": {
-    "has_oak_trapdoor": {
+    "has_acacia_log": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:oak_trapdoor"
+              "minecraft:acacia_log"
             ]
           }
         ]

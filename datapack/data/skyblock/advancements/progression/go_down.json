@@ -1,5 +1,5 @@
 {
-  "parent": "skyblock:progression/oak_trapdoor",
+  "parent": "skyblock:progression/trapdoor",
   "display": {
     "icon": {
       "item": "minecraft:bedrock"

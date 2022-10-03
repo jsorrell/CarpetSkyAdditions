@@ -50,6 +50,11 @@ task embedDatapack(type: Copy) {
   into "$buildDir/generated/resources/resourcepacks/${project.datapack_name}"
 }
 
+task embedSpawnDatapacks(type: Copy) {
+  from './alternate-spawn-datapacks'
+  into "$buildDir/generated/resources/resourcepacks"
+}
+
 task fillBuildTemplate(type: Copy) {
   def df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
   df.setTimeZone(TimeZone.getTimeZone("UTC"))
@@ -70,6 +75,7 @@ task fillBuildTemplate(type: Copy) {
 
 sourceSets.main.resources.srcDir "$buildDir/generated/resources"
 processResources.dependsOn embedDatapack
+processResources.dependsOn embedSpawnDatapacks
 
 sourceSets.main.java.srcDir "$buildDir/generated/java"
 compileJava.dependsOn fillBuildTemplate
