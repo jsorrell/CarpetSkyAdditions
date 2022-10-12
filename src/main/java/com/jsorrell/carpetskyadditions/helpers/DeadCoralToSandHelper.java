@@ -18,7 +18,9 @@ public class DeadCoralToSandHelper {
   protected static final double BREAK_CHANCE = 0.03;
 
   public static int getSandDropDelay(Random random) {
-    return 40 + random.nextInt(40);
+    // 16-32s per sand, 24 on average
+    // This comes out to about the same as 1 villager in a max rate iron farm, which is also infinitely auto.
+    return 320 + random.nextInt(320);
   }
 
   public static boolean tryDropSand(BlockState state, World world, BlockPos pos, Random random) {
