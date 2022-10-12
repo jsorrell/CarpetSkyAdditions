@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DeadCoralMixin",
+    "DeadCoralWallFanBlockMixin",
     "DispenserBehaviorMixin",
     "DolphinEntityMixin",
     "EnchantmentScreenHandlerMixin",
