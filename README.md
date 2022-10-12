@@ -28,7 +28,8 @@ available on CurseForge.
 
 To create a new SkyBlock world, choose `World Type: SkyBlock` and enable the datapack `"carpetskyadditions/skyblock"`.
 
-If you want a harder challenge, also enable the datapack `"carpetskyadditions/skyblock_acacia"` to start with an Acacia
+If you want a harder challenge, ***also*** enable the datapack `"carpetskyadditions/skyblock_acacia"` to start with an
+Acacia
 tree instead of an Oak tree.
 
 For custom or server installations, follow the [Detailed Installation Instructions](docs/en_us/installation.md)

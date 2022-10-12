@@ -10,6 +10,7 @@
 - Start Minecraft and `Create New World`
 - Set Allow Cheats to `ON` so you will be able to enable/disable mod features
 - Enable the Datapack `carpetskyadditions/skyblock`
+- Optionally enable the Datapack `carpetskyadditions/skyblock_acacia` for an Acacia Tree start
 - Click on `More World Options...`
 - Choose `World Type: SkyBlock`
 - Create the World
