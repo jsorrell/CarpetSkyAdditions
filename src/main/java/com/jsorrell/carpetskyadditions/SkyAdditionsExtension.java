@@ -2,8 +2,7 @@ package com.jsorrell.carpetskyadditions;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import carpet.api.settings.SettingsManager;
-import carpet.utils.Translations;
+import carpet.settings.SettingsManager;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.gen.SkyAdditionsWorldPresets;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
@@ -19,8 +18,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.world.Heightmap;
-
-import java.util.Map;
 
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   private static SettingsManager settingsManager;
@@ -56,13 +53,8 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   }
 
   @Override
-  public SettingsManager extensionSettingsManager() {
+  public SettingsManager customSettingsManager() {
     return settingsManager;
-  }
-
-  @Override
-  public Map<String, String> canHasTranslations(String lang) {
-    return Translations.getTranslationFromResourcePath(String.format("assets/%s/lang/%s.json", Build.MODID, lang));
   }
 
   @Override

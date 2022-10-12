@@ -136,7 +136,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     ChunkPos.stream(chunkSectionPos.toChunkPos(), 1).forEach(curChunkPos -> {
       Chunk curChunk = world.getChunk(curChunkPos.x, curChunkPos.z);
       for (ChunkSection chunkSection : curChunk.getSectionArray()) {
-        chunkSection.getBiomeContainer().forEachValue(registryEntry -> biomeSet.add(registryEntry.value()));
+        chunkSection.getBiomeContainer().method_39793(registryEntry -> biomeSet.add(registryEntry.value()));
       }
     });
     biomeSet.retainAll(this.biomeSource.getBiomes().stream().map(RegistryEntry::value).collect(Collectors.toSet()));
