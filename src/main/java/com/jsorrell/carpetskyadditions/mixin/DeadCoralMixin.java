@@ -3,6 +3,7 @@ package com.jsorrell.carpetskyadditions.mixin;
 import com.jsorrell.carpetskyadditions.helpers.DeadCoralToSandHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CoralFanBlock;
 import net.minecraft.block.CoralParentBlock;
 import net.minecraft.block.DeadCoralBlock;
 import net.minecraft.block.DeadCoralFanBlock;
@@ -30,7 +31,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
 
   @Override
   public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-    if (SkyAdditionsSettings.coralErosion) {
+    if (SkyAdditionsSettings.coralErosion && !((CoralParentBlock) this instanceof CoralFanBlock)) {
       world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
     return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
