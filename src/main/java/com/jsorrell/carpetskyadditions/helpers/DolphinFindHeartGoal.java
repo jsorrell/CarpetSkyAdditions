@@ -2,13 +2,15 @@ package com.jsorrell.carpetskyadditions.helpers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BiomeTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldEvents;
@@ -32,8 +34,8 @@ public class DolphinFindHeartGoal extends Goal {
 
   @Nullable
   protected BlockPos determineTreasureLocation() {
-    // Set Y 0 to make it swim to ocean floor
-    BlockPos potentialTarget = new BlockPos(this.dolphin.getBlockX() + this.dolphin.world.random.nextInt(16) - 8, 0, this.dolphin.getBlockZ() + this.dolphin.world.random.nextInt(16) - 8);
+    // Set Y -64 to make it swim to ocean floor
+    BlockPos potentialTarget = new BlockPos(this.dolphin.getBlockX() + this.dolphin.world.random.nextInt(16) - 8, -64, this.dolphin.getBlockZ() + this.dolphin.world.random.nextInt(16) - 8);
     if (this.dolphin.world.getBiome(potentialTarget.withY(this.dolphin.getBlockY())).isIn(BiomeTags.IS_OCEAN)) {
       return potentialTarget;
     }
@@ -67,29 +69,44 @@ public class DolphinFindHeartGoal extends Goal {
     world.sendEntityStatus(this.dolphin, (byte) 38);
   }
 
+  private static void displaySuccessParticles(ServerWorld world, DolphinEntity dolphin) {
+    world.sendEntityStatus(dolphin, EntityStatuses.ADD_DOLPHIN_HAPPY_VILLAGER_PARTICLES);
+  }
+
+  private static void displayFailureParticles(ServerWorld world, DolphinEntity dolphin) {
+    world.spawnParticles(ParticleTypes.WITCH, dolphin.getParticleX(1), dolphin.getRandomBodyY() + 1.6, dolphin.getParticleZ(1), 5, world.random.nextGaussian() * 0.02, world.random.nextGaussian() * 0.02, world.random.nextGaussian() * 0.02, 0.2);
+  }
+
   @Override
   public void tick() {
+    if (!(this.dolphin.world instanceof ServerWorld world)) {
+      return;
+    }
     if (!this.diggingPhase && this.dolphin.getNavigation().isIdle()) {
       BlockPos heartPos = new BlockPos(this.dolphin.getTreasurePos().getX(), this.dolphin.getBlockY() - 1, this.dolphin.getTreasurePos().getZ());
-      if (this.dolphin.getPos().isInRange(Vec3d.ofBottomCenter(heartPos).add(0, 1, 0), 8) && VALID_OCEAN_FLOORS.contains(this.dolphin.world.getBlockState(heartPos).getBlock())) {
+      if (this.dolphin.getPos().isInRange(Vec3d.ofBottomCenter(heartPos).add(0, 1, 0), 8) && VALID_OCEAN_FLOORS.contains(world.getBlockState(heartPos).getBlock())) {
         this.diggingPhase = true;
         this.digCounter = 0;
       } else {
+        displayFailureParticles(world, this.dolphin);
         this.dolphin.setHasFish(false);
       }
     } else if (this.diggingPhase) {
-      if (this.digCounter == NUM_DIGS) {
-        if (this.dolphin.world.random.nextFloat() < CHANCE_TO_FIND_HEART_OF_THE_SEA) {
+      if (this.digCounter < NUM_DIGS) {
+        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, this.dolphin.getBlockPos(), Block.getRawIdFromState(this.dolphin.world.getBlockState(this.dolphin.getBlockPos().down())));
+        this.digCounter++;
+      } else {
+        if (world.random.nextFloat() < CHANCE_TO_FIND_HEART_OF_THE_SEA) {
           ItemStack heartOfTheSea = new ItemStack(Items.HEART_OF_THE_SEA);
           if (this.dolphin.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty() && this.dolphin.canPickupItem(heartOfTheSea)) {
             this.dolphin.equipStack(EquipmentSlot.MAINHAND, heartOfTheSea);
           }
+          displaySuccessParticles(world, this.dolphin);
+        } else {
+          displayFailureParticles(world, this.dolphin);
         }
         this.dolphin.setHasFish(false);
         this.diggingPhase = false;
-      } else {
-        this.dolphin.world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, this.dolphin.getBlockPos(), Block.getRawIdFromState(this.dolphin.world.getBlockState(this.dolphin.getBlockPos().down())));
-        this.digCounter++;
       }
     }
   }
