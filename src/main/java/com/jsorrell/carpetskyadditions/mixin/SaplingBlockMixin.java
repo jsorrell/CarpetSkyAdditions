@@ -6,6 +6,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -54,7 +55,7 @@ public abstract class SaplingBlockMixin extends PlantBlock {
     at = @At("HEAD"),
     cancellable = true
   )
-  private void stopBonemealingOnSand(BlockView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+  private void stopBonemealingOnSand(WorldView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
     if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
       cir.setReturnValue(false);
     }

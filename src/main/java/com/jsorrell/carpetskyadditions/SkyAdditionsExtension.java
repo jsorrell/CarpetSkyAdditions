@@ -5,7 +5,7 @@ import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
-import com.jsorrell.carpetskyadditions.gen.SkyAdditionsWorldPresets;
+import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
 import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLogic;
 import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
@@ -18,6 +18,8 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.world.Heightmap;
 
 import java.util.Map;
@@ -34,20 +36,17 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     settingsManager = new SettingsManager(Build.VERSION, Build.MODID, Build.NAME);
     // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
     SpawnRestrictionAccessor.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new PiglinBruteSpawnPredicate());
-    SkyAdditionsWorldPresets.registerAll();
+    Registry.register(Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
     SkyAdditionsCriteria.registerAll();
     MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
 
-    // Add the embedded datapack as an option on the create world screen
-    FabricLoader.getInstance().getModContainer(Build.MODID)
-      .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), container, ResourcePackActivationType.NORMAL))
-      .filter(success -> !success)
-      .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in resource pack."));
-
-    FabricLoader.getInstance().getModContainer(Build.MODID)
-      .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), container, ResourcePackActivationType.NORMAL))
-      .filter(success -> !success)
-      .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in resource pack."));
+    // Add the embedded datapacks as an option on the create world screen
+    for (String datapack : new String[]{Build.EMBEDDED_DATAPACK_NAME, "skyblock_acacia"}) {
+      FabricLoader.getInstance().getModContainer(Build.MODID)
+        .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(datapack), container, ResourcePackActivationType.NORMAL))
+        .filter(success -> !success)
+        .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"" + datapack + "\"."));
+    }
   }
 
   @Override

@@ -2,11 +2,7 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DeadCoralToSandHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CoralFanBlock;
-import net.minecraft.block.CoralParentBlock;
-import net.minecraft.block.DeadCoralBlock;
-import net.minecraft.block.DeadCoralFanBlock;
+import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -24,7 +20,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   @Override
   public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
     if (SkyAdditionsSettings.coralErosion) {
-      world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+      world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
     super.onBlockAdded(state, world, pos, oldState, notify);
   }
@@ -32,7 +28,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   @Override
   public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
     if (SkyAdditionsSettings.coralErosion && !((CoralParentBlock) this instanceof CoralFanBlock)) {
-      world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+      world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
     return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
   }
@@ -41,7 +37,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
     if (SkyAdditionsSettings.coralErosion) {
       if (DeadCoralToSandHelper.tryDropSand(state, world, pos, random)) {
-        world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));
+        world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));
       }
     }
   }

@@ -4,32 +4,29 @@ import com.google.common.base.Suppliers;
 import com.jsorrell.carpetskyadditions.mixin.JigsawStructureAccessor;
 import com.jsorrell.carpetskyadditions.mixin.SinglePoolElementAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructurePieceType;
-import net.minecraft.structure.StructureSet;
 import net.minecraft.structure.pool.SinglePoolElement;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
-import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
-import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.math.random.ChunkRandom;
 import net.minecraft.util.math.random.RandomSeed;
 import net.minecraft.util.math.random.Xoroshiro128PlusPlusRandom;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryEntryList;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
@@ -62,30 +59,21 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
-  private final Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry;
   private final Supplier<List<PlacedFeatureIndexer.IndexedFeatures>> indexedFeaturesListSupplier;
 
   public static final Codec<SkyBlockChunkGenerator> CODEC =
     RecordCodecBuilder.create(
       instance ->
-        NoiseChunkGenerator.createStructureSetRegistryGetter(instance).and(
-            instance
-              .group(
-                RegistryOps.createRegistryCodec(Registry.NOISE_KEY).forGetter(generator -> generator.noiseRegistry),
-                (BiomeSource.CODEC.fieldOf("biome_source")).forGetter(ChunkGenerator::getBiomeSource),
-                (ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings")).forGetter(SkyBlockChunkGenerator::getSettings)))
+        instance
+          .group(
+            (BiomeSource.CODEC.fieldOf("biome_source")).forGetter(ChunkGenerator::getBiomeSource),
+            (ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings")).forGetter(SkyBlockChunkGenerator::getSettings))
           .apply(instance, instance.stable(SkyBlockChunkGenerator::new)));
 
-  public SkyBlockChunkGenerator(Registry<StructureSet> structureRegistry, Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseRegistry,
-                                BiomeSource biomeSource, RegistryEntry<ChunkGeneratorSettings> settings) {
-    super(structureRegistry, noiseRegistry, biomeSource, settings);
-    // Duplicate noiseRegistry and indexedFeaturesListSupplier from super b/c it has private access
-    this.noiseRegistry = noiseRegistry;
+  public SkyBlockChunkGenerator(BiomeSource biomeSource, RegistryEntry<ChunkGeneratorSettings> settings) {
+    super(biomeSource, settings);
+    // Duplicate indexedFeaturesListSupplier from super b/c it has private access
     this.indexedFeaturesListSupplier = Suppliers.memoize(() -> PlacedFeatureIndexer.collectIndexedFeatures(List.copyOf(biomeSource.getBiomes()), biomeEntry -> biomeEntry.value().getGenerationSettings().getFeatures(), true));
-  }
-
-  public RegistryEntry<ChunkGeneratorSettings> getSettings() {
-    return this.settings;
   }
 
   @Override
@@ -124,7 +112,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
     ChunkSectionPos chunkSectionPos = ChunkSectionPos.from(chunkPos, world.getBottomSectionCoord());
     BlockPos minChunkPos = chunkSectionPos.getMinPos();
 
-    Registry<Structure> structureRegistry = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
+    Registry<Structure> structureRegistry = world.getRegistryManager().get(RegistryKeys.STRUCTURE);
     Map<Integer, List<Structure>> structuresByStep = structureRegistry.stream().collect(Collectors.groupingBy(structureType -> structureType.getFeatureGenerationStep().ordinal()));
     List<PlacedFeatureIndexer.IndexedFeatures> indexedFeatures = this.indexedFeaturesListSupplier.get();
 
@@ -143,7 +131,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
     int numIndexedFeatures = indexedFeatures.size();
     try {
-      Registry<PlacedFeature> placedFeatures = world.getRegistryManager().get(Registry.PLACED_FEATURE_KEY);
+      Registry<PlacedFeature> placedFeatures = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE);
       int numSteps = Math.max(GenerationStep.Feature.values().length, numIndexedFeatures);
       for (int genStep = 0; genStep < numSteps; ++genStep) {
         int m = 0;
@@ -256,7 +244,7 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
   }
 
   public NoiseConfig getNoiseConfig(StructureWorldAccess world) {
-    return NoiseConfig.create(this.settings.value(), world.getRegistryManager().get(Registry.NOISE_KEY), world.getSeed());
+    return NoiseConfig.create(this.getSettings().value(), world.getRegistryManager().get(RegistryKeys.NOISE_PARAMETERS).getReadOnlyWrapper(), world.getSeed());
   }
 
   public int getHeightOnGround(int x, int z, Heightmap.Type heightmap, StructureWorldAccess world) {
@@ -265,9 +253,5 @@ public class SkyBlockChunkGenerator extends NoiseChunkGenerator {
 
   public int getHeightInGround(int x, int z, Heightmap.Type heightmap, StructureWorldAccess world) {
     return super.getHeight(x, z, heightmap, world, getNoiseConfig(world)) - 1;
-  }
-
-  static {
-    Registry.register(Registry.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
   }
 }

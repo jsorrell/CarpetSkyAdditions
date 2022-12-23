@@ -5,8 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
+import net.minecraft.entity.ai.brain.task.MultiTickTask;
 import net.minecraft.entity.ai.brain.task.RamImpactTask;
-import net.minecraft.entity.ai.brain.task.Task;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.GoatEntity;
 import net.minecraft.item.ItemStack;
@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Mixin(RamImpactTask.class)
-public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends Task<E> {
+public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends MultiTickTask<E> {
 
   @Shadow
   @Final
@@ -51,7 +51,7 @@ public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends Task
     at =
     @At(
       value = "INVOKE",
-      target = "Lnet/minecraft/entity/ai/brain/Brain;getOptionalMemory(Lnet/minecraft/entity/ai/brain/MemoryModuleType;)Ljava/util/Optional;",
+      target = "Lnet/minecraft/entity/ai/brain/Brain;getOptionalRegisteredMemory(Lnet/minecraft/entity/ai/brain/MemoryModuleType;)Ljava/util/Optional;",
       ordinal = 0),
     cancellable = true)
   private void breakOpenNetherWart(ServerWorld world, GoatEntity rammer, long time, CallbackInfo ci) {

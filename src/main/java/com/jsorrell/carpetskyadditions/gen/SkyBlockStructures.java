@@ -193,7 +193,7 @@ public class SkyBlockStructures {
         world.setBlockState(spawnerAbsolutePos, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_LISTENERS);
         BlockEntity blockEntity = world.getBlockEntity(spawnerAbsolutePos);
         if (blockEntity instanceof MobSpawnerBlockEntity spawnerEntity) {
-          spawnerEntity.getLogic().setEntityId(spawnerType);
+          spawnerEntity.setEntityType(spawnerType, random);
         }
       }
     }

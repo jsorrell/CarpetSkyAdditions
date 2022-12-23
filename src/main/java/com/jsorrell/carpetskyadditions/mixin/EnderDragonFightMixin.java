@@ -56,7 +56,7 @@ public class EnderDragonFightMixin {
       if (this.previouslyKilled && this.world.getBlockState(shulkerPosition).isOf(Blocks.AIR)) {
         ShulkerEntity shulker =
           EntityType.SHULKER.create(
-            world, null, null, null, shulkerPosition, SpawnReason.EVENT, true, false);
+            world, null, null, shulkerPosition, SpawnReason.EVENT, true, false);
         if (shulker != null && world.isSpaceEmpty(shulker)) {
           world.spawnEntity(shulker);
         }

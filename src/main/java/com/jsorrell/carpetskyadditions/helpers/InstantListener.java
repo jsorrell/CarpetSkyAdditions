@@ -2,11 +2,11 @@ package com.jsorrell.carpetskyadditions.helpers;
 
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.GameEventTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.GameEventTags;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
@@ -39,17 +39,16 @@ public class InstantListener implements GameEventListener {
   }
 
   @Override
-  public boolean listen(ServerWorld world, GameEvent.Message event) {
+  public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d originPos) {
     if (onCooldown) {
       return false;
     }
 
-    if (!callback.canAccept(event.getEvent(), event.getEmitter())) {
+    if (!callback.canAccept(event, emitter)) {
       return false;
     }
 
-    Vec3d originPos = event.getEmitterPos();
-    callback.accept(world, this, originPos, event.getEvent(), event.getEmitter());
+    callback.accept(world, this, originPos, event, emitter);
     onCooldown = true;
     return true;
   }

@@ -10,6 +10,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.loot.LootTables;
+import net.minecraft.registry.CombinedDynamicRegistries;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.ServerDynamicRegistryType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
@@ -42,6 +45,10 @@ public abstract class MinecraftServerMixin {
   @Shadow
   public abstract Path getSavePath(WorldSavePath worldSavePath);
 
+  @Shadow
+  @Final
+  private CombinedDynamicRegistries<ServerDynamicRegistryType> combinedDynamicRegistries;
+
   @Inject(method = "loadWorld", at = @At("HEAD"))
   private void fixSettingsFile(CallbackInfo ci) {
     Path worldSavePath = this.getSavePath(WorldSavePath.ROOT);
@@ -53,7 +60,8 @@ public abstract class MinecraftServerMixin {
     }
 
     // Write defaults
-    if (saveProperties.getGeneratorOptions().getDimensions().getOrThrow(DimensionOptions.OVERWORLD).getChunkGenerator() instanceof SkyBlockChunkGenerator && !this.saveProperties.getMainWorldProperties().isInitialized()) {
+    if (this.combinedDynamicRegistries.getCombinedRegistryManager().get(RegistryKeys.DIMENSION).getOrThrow(DimensionOptions.OVERWORLD).chunkGenerator() instanceof SkyBlockChunkGenerator &&
+      !this.saveProperties.getMainWorldProperties().isInitialized()) {
       try {
         SkyBlockDefaults.writeDefaults(worldSavePath);
       } catch (IOException e) {

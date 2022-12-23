@@ -23,7 +23,7 @@ public class DeadCoralWallFanBlockMixin extends DeadCoralFanBlock {
   @Inject(method = "getStateForNeighborUpdate", at = @At(value = "HEAD"))
   private void scheduleTickOnBlockUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir) {
     if (SkyAdditionsSettings.coralErosion && !((DeadCoralWallFanBlock) (Object) this instanceof CoralWallFanBlock)) {
-      world.createAndScheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+      world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
     }
   }
 }

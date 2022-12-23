@@ -8,11 +8,11 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Util;
 import net.minecraft.util.collection.Weighting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class AncientCityEnchantingTableHelper {
     Item item = stack.getItem();
     boolean isBook = stack.isOf(Items.BOOK);
     block0:
-    for (Enchantment enchantment : Registry.ENCHANTMENT) {
+    for (Enchantment enchantment : Registries.ENCHANTMENT) {
       // Force allow Swift Sneak
       if (!enchantment.equals(Enchantments.SWIFT_SNEAK)) {
         if (enchantment.isTreasure() && !treasureAllowed || !enchantment.isAvailableForRandomSelection()) continue;

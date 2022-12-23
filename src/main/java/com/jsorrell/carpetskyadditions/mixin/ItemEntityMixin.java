@@ -40,7 +40,7 @@ public abstract class ItemEntityMixin extends Entity {
   private void compactCoalToDiamonds(
       DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
     if (SkyAdditionsSettings.renewableDiamonds) {
-      if (source == DamageSource.ANVIL) {
+      if (source.isFallingBlock() && source.name.equals("anvil")) {
         ItemStack stack = this.shadow$getStack();
         if (canCompactToDiamonds(stack)) {
           this.shadow$setStack(new ItemStack(Items.DIAMOND));
