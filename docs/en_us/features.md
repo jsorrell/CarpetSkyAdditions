@@ -6,7 +6,7 @@ Provides additional *Sand* and *Red Sand*
 
 Disable with ```/carpetskyadditions removeDefault coralErosion```
 
-Dead Coral and Dead Coral Fans with water flowing out of them will spawn Sand every few seconds.
+Dead Coral and Dead Coral Fans with water flowing out of them will spawn a Sand item every 16-32 seconds.
 Fire versions spawn Red Sand instead.
 
 The Coral has a 3% chance to break after spawning Sand.
@@ -49,7 +49,7 @@ Disable with ```/carpetskyadditions removeDefault renewableDeepslate```
 
 Disable only splash with ```/carpetskyadditions setDefault renewableDeepslate no_splash```
 
-Right clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
+Right-clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
 
 A Thick Splash Potion will convert all Stone blocks hit by the splash into Deepslate.
 
@@ -122,7 +122,7 @@ Provides *Diamonds*
 
 Disable with ```/carpetskyadditions removeDefault renewableDiamonds```
 
-A Falling Anvil crushes a stack of Coal Blocks into a Diamond.
+A Falling Anvil compresses a stack of Coal Blocks into a Diamond.
 
 ---
 
@@ -154,6 +154,8 @@ Provides *Hearts of the Sea*
 Disable with ```/carpetskyadditions removeDefault renewableHeartsOfTheSea```
 
 When a Dolphin is fed a fish, they may dig a Heart of the Sea out of Sand or Gravel on the sea floor.
+
+Make sure to give the Dolphin enough space to search.
 
 Must be in an Ocean biome -- they're Hearts of the Sea, not Hearts of the Jungle.
 

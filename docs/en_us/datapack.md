@@ -7,7 +7,7 @@ download the
 datapack [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fjsorrell%2FCarpetSkyAdditions%2Ftree%2FHEAD%2Fdatapack)
 and edit to your liking.
 
-Disable the built in datapack and enable your edited one instead.
+Disable the built-in datapack and enable your edited one instead.
 
 ---
 
@@ -94,6 +94,8 @@ All ores can be crafted in a smithing table using a block of the base stone mate
 
 For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
 
+All ores drop themselves even without Silk Touch to prevent exploits.
+
 ---
 
 #### Horse Armor is Craftable ####
@@ -166,12 +168,13 @@ Provides *Tall Grass and Large Ferns*
 
 Disable by deleting  ```data/minecraft/tags/blocks/enderman_holdable.json```
 
-Endermen who have picked up Tall Grass and Large Ferns can be killed to retrieve those as an item.
+Endermen who have picked up Tall Grass and Large Ferns can be killed to retrieve those as an item,
+mimicking pre-1.19.3 behavior.
 
 The mod fixes Endermen's handling of double-tall blocks, allowing them to be correctly placed down without being
 destroyed.
 
-However, it is not a client side mod, so the vanilla rendering bug is not
+However, this is not a client side mod, so the vanilla rendering bug is not
 fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
 
 ---
