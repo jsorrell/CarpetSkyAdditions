@@ -1,0 +1,11 @@
+files:
+  - source: /src/main/resources/assets/carpetskyadditions/lang/en_us.json
+    translation: /src/main/resources/assets/carpetskyadditions/%locale_with_underscore%.json
+  - source: /datapack-translations/assets/minecraft/lang/en_us.json
+    translation: /datapack-translations/assets/minecraft/lang/%locale_with_underscore%.json
+  - source: /datapack-translations/assets/skyblock/lang/en_us.json
+    translation: /datapack-translations/assets/skyblock/lang/%locale_with_underscore%.json
+  - source: /README.md
+    translation: /docs/%locale_with_underscore%/README.md
+  - source: /docs/en_us/*.md
+    translation: /docs/%locale_with_underscore%/%original_file_name%
