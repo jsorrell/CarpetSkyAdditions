@@ -1,10 +1,11 @@
-# Carpet Sky Additions (Previously SkyBlock)
+# Carpet Sky Additions
 
 [![GitHub downloads](https://img.shields.io/github/downloads/jsorrell/CarpetSkyAdditions/total?label=Github%20downloads&logo=github)](https://github.com/jsorrell/CarpetSkyAdditions/releases)
 [![CurseForge downloads](http://cf.way2muchnoise.eu/full_633402_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/carpet-sky-additions)
 [![Modrinth downloads](https://img.shields.io/modrinth/dt/3oX3JnAP?label=Modrinth%20Downloads)](https://modrinth.com/mod/carpet-sky-additions)
 
-**English** | [中文](docs/zh_cn/README.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](/README.md)
+[![zh_cn](https://img.shields.io/badge/lang-zh--cn-yellow.svg)](/docs/zh_cn/README.md)
 
 Carpet Sky Additions is a module for [fabric-carpet](https://github.com/gnembon/fabric-carpet)
 originally based on [skyrising/skyblock](https://github.com/skyrising/skyblock).
