@@ -9,7 +9,7 @@ Make sure to keep your Grass safe because it's all you're going to get.
 ### 2. Get to a Low Y Level
 
 You can build downward by crawling (using trapdoors) and placing blocks on the bottom of top-half slabs.
-At a low Y level, mobs spawn faster and you're going to need a lot of mob spawns.
+At a low Y level, mobs spawn faster, and you're going to need a lot of mob spawns.
 Also, Phantoms won't spawn when you're below sea level.
 
 ### 3. Start Spawning Farm Animals
