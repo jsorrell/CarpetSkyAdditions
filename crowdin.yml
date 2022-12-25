@@ -1,6 +1,6 @@
 files:
   - source: /src/main/resources/assets/carpetskyadditions/lang/en_us.json
-    translation: /src/main/resources/assets/carpetskyadditions/%locale_with_underscore%.json
+    translation: /src/main/resources/assets/carpetskyadditions/lang/%locale_with_underscore%.json
   - source: /datapack-translations/assets/minecraft/lang/en_us.json
     translation: /datapack-translations/assets/minecraft/lang/%locale_with_underscore%.json
   - source: /datapack-translations/assets/skyblock/lang/en_us.json
