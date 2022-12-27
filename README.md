@@ -76,6 +76,11 @@ obtainable in SkyBlock generation.*
 
 If you get stuck, a general progression walkthrough is available [here](docs/en_us/progression.md).
 
+## Translations
+
+The mod and the datapack are available for translation using [CrowdIn](https://crowdin.com/project/carpetskyadditions).
+If you are able to add translations, your help would be much appreciated.
+
 ## Acknowledgements
 
 - [@skyrising](https://github.com/skyrising/skyblock) for the initial mod idea
