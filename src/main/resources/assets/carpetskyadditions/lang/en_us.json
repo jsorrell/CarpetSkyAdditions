@@ -26,6 +26,7 @@
   "carpetskyadditions.rule.coralErosion.desc": "Makes Dead Coral erode into Sand when Water flows out of it",
   "carpetskyadditions.rule.hugeMushroomsSpreadMycelium.desc": "Makes Mushrooms spread Mycelium onto dirt-like blocks nearby when Bonemealed into Huge Mushrooms",
   "carpetskyadditions.rule.renewableNetherrack.desc": "Makes Netherrack or Nylium generate around Nether Portals that generate midair",
+  "carpetskyadditions.rule.renewableNetherrack.extra.0": "What generates depends on the biome, with Nyliums generating in their respective forests and Netherrack elsewhere",
   "carpetskyadditions.rule.renewableDeepslate.desc": "Allows Thick Potions to convert Stone into Deepslate, either by right-clicking or using a splash potion",
   "carpetskyadditions.rule.renewableDeepslate.extra.0": "With no_splash: splash potion conversion is disabled.",
   "carpetskyadditions.rule.renewableSwiftSneak.desc": "Allows Enchanting Tables near Wardens to enchant with Swift Sneak",
