@@ -178,7 +178,8 @@ Amethyst.
 ---->
 ![Calcite surrounded by smooth basalt](../screenshots/amethyst_step_3_240.png?raw=true "Budding Amethyst Generation Step 3")
 
-After some time (2 hours on average), the Lava in the center will turn into a Budding Amethyst.
+After some time (1/100 chance on a random tick — ~2 hours on average), the Lava in the center will turn into a Budding
+Amethyst.
 
 ![Lava has become budding amethyst](../screenshots/amethyst_result_240.png?raw=true "Budding Amethyst Generation Result")
 
