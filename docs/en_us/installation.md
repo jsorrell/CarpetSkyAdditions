@@ -29,4 +29,6 @@ The mod is only required server-side.
 - Open `server.properties`
 - Change `level-type=minecraft\:normal` to `level-type=carpetskyadditions\:skyblock`
 - Move `carpetskyadditions\:skyblock` from `initial-disabled-packs` to `initial-enabled-packs`
+- Optionally move `carpetskyadditions\:skyblock_acacia` from `initial-disabled-packs` to `initial-enabled-packs` for an
+  Acacia Tree start
 - Start the server
