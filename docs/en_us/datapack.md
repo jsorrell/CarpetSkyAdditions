@@ -84,17 +84,21 @@ Matching Bedrock, Cocoa Beans can be obtained as a junk item when fishing in a J
 
 ---
 
-#### Ores are Craftable in a Smithing Table ####
+#### Ores are Craftable ####
 
 Provides *ores*
 
-Disable by deleting  ```data/skyblock/recipes/*_ore_smithing.json```
+Disable by deleting  ```data/skyblock/recipes/*_ore.json```
 
-All ores can be crafted in a smithing table using a block of the base stone material and a block of the ore's material.
+All ores can be crafted using a block of the base stone material and four of the ore's material.
 
-For example, Nether Gold Ore can be crafted with Netherrack and a Block of Gold.
+The recipe requires ingots, Nether Quartz, Coal, Diamonds, or Emeralds.
 
-All ores drop themselves even without Silk Touch to prevent exploits.
+*Copper, Redstone, and Lapis Lazuli require blocks.*
+
+For example, Nether Gold Ore can be crafted with Netherrack in the center and Gold Ingots on the four sides.
+
+![4 Gold Ingots around Netherrack gives Nether Gold Ore](../screenshots/ore_recipe.png?raw=true "Ore Recipe")
 
 ---
 
