@@ -50,11 +50,11 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     // Add the embedded datapacks as an option on the create world screen
     ModContainer modContainer = FabricLoader.getInstance().getModContainer(Build.MODID).get();
 
-    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), modContainer, Text.of("Carpet Sky Additions: SkyBlock"), config.enableDatapackByDefault ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), modContainer, Text.translatable("datapack.carpetskyadditions.skyblock"), config.enableDatapackByDefault ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
       SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"" + Build.EMBEDDED_DATAPACK_NAME + "\".");
     }
 
-    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), modContainer, Text.of("Carpet Sky Additions: Acacia"), config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.Acacia ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), modContainer, Text.translatable("datapack.carpetskyadditions.acacia"), config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.Acacia ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
       SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");
     }
   }

@@ -41,5 +41,7 @@
   "text.autoconfig.carpetskyadditions.option.enableDatapackByDefault.@Tooltip": "Changing requires client restart",
   "text.autoconfig.carpetskyadditions.option.initialTreeType": "The initial tree type that is selected by default",
   "text.autoconfig.carpetskyadditions.option.initialTreeType.@Tooltip": "Changing requires client restart",
-  "text.autoconfig.carpetskyadditions.option.autoEnableDefaultSettings": "Automatically enable default settings when first loading a SkyBlock world"
+  "text.autoconfig.carpetskyadditions.option.autoEnableDefaultSettings": "Automatically enable default settings when first loading a SkyBlock world",
+  "datapack.carpetskyadditions.skyblock": "Carpet Sky Additions: SkyBlock",
+  "datapack.carpetskyadditions.acacia": "Carpet Sky Additions: Acacia"
 }
