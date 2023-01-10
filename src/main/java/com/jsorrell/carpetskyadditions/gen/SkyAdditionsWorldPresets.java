@@ -35,6 +35,6 @@ public class SkyAdditionsWorldPresets {
 
   public static RegistryKey<WorldPreset> getInitiallySelectedPreset() {
     SkyAdditionsConfig config = AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
-    return config.skyBlockWorldDefault ? SkyAdditionsWorldPresets.SKYBLOCK : WorldPresets.DEFAULT;
+    return config.defaultToSkyBlockWorld ? SkyAdditionsWorldPresets.SKYBLOCK : WorldPresets.DEFAULT;
   }
 }
