@@ -25,25 +25,29 @@ public abstract class ItemEntityMixin extends Entity {
   @Shadow(prefix = "shadow$")
   public abstract ItemStack shadow$getStack();
 
-  @Shadow(prefix = "shadow$")
-  public abstract void shadow$setStack(ItemStack stack);
+  private void compactToDiamonds() {
+    int numCoalBlocks = this.shadow$getStack().getCount();
+    int numDiamonds = numCoalBlocks / 64;
+    int remainingCoalBlocks = numCoalBlocks % 64;
+    ItemEntity diamondEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), new ItemStack(Items.DIAMOND, numDiamonds));
+    diamondEntity.setToDefaultPickupDelay();
+    this.world.spawnEntity(diamondEntity);
 
-  private boolean canCompactToDiamonds(ItemStack stack) {
-    return Items.COAL_BLOCK.equals(stack.getItem()) && stack.getCount() == stack.getMaxCount();
+    this.shadow$getStack().setCount(remainingCoalBlocks);
   }
 
   @Inject(
-      method = "damage",
-      locals = LocalCapture.CAPTURE_FAILSOFT,
-      cancellable = true,
-      at = @At(value = "HEAD"))
+    method = "damage",
+    locals = LocalCapture.CAPTURE_FAILSOFT,
+    cancellable = true,
+    at = @At(value = "HEAD"))
   private void compactCoalToDiamonds(
       DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
     if (SkyAdditionsSettings.renewableDiamonds) {
       if (source == DamageSource.ANVIL) {
         ItemStack stack = this.shadow$getStack();
-        if (canCompactToDiamonds(stack)) {
-          this.shadow$setStack(new ItemStack(Items.DIAMOND));
+        if (Items.COAL_BLOCK.equals(stack.getItem()) && 64 <= stack.getCount()) {
+          this.compactToDiamonds();
           cir.setReturnValue(true);
         }
       }
