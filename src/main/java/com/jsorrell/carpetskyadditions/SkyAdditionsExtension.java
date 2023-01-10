@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
+import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
@@ -11,15 +12,19 @@ import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLog
 import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.world.Heightmap;
 
 import java.util.Map;
@@ -34,18 +39,26 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   @Override
   public void onInitialize() {
     settingsManager = new SettingsManager(Build.VERSION, Build.MODID, Build.NAME);
+
+    AutoConfig.register(SkyAdditionsConfig.class, Toml4jConfigSerializer::new);
+
     // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
     SpawnRestrictionAccessor.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new PiglinBruteSpawnPredicate());
     Registry.register(Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
     SkyAdditionsCriteria.registerAll();
     MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
 
+    SkyAdditionsConfig config = AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
+
     // Add the embedded datapacks as an option on the create world screen
-    for (String datapack : new String[]{Build.EMBEDDED_DATAPACK_NAME, "skyblock_acacia"}) {
-      FabricLoader.getInstance().getModContainer(Build.MODID)
-        .map(container -> ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(datapack), container, ResourcePackActivationType.NORMAL))
-        .filter(success -> !success)
-        .ifPresent(success -> SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"" + datapack + "\"."));
+    ModContainer modContainer = FabricLoader.getInstance().getModContainer(Build.MODID).get();
+
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), modContainer, Text.of("Carpet Sky Additions: SkyBlock"), config.enableDatapackByDefault ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+      SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"" + Build.EMBEDDED_DATAPACK_NAME + "\".");
+    }
+
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), modContainer, Text.of("Carpet Sky Additions: Acacia"), config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.Acacia ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+      SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");
     }
   }
 

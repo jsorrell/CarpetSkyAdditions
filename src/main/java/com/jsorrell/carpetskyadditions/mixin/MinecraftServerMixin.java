@@ -1,10 +1,12 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
+import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockStructures;
 import com.jsorrell.carpetskyadditions.settings.Fixers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.settings.SkyBlockDefaults;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -56,11 +58,13 @@ public abstract class MinecraftServerMixin {
     try {
       Fixers.fixSettings(worldSavePath);
     } catch (IOException e) {
-      SkyAdditionsSettings.LOG.error("Failed update config", e);
+      SkyAdditionsSettings.LOG.error("Failed to update config", e);
     }
 
     // Write defaults
-    if (this.combinedDynamicRegistries.getCombinedRegistryManager().get(RegistryKeys.DIMENSION).getOrThrow(DimensionOptions.OVERWORLD).chunkGenerator() instanceof SkyBlockChunkGenerator &&
+    SkyAdditionsConfig config = AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
+    if (config.autoEnableDefaultSettings &&
+      this.combinedDynamicRegistries.getCombinedRegistryManager().get(RegistryKeys.DIMENSION).getOrThrow(DimensionOptions.OVERWORLD).chunkGenerator() instanceof SkyBlockChunkGenerator &&
       !this.saveProperties.getMainWorldProperties().isInitialized()) {
       try {
         SkyBlockDefaults.writeDefaults(worldSavePath);
