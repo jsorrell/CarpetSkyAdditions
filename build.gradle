@@ -9,6 +9,12 @@ repositories {
   maven {
     url 'https://masa.dy.fi/maven'
   }
+  maven {
+    url "https://maven.shedaniel.me/"
+  }
+  maven {
+    url "https://maven.terraformersmc.com/releases/"
+  }
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -33,6 +39,11 @@ dependencies {
   modImplementation(fabricApi.module("fabric-transitive-access-wideners-v1", project.fabric_api_version))
 
   modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version))
+
+  modApi("me.shedaniel.cloth:cloth-config-fabric:8.2.88") {
+    exclude(group: "net.fabricmc.fabric-api")
+  }
+  modApi "com.terraformersmc:modmenu:4.1.2"
 
   // javax.annotation.Nullable/Nonnull
   compileOnly "com.google.code.findbugs:jsr305:3.0.2"

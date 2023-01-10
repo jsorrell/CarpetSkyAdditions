@@ -1,10 +1,12 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
+import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockStructures;
 import com.jsorrell.carpetskyadditions.settings.Fixers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.settings.SkyBlockDefaults;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -18,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.SaveProperties;
-import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.level.ServerWorldProperties;
 import org.spongepowered.asm.mixin.Final;
@@ -49,11 +50,14 @@ public abstract class MinecraftServerMixin {
     try {
       Fixers.fixSettings(worldSavePath);
     } catch (IOException e) {
-      SkyAdditionsSettings.LOG.error("Failed update config", e);
+      SkyAdditionsSettings.LOG.error("Failed to update config", e);
     }
 
     // Write defaults
-    if (saveProperties.getGeneratorOptions().getDimensions().getOrThrow(DimensionOptions.OVERWORLD).getChunkGenerator() instanceof SkyBlockChunkGenerator && !this.saveProperties.getMainWorldProperties().isInitialized()) {
+    SkyAdditionsConfig config = AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
+    if (config.autoEnableDefaultSettings &&
+      saveProperties.getGeneratorOptions().getChunkGenerator() instanceof SkyBlockChunkGenerator &&
+      !this.saveProperties.getMainWorldProperties().isInitialized()) {
       try {
         SkyBlockDefaults.writeDefaults(worldSavePath);
       } catch (IOException e) {
