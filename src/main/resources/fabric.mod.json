@@ -8,14 +8,19 @@
     "jsorrell"
   ],
   "contact": {
+    "homepage": "https://github.com/jsorrell/CarpetSkyAdditions",
     "sources": "https://github.com/jsorrell/CarpetSkyAdditions",
     "issues": "https://github.com/jsorrell/CarpetSkyAdditions/issues"
   },
   "license": "MIT",
+  "icon": "assets/carpetskyadditions/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "com.jsorrell.carpetskyadditions.SkyAdditionsExtension"
+    ],
+    "modmenu": [
+      "com.jsorrell.carpetskyadditions.config.ModMenuIntegration"
     ]
   },
   "mixins": [

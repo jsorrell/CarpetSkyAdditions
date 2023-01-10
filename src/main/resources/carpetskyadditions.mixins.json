@@ -27,6 +27,7 @@
     "PotionEntityMixin",
     "PotionItemMixin",
     "RamImpactTaskMixin",
+    "ResourceManagerHelperImplMixin",
     "SaplingBlockMixin",
     "Schema2551Mixin",
     "Schema2832Mixin",
@@ -43,5 +44,9 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "CreateWorldScreenMixin",
+    "WorldPresetsMixin"
+  ]
 }
