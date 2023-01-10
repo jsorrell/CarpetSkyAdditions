@@ -49,6 +49,7 @@
   "Get a pair of Elytra from a flying Endermite": "Get a pair of Elytra from a flying Endermite",
   "Emerald City": "Emerald City",
   "Trade for Emeralds": "Trade for Emeralds",
+  "Get Emeralds from Foxes": "Get Emeralds from Foxes",
   "Hello Kitty": "Hello Kitty",
   "Receive an Enchanted Golden Apple from a Cat in the morning": "Receive an Enchanted Golden Apple from a Cat in the morning",
   "Who Planted This Here?": "Who Planted This Here?",
@@ -105,8 +106,10 @@
   "Mine some Netherrack that generates with floating nether portals": "Mine some Netherrack that generates with floating nether portals",
   "The First of Many": "The First of Many",
   "Get your first Oak Log": "Get your first Oak Log",
+  "Get your first Acacia Log": "Get your first Acacia Log",
   "The Circle of Life": "The Circle of Life",
   "Get your first Oak Sapling to grow another tree": "Get your first Oak Sapling to grow another tree",
+  "Get your first Acacia Sapling to grow another tree": "Get your first Acacia Sapling to grow another tree",
   "Crawling Down": "Crawling Down",
   "Crawl and place blocks on the bottom of top-side Trapdoors to build downward": "Crawl and place blocks on the bottom of top-side Trapdoors to build downward",
   "Decorative Ores": "Decorative Ores",
@@ -158,5 +161,7 @@
   "Animal Feed": "Animal Feed",
   "Start a Wheat farm": "Start a Wheat farm",
   "Death of a Gardener": "Death of a Gardener",
-  "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs": "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs"
+  "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs": "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs",
+  "Apple Tree": "Apple Tree",
+  "Buy an Oak Sapling or 4 Dark Oak Saplings from a Wandering Trader": "Buy an Oak Sapling or 4 Dark Oak Saplings from a Wandering Trader"
 }
