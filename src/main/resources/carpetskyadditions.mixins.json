@@ -42,11 +42,11 @@
     "WanderingTraderManagerMixin",
     "WorldGenSettingsHeightAndBiomeFixMixin"
   ],
-  "injectors": {
-    "defaultRequire": 1
-  },
   "client": [
     "CreateWorldScreenMixin",
     "WorldPresetsMixin"
-  ]
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
