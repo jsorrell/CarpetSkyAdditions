@@ -34,7 +34,7 @@
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.extra.0": "This starts at 0.025 and increases by 0.025 each time a trader spawn fails until the max chance is reached.",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "How often the Wandering Trader attempts to spawn in ticks",
   "modmenu.descriptionTranslation.modmenu": "Empty world generation with new ways to obtain resources",
-  "text.autoconfig.carpetskyadditions.title": "CarpetSkyAdditions Settings",
+  "text.autoconfig.carpetskyadditions.title": "Carpet Sky Additions Settings",
   "text.autoconfig.carpetskyadditions.category.newWorld": "New World Settings",
   "text.autoconfig.carpetskyadditions.option.skyBlockWorldDefault": "Make SkyBlock world type default",
   "text.autoconfig.carpetskyadditions.option.enableDatapackByDefault": "Enable the SkyBlock datapack by default",
