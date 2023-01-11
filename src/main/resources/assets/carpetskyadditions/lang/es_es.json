@@ -34,14 +34,6 @@
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.extra.0": "Empieza en 0.025 y se incrementa en 0.025 cada vez que un spawn de vendedor fracasa hasta que se alcance la probabilidad máxima.",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "Con qué frecuencia el vendedor ambulante intenta aparecer en ticks",
   "modmenu.descriptionTranslation.modmenu": "Generación de mundo vacío con nuevas formas de obtener recursos",
-  "text.autoconfig.carpetskyadditions.title": "Ajustes de Carpet Sky Additions",
-  "text.autoconfig.carpetskyadditions.category.newWorld": "Ajustes de nuevo mundo",
-  "text.autoconfig.carpetskyadditions.option.skyBlockWorldDefault": "Hacer por defecto el tipo de mundo SkyBlock",
-  "text.autoconfig.carpetskyadditions.option.enableDatapackByDefault": "Habilitar el datapack de SkyBlock por defecto",
-  "text.autoconfig.carpetskyadditions.option.enableDatapackByDefault.@Tooltip": "Este cambio requiere reiniciar el cliente",
-  "text.autoconfig.carpetskyadditions.option.initialTreeType": "El tipo de árbol inicial que es seleccionado por defecto",
-  "text.autoconfig.carpetskyadditions.option.initialTreeType.@Tooltip": "Este cambio requiere reiniciar el cliente",
-  "text.autoconfig.carpetskyadditions.option.autoEnableDefaultSettings": "Habilitar automáticamente los ajustes por defecto cuando se carga por primera vez un mundo de SkyBlock",
   "datapack.carpetskyadditions.skyblock": "Carpet Sky Additions: SkyBlock",
   "datapack.carpetskyadditions.acacia": "Carpet Sky Additions: Acacia"
 }
