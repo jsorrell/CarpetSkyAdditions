@@ -29,7 +29,7 @@
   "accessWidener": "carpetskyadditions.accesswidener",
   "depends": {
     "fabricloader": "*",
-    "minecraft": ">=1.19.1 <1.20",
+    "minecraft": ">=1.19.1 <1.19.3",
     "carpet": "*",
     "fabric-object-builder-api-v1": "*",
     "fabric-registry-sync-v0": "*",
