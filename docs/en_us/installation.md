@@ -23,10 +23,10 @@ The mod is only required server-side.
 - Download [fabric-api](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files)
 - Download [fabric-carpet](https://www.curseforge.com/minecraft/mc-mods/carpet/files)
 - Download [Carpet Sky Additions](https://github.com/jsorrell/CarpetSkyAdditions/releases)
+- Start the server to generate a template `server.properties` file
+- Shut down the server
+- Delete `world` folder the server created
 - Place fabric-carpet, fabric-api, and SkyBlock into `<server-directory>/mods/`
-- Start the server to generate a template `server.properties` and `eula.txt` file
-- Agree to the EULA
 - Open `server.properties`
 - Change `level-type=minecraft\:normal` to `level-type=carpetskyadditions\:skyblock`
-- Move `carpetskyadditions\:skyblock` from `initial-disabled-packs` to `initial-enabled-packs`
 - Start the server
