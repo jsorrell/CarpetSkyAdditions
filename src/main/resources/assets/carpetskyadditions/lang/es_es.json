@@ -29,7 +29,7 @@
   "carpetskyadditions.rule.renewableNetherrack.extra.0": "Lo que se genera depende del bioma, generándose necelio en sus respectivos bosques y netherrack en los demás lugares",
   "carpetskyadditions.rule.renewableDeepslate.desc": "Permite a las pociones densas convertir a la piedra en pizarra profunda, tanto haciendo clic derecho como usando una poción arrojadiza",
   "carpetskyadditions.rule.renewableDeepslate.extra.0": "Con no_splash: la conversión con poción arrojadiza se deshabilita.",
-  "carpetskyadditions.rule.renewableSwiftSneak.desc": "Permite que las mesas de encantamientos cercanas a wardens otorguen sigilo veloz",
+  "carpetskyadditions.rule.renewableSwiftSneak.desc": "Permite que las mesas de encantamientos cercanas a wardens otorguen Sigilo veloz",
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.desc": "Máxima probabilidad de aparición de vendedores ambulantes",
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.extra.0": "Empieza en 0.025 y se incrementa en 0.025 cada vez que un spawn de vendedor fracasa hasta que se alcance la probabilidad máxima.",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "Con qué frecuencia el vendedor ambulante intenta aparecer en ticks",
