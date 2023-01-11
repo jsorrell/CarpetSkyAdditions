@@ -43,8 +43,7 @@
     "WorldGenSettingsHeightAndBiomeFixMixin"
   ],
   "client": [
-    "CreateWorldScreenMixin",
-    "WorldPresetsMixin"
+    "CreateWorldScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
