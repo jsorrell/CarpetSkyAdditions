@@ -22,6 +22,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.text.Text;
 import net.minecraft.world.Heightmap;
 
 import java.util.Map;
@@ -50,11 +51,11 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     // Add the embedded datapacks as an option on the create world screen
     ModContainer modContainer = FabricLoader.getInstance().getModContainer(Build.MODID).get();
 
-    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), modContainer, Text.translatable("datapack.carpetskyadditions.skyblock"), config.enableDatapackByDefault ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier(Build.EMBEDDED_DATAPACK_NAME), modContainer, Text.translatable("datapack.carpetskyadditions.skyblock").toString(), config.enableDatapackByDefault ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
       SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"" + Build.EMBEDDED_DATAPACK_NAME + "\".");
     }
 
-    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), modContainer, Text.translatable("datapack.carpetskyadditions.acacia"), config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.ACACIA ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
+    if (!ResourceManagerHelper.registerBuiltinResourcePack(new SkyAdditionsIdentifier("skyblock_acacia"), modContainer, Text.translatable("datapack.carpetskyadditions.acacia").toString(), config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.ACACIA ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL)) {
       SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");
     }
   }
