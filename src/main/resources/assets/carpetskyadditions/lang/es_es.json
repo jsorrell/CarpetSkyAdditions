@@ -1,1 +1,8 @@
-{}
+{
+  "generator.carpetskyadditions.skyblock": "SkyBlock",
+  "carpetskyadditions.category.generation": "generación",
+  "carpetskyadditions.category.wandering_trader": "vendedor_ambulante",
+  "carpetskyadditions.rule.generateEndPortals.desc": "Genera marcos del portal del End en un mundo de SkyBlock",
+  "carpetskyadditions.rule.generateSilverfishSpawners.desc": "Genera spawners de lepismas en un mundo de SkyBlock",
+  "carpetskyadditions.rule.generateAncientCityPortals.desc": "Genera bloques de portal de ciudades antiguas en un mundo de SkyBlock"
+}
