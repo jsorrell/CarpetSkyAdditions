@@ -49,6 +49,7 @@
   "Get a pair of Elytra from a flying Endermite": "从浮空的末影螨身上得到一对鞘翅",
   "Emerald City": "翡冷翠",
   "Trade for Emeralds": "通过交易取得绿宝石",
+  "Get Emeralds from Foxes": "从狐狸获取绿宝石",
   "Hello Kitty": "猫的报恩",
   "Receive an Enchanted Golden Apple from a Cat in the morning": "在猫咪的晨起赠礼中获得一个附魔金苹果",
   "Who Planted This Here?": "谁种在这的?",
@@ -105,8 +106,10 @@
   "Mine some Netherrack that generates with floating nether portals": "挖一些伴随下界传送门生成的下界岩",
   "The First of Many": "一小步",
   "Get your first Oak Log": "获得第一块原木",
+  "Get your first Acacia Log": "获得第一块金合欢原木",
   "The Circle of Life": "生命的循环",
   "Get your first Oak Sapling to grow another tree": "种下你的第一棵树苗",
+  "Get your first Acacia Sapling to grow another tree": "种下你的第一棵金合欢树苗",
   "Crawling Down": "潜伏",
   "Crawl and place blocks on the bottom of top-side Trapdoors to build downward": "趴下并对着置于方块底部的活板门放置方块以搭建向下的天梯",
   "Decorative Ores": "矿石收藏家",
@@ -158,5 +161,7 @@
   "Animal Feed": "口粮",
   "Start a Wheat farm": "建造一个小麦农场",
   "Death of a Gardener": "戴夫的胡萝卜",
-  "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs": "从僵尸的掉落物中获取胡萝卜和土豆，然后建造农场开始养猪"
+  "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs": "从僵尸的掉落物中获取胡萝卜和土豆，然后建造农场开始养猪",
+  "Apple Tree": "苹果树",
+  "Buy an Oak Sapling or 4 Dark Oak Saplings from a Wandering Trader": "从流浪商人那里购买一个橡树树苗或者四个深色橡树树苗"
 }
