@@ -1,1 +1,16 @@
-{}
+{
+  "generator.carpetskyadditions.skyblock": "空岛",
+  "carpetskyadditions.category.generation": "生成",
+  "carpetskyadditions.category.wandering_trader": "流浪商人",
+  "carpetskyadditions.rule.generateEndPortals.desc": "在空岛世界中生成末地传送门框架",
+  "carpetskyadditions.rule.generateSilverfishSpawners.desc": "在空岛世界中生成蠹虫刷怪笼",
+  "carpetskyadditions.rule.generateAncientCityPortals.desc": "在空岛世界中生成远古城市传送门框架",
+  "carpetskyadditions.rule.generateMagmaCubeSpawners.desc": "在空岛世界中生成岩浆怪刷怪笼",
+  "carpetskyadditions.rule.generateRandomEndGateways.desc": "在空岛世界中生成随机分布于末地外岛的末地折跃门",
+  "carpetskyadditions.rule.tallFlowersFromWanderingTrader.desc": "允许流浪商人售卖大型花",
+  "carpetskyadditions.rule.lavaFromWanderingTrader.desc": "允许流浪商人售卖熔岩",
+  "carpetskyadditions.rule.lightningElectrifiesVines.desc": "允许闪电击中荧石时将附着于其上的藤蔓转化为发光地衣",
+  "carpetskyadditions.rule.lightningElectrifiesVines.extra.0": "闪电击中荧石上的避雷针时依然有效",
+  "carpetskyadditions.rule.renewableBuddingAmethysts.desc": "允许被方解石和平滑玄武岩包围的熔岩转化为紫水晶母岩",
+  "carpetskyadditions.rule.gatewaysSpawnChorus.desc": "允许被末地折跃门生成的末地小岛上生成紫颂植株"
+}
