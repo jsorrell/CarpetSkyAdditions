@@ -33,9 +33,9 @@ public abstract class PotionEntityMixin extends ThrownItemEntity {
       if (potion == Potions.THICK) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         Box box = this.getBoundingBox().expand(4.0, 2.0, 4.0);
-        for (int x = (int) box.getMin(Direction.Axis.X); x <= box.getMax(Direction.Axis.X); ++x) {
-          for (int y = (int) box.getMin(Direction.Axis.Y); y <= box.getMax(Direction.Axis.Y); ++y) {
-            for (int z = (int) box.getMin(Direction.Axis.Z); z <= box.getMax(Direction.Axis.Z); ++z) {
+        for (int x = (int) box.getMin(Direction.Axis.X); x < box.getMax(Direction.Axis.X); ++x) {
+          for (int y = (int) box.getMin(Direction.Axis.Y); y < box.getMax(Direction.Axis.Y); ++y) {
+            for (int z = (int) box.getMin(Direction.Axis.Z); z < box.getMax(Direction.Axis.Z); ++z) {
               if (world.getBlockState(mutable.set(x, y, z)).isOf(Blocks.STONE)) {
                 world.setBlockState(mutable, Blocks.DEEPSLATE.getDefaultState());
               }
