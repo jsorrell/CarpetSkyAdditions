@@ -31,11 +31,17 @@ public abstract class PotionEntityMixin extends ThrownItemEntity {
   private void convertToDeepslateWithSplashPotion(HitResult hitResult, CallbackInfo ci, ItemStack itemStack, Potion potion) {
     if (SkyAdditionsSettings.renewableDeepslateFromSplash) {
       if (potion == Potions.THICK) {
-        BlockPos.stream(this.getBoundingBox().expand(4.0, 2.0, 4.0)).forEach(mutable -> {
-            if (world.getBlockState(mutable).isOf(Blocks.STONE)) {
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        Box box = this.getBoundingBox().expand(4.0, 2.0, 4.0);
+        for (int x = (int) Math.floor(box.getMin(Direction.Axis.X)); x < Math.ceil(box.getMax(Direction.Axis.X)); ++x) {
+          for (int y = (int) Math.floor(box.getMin(Direction.Axis.Y)); y < Math.ceil(box.getMax(Direction.Axis.Y)); ++y) {
+            for (int z = (int) Math.floor(box.getMin(Direction.Axis.Z)); z < Math.ceil(box.getMax(Direction.Axis.Z)); ++z) {
+              if (world.getBlockState(mutable.set(x, y, z)).isOf(Blocks.STONE)) {
                 world.setBlockState(mutable, Blocks.DEEPSLATE.getDefaultState());
+              }
             }
-        });
+          }
+        }
       }
     }
   }
