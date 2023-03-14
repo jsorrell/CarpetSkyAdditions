@@ -77,7 +77,7 @@ public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends Mult
 
   private Optional<BlockPos> shouldBreakNetherWart(ServerWorld world, GoatEntity goat) {
     Vec3d movementVector = goat.getVelocity().multiply(1.0, 0.0, 1.0).normalize();
-    BlockPos hitPos = new BlockPos(goat.getPos().add(movementVector));
+    BlockPos hitPos = BlockPos.ofFloored(goat.getPos().add(movementVector));
     return world.getBlockState(hitPos).isOf(Blocks.NETHER_WART_BLOCK) ? Optional.of(hitPos) : Optional.empty();
   }
 }

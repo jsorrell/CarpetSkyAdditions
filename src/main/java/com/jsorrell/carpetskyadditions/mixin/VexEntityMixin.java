@@ -131,7 +131,7 @@ public abstract class VexEntityMixin extends HostileEntity implements InstantLis
   @Override
   public void accept(ServerWorld world, GameEventListener listener, Vec3d originPos, GameEvent gameEvent, GameEvent.Emitter emitter) {
     if (SkyAdditionsSettings.allayableVexes && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
-      BlockState noteBlockState = world.getBlockState(new BlockPos(originPos));
+      BlockState noteBlockState = world.getBlockState(BlockPos.ofFloored(originPos));
       if (noteBlockState.isOf(Blocks.NOTE_BLOCK)) {
         int note = noteBlockState.get(NoteBlock.NOTE);
         listenToNote(world, note);

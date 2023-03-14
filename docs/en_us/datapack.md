@@ -178,9 +178,6 @@ mimicking pre-1.19.3 behavior.
 The mod fixes Endermen's handling of double-tall blocks, allowing them to be correctly placed down without being
 destroyed.
 
-However, this is not a client side mod, so the vanilla rendering bug is not
-fixed ([MC-193497](https://bugs.mojang.com/browse/MC-193497)).
-
 ---
 
 #### War Pigs Advancement Changed ####

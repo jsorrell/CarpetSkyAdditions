@@ -55,7 +55,7 @@ public class AncientCityEnchantingTableHelper {
         if (enchantment.isTreasure() && !treasureAllowed || !enchantment.isAvailableForRandomSelection()) continue;
       }
 
-      if (!enchantment.type.isAcceptableItem(item) && !isBook) continue;
+      if (!enchantment.target.isAcceptableItem(item) && !isBook) continue;
 
       for (int i = enchantment.getMaxLevel(); i > enchantment.getMinLevel() - 1; --i) {
         if (power < enchantment.getMinPower(i) || power > enchantment.getMaxPower(i)) continue;

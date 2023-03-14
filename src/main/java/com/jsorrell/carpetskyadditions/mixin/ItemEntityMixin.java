@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -44,7 +45,7 @@ public abstract class ItemEntityMixin extends Entity {
   private void compactCoalToDiamonds(
       DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
     if (SkyAdditionsSettings.renewableDiamonds) {
-      if (source.isFallingBlock() && source.name.equals("anvil")) {
+      if (source.isOf(DamageTypes.FALLING_ANVIL)) {
         ItemStack stack = this.shadow$getStack();
         if (Items.COAL_BLOCK.equals(stack.getItem()) && 64 <= stack.getCount()) {
           this.compactToDiamonds();
