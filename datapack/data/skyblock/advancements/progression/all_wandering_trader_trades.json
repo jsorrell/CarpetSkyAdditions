@@ -313,6 +313,18 @@
           }
         ]
       }
+    },
+    "has_fern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:fern"
+            ]
+          }
+        ]
+      }
     }
   }
 }
