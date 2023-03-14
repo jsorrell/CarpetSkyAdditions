@@ -11,7 +11,7 @@ import net.minecraft.potion.Potions;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,17 +31,17 @@ public abstract class PotionEntityMixin extends ThrownItemEntity {
   private void convertToDeepslateWithSplashPotion(HitResult hitResult, CallbackInfo ci, ItemStack itemStack, Potion potion) {
     if (SkyAdditionsSettings.renewableDeepslateFromSplash) {
       if (potion == Potions.THICK) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        Box box = this.getBoundingBox().expand(4.0, 2.0, 4.0);
-        for (int x = (int) box.getMin(Direction.Axis.X); x <= box.getMax(Direction.Axis.X); ++x) {
-          for (int y = (int) box.getMin(Direction.Axis.Y); y <= box.getMax(Direction.Axis.Y); ++y) {
-            for (int z = (int) box.getMin(Direction.Axis.Z); z <= box.getMax(Direction.Axis.Z); ++z) {
-              if (world.getBlockState(mutable.set(x, y, z)).isOf(Blocks.STONE)) {
-                world.setBlockState(mutable, Blocks.DEEPSLATE.getDefaultState());
-              }
+        Vec3d hitPos = hitResult.getType() == HitResult.Type.BLOCK ? hitResult.getPos() : this.getPos();
+        BlockPos.stream(Box.of(hitPos, 8.25, 4.25, 8.25)).forEach(pos -> {
+          if (world.getBlockState(pos).isOf(Blocks.STONE)) {
+            double distance = Math.sqrt(pos.toCenterPos().squaredDistanceTo(hitPos));
+            // Probability of conversion is based upon the strength of an applied potion effect,
+            // but it guarantees conversion within 3 euclidean blocks of the collision point
+            if (world.random.nextDouble() < 2.5 - distance / 2) {
+              world.setBlockState(pos, Blocks.DEEPSLATE.getDefaultState());
             }
           }
-        }
+        });
       }
     }
   }
