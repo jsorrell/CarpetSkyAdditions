@@ -1,6 +1,7 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
-import com.jsorrell.carpetskyadditions.helpers.EndGatewayIslandFeature;
+import com.jsorrell.carpetskyadditions.gen.feature.EndGatewayIslandFeature;
+import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.block.entity.EndGatewayBlockEntity;
 import net.minecraft.registry.RegistryKey;
@@ -28,12 +29,9 @@ public class EndGatewayBlockEntityMixin {
       target =
         "Lnet/minecraft/world/gen/feature/EndConfiguredFeatures;END_ISLAND:Lnet/minecraft/registry/RegistryKey;"))
   private static RegistryKey<ConfiguredFeature<?, ?>> replaceGeneratedEndIslandFeature() {
-    System.out.println("Injection");
     if (SkyAdditionsSettings.gatewaysSpawnChorus) {
-      System.out.println("Returning custom feature");
-      return EndGatewayIslandFeature.GATEWAY_ISLAND_FEATURE_CONFIGURED;
+      return SkyAdditionsConfiguredFeatures.GATEWAY_ISLAND;
     } else {
-      System.out.println("Returning default feature");
       return EndConfiguredFeatures.END_ISLAND;
     }
   }
