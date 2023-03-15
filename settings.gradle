@@ -7,5 +7,3 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
-rootProject.name = 'skyblock'
