@@ -12,7 +12,7 @@
     "EnderDragonFightMixin",
     "EndermanEntity_PickUpBlockGoalMixin",
     "EndermanEntity_PlaceBlockGoalMixin",
-    "EndIslandFeatureMixin",
+    "EndGatewayBlockEntityMixin",
     "FeaturePlacementContextMixin",
     "FoxEntityMixin",
     "HugeMushroomFeatureMixin",
