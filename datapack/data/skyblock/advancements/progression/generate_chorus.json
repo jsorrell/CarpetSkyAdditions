@@ -13,10 +13,17 @@
     "frame": "goal"
   },
   "criteria": {
-    "entered_end_gateway": {
-      "trigger": "minecraft:enter_block",
+    "has_chorus": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "block": "minecraft:end_gateway"
+        "items": [
+          {
+            "items": [
+              "minecraft:chorus_flower",
+              "minecraft:chorus_fruit"
+            ]
+          }
+        ]
       }
     }
   }
