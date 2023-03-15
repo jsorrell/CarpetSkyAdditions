@@ -7,7 +7,7 @@ import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
-import com.jsorrell.carpetskyadditions.helpers.EndGatewayIslandFeature;
+import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
 import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLogic;
 import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
@@ -46,7 +46,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
     SpawnRestrictionAccessor.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new PiglinBruteSpawnPredicate());
     Registry.register(Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
-    Registry.register(Registries.FEATURE, EndGatewayIslandFeature.GATEWAY_ISLAND_FEATURE_ID, EndGatewayIslandFeature.GATEWAY_ISLAND_FEATURE);
+    SkyAdditionsFeatures.registerAll();
     SkyAdditionsCriteria.registerAll();
     MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
 

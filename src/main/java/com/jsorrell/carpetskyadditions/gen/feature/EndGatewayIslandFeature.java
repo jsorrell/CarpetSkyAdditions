@@ -1,16 +1,11 @@
-package com.jsorrell.carpetskyadditions.helpers;
+package com.jsorrell.carpetskyadditions.gen.feature;
 
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldView;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -19,10 +14,6 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.Optional;
 
 public class EndGatewayIslandFeature extends Feature<DefaultFeatureConfig> {
-  public static final Identifier GATEWAY_ISLAND_FEATURE_ID = new SkyAdditionsIdentifier("end_gateway_island");
-  public static Feature<DefaultFeatureConfig> GATEWAY_ISLAND_FEATURE = new EndGatewayIslandFeature(DefaultFeatureConfig.CODEC);
-  public static RegistryKey<ConfiguredFeature<?, ?>> GATEWAY_ISLAND_FEATURE_CONFIGURED = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, GATEWAY_ISLAND_FEATURE_ID);
-
   public EndGatewayIslandFeature(Codec<DefaultFeatureConfig> codec) {
     super(codec);
   }
