@@ -1,13 +1,10 @@
 package com.jsorrell.carpetskyadditions.gen;
 
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockBox;
@@ -17,8 +14,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
-
 
 public class SkyBlockStructures {
   protected static class StructureOrientation {
@@ -208,14 +203,6 @@ public class SkyBlockStructures {
   public static class MagmaCubeSpawner extends SpawnerStructure {
     public MagmaCubeSpawner(StructurePiece piece) {
       super(piece, new BlockPos(11, 7, 19), EntityType.MAGMA_CUBE);
-    }
-  }
-
-  public record SpawnPlatform(BlockPos worldSpawn) {
-    public void generate(ServerWorldAccess world, Random random) {
-      StructureTemplate structure = Objects.requireNonNull(world.getServer()).getStructureTemplateManager().getTemplate(new SkyAdditionsIdentifier("spawn_platform")).orElseThrow();
-      BlockPos structureOrigin = worldSpawn.subtract(new BlockPos(4, 1, 1));
-      structure.place(world, structureOrigin, worldSpawn, new StructurePlacementData(), random, Block.NOTIFY_LISTENERS);
     }
   }
 }

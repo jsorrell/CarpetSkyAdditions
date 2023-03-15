@@ -2,29 +2,27 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
-import com.jsorrell.carpetskyadditions.gen.SkyBlockStructures;
+import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
 import com.jsorrell.carpetskyadditions.settings.Fixers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.settings.SkyBlockDefaults;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.loot.LootTables;
 import net.minecraft.registry.CombinedDynamicRegistries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.ServerDynamicRegistryType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.WorldSavePath;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.ChunkRandom;
 import net.minecraft.world.SaveProperties;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.level.ServerWorldProperties;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -77,30 +75,23 @@ public abstract class MinecraftServerMixin {
   @Inject(
     method = "setupSpawn",
     locals = LocalCapture.CAPTURE_FAILHARD,
-    at = @At(value = "HEAD"),
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/ServerWorldProperties;setSpawnPos(Lnet/minecraft/util/math/BlockPos;F)V", ordinal = 1, shift = At.Shift.AFTER),
     cancellable = true)
-  private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties, boolean bonusChest, boolean debugWorld, CallbackInfo ci) {
+  private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties, boolean bonusChest, boolean debugWorld, CallbackInfo ci, ServerChunkManager serverChunkManager, ChunkPos spawnChunk, int spawnHeight) {
     ServerChunkManager chunkManager = world.getChunkManager();
     ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
     if (!(chunkGenerator instanceof SkyBlockChunkGenerator)) return;
+    BlockPos worldSpawn = spawnChunk.getCenterAtY(spawnHeight);
 
-    ChunkPos chunkPos = new ChunkPos(chunkManager.getNoiseConfig().getMultiNoiseSampler().findBestSpawnPosition());
-    int spawnHeight = chunkGenerator.getSpawnHeight(world);
-    BlockPos worldSpawn = chunkPos.getStartPos().add(8, spawnHeight, 8);
-    worldProperties.setSpawnPos(worldSpawn, 0.0f);
+    ChunkRandom random = new ChunkRandom(new CheckedRandom(0));
+    random.setCarverSeed(world.getSeed(), spawnChunk.x, spawnChunk.z);
 
-    new SkyBlockStructures.SpawnPlatform(worldSpawn).generate(world, world.random);
+    RegistryEntry.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = world.getRegistryManager()
+      .get(RegistryKeys.CONFIGURED_FEATURE)
+      .getEntry(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM).orElseThrow();
 
-    // Might as well make this an option
-    if (bonusChest) {
-      BlockPos bonusChestPos = worldSpawn.south();
-      world.setBlockState(bonusChestPos, Blocks.CHEST.getDefaultState(), Block.NOTIFY_LISTENERS);
-      LootableContainerBlockEntity.setLootTable(world, world.random, bonusChestPos, LootTables.SPAWN_BONUS_CHEST);
-      BlockState torchState = Blocks.TORCH.getDefaultState();
-      for (Direction direction : Direction.Type.HORIZONTAL) {
-        BlockPos torchPos = bonusChestPos.offset(direction);
-        world.setBlockState(torchPos, torchState, Block.NOTIFY_LISTENERS);
-      }
+    if (!spawnPlatformFeature.value().generate(world, chunkGenerator, random, worldSpawn)) {
+      SkyAdditionsSettings.LOG.error("Couldn't generate spawn platform");
     }
 
     ci.cancel();
