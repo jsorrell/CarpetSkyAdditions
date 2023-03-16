@@ -1,12 +1,10 @@
 package com.jsorrell.carpetskyadditions.gen.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.structure.StructureTemplate;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
@@ -17,23 +15,14 @@ public class SpawnPlatformFeature extends Feature<SpawnPlatformFeatureConfig> {
 
   @Override
   public boolean generate(FeatureContext<SpawnPlatformFeatureConfig> context) {
-    StructureWorldAccess world = context.getWorld();
-    MinecraftServer server = world.getServer();
-    if (server == null) {
+    Registry<ConfiguredFeature<?, ?>> configuredFeatureRegistry = context.getWorld().getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).orElse(null);
+    if (configuredFeatureRegistry == null) {
       return false;
     }
     SpawnPlatformFeatureConfig config = context.getConfig();
-    StructureTemplate structure = server.getStructureTemplateManager().getTemplate(config.structure()).orElse(null);
-    if (structure == null) {
-      return false;
-    }
+    // Always absolute with Y
+    BlockPos origin = config.spawn_relative() ? context.getOrigin().withY(0) : BlockPos.ORIGIN;
 
-    BlockPos structureOrigin = config.pos();
-    if (config.relative()) {
-      // Y is always absolute
-      structureOrigin = structureOrigin.add(context.getOrigin().getX(), 0, context.getOrigin().getZ());
-    }
-
-    return structure.place(world, structureOrigin, structureOrigin, new StructurePlacementData(), context.getRandom(), Block.NOTIFY_LISTENERS);
+    return SkyAdditionsFeatures.LOCATABLE_STRUCTURE.generateIfValid(config.platformConfig(), context.getWorld(), context.getGenerator(), context.getRandom(), origin);
   }
 }
