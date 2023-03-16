@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
+import com.jsorrell.carpetskyadditions.commands.SkyIslandCommand;
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
@@ -13,6 +14,7 @@ import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLog
 import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
+import com.mojang.brigadier.CommandDispatcher;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -21,10 +23,12 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.world.Heightmap;
 
@@ -77,6 +81,11 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
   @Override
   public Map<String, String> canHasTranslations(String lang) {
     return Translations.getTranslationFromResourcePath(String.format("assets/%s/lang/%s.json", Build.MODID, lang));
+  }
+
+  @Override
+  public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
+    SkyIslandCommand.register(dispatcher);
   }
 
   @Override

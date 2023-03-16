@@ -11,12 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 
+import static carpet.api.settings.RuleCategory.COMMAND;
 import static carpet.api.settings.RuleCategory.FEATURE;
 
 public class SkyAdditionsSettings {
   public static final Logger LOG = LoggerFactory.getLogger(Build.NAME);
   public static final String GENERATION = "generation";
   public static final String WANDERING_TRADER = "wandering_trader";
+
+  @Rule(categories = COMMAND)
+  public static String skyspawnCommand = "ops";
 
   /* Generation -- Only obeyed with SkyBlock world generation */
   @Rule(categories = GENERATION)
