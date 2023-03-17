@@ -24,11 +24,11 @@ We fix this my changing it to a LinkedHashSet which is iterated through by inser
 @Mixin(ResourceManagerHelperImpl.class)
 public class ResourceManagerHelperImplMixin {
   @Mutable
-  @Shadow
+  @Shadow(remap = false)
   @Final
   private static Set<Pair<Text, ModNioResourcePack>> builtinResourcePacks;
 
-  @Redirect(method = "<clinit>", at = @At(value = "FIELD", opcode = Opcodes.PUTSTATIC, target = "Lnet/fabricmc/fabric/impl/resource/loader/ResourceManagerHelperImpl;builtinResourcePacks:Ljava/util/Set;"))
+  @Redirect(method = "<clinit>", at = @At(value = "FIELD", opcode = Opcodes.PUTSTATIC, target = "Lnet/fabricmc/fabric/impl/resource/loader/ResourceManagerHelperImpl;builtinResourcePacks:Ljava/util/Set;"), remap = false)
   private static void makeOrderedSet(Set<Pair<Text, ModNioResourcePack>> value) {
     builtinResourcePacks = new LinkedHashSet<>();
   }

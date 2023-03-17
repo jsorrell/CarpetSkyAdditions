@@ -21,7 +21,8 @@ public abstract class MissingDimensionFixMixin extends DataFix {
     at = @At(value = "INVOKE",
       target = "Lcom/mojang/datafixers/DSL;taggedChoiceType(Ljava/lang/String;Lcom/mojang/datafixers/types/Type;Ljava/util/Map;)Lcom/mojang/datafixers/types/Type;",
       ordinal = 1),
-    index = 2)
+    index = 2,
+    remap = false)
   private Map<String, Type<?>> modifyTypes(Map<String, Type<?>> types) {
     return DuplicateMapKey.duplicateMapKey("minecraft:noise", "minecraft:skyblock", types);
   }
