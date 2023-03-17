@@ -3,6 +3,7 @@ package com.jsorrell.carpetskyadditions.commands;
 import carpet.utils.CommandHelper;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
+import com.jsorrell.carpetskyadditions.util.SkyAdditionsText;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -34,8 +35,8 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class SkyIslandCommand {
-  private static final SimpleCommandExceptionType FAILED_EXCEPTION = new SimpleCommandExceptionType(Text.translatable("commands.skyisland.new.failed"));
-  private static final SimpleCommandExceptionType ISLAND_NOT_CREATED = new SimpleCommandExceptionType(Text.translatable("commands.skyisland.join.not_created"));
+  private static final SimpleCommandExceptionType FAILED_EXCEPTION = new SimpleCommandExceptionType(SkyAdditionsText.translatable("commands.skyisland.new.failed"));
+  private static final SimpleCommandExceptionType ISLAND_NOT_CREATED = new SimpleCommandExceptionType(SkyAdditionsText.translatable("commands.skyisland.not_created"));
 
   public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
     LiteralArgumentBuilder<ServerCommandSource> command = literal("skyisland")
@@ -64,8 +65,8 @@ public class SkyIslandCommand {
       throw ISLAND_NOT_CREATED.create();
     }
 
-    MutableText text = Texts.bracketed(Text.translatable("commands.skyisland.locate.coordinates", x, z)).styled(style -> style.withColor(Formatting.GREEN).withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + x + " ~ " + z)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("commands.skyisland.locate.coordinates.tooltip"))));
-    source.sendFeedback(Text.translatable("commands.skyisland.locate.success", islandNum, text), false);
+    MutableText text = Texts.bracketed(SkyAdditionsText.translatable("commands.skyisland.locate.coordinates", x, z)).styled(style -> style.withColor(Formatting.GREEN).withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + x + " ~ " + z)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("chat.coordinates.tooltip"))));
+    source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.locate.success", islandNum, text), false);
 
     BlockPos sourcePos = BlockPos.ofFloored(source.getPosition());
     int xOff = sourcePos.getX() - x;
@@ -76,7 +77,7 @@ public class SkyIslandCommand {
   private static int newIsland(ServerCommandSource source) throws CommandSyntaxException {
     Integer islandNum = getNewIslandPos(source.getWorld());
     if (islandNum == null) {
-      source.sendFeedback(Text.translatable("commands.skyisland.new.no_valid_positions"), true);
+      source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
       return 0;
     }
     ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum);
@@ -93,9 +94,7 @@ public class SkyIslandCommand {
       throw FAILED_EXCEPTION.create();
     }
 
-
-
-    source.sendFeedback(Text.translatable("commands.skyisland.new.success", islandNum, x, z), true);
+    source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.success", islandNum, x, z), true);
     return 1;
   }
 

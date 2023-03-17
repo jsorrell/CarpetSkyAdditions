@@ -80,7 +80,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
   @Override
   public Map<String, String> canHasTranslations(String lang) {
-    return Translations.getTranslationFromResourcePath(String.format("assets/%s/lang/%s.json", Build.MODID, lang));
+    return Translations.getTranslationFromResourcePath(String.format("assets/%s/carpet/lang/%s.json", Build.MODID, lang));
   }
 
   @Override
