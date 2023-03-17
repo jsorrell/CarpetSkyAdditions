@@ -18,6 +18,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   }
 
   @Override
+  @SuppressWarnings("deprecation")
   public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
     if (SkyAdditionsSettings.coralErosion) {
       world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
@@ -34,6 +35,7 @@ public abstract class DeadCoralMixin extends CoralParentBlock {
   }
 
   @Override
+  @SuppressWarnings("deprecation")
   public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
     if (SkyAdditionsSettings.coralErosion) {
       if (DeadCoralToSandHelper.tryDropSand(state, world, pos, random)) {
