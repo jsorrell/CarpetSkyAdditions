@@ -17,11 +17,14 @@
       "conditions": {
         "player": [
           {
-            "condition": "minecraft:location_check",
+            "condition": "minecraft:entity_properties",
             "predicate": {
-              "position": {
-                "y": {
-                  "max": -54
+              "nbt": "{FallDistance: 0f}",
+              "location": {
+                "position": {
+                  "y": {
+                    "max": -54
+                  }
                 }
               }
             },
