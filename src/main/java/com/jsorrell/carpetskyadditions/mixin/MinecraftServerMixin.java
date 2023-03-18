@@ -88,7 +88,7 @@ public abstract class MinecraftServerMixin {
 
     RegistryEntry.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = world.getRegistryManager()
       .get(RegistryKeys.CONFIGURED_FEATURE)
-      .getEntry(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM).orElseThrow();
+      .entryOf(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM);
 
     if (!spawnPlatformFeature.value().generate(world, chunkGenerator, random, worldSpawn)) {
       SkyAdditionsSettings.LOG.error("Couldn't generate spawn platform");
