@@ -2,6 +2,8 @@ package com.jsorrell.carpetskyadditions.commands;
 
 import carpet.utils.CommandHelper;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
+import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
+import com.jsorrell.carpetskyadditions.gen.feature.SpawnPlatformFeatureConfig;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsText;
 import com.mojang.brigadier.CommandDispatcher;
@@ -10,12 +12,12 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -27,9 +29,11 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -74,27 +78,50 @@ public class SkyIslandCommand {
     return MathHelper.floor(MathHelper.sqrt(xOff * xOff + zOff * zOff));
   }
 
+  // First look for a sky_island configured feature
+  // Then try taking the spawn platform's config and using the platformConfig value if it is of type "spawn_platform"
+  // Otherwise, just generate the spawn_platform configured feature
+  private static ConfiguredFeature<?,?> getIslandFeature(Registry<ConfiguredFeature<?, ?>> configuredFeatureRegistry) {
+    Optional<ConfiguredFeature<?,?>> option = configuredFeatureRegistry.getEntry(SkyAdditionsConfiguredFeatures.SKY_ISLAND).map(RegistryEntry.Reference::value);
+    if (option.isPresent()) {
+      return option.get();
+    }
+
+    ConfiguredFeature<?, ?> spawnPlatformConfiguredFeature = configuredFeatureRegistry.entryOf(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM).value();
+    // try to get the platform out
+    if (spawnPlatformConfiguredFeature.feature().equals(SkyAdditionsFeatures.SPAWN_PLATFORM)) {
+      SpawnPlatformFeatureConfig config = (SpawnPlatformFeatureConfig) spawnPlatformConfiguredFeature.config();
+      return new ConfiguredFeature<>(SkyAdditionsFeatures.LOCATABLE_STRUCTURE, config.platformConfig());
+    } else {
+      return spawnPlatformConfiguredFeature;
+    }
+  }
+
   private static int newIsland(ServerCommandSource source) throws CommandSyntaxException {
-    Optional<Integer> islandNum = getNewIslandPos(source.getWorld());
-    if (islandNum.isEmpty()) {
+    Optional<ImmutablePair<Integer, ChunkPos>> islandOpt = IntStream.range(1, SkyIslandPositionContainer.getNumIslands())
+      .mapToObj(i -> ImmutablePair.of(i, SkyIslandPositionContainer.getChunk(i)))
+      .filter(i -> source.getWorld().getChunk(i.right.x, i.right.z, ChunkStatus.EMPTY).getStatus() == ChunkStatus.EMPTY)
+      .findFirst();
+    if (islandOpt.isEmpty()) {
       source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
       return 0;
     }
-    ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum.get());
+    ImmutablePair<Integer, ChunkPos> island = islandOpt.get();
+    ChunkPos chunkPos = island.right;
     int x = chunkPos.getCenterX();
     int z = chunkPos.getCenterZ();
 
     // Load the target area
-    source.getWorld().getChunkManager().addTicket(ChunkTicketType.UNKNOWN, chunkPos, 1, chunkPos);
-    RegistryEntry.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = source.getServer().getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).getEntry(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM).orElseThrow();
+    source.getWorld().getChunkManager().addTicket(ChunkTicketType.UNKNOWN, chunkPos, 2, chunkPos);
+    ConfiguredFeature<?, ?> skyIslandFeature = getIslandFeature(source.getServer().getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE));
     ChunkRandom random = new ChunkRandom(new CheckedRandom(0));
     random.setCarverSeed(source.getWorld().getSeed(), chunkPos.x, chunkPos.z);
 
-    if (!spawnPlatformFeature.value().generate(source.getWorld(), source.getWorld().getChunkManager().getChunkGenerator(), random, new BlockPos(x, 0, z))) {
+    if (!skyIslandFeature.generate(source.getWorld(), source.getWorld().getChunkManager().getChunkGenerator(), random, new BlockPos(x, 0, z))) {
       throw FAILED_EXCEPTION.create();
     }
 
-    source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.success", islandNum, x, z), true);
+    source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z), true);
     return 1;
   }
 
@@ -104,16 +131,6 @@ public class SkyIslandCommand {
     int z = chunkPos.getCenterZ();
     joinIsland(source, player, x, z);
     return 1;
-  }
-
-  private static Optional<Integer> getNewIslandPos(ServerWorld world) {
-    for (int i = 1; i <= SkyIslandPositionContainer.getNumIslands(); i++) {
-      ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(i);
-      if (world.getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY).getStatus() == ChunkStatus.EMPTY) {
-        return Optional.of(i);
-      }
-    }
-    return Optional.empty();
   }
 
   private static void joinIsland(ServerCommandSource source, ServerPlayerEntity player, int x, int z) throws CommandSyntaxException {
@@ -132,9 +149,10 @@ public class SkyIslandCommand {
     player.setSpawnPoint(player.world.getRegistryKey(), new BlockPos(x, y, z), 0f, true, false);
   }
 
-  static abstract class SkyIslandPositionContainer {
+  public static abstract class SkyIslandPositionContainer {
     private static final ArrayList<ChunkPos> ISLAND_CHUNKS = new ArrayList<>();
-    private static final int[] ORDERING = {21,52,57,23,15,32,18,4,56,22,19,27,48,25,13,26,2,64,3,43,39,46,45,35,33,51,30,24,1,7,47,55,20,11,17,44,60,29,28,14,50,31,8,16,9,58,5,37,38,49,42,61,40,59,34,41,63,62,6,54,12,10,53,36};
+    // Ordered to prioritize maximum distance from origin + previous islands
+    private static final int[] ORDERING = {46,59,41,54,50,63,24,13,8,16,57,48,61,39,52,19,11,31,36,20,33,44,27,22,29,1,4,3,6,2,5,38,30,34,26,35,25,21,28,37,23,32,51,64,43,56,40,53,49,62,45,58,47,60,42,55,10,7,17,12,15,14,9,18};
 
     static {
       ISLAND_CHUNKS.addAll(getIslandsInRing(384, 6, 0.25));
@@ -161,7 +179,6 @@ public class SkyIslandCommand {
         double z = Math.cos(angle) * radius;
         islands.add(new ChunkPos((int)x, (int)z));
       }
-
       return islands;
     }
   }
