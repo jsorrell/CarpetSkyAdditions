@@ -28,8 +28,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -75,12 +75,12 @@ public class SkyIslandCommand {
   }
 
   private static int newIsland(ServerCommandSource source) throws CommandSyntaxException {
-    Integer islandNum = getNewIslandPos(source.getWorld());
-    if (islandNum == null) {
+    Optional<Integer> islandNum = getNewIslandPos(source.getWorld());
+    if (islandNum.isEmpty()) {
       source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
       return 0;
     }
-    ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum);
+    ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum.get());
     int x = chunkPos.getCenterX();
     int z = chunkPos.getCenterZ();
 
@@ -106,15 +106,14 @@ public class SkyIslandCommand {
     return 1;
   }
 
-  @Nullable
-  private static Integer getNewIslandPos(ServerWorld world) {
+  private static Optional<Integer> getNewIslandPos(ServerWorld world) {
     for (int i = 1; i <= SkyIslandPositionContainer.getNumIslands(); i++) {
       ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(i);
       if (world.getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY).getStatus() == ChunkStatus.EMPTY) {
-        return i;
+        return Optional.of(i);
       }
     }
-    return null;
+    return Optional.empty();
   }
 
   private static void joinIsland(ServerCommandSource source, ServerPlayerEntity player, int x, int z) throws CommandSyntaxException {

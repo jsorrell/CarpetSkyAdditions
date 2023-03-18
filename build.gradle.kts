@@ -1,6 +1,5 @@
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.TimeZone
+import java.util.*
 
 class Versions(properties: ExtraPropertiesExtension) {
   val mod = properties["mod_version"] as String
@@ -118,7 +117,6 @@ dependencies {
     exclude("net.fabricmc.fabric-api")
   }
   modImplementation("com.terraformersmc", "modmenu", versions.modmenu)
-  compileOnly("com.google.code.findbugs", "jsr305", "3.0.2")
 }
 
 val copyTranslations = tasks.register<Copy>("copyTranslations") {

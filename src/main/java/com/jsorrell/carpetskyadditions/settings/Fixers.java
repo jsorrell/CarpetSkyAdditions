@@ -46,12 +46,17 @@ public final class Fixers {
 
       FieldPair oldFieldPair = new FieldPair(fieldPair);
 
+      boolean remove = false;
       for (SettingFixer fixer : fixers) {
-        fieldPair = fixer.fix(fieldPair);
-        if (fieldPair == null) break;
+        Optional<FieldPair> fieldPairOpt = fixer.fix(fieldPair);
+        if (fieldPairOpt.isEmpty()) {
+          remove = true;
+          break;
+        }
+        fieldPair = fieldPairOpt.get();
       }
 
-      if (fieldPair == null) {
+      if (remove) {
         rulesWereChanged = true;
         rules.set(i, null);
         SkyAdditionsSettings.LOG.info("Removing old rule " + oldFieldPair.getName());
@@ -79,8 +84,7 @@ public final class Fixers {
           Constructor<? extends SettingFixer> fixerConstructor = fixerClass.getDeclaredConstructor();
           fixerConstructor.setAccessible(true);
           SettingFixer fixer = fixerConstructor.newInstance();
-          Set<String> fieldNames = new HashSet<>(List.of(fixer.alternateNames()));
-          fieldNames.add(field.getName());
+          Set<String> fieldNames = new HashSet<>(List.of(fixer.names()));
 
           for (String name : fieldNames) {
             ArrayList<SettingFixer> fixerList = fixerMap.getOrDefault(name, new ArrayList<>());

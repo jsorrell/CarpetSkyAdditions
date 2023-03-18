@@ -13,19 +13,11 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 
-import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class SkyBlockStructures {
-  protected static class StructureOrientation {
-    protected BlockRotation rotation;
-    protected BlockMirror mirror;
-
-    public StructureOrientation(@Nullable BlockRotation rotation, @Nullable BlockMirror mirror) {
-      this.rotation = rotation == null ? BlockRotation.NONE : rotation;
-      this.mirror = mirror == null ? BlockMirror.NONE : mirror;
-    }
-
-    protected int applyXTransform(int x, int z, BlockBox boundingBox) {
+  protected record StructureOrientation(BlockRotation rotation, BlockMirror mirror) {
+    private int applyXTransform(int x, int z, BlockBox boundingBox) {
       if ((rotation == BlockRotation.NONE && mirror != BlockMirror.FRONT_BACK) || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.FRONT_BACK)) {
         return boundingBox.getMinX() + x;
       } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
@@ -37,7 +29,7 @@ public class SkyBlockStructures {
       }
     }
 
-    protected int applyZTransform(int x, int z, BlockBox boundingBox) {
+    private int applyZTransform(int x, int z, BlockBox boundingBox) {
       if ((rotation == BlockRotation.NONE && mirror != BlockMirror.LEFT_RIGHT) || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.LEFT_RIGHT)) {
         return boundingBox.getMinZ() + z;
       } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
@@ -58,8 +50,8 @@ public class SkyBlockStructures {
 
     public SkyBlockStructure(StructurePiece piece) {
       this.boundingBox = piece.getBoundingBox();
-      this.rotation = piece.getRotation();
-      this.mirror = piece.getMirror();
+      this.rotation = Objects.requireNonNullElse(piece.getRotation(), BlockRotation.NONE);
+      this.mirror = Objects.requireNonNullElse(piece.getMirror(), BlockMirror.NONE);
       this.orientation = new StructureOrientation(this.rotation, this.mirror);
     }
 

@@ -9,7 +9,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
+import java.util.Optional;
 
 import static carpet.api.settings.RuleCategory.COMMAND;
 import static carpet.api.settings.RuleCategory.FEATURE;
@@ -45,14 +45,14 @@ public class SkyAdditionsSettings {
   /* Wandering Trader */
   private static class TallFlowersTradesNameFix extends SettingFixer {
     @Override
-    public String[] alternateNames() {
-      return new String[]{"wanderingTraderSkyBlockTrades"};
+    public String[] names() {
+      return new String[]{"wanderingTraderSkyBlockTrades", "tallFlowersFromWanderingTrader"};
     }
 
     @Override
-    public FieldPair fix(FieldPair fieldPair) {
+    public Optional<FieldPair> fix(FieldPair fieldPair) {
       fieldPair.setName("tallFlowersFromWanderingTrader");
-      return fieldPair;
+      return Optional.of(fieldPair);
     }
   }
 
@@ -92,14 +92,14 @@ public class SkyAdditionsSettings {
   /* Shulker Spawning */
   private static class ShulkerSpawningNameFix extends SettingFixer {
     @Override
-    public String[] alternateNames() {
-      return new String[]{"shulkerSpawning"};
+    public String[] names() {
+      return new String[]{"shulkerSpawning", "shulkerSpawnsOnDragonKill"};
     }
 
     @Override
-    public FieldPair fix(FieldPair fieldPair) {
+    public Optional<FieldPair> fix(FieldPair fieldPair) {
       fieldPair.setName("shulkerSpawnsOnDragonKill");
-      return fieldPair;
+      return Optional.of(fieldPair);
     }
   }
 
@@ -120,29 +120,23 @@ public class SkyAdditionsSettings {
   /* Foxes Spawn With Berries */
   private static class SweetBerriesFixer extends SettingFixer {
     @Override
-    public String[] alternateNames() {
-      return new String[]{"foxesSpawnWithBerries"};
+    public String[] names() {
+      return new String[]{"foxesSpawnWithBerries", "foxesSpawnWithSweetBerriesChance"};
     }
 
     @Override
-    public FieldPair fix(FieldPair fieldPair) {
+    public Optional<FieldPair> fix(FieldPair fieldPair) {
       if (fieldPair.getName().equals("foxesSpawnWithBerries")) {
         fieldPair.setName("foxesSpawnWithSweetBerriesChance");
 
         if ("true".equalsIgnoreCase(fieldPair.getValue())) {
-          Field settingField;
-          try {
-            settingField = SkyAdditionsSettings.class.getDeclaredField("foxesSpawnWithSweetBerriesChance");
-          } catch (Exception e) {
-            return null;
-          }
-          fieldPair.setValue(settingField.getAnnotation(SkyAdditionsSetting.class).value());
+          fieldPair.setValue("0.2");
         } else if ("false".equalsIgnoreCase(fieldPair.getValue())) {
           fieldPair.setValue("0");
         }
       }
 
-      return fieldPair;
+      return Optional.of(fieldPair);
     }
   }
 
@@ -171,14 +165,14 @@ public class SkyAdditionsSettings {
 
   private static class AllayableVexesFixer extends SettingFixer {
     @Override
-    public String[] alternateNames() {
-      return new String[]{"renewableAllays"};
+    public String[] names() {
+      return new String[]{"renewableAllays", "allayableVexes"};
     }
 
     @Override
-    public FieldPair fix(FieldPair fieldPair) {
+    public Optional<FieldPair> fix(FieldPair fieldPair) {
       fieldPair.setName("allayableVexes");
-      return fieldPair;
+      return Optional.of(fieldPair);
     }
   }
 

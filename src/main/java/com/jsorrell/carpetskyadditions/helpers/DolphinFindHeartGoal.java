@@ -15,8 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldEvents;
 
-import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class DolphinFindHeartGoal extends Goal {
@@ -32,15 +32,14 @@ public class DolphinFindHeartGoal extends Goal {
     this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
   }
 
-  @Nullable
-  protected BlockPos determineTreasureLocation() {
+  protected Optional<BlockPos> determineTreasureLocation() {
     // Set Y -64 to make it swim to ocean floor
     BlockPos potentialTarget = new BlockPos(this.dolphin.getBlockX() + this.dolphin.world.random.nextInt(16) - 8, -64, this.dolphin.getBlockZ() + this.dolphin.world.random.nextInt(16) - 8);
     if (this.dolphin.world.getBiome(potentialTarget.withY(this.dolphin.getBlockY())).isIn(BiomeTags.IS_OCEAN)) {
-      return potentialTarget;
+      return Optional.of(potentialTarget);
     }
 
-    return null;
+    return Optional.empty();
   }
 
   @Override
@@ -58,11 +57,12 @@ public class DolphinFindHeartGoal extends Goal {
     if (!(this.dolphin.world instanceof ServerWorld world)) {
       return;
     }
-    BlockPos treasurePos = this.determineTreasureLocation();
-    if (treasurePos == null) {
+    Optional<BlockPos> treasurePosOpt = this.determineTreasureLocation();
+    if (treasurePosOpt.isEmpty()) {
       this.dolphin.setHasFish(false);
       return;
     }
+    BlockPos treasurePos = treasurePosOpt.get();
     this.dolphin.setTreasurePos(treasurePos);
 
     this.dolphin.getNavigation().startMovingTo(treasurePos.getX(), treasurePos.getY(), treasurePos.getZ(), 0.7);
