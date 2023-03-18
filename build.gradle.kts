@@ -1,6 +1,3 @@
-import java.text.SimpleDateFormat
-import java.util.*
-
 class Versions(properties: ExtraPropertiesExtension) {
   val mod = properties["mod_version"] as String
   val java = JavaVersion.toVersion(properties["java_version"] as String)
@@ -28,13 +25,10 @@ base {
 version = versions.project
 
 val fillBuildTemplate = tasks.register<Copy>("fillBuildTemplate") {
-  val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-  df.timeZone = TimeZone.getTimeZone("UTC")
   val templateContext = mapOf(
     "id" to project.extra["mod_id"] as String,
     "name" to project.extra["mod_name"] as String,
     "version" to version,
-    "timestamp" to df.format(Date()),
     "minecraft_version" to versions.minecraft,
     "yarn_mappings" to versions.yarnMappings,
   )
