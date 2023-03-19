@@ -72,6 +72,12 @@ obtainable in SkyBlock generation.*
 
 [List of Datapack Features](docs/en_us/datapack.md)
 
+### Commands
+This mod provides a command for generating islands,
+which simplifies having multiple players on the same server with different starting islands.
+
+[List of Mod Commands](docs/en_us/commands.md)
+
 ### Progression Walkthrough
 
 If you get stuck, a general progression walkthrough is available [here](docs/en_us/progression.md).
@@ -89,7 +95,7 @@ If you are able to add translations, your help would be much appreciated.
 
 - [@gnembon](https://github.com/gnembon/fabric-carpet) for `fabric-carpet`
 
-- @YipKei for Chinese (Simplified) translations
+- All the translators on CrowdIn
 
 ## License
 

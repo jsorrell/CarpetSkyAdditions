@@ -69,4 +69,4 @@ Only takes effect when `enableDatapackByDefault` is `true`
 
 *Defaults to true*
 
-When `true`, the default SkyBlock settings are enabled when first starting a SkyBlock world.
+When `true`, the default SkyBlock settings are enabled when first starting a world with `SkyBlock` generation.

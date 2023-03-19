@@ -47,11 +47,15 @@ Provides *Deepslate*
 
 Disable with ```/carpetskyadditions removeDefault renewableDeepslate```
 
-Disable only splash with ```/carpetskyadditions setDefault renewableDeepslate no_splash```
+Disable only splash/lingering conversion with ```/carpetskyadditions setDefault renewableDeepslate no_splash```
 
 Right-clicking or dispensing a Thick Potion on Stone converts it to Deepslate.
 
-A Thick Splash Potion will convert all Stone blocks hit by the splash into Deepslate.
+A Thick Splash Potion will convert Stone blocks hit by the splash into Deepslate.
+
+The conversion chance equals twice the percentage of the potion duration an entity would get.
+
+A Thick Lingering Potion will continuously convert all Stone blocks in its cloud into Deepslate.
 
 ---
 
@@ -157,7 +161,7 @@ When a Dolphin is fed a fish, they may dig a Heart of the Sea out of Sand or Gra
 
 Make sure to give the Dolphin enough space to search.
 
-Must be in an Ocean biome -- they're Hearts of the Sea, not Hearts of the Jungle.
+Must be in an Ocean type biome -- they're Hearts of the Sea, not Hearts of the Jungle.
 
 ---
 
@@ -253,7 +257,7 @@ Provides *Lava*
 
 Enable with ```/carpetskyadditions setDefault lavaFromWanderingTrader true```
 
-***Disabled by Default - Get Lava from a Hero of the Village Gift Instead***
+*** Not automatically enabled in SkyBlock — Get Lava from a Hero of the Village Gift Instead***
 
 ##### Additional Tier 2 Trade: #####
 
