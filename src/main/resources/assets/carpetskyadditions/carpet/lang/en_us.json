@@ -1,7 +1,7 @@
 {
   "carpetskyadditions.category.generation": "generation",
   "carpetskyadditions.category.wandering_trader": "wandering_trader",
-  "carpetskyadditions.rule.skyspawnCommand.desc": "Enables /skyspawn command for generating new spawn platforms",
+  "carpetskyadditions.rule.commandSkyIsland.desc": "Enables /skyisland command for generating new spawn platforms",
   "carpetskyadditions.rule.generateEndPortals.desc": "Generates End Portal frames in a SkyBlock world",
   "carpetskyadditions.rule.generateSilverfishSpawners.desc": "Generates Silverfish spawners in a SkyBlock world",
   "carpetskyadditions.rule.generateAncientCityPortals.desc": "Generates Ancient City portal frames in a SkyBlock world",

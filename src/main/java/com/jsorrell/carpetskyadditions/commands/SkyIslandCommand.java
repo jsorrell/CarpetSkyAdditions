@@ -47,7 +47,7 @@ public class SkyIslandCommand {
         int maxIslandNum = SkyIslandPositionContainer.getNumIslands();
 
         LiteralArgumentBuilder<ServerCommandSource> command = literal("skyisland")
-                .requires(source -> CommandHelper.canUseCommand(source, SkyAdditionsSettings.skyspawnCommand))
+                .requires(source -> CommandHelper.canUseCommand(source, SkyAdditionsSettings.commandSkyIsland))
                 .then(literal("new").executes(c -> newIsland(c.getSource())))
                 .then(literal("join")
                         .then(argument("num", IntegerArgumentType.integer(1, maxIslandNum))
@@ -144,7 +144,7 @@ public class SkyIslandCommand {
 
         Text feedback = SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z);
         source.sendFeedback(feedback, true);
-        return 1;
+        return island.getLeft();
     }
 
     private static int joinIsland(ServerCommandSource source, ServerPlayerEntity player, int islandNum)

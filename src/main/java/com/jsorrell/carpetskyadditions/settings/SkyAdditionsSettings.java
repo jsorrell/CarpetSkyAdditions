@@ -19,7 +19,7 @@ public class SkyAdditionsSettings {
     public static final String WANDERING_TRADER = "wandering_trader";
 
     @Rule(categories = COMMAND)
-    public static String skyspawnCommand = "ops";
+    public static String commandSkyIsland = "ops";
 
     /* Generation -- Only obeyed with SkyBlock world generation */
     @Rule(categories = GENERATION)
