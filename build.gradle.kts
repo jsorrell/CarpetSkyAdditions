@@ -116,23 +116,35 @@ dependencies {
   modImplementation("com.terraformersmc", "modmenu", versions.modmenu)
 }
 
-val copyTranslations = tasks.register<Copy>("copyTranslations") {
-  from("translations-pack")
-  into(layout.buildDirectory.dir("translations-pack"))
+tasks.register<Zip>("zipTranslationPack") {
+  val tempDir = layout.buildDirectory.dir("translations-pack")
+  copy {
+    into(tempDir)
+    from("translations-pack")
 
-  into("assets/$modId/lang") {
-    from("src/main/resources/assets/$modId/lang") {
-      exclude("en_us.json")
+    into("assets/$modId/lang") {
+      from("src/main/resources/assets/$modId/lang") {
+        exclude("en_us.json")
+      }
     }
   }
-}
-
-tasks.register<Zip>("zipTranslationPack") {
-  dependsOn(copyTranslations)
   archiveClassifier.set("translations")
   archiveVersion.set(versions.mod)
   group = "build"
-  from(copyTranslations.get().outputs)
+  from(tempDir)
+  destinationDirectory.set(base.distsDirectory)
+}
+
+tasks.register<Zip>("zipSkyBlockDatapack") {
+  val tempDir = layout.buildDirectory.dir("datapack/skyblock")
+  copy {
+    into(tempDir)
+    from("src/main/resources/resourcepacks/skyblock")
+  }
+  archiveClassifier.set("datapack")
+  archiveVersion.set(versions.mod)
+  group = "build"
+  from(tempDir)
   destinationDirectory.set(base.distsDirectory)
 }
 
