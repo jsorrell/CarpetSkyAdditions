@@ -28,7 +28,7 @@ public class PotionItemMixin {
             ItemStack itemStack = context.getStack();
 
             if (context.getSide() != Direction.DOWN
-                    && DeepslateConversionHelper.convertDeepslateAtPos(world, blockPos)) {
+                    && DeepslateConversionHelper.convertDeepslateWithBottle(world, blockPos, blockPos)) {
                 world.playSound(null, blockPos, SoundEvents.ENTITY_GENERIC_SPLASH, SoundCategory.PLAYERS, 1.0f, 1.0f);
                 Objects.requireNonNull(playerEntity)
                         .setStackInHand(

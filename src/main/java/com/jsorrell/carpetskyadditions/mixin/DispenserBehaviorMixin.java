@@ -26,7 +26,7 @@ public class DispenserBehaviorMixin {
                 BlockPos dispenserPos = pointer.getPos();
                 Direction dispenserFacing = pointer.getBlockState().get(DispenserBlock.FACING);
                 BlockPos targetPos = dispenserPos.offset(dispenserFacing);
-                if (DeepslateConversionHelper.convertDeepslateAtPos(serverWorld, targetPos, dispenserPos)) {
+                if (DeepslateConversionHelper.convertDeepslateWithBottle(serverWorld, targetPos, dispenserPos)) {
                     cir.setReturnValue(new ItemStack(Items.GLASS_BOTTLE));
                 }
             }

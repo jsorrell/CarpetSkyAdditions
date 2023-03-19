@@ -3,6 +3,7 @@
   "package": "com.jsorrell.carpetskyadditions.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AreaEffectCloudEntityMixin",
     "DeadCoralMixin",
     "DeadCoralWallFanBlockMixin",
     "DispenserBehaviorMixin",
