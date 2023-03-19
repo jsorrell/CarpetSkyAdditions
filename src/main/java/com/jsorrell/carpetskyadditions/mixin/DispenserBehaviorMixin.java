@@ -9,6 +9,7 @@ import net.minecraft.potion.PotionUtil;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,17 +17,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(targets = "net/minecraft/block/dispenser/DispenserBehavior$20")
 public class DispenserBehaviorMixin {
-  @Inject(method = "dispenseSilently", at = @At(value = "HEAD"), cancellable = true)
-  private void addDeepslateConversionBehavior(BlockPointer pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-    if (SkyAdditionsSettings.doRenewableDeepslate) {
-      if (PotionUtil.getPotion(stack) == DeepslateConversionHelper.CONVERSION_POTION) {
-        ServerWorld serverWorld = pointer.getWorld();
-        BlockPos dispenserPos = pointer.getPos();
-        BlockPos targetPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
-        if (DeepslateConversionHelper.convertDeepslateAtPos(pointer.getWorld(), serverWorld.getBlockState(targetPos), targetPos, dispenserPos)) {
-          cir.setReturnValue(new ItemStack(Items.GLASS_BOTTLE));
+    @Inject(method = "dispenseSilently", at = @At(value = "HEAD"), cancellable = true)
+    private void addDeepslateConversionBehavior(
+            BlockPointer pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+        if (SkyAdditionsSettings.doRenewableDeepslate) {
+            if (PotionUtil.getPotion(stack) == DeepslateConversionHelper.CONVERSION_POTION) {
+                ServerWorld serverWorld = pointer.getWorld();
+                BlockPos dispenserPos = pointer.getPos();
+                Direction dispenserFacing = pointer.getBlockState().get(DispenserBlock.FACING);
+                BlockPos targetPos = dispenserPos.offset(dispenserFacing);
+                if (DeepslateConversionHelper.convertDeepslateAtPos(serverWorld, targetPos, dispenserPos)) {
+                    cir.setReturnValue(new ItemStack(Items.GLASS_BOTTLE));
+                }
+            }
         }
-      }
     }
-  }
 }

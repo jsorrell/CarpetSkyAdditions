@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(WanderingTraderEntity.class)
 public abstract class WanderingTraderEntityMixin {
-  @Redirect(
-    method = "fillRecipes",
-    at =
-    @At(
-      value = "FIELD",
-      opcode = Opcodes.GETSTATIC,
-      target =
-        "Lnet/minecraft/village/TradeOffers;WANDERING_TRADER_TRADES:Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;"))
-  private Int2ObjectMap<TradeOffers.Factory[]> getTrades() {
-    return WanderingTrader.getTrades();
-  }
+    @Redirect(
+            method = "fillRecipes",
+            at =
+                    @At(
+                            value = "FIELD",
+                            opcode = Opcodes.GETSTATIC,
+                            target =
+                                    "Lnet/minecraft/village/TradeOffers;WANDERING_TRADER_TRADES:Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;"))
+    private Int2ObjectMap<TradeOffers.Factory[]> getTrades() {
+        return WanderingTrader.getTrades();
+    }
 }

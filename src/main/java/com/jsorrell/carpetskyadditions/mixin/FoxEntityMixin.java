@@ -17,23 +17,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FoxEntity.class)
 public abstract class FoxEntityMixin extends Entity {
-  private FoxEntityMixin(EntityType<?> type, World world) {
-    super(type, world);
-  }
-
-  @Inject(
-    method = "initEquipment",
-    cancellable = true,
-    at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextFloat()F", ordinal = 1))
-  private void addFoxHeldItem(Random random, LocalDifficulty localDifficulty, CallbackInfo ci) {
-    if (0 < SkyAdditionsSettings.foxesSpawnWithSweetBerriesChance) {
-      float f = random.nextFloat();
-      ItemStack equippedItem;
-      if (f < SkyAdditionsSettings.foxesSpawnWithSweetBerriesChance) {
-        equippedItem = new ItemStack(Items.SWEET_BERRIES);
-        this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
-        ci.cancel();
-      }
+    private FoxEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
     }
-  }
+
+    @Inject(
+            method = "initEquipment",
+            cancellable = true,
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextFloat()F", ordinal = 1))
+    private void addFoxHeldItem(Random random, LocalDifficulty localDifficulty, CallbackInfo ci) {
+        if (0 < SkyAdditionsSettings.foxesSpawnWithSweetBerriesChance) {
+            float f = random.nextFloat();
+            ItemStack equippedItem;
+            if (f < SkyAdditionsSettings.foxesSpawnWithSweetBerriesChance) {
+                equippedItem = new ItemStack(Items.SWEET_BERRIES);
+                this.equipStack(EquipmentSlot.MAINHAND, equippedItem);
+                ci.cancel();
+            }
+        }
+    }
 }

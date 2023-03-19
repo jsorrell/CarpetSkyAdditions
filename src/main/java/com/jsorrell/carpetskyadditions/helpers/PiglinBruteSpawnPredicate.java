@@ -13,21 +13,32 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.SpawnHelper;
 
 public class PiglinBruteSpawnPredicate implements SpawnRestriction.SpawnPredicate<PiglinBruteEntity> {
-  @Override
-  public boolean test(EntityType<PiglinBruteEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-    // Conditionally implement registering SpawnRestriction.Location.ON_GROUND
-    if (CarpetSettings.piglinsSpawningInBastions) {
-      BlockPos underBlockPos = pos.down();
-      BlockState underBlock = world.getBlockState(underBlockPos);
-      if (!underBlock.allowsSpawning(world, underBlockPos, type)) {
-        return false;
-      }
-      BlockPos aboveBlockPos = pos.up();
-      return SpawnHelper.isClearForSpawn(world, pos, world.getBlockState(pos), world.getFluidState(pos), type) &&
-        SpawnHelper.isClearForSpawn(world, aboveBlockPos, world.getBlockState(aboveBlockPos), world.getFluidState(aboveBlockPos), type) &&
-        PiglinEntity.canSpawn(EntityType.PIGLIN, world, spawnReason, pos, random); // Mimic piglin spawning restrictions b/c that's the closest mob
-    }
+    @Override
+    public boolean test(
+            EntityType<PiglinBruteEntity> type,
+            ServerWorldAccess world,
+            SpawnReason spawnReason,
+            BlockPos pos,
+            Random random) {
+        // Conditionally implement registering SpawnRestriction.Location.ON_GROUND
+        if (CarpetSettings.piglinsSpawningInBastions) {
+            BlockPos underBlockPos = pos.down();
+            BlockState underBlock = world.getBlockState(underBlockPos);
+            if (!underBlock.allowsSpawning(world, underBlockPos, type)) {
+                return false;
+            }
+            BlockPos aboveBlockPos = pos.up();
+            return SpawnHelper.isClearForSpawn(world, pos, world.getBlockState(pos), world.getFluidState(pos), type)
+                    && SpawnHelper.isClearForSpawn(
+                            world,
+                            aboveBlockPos,
+                            world.getBlockState(aboveBlockPos),
+                            world.getFluidState(aboveBlockPos),
+                            type)
+                    // Mimic piglin spawning restrictions b/c that's the closest mob
+                    && PiglinEntity.canSpawn(EntityType.PIGLIN, world, spawnReason, pos, random);
+        }
 
-    return true;
-  }
+        return true;
+    }
 }

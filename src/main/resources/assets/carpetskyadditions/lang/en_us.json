@@ -18,7 +18,6 @@
   "commands.skyisland.not_created": "Island not yet created",
   "commands.skyisland.locate.success": "Island %d is located at %s",
   "commands.skyisland.locate.coordinates": "%d,%d",
-
   "Arborist": "Arborist",
   "Buy all saplings from the Wandering Trader": "Buy all saplings from the Wandering Trader",
   "Day Trader": "Day Trader",

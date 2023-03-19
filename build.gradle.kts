@@ -1,3 +1,5 @@
+import com.diffplug.gradle.spotless.YamlExtension.JacksonYamlGradleConfig
+
 class Versions(properties: ExtraPropertiesExtension) {
   val mod = properties["mod_version"] as String
   val java = JavaVersion.toVersion(properties["java_version"] as String)
@@ -17,6 +19,7 @@ val modId = project.extra["mod_id"] as String
 
 plugins {
   id("fabric-loom").version("1.1-SNAPSHOT")
+  id("com.diffplug.spotless") version "6.17.0"
 }
 
 base {
@@ -131,4 +134,35 @@ tasks.register<Zip>("zipTranslationPack") {
   group = "build"
   from(copyTranslations.get().outputs)
   destinationDirectory.set(base.distsDirectory)
+}
+
+spotless {
+  format("misc") {
+    target("*.md", ".gitignore")
+    indentWithSpaces(2)
+    endWithNewline()
+  }
+
+  java {
+    palantirJavaFormat()
+    toggleOffOn()
+    removeUnusedImports()
+    importOrder()
+  }
+
+  kotlinGradle {
+    target("*.gradle.kts")
+    ktlint()
+  }
+
+  json {
+    target("**/*.json")
+    targetExclude("$buildDir/**", "run/**")
+    gson().indentWithSpaces(2)
+  }
+
+  yaml {
+    target("**/*.yml", "**/*.yaml")
+    (jackson() as JacksonYamlGradleConfig).yamlFeature("WRITE_DOC_START_MARKER", false)
+  }
 }

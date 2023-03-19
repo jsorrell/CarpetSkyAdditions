@@ -16,27 +16,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FeaturePlacementContext.class)
 public class FeaturePlacementContextMixin extends HeightContext {
-  @Shadow
-  @Final
-  private ChunkGenerator generator;
+    @Shadow
+    @Final
+    private ChunkGenerator generator;
 
-  @Shadow
-  @Final
-  private StructureWorldAccess world;
+    @Shadow
+    @Final
+    private StructureWorldAccess world;
 
-  public FeaturePlacementContextMixin(ChunkGenerator generator, HeightLimitView world) {
-    super(generator, world);
-  }
-
-  // Force features to use generation heightmap, not current (empty) heightmap
-  @Inject(
-    method = "getTopY",
-    cancellable = true,
-    at = @At(value = "HEAD"))
-  private void useGenerationHeightmap(Heightmap.Type heightmap, int x, int z, CallbackInfoReturnable<Integer> cir) {
-    if (generator instanceof SkyBlockChunkGenerator chunkGenerator) {
-      cir.setReturnValue(chunkGenerator.getHeightOnGround(x, z, heightmap, world));
-      cir.cancel();
+    public FeaturePlacementContextMixin(ChunkGenerator generator, HeightLimitView world) {
+        super(generator, world);
     }
-  }
+
+    // Force features to use generation heightmap, not current (empty) heightmap
+    @Inject(method = "getTopY", cancellable = true, at = @At(value = "HEAD"))
+    private void useGenerationHeightmap(Heightmap.Type heightmap, int x, int z, CallbackInfoReturnable<Integer> cir) {
+        if (generator instanceof SkyBlockChunkGenerator chunkGenerator) {
+            cir.setReturnValue(chunkGenerator.getHeightOnGround(x, z, heightmap, world));
+            cir.cancel();
+        }
+    }
 }

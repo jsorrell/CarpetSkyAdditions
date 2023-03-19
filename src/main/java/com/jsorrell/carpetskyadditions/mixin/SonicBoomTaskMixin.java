@@ -15,14 +15,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SonicBoomTask.class)
 public class SonicBoomTaskMixin {
-  @Inject(method = "method_43265", at = @At(value = "TAIL"))
-  private static void dropEchoShard(WardenEntity wardenEntity, ServerWorld serverWorld, LivingEntity target, CallbackInfo ci) {
-    if (SkyAdditionsSettings.renewableEchoShards) {
-      if (target instanceof DolphinEntity || target instanceof BatEntity) {
-        if (target.isDead()) {
-          target.dropItem(Items.ECHO_SHARD);
+    @Inject(method = "method_43265", at = @At(value = "TAIL"))
+    private static void dropEchoShard(
+            WardenEntity wardenEntity, ServerWorld serverWorld, LivingEntity target, CallbackInfo ci) {
+        if (SkyAdditionsSettings.renewableEchoShards) {
+            if (target instanceof DolphinEntity || target instanceof BatEntity) {
+                if (target.isDead()) {
+                    target.dropItem(Items.ECHO_SHARD);
+                }
+            }
         }
-      }
     }
-  }
 }

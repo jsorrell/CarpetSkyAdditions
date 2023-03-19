@@ -15,39 +15,55 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class DeadCoralToSandHelper {
-  protected static final double BREAK_CHANCE = 0.03;
+    protected static final double BREAK_CHANCE = 0.03;
 
-  public static int getSandDropDelay(Random random) {
-    // 16-32s per sand, 24 on average
-    // This comes out to about the same as 1 villager in a max rate iron farm, which is also infinitely auto.
-    return 320 + random.nextInt(320);
-  }
-
-  public static boolean tryDropSand(BlockState state, World world, BlockPos pos, Random random) {
-    FluidState fluidState = world.getFluidState(pos);
-    if (!fluidState.isOf(Fluids.WATER)) {
-      return false;
+    public static int getSandDropDelay(Random random) {
+        // 16-32s per sand, 24 on average
+        // This comes out to about the same as 1 villager in a max rate iron farm, which is also infinitely auto.
+        return 320 + random.nextInt(320);
     }
 
-    Vec3d waterVelocity = fluidState.getVelocity(world, pos);
-    if (waterVelocity.equals(Vec3d.ZERO)) {
-      return false;
-    }
+    public static boolean tryDropSand(BlockState state, World world, BlockPos pos, Random random) {
+        FluidState fluidState = world.getFluidState(pos);
+        if (!fluidState.isOf(Fluids.WATER)) {
+            return false;
+        }
 
-    if (!world.isClient) {
-      Vec3d sandVelocity = waterVelocity.multiply(0.1);
-      Item sandItem = state.getBlock().getLootTableId().getPath().contains("fire") ? Items.RED_SAND : Items.SAND;
-      ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(sandItem), sandVelocity.getX(), sandVelocity.getY(), sandVelocity.getZ());
-      itemEntity.setToDefaultPickupDelay();
-      world.spawnEntity(itemEntity);
-    }
+        Vec3d waterVelocity = fluidState.getVelocity(world, pos);
+        if (waterVelocity.equals(Vec3d.ZERO)) {
+            return false;
+        }
 
-    if (random.nextFloat() < BREAK_CHANCE) {
-      world.removeBlock(pos, false);
-      world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
-      return false;
-    }
+        if (!world.isClient) {
+            Vec3d sandVelocity = waterVelocity.multiply(0.1);
+            Item sandItem = state.getBlock().getLootTableId().getPath().contains("fire") ? Items.RED_SAND : Items.SAND;
+            ItemEntity itemEntity = new ItemEntity(
+                    world,
+                    pos.getX() + 0.5,
+                    pos.getY(),
+                    pos.getZ() + 0.5,
+                    new ItemStack(sandItem),
+                    sandVelocity.getX(),
+                    sandVelocity.getY(),
+                    sandVelocity.getZ());
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
+        }
 
-    return true;
-  }
+        if (random.nextFloat() < BREAK_CHANCE) {
+            world.removeBlock(pos, false);
+            world.playSound(
+                    null,
+                    pos.getX(),
+                    pos.getY(),
+                    pos.getZ(),
+                    SoundEvents.BLOCK_SAND_BREAK,
+                    SoundCategory.BLOCKS,
+                    0.5f,
+                    1f);
+            return false;
+        }
+
+        return true;
+    }
 }

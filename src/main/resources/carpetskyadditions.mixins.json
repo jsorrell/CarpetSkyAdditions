@@ -20,7 +20,6 @@
     "JigsawStructureAccessor",
     "LavaFluidMixin",
     "LightningEntityMixin",
-    "LivingEntityMixin",
     "MinecraftServerMixin",
     "MissingDimensionFixMixin",
     "PortalForcerMixin",

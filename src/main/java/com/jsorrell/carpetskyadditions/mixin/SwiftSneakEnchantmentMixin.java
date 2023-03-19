@@ -8,12 +8,12 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(SwiftSneakEnchantment.class)
 public class SwiftSneakEnchantmentMixin extends Enchantment {
-  protected SwiftSneakEnchantmentMixin(Rarity weight, EnchantmentTarget type, EquipmentSlot[] slotTypes) {
-    super(weight, type, slotTypes);
-  }
+    protected SwiftSneakEnchantmentMixin(Rarity weight, EnchantmentTarget type, EquipmentSlot[] slotTypes) {
+        super(weight, type, slotTypes);
+    }
 
-  @Override
-  public int getMinPower(int level) {
-    return 14 + level * 7;
-  }
+    @Override
+    public int getMinPower(int level) {
+        return 14 + level * 7;
+    }
 }

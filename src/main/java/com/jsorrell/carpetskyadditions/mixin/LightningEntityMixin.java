@@ -14,21 +14,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LightningEntity.class)
 public abstract class LightningEntityMixin extends Entity {
-  public LightningEntityMixin(EntityType<?> type, World world) {
-    super(type, world);
-  }
+    public LightningEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
-  @Shadow(prefix = "shadow$")
-  protected abstract BlockPos shadow$getAffectedBlockPos();
+    @Shadow(prefix = "shadow$")
+    protected abstract BlockPos shadow$getAffectedBlockPos();
 
-  @Inject(
-      method = "tick",
-      at =
-          @At(
-              value = "INVOKE",
-              target = "Lnet/minecraft/entity/LightningEntity;powerLightningRod()V",
-              shift = At.Shift.AFTER))
-  private void onBlockStruck(CallbackInfo ci) {
-    LightningConverter.strike(this.world, this.shadow$getAffectedBlockPos());
-  }
+    @Inject(
+            method = "tick",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target = "Lnet/minecraft/entity/LightningEntity;powerLightningRod()V",
+                            shift = At.Shift.AFTER))
+    private void onBlockStruck(CallbackInfo ci) {
+        LightningConverter.strike(this.world, this.shadow$getAffectedBlockPos());
+    }
 }
