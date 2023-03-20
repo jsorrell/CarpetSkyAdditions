@@ -79,7 +79,8 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
                 new SkyAdditionsIdentifier("skyblock_acacia"),
                 modContainer,
                 Text.translatable("datapack.carpetskyadditions.acacia"),
-                config.enableDatapackByDefault && config.initialTreeType == SkyAdditionsConfig.InitialTreeType.ACACIA
+                config.enableDatapackByDefault
+                                && config.getInitialTreeType() == SkyAdditionsConfig.InitialTreeType.ACACIA
                         ? ResourcePackActivationType.DEFAULT_ENABLED
                         : ResourcePackActivationType.NORMAL)) {
             SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");

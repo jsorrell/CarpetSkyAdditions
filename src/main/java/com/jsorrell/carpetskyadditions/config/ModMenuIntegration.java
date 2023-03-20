@@ -48,13 +48,13 @@ public class ModMenuIntegration implements ModMenuApi {
                     .startEnumSelector(
                             Text.translatable("carpetskyadditions.config.option.initialTreeType"),
                             SkyAdditionsConfig.InitialTreeType.class,
-                            config.initialTreeType)
+                            config.getInitialTreeType())
                     .setEnumNameProvider(tree -> Text.translatable(
                             "carpetskyadditions.tree." + tree.name().toLowerCase()))
                     .setDefaultValue(SkyAdditionsConfig.InitialTreeType.OAK)
                     .setTooltip(Text.translatable("carpetskyadditions.config.option.initialTreeType.tooltip"))
                     .requireRestart()
-                    .setSaveConsumer(newValue -> config.initialTreeType = newValue)
+                    .setSaveConsumer(newValue -> config.initialTreeType = newValue.toString())
                     .build());
 
             newWorldCategory.addEntry(entryBuilder

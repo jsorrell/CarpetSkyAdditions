@@ -32,6 +32,7 @@
     "Schema2551Mixin",
     "Schema2832Mixin",
     "SchemasMixin",
+    "ServerPropertiesHandlerMixin",
     "SinglePoolElementAccessor",
     "SonicBoomTaskMixin",
     "SpawnRestrictionAccessor",
