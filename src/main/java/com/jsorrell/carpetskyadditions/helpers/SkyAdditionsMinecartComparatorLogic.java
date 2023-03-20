@@ -9,11 +9,11 @@ import net.minecraft.entity.vehicle.MinecartEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class SkyAdditionsMinecartComparatorLogic implements MinecartComparatorLogic<MinecartEntity> {
-  @Override
-  public int getComparatorValue(MinecartEntity minecart, BlockState state, BlockPos pos) {
-    if (SkyAdditionsSettings.allayableVexes && minecart.getFirstPassenger() instanceof VexEntity vex) {
-      return ((VexEntityInterface) vex).getNextNote();
+    @Override
+    public int getComparatorValue(MinecartEntity minecart, BlockState state, BlockPos pos) {
+        if (SkyAdditionsSettings.allayableVexes && minecart.getFirstPassenger() instanceof VexEntity vex) {
+            return ((VexEntityInterface) vex).getNextNote();
+        }
+        return 0;
     }
-    return 0;
-  }
 }

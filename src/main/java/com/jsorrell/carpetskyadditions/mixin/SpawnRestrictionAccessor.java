@@ -9,8 +9,12 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(SpawnRestriction.class)
 public interface SpawnRestrictionAccessor {
-  @Invoker("register")
-  static <T extends MobEntity> void register(EntityType<T> type, SpawnRestriction.Location location, Heightmap.Type heightmapType, SpawnRestriction.SpawnPredicate<T> predicate) {
-    throw new AssertionError();
-  }
+    @Invoker("register")
+    static <T extends MobEntity> void register(
+            EntityType<T> type,
+            SpawnRestriction.Location location,
+            Heightmap.Type heightmapType,
+            SpawnRestriction.SpawnPredicate<T> predicate) {
+        throw new AssertionError();
+    }
 }

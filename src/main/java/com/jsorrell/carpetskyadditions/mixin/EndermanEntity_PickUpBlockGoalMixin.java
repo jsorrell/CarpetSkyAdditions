@@ -18,18 +18,30 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(EndermanEntity.PickUpBlockGoal.class)
 public abstract class EndermanEntity_PickUpBlockGoalMixin {
-  @Inject(method = "tick",
-    at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z", shift = At.Shift.BEFORE),
-    locals = LocalCapture.CAPTURE_FAILSOFT,
-    cancellable = true
-  )
-  private void inject(CallbackInfo ci, Random random, World world, int x, int y, int z, BlockPos targetBlockPos, BlockState targetBlockState) {
-    Block targetBlock = targetBlockState.getBlock();
-    if (targetBlock instanceof TallPlantBlock || targetBlock instanceof DoorBlock) {
-      // Only allow picking up the bottom half
-      if (targetBlockState.get(Properties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
-        ci.cancel();
-      }
+    @Inject(
+            method = "tick",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z",
+                            shift = At.Shift.BEFORE),
+            locals = LocalCapture.CAPTURE_FAILSOFT,
+            cancellable = true)
+    private void inject(
+            CallbackInfo ci,
+            Random random,
+            World world,
+            int x,
+            int y,
+            int z,
+            BlockPos targetBlockPos,
+            BlockState targetBlockState) {
+        Block targetBlock = targetBlockState.getBlock();
+        if (targetBlock instanceof TallPlantBlock || targetBlock instanceof DoorBlock) {
+            // Only allow picking up the bottom half
+            if (targetBlockState.get(Properties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
+                ci.cancel();
+            }
+        }
     }
-  }
 }

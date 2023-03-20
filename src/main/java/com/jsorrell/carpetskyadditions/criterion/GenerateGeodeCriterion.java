@@ -11,27 +11,27 @@ import net.minecraft.util.Identifier;
 
 public class GenerateGeodeCriterion extends AbstractCriterion<GenerateGeodeCriterion.Conditions> {
 
-  static final Identifier ID = new SkyAdditionsIdentifier("generate_geode");
+    static final Identifier ID = new SkyAdditionsIdentifier("generate_geode");
 
-  @Override
-  public Identifier getId() {
-    return ID;
-  }
-
-  public void trigger(ServerPlayerEntity player) {
-    this.trigger(player, conditions -> true);
-  }
-
-  public Conditions conditionsFromJson(
-    JsonObject jsonObject,
-    EntityPredicate.Extended player,
-    AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-    return new Conditions(player);
-  }
-
-  public static class Conditions extends AbstractCriterionConditions {
-    public Conditions(EntityPredicate.Extended player) {
-      super(ID, player);
+    @Override
+    public Identifier getId() {
+        return ID;
     }
-  }
+
+    public void trigger(ServerPlayerEntity player) {
+        this.trigger(player, conditions -> true);
+    }
+
+    public Conditions conditionsFromJson(
+            JsonObject jsonObject,
+            EntityPredicate.Extended player,
+            AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+        return new Conditions(player);
+    }
+
+    public static class Conditions extends AbstractCriterionConditions {
+        public Conditions(EntityPredicate.Extended player) {
+            super(ID, player);
+        }
+    }
 }

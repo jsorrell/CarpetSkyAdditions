@@ -1,13 +1,10 @@
 package com.jsorrell.carpetskyadditions.settings;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 public abstract class SettingFixer {
-  @Nullable
-  public String[] alternateNames() {
-    return null;
-  }
+    public abstract String[] names();
 
-  @Nullable
-  public abstract FieldPair fix(FieldPair currentVal);
+    // Return empty if the field should be deleted
+    public abstract Optional<FieldPair> fix(FieldPair currentVal);
 }

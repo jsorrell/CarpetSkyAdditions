@@ -1,0 +1,37 @@
+{
+  "parent": "skyblock:progression/trapdoor",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "Get Down!"
+    },
+    "description": {
+      "translate": "Mobs spawn faster lower in the world"
+    }
+  },
+  "criteria": {
+    "is_low": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "nbt": "{FallDistance: 0f}",
+              "location": {
+                "position": {
+                  "y": {
+                    "max": -54
+                  }
+                }
+              }
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  }
+}

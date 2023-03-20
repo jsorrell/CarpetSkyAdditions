@@ -4,11 +4,11 @@ A SkyBlock world generates exactly like a Default generation world, but with eve
 Bounding Boxes are kept in place. This means Husks will still spawn in Deserts and Blazes will spawn in Nether
 Fortresses, for example.
 
-The only difference is that End Portal eyes are randomized -- this may change in the future.
+The only difference is that End Portal eyes are randomized — this may change in the future.
 
 Only a few things are generated:
 
-- A small starting island where you spawn:
+- A (configurable) small starting island where you spawn:
   ![small spawn platform with grass and an oak tree](../screenshots/spawn_platform.png?raw=true "Spawn Platform")
 
 - End Portal Frames (unless `generateEndPortals` is set to `false`):

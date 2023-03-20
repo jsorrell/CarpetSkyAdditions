@@ -13,18 +13,33 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(DolphinEntity.class)
 public abstract class DolphinEntityMixin extends WaterCreatureEntity {
-  protected DolphinEntityMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
-    super(entityType, world);
-  }
-
-  @ModifyArg(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 2), index = 1)
-  private Goal ReplaceTreasureGoal(Goal findTreasureGoal) {
-    if (SkyAdditionsSettings.renewableHeartsOfTheSea) {
-      WaterCreatureEntity thiss = this;
-      if (thiss instanceof DolphinEntity dolphin) {
-        return new DolphinFindHeartGoal(dolphin);
-      }
+    protected DolphinEntityMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
+        super(entityType, world);
     }
-    return findTreasureGoal;
-  }
+
+    @SuppressWarnings("ConstantConditions")
+    private DolphinEntity asDolphin() {
+        if ((WaterCreatureEntity) this instanceof DolphinEntity dolphin) {
+            return dolphin;
+        } else {
+            throw new AssertionError("Not dolphin");
+        }
+    }
+
+    @ModifyArg(
+            method = "initGoals",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V",
+                            ordinal = 2),
+            index = 1)
+    private Goal replaceTreasureGoal(Goal findTreasureGoal) {
+        if (SkyAdditionsSettings.renewableHeartsOfTheSea) {
+            return new DolphinFindHeartGoal(this.asDolphin());
+        } else {
+            return findTreasureGoal;
+        }
+    }
 }

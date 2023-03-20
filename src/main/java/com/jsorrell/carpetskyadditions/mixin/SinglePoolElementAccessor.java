@@ -9,6 +9,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(SinglePoolElement.class)
 public interface SinglePoolElementAccessor {
-  @Accessor
-  Either<Identifier, StructureTemplate> getLocation();
+    @Accessor
+    Either<Identifier, StructureTemplate> getLocation();
 }

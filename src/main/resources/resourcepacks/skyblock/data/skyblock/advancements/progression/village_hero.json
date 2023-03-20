@@ -1,0 +1,20 @@
+{
+  "parent": "skyblock:progression/cure_zombie_villager",
+  "display": {
+    "icon": {
+      "item": "minecraft:white_banner",
+      "nbt": "{BlockEntityTag:{Patterns:[{Color:9,Pattern:\"mr\"},{Color:8,Pattern:\"bs\"},{Color:7,Pattern:\"cs\"},{Color:8,Pattern:\"bo\"},{Color:15,Pattern:\"ms\"},{Color:8,Pattern:\"hh\"},{Color:8,Pattern:\"mc\"},{Color:15,Pattern:\"bo\"}],id:\"minecraft:banner\"},HideFlags:32,display:{Name:'{\"color\":\"gold\",\"translate\":\"block.minecraft.ominous_banner\"}'}}"
+    },
+    "title": {
+      "translate": "Big Hero 6"
+    },
+    "description": {
+      "translate": "Obtain the Hero of the Village effect by defeating a raid"
+    }
+  },
+  "criteria": {
+    "hero_of_the_village": {
+      "trigger": "minecraft:hero_of_the_village"
+    }
+  }
+}

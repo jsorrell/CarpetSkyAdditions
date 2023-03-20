@@ -3,6 +3,7 @@
   "package": "com.jsorrell.carpetskyadditions.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AreaEffectCloudEntityMixin",
     "DeadCoralMixin",
     "DeadCoralWallFanBlockMixin",
     "DispenserBehaviorMixin",
@@ -20,7 +21,6 @@
     "JigsawStructureAccessor",
     "LavaFluidMixin",
     "LightningEntityMixin",
-    "LivingEntityMixin",
     "MinecraftServerMixin",
     "MissingDimensionFixMixin",
     "PortalForcerMixin",
@@ -32,6 +32,7 @@
     "Schema2551Mixin",
     "Schema2832Mixin",
     "SchemasMixin",
+    "ServerPropertiesHandlerMixin",
     "SinglePoolElementAccessor",
     "SonicBoomTaskMixin",
     "SpawnRestrictionAccessor",

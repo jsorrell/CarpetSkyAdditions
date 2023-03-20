@@ -21,34 +21,48 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(SpiderEntity.class)
 public abstract class SpiderEntityMixin extends HostileEntity {
 
-  protected SpiderEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-    super(entityType, world);
-  }
-
-  @Override
-  protected ActionResult interactMob(PlayerEntity player, Hand hand) {
-    if (SkyAdditionsSettings.poisonousPotatoesConvertSpiders) {
-      ItemStack handStack = player.getStackInHand(hand);
-      HostileEntity thiss = this;
-      if (handStack.isOf(Items.POISONOUS_POTATO) && thiss instanceof SpiderEntity spider && this.getType() == EntityType.SPIDER) {
-        if (!player.getAbilities().creativeMode) {
-          handStack.decrement(1);
-        }
-
-        CaveSpiderEntity caveSpider = this.convertTo(EntityType.CAVE_SPIDER, true);
-
-        // Copy status effects
-        this.getActiveStatusEffects().forEach((effect, effectInstance) -> caveSpider.addStatusEffect(effectInstance));
-        // Add particles
-        caveSpider.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 0));
-
-        if (player instanceof ServerPlayerEntity serverPlayer) {
-          SkyAdditionsCriteria.CONVERT_SPIDER.trigger(serverPlayer, spider, caveSpider);
-        }
-        this.playSound(SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE, 1.0f + this.random.nextFloat(), this.random.nextFloat() * 0.7f + 0.3f);
-        return ActionResult.SUCCESS;
-      }
+    protected SpiderEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+        super(entityType, world);
     }
-    return super.interactMob(player, hand);
-  }
+
+    @SuppressWarnings("ConstantConditions")
+    private SpiderEntity asSpider() {
+        if ((HostileEntity) this instanceof SpiderEntity spider) {
+            return spider;
+        } else {
+            throw new AssertionError("Not spider");
+        }
+    }
+
+    @Override
+    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
+        if (SkyAdditionsSettings.poisonousPotatoesConvertSpiders) {
+            ItemStack handStack = player.getStackInHand(hand);
+            if (handStack.isOf(Items.POISONOUS_POTATO) && this.getType() == EntityType.SPIDER) {
+                if (!player.getAbilities().creativeMode) {
+                    handStack.decrement(1);
+                }
+
+                CaveSpiderEntity caveSpider = this.convertTo(EntityType.CAVE_SPIDER, true);
+                if (caveSpider == null) {
+                    return ActionResult.SUCCESS;
+                }
+
+                // Copy status effects
+                this.getActiveStatusEffects().values().forEach(caveSpider::addStatusEffect);
+                // Add particles
+                caveSpider.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 0));
+
+                if (player instanceof ServerPlayerEntity serverPlayer) {
+                    SkyAdditionsCriteria.CONVERT_SPIDER.trigger(serverPlayer, this.asSpider(), caveSpider);
+                }
+                this.playSound(
+                        SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE,
+                        1.0f + this.random.nextFloat(),
+                        this.random.nextFloat() * 0.7f + 0.3f);
+                return ActionResult.SUCCESS;
+            }
+        }
+        return super.interactMob(player, hand);
+    }
 }
