@@ -28,6 +28,7 @@ base {
 version = versions.project
 
 val fillBuildTemplate = tasks.register<Copy>("fillBuildTemplate") {
+  description = "Generates the Build.java file containing build parameters"
   val templateContext = mapOf(
     "id" to project.extra["mod_id"] as String,
     "name" to project.extra["mod_name"] as String,
@@ -116,37 +117,40 @@ dependencies {
   modImplementation("com.terraformersmc", "modmenu", versions.modmenu)
 }
 
-tasks.register<Zip>("zipTranslationPack") {
-  val tempDir = layout.buildDirectory.dir("translations-pack")
-  copy {
-    into(tempDir)
-    from("translations-pack")
+tasks["assemble"].dependsOn(
+  tasks.register<Zip>("zipTranslationPack") {
+    description = "Zips the Translations resource pack"
+    val tempDir = layout.buildDirectory.dir("translations-pack")
+    copy {
+      into(tempDir)
+      from("translations-pack")
 
-    into("assets/$modId/lang") {
-      from("src/main/resources/assets/$modId/lang") {
-        exclude("en_us.json")
+      into("assets/$modId/lang") {
+        from("src/main/resources/assets/$modId/lang") {
+          exclude("en_us.json")
+        }
       }
     }
-  }
-  archiveClassifier.set("translations")
-  archiveVersion.set(versions.mod)
-  group = "build"
-  from(tempDir)
-  destinationDirectory.set(base.distsDirectory)
-}
-
-tasks.register<Zip>("zipSkyBlockDatapack") {
-  val tempDir = layout.buildDirectory.dir("datapack/skyblock")
-  copy {
-    into(tempDir)
-    from("src/main/resources/resourcepacks/skyblock")
-  }
-  archiveClassifier.set("datapack")
-  archiveVersion.set(versions.mod)
-  group = "build"
-  from(tempDir)
-  destinationDirectory.set(base.distsDirectory)
-}
+    archiveClassifier.set("translations")
+    archiveVersion.set(versions.mod)
+    group = "build"
+    from(tempDir)
+    destinationDirectory.set(base.distsDirectory)
+  },
+  tasks.register<Zip>("zipSkyBlockDatapack") {
+    description = "Zips the SkyBlock datapack"
+    val tempDir = layout.buildDirectory.dir("datapack/skyblock")
+    copy {
+      into(tempDir)
+      from("src/main/resources/resourcepacks/skyblock")
+    }
+    archiveClassifier.set("datapack")
+    archiveVersion.set(versions.mod)
+    group = "build"
+    from(tempDir)
+    destinationDirectory.set(base.distsDirectory)
+  },
+)
 
 spotless {
   format("misc") {
@@ -156,6 +160,7 @@ spotless {
   }
 
   java {
+    target("src/*/java/**/*.java")
     palantirJavaFormat()
     toggleOffOn()
     removeUnusedImports()
