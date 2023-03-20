@@ -21,8 +21,7 @@ public abstract class SchemasMixin {
                             value = "INVOKE",
                             target =
                                     "Lcom/mojang/datafixers/DataFixerBuilder;addFixer(Lcom/mojang/datafixers/DataFix;)V",
-                            ordinal = 225),
-            remap = false)
+                            ordinal = 225))
     private static void addSkyBlockGeneratorNameFix(DataFixerBuilder builder, CallbackInfo ci) {
         Schema schema3079 = builder.addSchema(3079, 1, Schema3079::new);
         builder.addFixer(new SkyBlockGeneratorNameFix(schema3079));
