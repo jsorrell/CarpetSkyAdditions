@@ -16,6 +16,6 @@ jobs:
         distribution: "temurin"
         java-version: 17
     - name: "Set up Gradle"
-      uses: "gradle/gradle-build-actions@v2"
+      uses: "gradle/gradle-build-action@v2"
     - name: "Execute Gradle Build"
       run: "./gradlew build"
