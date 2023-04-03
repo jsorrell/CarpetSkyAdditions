@@ -20,17 +20,12 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
 import net.minecraft.world.Heightmap;
 
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
@@ -52,39 +47,13 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
                 SpawnRestriction.Location.NO_RESTRICTIONS,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 new PiglinBruteSpawnPredicate());
+
         Registry.register(
                 Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
         SkyAdditionsFeatures.registerAll();
         SkyAdditionsCriteria.registerAll();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
-
-        SkyAdditionsConfig config =
-                AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
-
-        // Add the embedded datapacks as an option on the create world screen
-        ModContainer modContainer =
-                FabricLoader.getInstance().getModContainer(Build.MODID).get();
-
-        if (!ResourceManagerHelper.registerBuiltinResourcePack(
-                new SkyAdditionsIdentifier("skyblock"),
-                modContainer,
-                Text.translatable("datapack.carpetskyadditions.skyblock"),
-                config.enableDatapackByDefault
-                        ? ResourcePackActivationType.DEFAULT_ENABLED
-                        : ResourcePackActivationType.NORMAL)) {
-            SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock\".");
-        }
-
-        if (!ResourceManagerHelper.registerBuiltinResourcePack(
-                new SkyAdditionsIdentifier("skyblock_acacia"),
-                modContainer,
-                Text.translatable("datapack.carpetskyadditions.acacia"),
-                config.enableDatapackByDefault
-                                && config.getInitialTreeType() == SkyAdditionsConfig.InitialTreeType.ACACIA
-                        ? ResourcePackActivationType.DEFAULT_ENABLED
-                        : ResourcePackActivationType.NORMAL)) {
-            SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");
-        }
+        SkyAdditionsDataPacks.register();
     }
 
     @Override

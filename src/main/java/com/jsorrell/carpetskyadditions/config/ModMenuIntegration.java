@@ -40,7 +40,6 @@ public class ModMenuIntegration implements ModMenuApi {
                             Text.translatable("carpetskyadditions.config.option.enableDatapackByDefault"),
                             config.enableDatapackByDefault)
                     .setDefaultValue(false)
-                    .requireRestart()
                     .setSaveConsumer(newValue -> config.enableDatapackByDefault = newValue)
                     .build());
 
@@ -53,7 +52,6 @@ public class ModMenuIntegration implements ModMenuApi {
                             "carpetskyadditions.tree." + tree.name().toLowerCase()))
                     .setDefaultValue(SkyAdditionsConfig.InitialTreeType.OAK)
                     .setTooltip(Text.translatable("carpetskyadditions.config.option.initialTreeType.tooltip"))
-                    .requireRestart()
                     .setSaveConsumer(newValue -> config.initialTreeType = newValue.toString())
                     .build());
 

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 ### Changed
+* Datapack settings changes now update without a client restart.
 
 ### Deprecated
 
@@ -15,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 * Ferns added to the Day Trader advancement for Acacia Tree starts (#101).
+* Removed injection into Fabric API internals which fixes Quilt support (#94).
 
 ## [4.3.0] - 2023-03-20
 

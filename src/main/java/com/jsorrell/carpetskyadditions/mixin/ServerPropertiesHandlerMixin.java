@@ -2,8 +2,11 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.gen.SkyAdditionsWorldPresets;
+import com.jsorrell.carpetskyadditions.helpers.DataConfigurationHelper;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.resource.DataConfiguration;
+import net.minecraft.resource.DataPackSettings;
 import net.minecraft.server.dedicated.ServerPropertiesHandler;
 import net.minecraft.world.gen.WorldPreset;
 import net.minecraft.world.gen.WorldPresets;
@@ -26,5 +29,16 @@ public class ServerPropertiesHandlerMixin {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
         return config.defaultToSkyBlockWorld ? SkyAdditionsWorldPresets.SKYBLOCK : WorldPresets.DEFAULT;
+    }
+
+    @Redirect(
+            method = "<init>",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraft/resource/DataConfiguration;dataPacks()Lnet/minecraft/resource/DataPackSettings;"))
+    private DataPackSettings enableSkyAdditionsDatapacks(DataConfiguration dc) {
+        return DataConfigurationHelper.updateDataConfiguration(dc).dataPacks();
     }
 }

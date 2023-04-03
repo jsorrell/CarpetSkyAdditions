@@ -27,7 +27,6 @@
     "PotionEntityMixin",
     "PotionItemMixin",
     "RamImpactTaskMixin",
-    "ResourceManagerHelperImplMixin",
     "SaplingBlockMixin",
     "Schema2551Mixin",
     "Schema2832Mixin",
