@@ -14,9 +14,6 @@ class Versions(properties: ExtraPropertiesExtension) {
   val modmenu = properties["modmenu_version"] as String
 }
 
-val versions = Versions(project.extra)
-val modId = project.extra["mod_id"] as String
-
 plugins {
   id("fabric-loom") version "1.1-SNAPSHOT"
   id("com.diffplug.spotless") version "latest.release"
@@ -25,69 +22,9 @@ plugins {
   id("com.modrinth.minotaur") version "latest.release"
 }
 
-base {
-  archivesName.set(modId)
-}
+val versions = Versions(project.extra)
+val modId = project.extra["mod_id"] as String
 version = versions.project
-
-val fillBuildTemplate = tasks.register<Copy>("fillBuildTemplate") {
-  description = "Generates the Build.java file containing build parameters"
-  val templateContext = mapOf(
-    "id" to project.extra["mod_id"] as String,
-    "name" to project.extra["mod_name"] as String,
-    "version" to version,
-    "minecraft_version" to versions.minecraft,
-    "yarn_mappings" to versions.yarnMappings,
-  )
-  inputs.properties(templateContext)
-  from("src/template/java")
-  into(layout.buildDirectory.dir("generated/java"))
-  expand(templateContext)
-}
-sourceSets.main.get().java.srcDir(layout.buildDirectory.dir("generated/java"))
-
-tasks {
-  withType<JavaCompile> {
-    dependsOn(fillBuildTemplate)
-    options.encoding = "UTF-8"
-    targetCompatibility = versions.java.toString()
-    sourceCompatibility = targetCompatibility
-    options.release.set(versions.java.ordinal + 1)
-  }
-
-  withType<AbstractArchiveTask> {
-    isPreserveFileTimestamps = false
-    isReproducibleFileOrder = true
-  }
-
-  processResources {
-    val templateContext = mapOf(
-      "name" to project.extra["mod_name"],
-      "version" to version,
-      "mc_compatibility" to versions.minecraftCompatibility,
-    )
-
-    inputs.properties(templateContext)
-    filesMatching("fabric.mod.json") {
-      expand(templateContext)
-    }
-  }
-
-  java {
-    toolchain { languageVersion.set(JavaLanguageVersion.of(versions.java.ordinal + 1)) }
-    sourceCompatibility = versions.java
-    targetCompatibility = versions.java
-    withSourcesJar()
-  }
-  jar {
-    // Embed license in output jar
-    from("LICENSE")
-  }
-}
-
-loom {
-  accessWidenerPath.set(file("src/main/resources/$modId.accesswidener"))
-}
 
 repositories {
   maven("https://masa.dy.fi/maven") {
@@ -124,6 +61,52 @@ dependencies {
     exclude("net.fabricmc.fabric-api")
   }
   modImplementation("com.terraformersmc", "modmenu", versions.modmenu)
+}
+
+base {
+  archivesName.set(modId)
+}
+
+tasks {
+  processResources {
+    val templateContext = mapOf(
+      "name" to project.extra["mod_name"],
+      "version" to version,
+      "mc_compatibility" to versions.minecraftCompatibility,
+    )
+
+    inputs.properties(templateContext)
+    filesMatching("fabric.mod.json") {
+      expand(templateContext)
+    }
+  }
+
+  withType<JavaCompile> {
+    options.encoding = "UTF-8"
+    options.release.set(versions.java.ordinal + 1)
+  }
+
+  java {
+    withSourcesJar()
+    sourceCompatibility = versions.java
+    targetCompatibility = versions.java
+  }
+
+  jar {
+    // Embed license in output jar
+    from("LICENSE") {
+      rename { "${it}_${base.archivesName.get()}" }
+    }
+  }
+
+  withType<AbstractArchiveTask> {
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
+  }
+}
+
+loom {
+  accessWidenerPath.set(file("src/main/resources/$modId.accesswidener"))
 }
 
 tasks.assemble.get().dependsOn(
@@ -189,43 +172,43 @@ spotless {
     target("**/*.yml", "**/*.yaml")
     (jackson() as JacksonYamlGradleConfig).yamlFeature("WRITE_DOC_START_MARKER", false)
   }
+}
 
-  changelog {
-    version.set(versions.mod)
-    repositoryUrl.set(project.extra["repository"] as String)
-    introduction.set(
-      """
+changelog {
+  version.set(versions.mod)
+  repositoryUrl.set(project.extra["repository"] as String)
+  introduction.set(
+    """
         All notable changes to this project will be documented in this file.
 
         The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-      """.trimIndent(),
-    )
-    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed"))
+    """.trimIndent(),
+  )
+  groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed"))
 
-    // Curseforge markdown doesn't recognize "-"
-    itemPrefix.set("*")
-  }
-
-  modrinth {
-    token.set(providers.environmentVariable("MODRINTH_TOKEN"))
-    projectId.set("carpet-sky-additions")
-    versionNumber.set(providers.gradleProperty("mod_version"))
-    versionName.set("${versions.mod} for Minecraft ${versions.minecraft}")
-    versionType.set("release")
-    uploadFile.set(tasks.remapJar)
-    gameVersions.add(versions.minecraft)
-    loaders.add("fabric")
-    changelog.set(
-      provider {
-        project.changelog.renderItem(project.changelog.get(versions.mod).withHeader(false).withEmptySections(false).withLinks(false))
-      },
-    )
-    dependencies {
-      required.project("fabric-api")
-      required.project("carpet")
-      required.project("cloth-config")
-      optional.project("modmenu")
-    }
-  }
-  tasks.modrinth.get().dependsOn(tasks.patchChangelog)
+  // Curseforge markdown doesn't recognize "-"
+  itemPrefix.set("*")
 }
+
+modrinth {
+  token.set(providers.environmentVariable("MODRINTH_TOKEN"))
+  projectId.set("carpet-sky-additions")
+  versionNumber.set(providers.gradleProperty("mod_version"))
+  versionName.set("${versions.mod} for Minecraft ${versions.minecraft}")
+  versionType.set("release")
+  uploadFile.set(tasks.remapJar)
+  gameVersions.add(versions.minecraft)
+  loaders.add("fabric")
+  changelog.set(
+    provider {
+      project.changelog.renderItem(project.changelog.get(versions.mod).withHeader(false).withEmptySections(false).withLinks(false))
+    },
+  )
+  dependencies {
+    required.project("fabric-api")
+    required.project("carpet")
+    required.project("cloth-config")
+    optional.project("modmenu")
+  }
+}
+tasks.modrinth.get().dependsOn(tasks.patchChangelog)

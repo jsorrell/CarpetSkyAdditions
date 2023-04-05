@@ -29,6 +29,13 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.Heightmap;
 
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
+    public static final String MOD_ID = "carpetskyadditions";
+    public static final ModContainer MOD_CONTAINER =
+            FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow();
+    public static final String MOD_VERSION =
+            MOD_CONTAINER.getMetadata().getVersion().toString();
+    public static final String MOD_NAME = MOD_CONTAINER.getMetadata().getName();
+
     private static SettingsManager settingsManager;
 
     public SkyAdditionsExtension() {
@@ -37,7 +44,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
     @Override
     public void onInitialize() {
-        settingsManager = new SettingsManager(Build.VERSION, Build.MODID, Build.NAME);
+        settingsManager = new SettingsManager(MOD_VERSION, MOD_ID, MOD_NAME);
 
         AutoConfig.register(SkyAdditionsConfig.class, Toml4jConfigSerializer::new);
 
@@ -69,7 +76,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return Translations.getTranslationFromResourcePath(
-                String.format("assets/%s/carpet/lang/%s.json", Build.MODID, lang));
+                String.format("assets/%s/carpet/lang/%s.json", MOD_ID, lang));
     }
 
     @Override
@@ -80,6 +87,6 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
     @Override
     public String version() {
-        return Build.MODID + " " + Build.VERSION;
+        return MOD_ID + " " + MOD_VERSION;
     }
 }
