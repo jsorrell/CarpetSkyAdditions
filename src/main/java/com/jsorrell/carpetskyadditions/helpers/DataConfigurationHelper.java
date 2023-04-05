@@ -5,11 +5,11 @@ import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import java.util.ArrayList;
 import java.util.List;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.minecraft.resource.DataConfiguration;
-import net.minecraft.resource.DataPackSettings;
+import net.minecraft.world.level.DataPackConfig;
+import net.minecraft.world.level.WorldDataConfiguration;
 
 public class DataConfigurationHelper {
-    public static DataConfiguration updateDataConfiguration(DataConfiguration dc) {
+    public static WorldDataConfiguration updateDataConfiguration(WorldDataConfiguration dc) {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
         if (config.enableDatapackByDefault) {
@@ -30,7 +30,7 @@ public class DataConfigurationHelper {
                     disabled.remove(acacia);
                 }
             }
-            return new DataConfiguration(new DataPackSettings(enabled, disabled), dc.enabledFeatures());
+            return new WorldDataConfiguration(new DataPackConfig(enabled, disabled), dc.enabledFeatures());
         }
         return dc;
     }

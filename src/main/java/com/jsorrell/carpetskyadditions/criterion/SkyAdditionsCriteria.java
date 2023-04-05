@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.criterion;
 
-import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.advancements.CriteriaTriggers;
 
 public class SkyAdditionsCriteria {
     public static final GenerateGeodeCriterion GENERATE_GEODE = new GenerateGeodeCriterion();
@@ -8,8 +8,8 @@ public class SkyAdditionsCriteria {
     public static final AllayVexCriterion ALLAY_VEX = new AllayVexCriterion();
 
     public static void registerAll() {
-        Criteria.register(GENERATE_GEODE);
-        Criteria.register(CONVERT_SPIDER);
-        Criteria.register(ALLAY_VEX);
+        CriteriaTriggers.register(GENERATE_GEODE);
+        CriteriaTriggers.register(CONVERT_SPIDER);
+        CriteriaTriggers.register(ALLAY_VEX);
     }
 }

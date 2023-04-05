@@ -3,14 +3,14 @@ package com.jsorrell.carpetskyadditions.mixin;
 import com.jsorrell.carpetskyadditions.gen.feature.EndGatewayIslandFeature;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.block.entity.EndGatewayBlockEntity;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.EndConfiguredFeatures;
+import net.minecraft.core.BlockPos;
+import net.minecraft.data.worldgen.features.EndFeatures;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.phys.Vec3;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(EndGatewayBlockEntity.class)
+@Mixin(TheEndGatewayBlockEntity.class)
 public class EndGatewayBlockEntityMixin {
     @Redirect(
             method = "method_46695",
@@ -28,12 +28,13 @@ public class EndGatewayBlockEntityMixin {
                             value = "FIELD",
                             opcode = Opcodes.GETSTATIC,
                             target =
-                                    "Lnet/minecraft/world/gen/feature/EndConfiguredFeatures;END_ISLAND:Lnet/minecraft/registry/RegistryKey;"))
-    private static RegistryKey<ConfiguredFeature<?, ?>> replaceGeneratedEndIslandFeature() {
+                                    "Lnet/minecraft/data/worldgen/features/EndFeatures;END_ISLAND:Lnet/minecraft/resources/ResourceKey;"),
+            remap = false)
+    private static ResourceKey<ConfiguredFeature<?, ?>> replaceGeneratedEndIslandFeature() {
         if (SkyAdditionsSettings.gatewaysSpawnChorus) {
             return SkyAdditionsConfiguredFeatures.GATEWAY_ISLAND;
         } else {
-            return EndConfiguredFeatures.END_ISLAND;
+            return EndFeatures.END_ISLAND;
         }
     }
 
@@ -44,7 +45,7 @@ public class EndGatewayBlockEntityMixin {
     // This overrides the default, but that's OK.
     // The portal location can still be manipulated the same b/c this function only runs if the area is all void.
     @Inject(
-            method = "setupExitPortalLocation",
+            method = "findOrCreateValidTeleportPos",
             cancellable = true,
             at =
                     @At(
@@ -53,11 +54,11 @@ public class EndGatewayBlockEntityMixin {
                             shift = At.Shift.AFTER),
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private static void forceExitPortalPos(
-            ServerWorld world,
+            ServerLevel world,
             BlockPos pos,
             CallbackInfoReturnable<BlockPos> cir,
-            Vec3d teleportLocation,
-            WorldChunk portalChunk,
+            Vec3 teleportLocation,
+            LevelChunk portalChunk,
             BlockPos blockPos,
             BlockPos islandCenterPos) {
         if (SkyAdditionsSettings.gatewaysSpawnChorus) {

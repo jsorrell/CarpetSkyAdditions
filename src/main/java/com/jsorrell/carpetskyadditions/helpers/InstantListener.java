@@ -1,16 +1,16 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.entity.Entity;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.GameEventTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.listener.GameEventListener;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.GameEventTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gameevent.GameEventListener;
+import net.minecraft.world.level.gameevent.PositionSource;
+import net.minecraft.world.phys.Vec3;
 
 public class InstantListener implements GameEventListener {
     protected final PositionSource positionSource;
@@ -29,17 +29,17 @@ public class InstantListener implements GameEventListener {
     }
 
     @Override
-    public PositionSource getPositionSource() {
+    public PositionSource getListenerSource() {
         return this.positionSource;
     }
 
     @Override
-    public int getRange() {
+    public int getListenerRadius() {
         return this.range;
     }
 
     @Override
-    public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d originPos) {
+    public boolean handleGameEvent(ServerLevel world, GameEvent event, GameEvent.Context emitter, Vec3 originPos) {
         if (onCooldown) {
             return false;
         }
@@ -58,8 +58,8 @@ public class InstantListener implements GameEventListener {
             return GameEventTags.VIBRATIONS;
         }
 
-        default boolean canAccept(GameEvent gameEvent, GameEvent.Emitter emitter) {
-            if (!gameEvent.isIn(this.getTag())) {
+        default boolean canAccept(GameEvent gameEvent, GameEvent.Context emitter) {
+            if (!gameEvent.is(this.getTag())) {
                 return false;
             }
             Entity entity = emitter.sourceEntity();
@@ -67,27 +67,27 @@ public class InstantListener implements GameEventListener {
                 if (entity.isSpectator()) {
                     return false;
                 }
-                if (entity.bypassesSteppingEffects() && gameEvent.isIn(GameEventTags.IGNORE_VIBRATIONS_SNEAKING)) {
-                    if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-                        Criteria.AVOID_VIBRATION.trigger(serverPlayerEntity);
+                if (entity.isSteppingCarefully() && gameEvent.is(GameEventTags.IGNORE_VIBRATIONS_SNEAKING)) {
+                    if (entity instanceof ServerPlayer serverPlayerEntity) {
+                        CriteriaTriggers.AVOID_VIBRATION.trigger(serverPlayerEntity);
                     }
                     return false;
                 }
-                if (entity.occludeVibrationSignals()) {
+                if (entity.dampensVibrations()) {
                     return false;
                 }
             }
             if (emitter.affectedState() != null) {
-                return !emitter.affectedState().isIn(BlockTags.DAMPENS_VIBRATIONS);
+                return !emitter.affectedState().is(BlockTags.DAMPENS_VIBRATIONS);
             }
             return true;
         }
 
         void accept(
-                ServerWorld world,
+                ServerLevel world,
                 GameEventListener listener,
-                Vec3d originPos,
+                Vec3 originPos,
                 GameEvent gameEvent,
-                GameEvent.Emitter emitter);
+                GameEvent.Context emitter);
     }
 }

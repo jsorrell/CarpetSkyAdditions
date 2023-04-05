@@ -9,23 +9,23 @@ import com.jsorrell.carpetskyadditions.settings.SkyBlockDefaults;
 import java.io.IOException;
 import java.nio.file.Path;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.minecraft.registry.CombinedDynamicRegistries;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.ServerDynamicRegistryType;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.LayeredRegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerChunkManager;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.WorldSavePath;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.random.CheckedRandom;
-import net.minecraft.util.math.random.ChunkRandom;
-import net.minecraft.world.SaveProperties;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.level.ServerWorldProperties;
+import net.minecraft.server.RegistryLayer;
+import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.storage.LevelResource;
+import net.minecraft.world.level.storage.ServerLevelData;
+import net.minecraft.world.level.storage.WorldData;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,18 +39,18 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public abstract class MinecraftServerMixin {
     @Shadow
     @Final
-    protected SaveProperties saveProperties;
+    protected WorldData worldData;
 
     @Shadow
-    public abstract Path getSavePath(WorldSavePath worldSavePath);
+    public abstract Path getWorldPath(LevelResource worldSavePath);
 
     @Shadow
     @Final
-    private CombinedDynamicRegistries<ServerDynamicRegistryType> combinedDynamicRegistries;
+    private LayeredRegistryAccess<RegistryLayer> registries;
 
-    @Inject(method = "loadWorld", at = @At("HEAD"))
+    @Inject(method = "loadLevel", at = @At("HEAD"))
     private void fixSettingsFile(CallbackInfo ci) {
-        Path worldSavePath = this.getSavePath(WorldSavePath.ROOT);
+        Path worldSavePath = this.getWorldPath(LevelResource.ROOT);
         // Fix existing settings
         try {
             Fixers.fixSettings(worldSavePath);
@@ -62,13 +62,13 @@ public abstract class MinecraftServerMixin {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
         if (config.autoEnableDefaultSettings
-                && this.combinedDynamicRegistries
-                                .getCombinedRegistryManager()
-                                .get(RegistryKeys.DIMENSION)
-                                .getOrThrow(DimensionOptions.OVERWORLD)
-                                .chunkGenerator()
+                && this.registries
+                                .compositeAccess()
+                                .registryOrThrow(Registries.LEVEL_STEM)
+                                .getOrThrow(LevelStem.OVERWORLD)
+                                .generator()
                         instanceof SkyBlockChunkGenerator
-                && !this.saveProperties.getMainWorldProperties().isInitialized()) {
+                && !this.worldData.overworldData().isInitialized()) {
             try {
                 SkyBlockDefaults.writeDefaults(worldSavePath);
             } catch (IOException e) {
@@ -78,38 +78,38 @@ public abstract class MinecraftServerMixin {
     }
 
     @Inject(
-            method = "setupSpawn",
+            method = "setInitialSpawn",
             locals = LocalCapture.CAPTURE_FAILHARD,
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/world/level/ServerWorldProperties;setSpawnPos(Lnet/minecraft/util/math/BlockPos;F)V",
+                                    "Lnet/minecraft/world/level/storage/ServerLevelData;setSpawn(Lnet/minecraft/core/BlockPos;F)V",
                             ordinal = 1,
                             shift = At.Shift.AFTER),
             cancellable = true)
     private static void generateSpawnPlatform(
-            ServerWorld world,
-            ServerWorldProperties worldProperties,
+            ServerLevel world,
+            ServerLevelData worldProperties,
             boolean bonusChest,
             boolean debugWorld,
             CallbackInfo ci,
-            ServerChunkManager serverChunkManager,
+            ServerChunkCache serverChunkManager,
             ChunkPos spawnChunk,
             int spawnHeight) {
-        ServerChunkManager chunkManager = world.getChunkManager();
-        ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
+        ServerChunkCache chunkManager = world.getChunkSource();
+        ChunkGenerator chunkGenerator = chunkManager.getGenerator();
         if (!(chunkGenerator instanceof SkyBlockChunkGenerator)) return;
-        BlockPos worldSpawn = spawnChunk.getCenterAtY(spawnHeight);
+        BlockPos worldSpawn = spawnChunk.getMiddleBlockPosition(spawnHeight);
 
-        ChunkRandom random = new ChunkRandom(new CheckedRandom(0));
-        random.setCarverSeed(world.getSeed(), spawnChunk.x, spawnChunk.z);
+        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0));
+        random.setLargeFeatureSeed(world.getSeed(), spawnChunk.x, spawnChunk.z);
 
-        RegistryEntry.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = world.getRegistryManager()
-                .get(RegistryKeys.CONFIGURED_FEATURE)
-                .entryOf(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM);
+        Holder.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = world.registryAccess()
+                .registryOrThrow(Registries.CONFIGURED_FEATURE)
+                .getHolderOrThrow(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM);
 
-        if (!spawnPlatformFeature.value().generate(world, chunkGenerator, random, worldSpawn)) {
+        if (!spawnPlatformFeature.value().place(world, chunkGenerator, random, worldSpawn)) {
             SkyAdditionsSettings.LOG.error("Couldn't generate spawn platform");
         }
 

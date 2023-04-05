@@ -2,13 +2,13 @@ package com.jsorrell.carpetskyadditions.gen.feature;
 
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.structure.StructureTemplate;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
 public class LocatableStructureFeature extends Feature<LocatableStructureFeatureConfig> {
     public LocatableStructureFeature(Codec<LocatableStructureFeatureConfig> codec) {
@@ -16,27 +16,26 @@ public class LocatableStructureFeature extends Feature<LocatableStructureFeature
     }
 
     @Override
-    public boolean generate(FeatureContext<LocatableStructureFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
+    public boolean place(FeaturePlaceContext<LocatableStructureFeatureConfig> context) {
+        WorldGenLevel world = context.level();
         MinecraftServer server = world.getServer();
         if (server == null) {
             return false;
         }
-        LocatableStructureFeatureConfig config = context.getConfig();
-        StructureTemplate structure = server.getStructureTemplateManager()
-                .getTemplate(config.structure())
-                .orElse(null);
+        LocatableStructureFeatureConfig config = context.config();
+        StructureTemplate structure =
+                server.getStructureManager().get(config.structure()).orElse(null);
         if (structure == null) {
             SkyAdditionsSettings.LOG.warn("Missing structure " + config.structure());
             return false;
         }
 
-        return structure.place(
+        return structure.placeInWorld(
                 world,
-                context.getOrigin().add(config.pos()),
+                context.origin().offset(config.pos()),
                 null,
-                new StructurePlacementData(),
-                context.getRandom(),
-                Block.NOTIFY_LISTENERS);
+                new StructurePlaceSettings(),
+                context.random(),
+                Block.UPDATE_CLIENTS);
     }
 }

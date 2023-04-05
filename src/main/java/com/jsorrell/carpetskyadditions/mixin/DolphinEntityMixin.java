@@ -2,24 +2,24 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DolphinFindHeartGoal;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.WaterCreatureEntity;
-import net.minecraft.entity.passive.DolphinEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.animal.Dolphin;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(DolphinEntity.class)
-public abstract class DolphinEntityMixin extends WaterCreatureEntity {
-    protected DolphinEntityMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
+@Mixin(Dolphin.class)
+public abstract class DolphinEntityMixin extends WaterAnimal {
+    protected DolphinEntityMixin(EntityType<? extends WaterAnimal> entityType, Level world) {
         super(entityType, world);
     }
 
     @SuppressWarnings("ConstantConditions")
-    private DolphinEntity asDolphin() {
-        if ((WaterCreatureEntity) this instanceof DolphinEntity dolphin) {
+    private Dolphin asDolphin() {
+        if ((WaterAnimal) this instanceof Dolphin dolphin) {
             return dolphin;
         } else {
             throw new AssertionError("Not dolphin");
@@ -27,12 +27,12 @@ public abstract class DolphinEntityMixin extends WaterCreatureEntity {
     }
 
     @ModifyArg(
-            method = "initGoals",
+            method = "registerGoals",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V",
+                                    "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V",
                             ordinal = 2),
             index = 1)
     private Goal replaceTreasureGoal(Goal findTreasureGoal) {

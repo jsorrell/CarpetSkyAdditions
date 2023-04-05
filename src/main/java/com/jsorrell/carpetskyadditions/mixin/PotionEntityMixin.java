@@ -2,17 +2,17 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DeepslateConversionHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.thrown.PotionEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.entity.projectile.ThrownPotion;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,42 +20,41 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(PotionEntity.class)
-public abstract class PotionEntityMixin extends ThrownItemEntity {
+@Mixin(ThrownPotion.class)
+public abstract class PotionEntityMixin extends ThrowableItemProjectile {
     @Shadow
     protected abstract boolean isLingering();
 
-    public PotionEntityMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    public PotionEntityMixin(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
         super(entityType, world);
     }
 
     @Inject(
-            method = "onCollision",
+            method = "onHit",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/potion/PotionUtil;getPotionEffects(Lnet/minecraft/item/ItemStack;)Ljava/util/List;"),
+                                    "Lnet/minecraft/world/item/alchemy/PotionUtils;getMobEffects(Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;"),
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onThickPotionCollision(HitResult hitResult, CallbackInfo ci, ItemStack stack, Potion potion) {
         if (SkyAdditionsSettings.renewableDeepslateFromSplash) {
             if (potion == DeepslateConversionHelper.CONVERSION_POTION) {
-                Vec3d hitPos = hitResult.getType() == HitResult.Type.BLOCK ? hitResult.getPos() : this.getPos();
+                Vec3 hitPos = hitResult.getType() == HitResult.Type.BLOCK ? hitResult.getLocation() : this.position();
                 if (this.isLingering()) {
                     // Create the cloud b/c vanilla doesn't when there are no potion effects
-                    AreaEffectCloudEntity cloud =
-                            new AreaEffectCloudEntity(world, hitPos.getX(), hitPos.getY(), hitPos.getZ());
+                    AreaEffectCloud cloud = new AreaEffectCloud(level, hitPos.x(), hitPos.y(), hitPos.z());
                     cloud.setRadius(3.0f);
                     cloud.setWaitTime(10);
-                    cloud.setRadiusGrowth(-cloud.getRadius() / cloud.getDuration());
+                    cloud.setRadiusPerTick(-cloud.getRadius() / cloud.getDuration());
                     cloud.setPotion(potion);
-                    NbtCompound nbt = stack.getNbt();
-                    if (nbt != null && nbt.contains("CustomPotionColor", NbtElement.NUMBER_TYPE)) {
-                        cloud.setColor(nbt.getInt("CustomPotionColor"));
+                    CompoundTag nbt = stack.getTag();
+                    if (nbt != null && nbt.contains("CustomPotionColor", Tag.TAG_ANY_NUMERIC)) {
+                        cloud.setFixedColor(nbt.getInt("CustomPotionColor"));
                     }
-                    world.spawnEntity(cloud);
+                    level.addFreshEntity(cloud);
                 } else {
-                    DeepslateConversionHelper.convertDeepslateAtSplash(world, hitPos);
+                    DeepslateConversionHelper.convertDeepslateAtSplash(level, hitPos);
                 }
             }
         }

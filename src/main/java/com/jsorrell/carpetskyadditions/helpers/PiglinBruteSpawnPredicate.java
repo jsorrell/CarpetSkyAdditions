@@ -1,42 +1,43 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
 import carpet.CarpetSettings;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.mob.PiglinBruteEntity;
-import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.SpawnHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class PiglinBruteSpawnPredicate implements SpawnRestriction.SpawnPredicate<PiglinBruteEntity> {
+public class PiglinBruteSpawnPredicate implements SpawnPlacements.SpawnPredicate<PiglinBrute> {
     @Override
     public boolean test(
-            EntityType<PiglinBruteEntity> type,
-            ServerWorldAccess world,
-            SpawnReason spawnReason,
+            EntityType<PiglinBrute> type,
+            ServerLevelAccessor world,
+            MobSpawnType spawnReason,
             BlockPos pos,
-            Random random) {
+            RandomSource random) {
         // Conditionally implement registering SpawnRestriction.Location.ON_GROUND
         if (CarpetSettings.piglinsSpawningInBastions) {
-            BlockPos underBlockPos = pos.down();
+            BlockPos underBlockPos = pos.below();
             BlockState underBlock = world.getBlockState(underBlockPos);
-            if (!underBlock.allowsSpawning(world, underBlockPos, type)) {
+            if (!underBlock.isValidSpawn(world, underBlockPos, type)) {
                 return false;
             }
-            BlockPos aboveBlockPos = pos.up();
-            return SpawnHelper.isClearForSpawn(world, pos, world.getBlockState(pos), world.getFluidState(pos), type)
-                    && SpawnHelper.isClearForSpawn(
+            BlockPos aboveBlockPos = pos.above();
+            return NaturalSpawner.isValidEmptySpawnBlock(
+                            world, pos, world.getBlockState(pos), world.getFluidState(pos), type)
+                    && NaturalSpawner.isValidEmptySpawnBlock(
                             world,
                             aboveBlockPos,
                             world.getBlockState(aboveBlockPos),
                             world.getFluidState(aboveBlockPos),
                             type)
                     // Mimic piglin spawning restrictions b/c that's the closest mob
-                    && PiglinEntity.canSpawn(EntityType.PIGLIN, world, spawnReason, pos, random);
+                    && Piglin.checkPiglinSpawnRules(EntityType.PIGLIN, world, spawnReason, pos, random);
         }
 
         return true;

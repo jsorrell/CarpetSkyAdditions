@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
@@ -15,7 +15,7 @@ public class ModMenuIntegration implements ModMenuApi {
         return parent -> {
             ConfigBuilder builder = ConfigBuilder.create()
                     .setParentScreen(parent)
-                    .setTitle(Text.translatable("carpetskyadditions.config.title"));
+                    .setTitle(Component.translatable("carpetskyadditions.config.title"));
 
             ConfigHolder<SkyAdditionsConfig> configHolder = AutoConfig.getConfigHolder(SkyAdditionsConfig.class);
             builder.setSavingRunnable(configHolder::save);
@@ -25,11 +25,11 @@ public class ModMenuIntegration implements ModMenuApi {
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
             ConfigCategory newWorldCategory =
-                    builder.getOrCreateCategory(Text.translatable("carpetskyadditions.config.category.newWorld"));
+                    builder.getOrCreateCategory(Component.translatable("carpetskyadditions.config.category.newWorld"));
 
             newWorldCategory.addEntry(entryBuilder
                     .startBooleanToggle(
-                            Text.translatable("carpetskyadditions.config.option.defaultToSkyBlockWorld"),
+                            Component.translatable("carpetskyadditions.config.option.defaultToSkyBlockWorld"),
                             config.defaultToSkyBlockWorld)
                     .setDefaultValue(false)
                     .setSaveConsumer(newValue -> config.defaultToSkyBlockWorld = newValue)
@@ -37,7 +37,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
             newWorldCategory.addEntry(entryBuilder
                     .startBooleanToggle(
-                            Text.translatable("carpetskyadditions.config.option.enableDatapackByDefault"),
+                            Component.translatable("carpetskyadditions.config.option.enableDatapackByDefault"),
                             config.enableDatapackByDefault)
                     .setDefaultValue(false)
                     .setSaveConsumer(newValue -> config.enableDatapackByDefault = newValue)
@@ -45,19 +45,19 @@ public class ModMenuIntegration implements ModMenuApi {
 
             newWorldCategory.addEntry(entryBuilder
                     .startEnumSelector(
-                            Text.translatable("carpetskyadditions.config.option.initialTreeType"),
+                            Component.translatable("carpetskyadditions.config.option.initialTreeType"),
                             SkyAdditionsConfig.InitialTreeType.class,
                             config.getInitialTreeType())
-                    .setEnumNameProvider(tree -> Text.translatable(
+                    .setEnumNameProvider(tree -> Component.translatable(
                             "carpetskyadditions.tree." + tree.name().toLowerCase()))
                     .setDefaultValue(SkyAdditionsConfig.InitialTreeType.OAK)
-                    .setTooltip(Text.translatable("carpetskyadditions.config.option.initialTreeType.tooltip"))
+                    .setTooltip(Component.translatable("carpetskyadditions.config.option.initialTreeType.tooltip"))
                     .setSaveConsumer(newValue -> config.initialTreeType = newValue.toString())
                     .build());
 
             newWorldCategory.addEntry(entryBuilder
                     .startBooleanToggle(
-                            Text.translatable("carpetskyadditions.config.option.autoEnableDefaultSettings"),
+                            Component.translatable("carpetskyadditions.config.option.autoEnableDefaultSettings"),
                             config.autoEnableDefaultSettings)
                     .setDefaultValue(true)
                     .setSaveConsumer(newValue -> config.autoEnableDefaultSettings = newValue)

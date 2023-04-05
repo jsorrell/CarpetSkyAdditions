@@ -6,7 +6,7 @@ class Versions(properties: ExtraPropertiesExtension) {
   val minecraft = properties["minecraft_version"] as String
   val minecraftCompatibility = properties["compatible_minecraft_versions"] as String
   val project = "$minecraft-$mod"
-  val yarnMappings = properties["yarn_mappings"] as String
+  val parchmentMappings = properties["parchment_mappings"] as String
   val fabricLoader = properties["loader_version"] as String
   val fabricApi = properties["fabric_version"] as String
   val carpet = properties["carpet_core_version"] as String
@@ -42,11 +42,22 @@ repositories {
       includeGroup("com.terraformersmc")
     }
   }
+  maven("https://maven.parchmentmc.org") {
+    name = "ParchmentMC"
+    content {
+      includeGroup("org.parchmentmc.data")
+    }
+  }
 }
 
 dependencies {
   minecraft("com.mojang", "minecraft", versions.minecraft)
-  mappings("net.fabricmc", "yarn", versions.yarnMappings, null, "v2")
+  mappings(
+    loom.layered {
+      officialMojangMappings()
+      parchment("org.parchmentmc.data:parchment-${versions.parchmentMappings}@zip")
+    },
+  )
   modImplementation("net.fabricmc", "fabric-loader", versions.fabricLoader)
   modImplementation("carpet", "fabric-carpet", versions.carpet)
 

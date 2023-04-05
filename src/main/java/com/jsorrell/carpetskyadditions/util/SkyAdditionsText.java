@@ -1,17 +1,17 @@
 package com.jsorrell.carpetskyadditions.util;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Language;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 public abstract class SkyAdditionsText {
     protected static Language language = Language.getInstance();
 
-    public static MutableText translatable(String key) {
-        return Text.translatableWithFallback(key, language.get(key));
+    public static MutableComponent translatable(String key) {
+        return Component.translatableWithFallback(key, language.getOrDefault(key));
     }
 
-    public static MutableText translatable(String key, Object... args) {
-        return Text.translatableWithFallback(key, language.get(key), args);
+    public static MutableComponent translatable(String key, Object... args) {
+        return Component.translatableWithFallback(key, language.getOrDefault(key), args);
     }
 }

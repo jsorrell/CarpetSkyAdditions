@@ -2,60 +2,57 @@ package com.jsorrell.carpetskyadditions.criterion;
 
 import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.entity.mob.VexEntity;
-import net.minecraft.entity.passive.AllayEntity;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.animal.allay.Allay;
+import net.minecraft.world.entity.monster.Vex;
+import net.minecraft.world.level.storage.loot.LootContext;
 
-public class AllayVexCriterion extends AbstractCriterion<AllayVexCriterion.Conditions> {
-    static final Identifier ID = new SkyAdditionsIdentifier("allay_vex");
+public class AllayVexCriterion extends SimpleCriterionTrigger<AllayVexCriterion.Conditions> {
+    static final ResourceLocation ID = new SkyAdditionsIdentifier("allay_vex");
 
     @Override
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return ID;
     }
 
-    public void trigger(ServerPlayerEntity player, VexEntity vex, AllayEntity allay) {
-        LootContext vexLootContext = EntityPredicate.createAdvancementEntityLootContext(player, vex);
-        LootContext allayLootContext = EntityPredicate.createAdvancementEntityLootContext(player, allay);
+    public void trigger(ServerPlayer player, Vex vex, Allay allay) {
+        LootContext vexLootContext = EntityPredicate.createContext(player, vex);
+        LootContext allayLootContext = EntityPredicate.createContext(player, allay);
         this.trigger(player, conditions -> conditions.matches(vexLootContext, allayLootContext));
     }
 
-    public Conditions conditionsFromJson(
+    @Override
+    public Conditions createInstance(
             JsonObject jsonObject,
-            EntityPredicate.Extended playerPredicate,
-            AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-        EntityPredicate.Extended vexPredicate =
-                EntityPredicate.Extended.getInJson(jsonObject, "vex", advancementEntityPredicateDeserializer);
-        EntityPredicate.Extended allayPredicate =
-                EntityPredicate.Extended.getInJson(jsonObject, "allay", advancementEntityPredicateDeserializer);
+            EntityPredicate.Composite playerPredicate,
+            DeserializationContext advancementEntityPredicateDeserializer) {
+        EntityPredicate.Composite vexPredicate =
+                EntityPredicate.Composite.fromJson(jsonObject, "vex", advancementEntityPredicateDeserializer);
+        EntityPredicate.Composite allayPredicate =
+                EntityPredicate.Composite.fromJson(jsonObject, "allay", advancementEntityPredicateDeserializer);
         return new Conditions(playerPredicate, vexPredicate, allayPredicate);
     }
 
-    public static class Conditions extends AbstractCriterionConditions {
-        private final EntityPredicate.Extended vex;
-        private final EntityPredicate.Extended allay;
+    public static class Conditions extends AbstractCriterionTriggerInstance {
+        private final EntityPredicate.Composite vex;
+        private final EntityPredicate.Composite allay;
 
         public Conditions(
-                EntityPredicate.Extended player, EntityPredicate.Extended vex, EntityPredicate.Extended allay) {
+                EntityPredicate.Composite player, EntityPredicate.Composite vex, EntityPredicate.Composite allay) {
             super(ID, player);
             this.vex = vex;
             this.allay = allay;
         }
 
         public boolean matches(LootContext vexContext, LootContext allayContext) {
-            return this.vex.test(vexContext) && this.allay.test(allayContext);
+            return this.vex.matches(vexContext) && this.allay.matches(allayContext);
         }
 
         @Override
-        public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
-            JsonObject jsonObject = super.toJson(predicateSerializer);
+        public JsonObject serializeToJson(SerializationContext predicateSerializer) {
+            JsonObject jsonObject = super.serializeToJson(predicateSerializer);
             jsonObject.add("vex", this.vex.toJson(predicateSerializer));
             jsonObject.add("allay", this.allay.toJson(predicateSerializer));
             return jsonObject;

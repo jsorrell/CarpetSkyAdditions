@@ -2,37 +2,41 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DeadCoralToSandHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.block.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.BaseCoralFanBlock;
+import net.minecraft.world.level.block.BaseCoralWallFanBlock;
+import net.minecraft.world.level.block.CoralWallFanBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(DeadCoralWallFanBlock.class)
-public class DeadCoralWallFanBlockMixin extends DeadCoralFanBlock {
-    public DeadCoralWallFanBlockMixin(Settings settings) {
+@Mixin(BaseCoralWallFanBlock.class)
+public class DeadCoralWallFanBlockMixin extends BaseCoralFanBlock {
+    public DeadCoralWallFanBlockMixin(BlockBehaviour.Properties settings) {
         super(settings);
     }
 
     @SuppressWarnings("ConstantConditions")
     private boolean isCoralWallFan() {
-        return (DeadCoralFanBlock) this instanceof CoralWallFanBlock;
+        return (BaseCoralFanBlock) this instanceof CoralWallFanBlock;
     }
 
-    @Inject(method = "getStateForNeighborUpdate", at = @At(value = "HEAD"))
+    @Inject(method = "updateShape", at = @At(value = "HEAD"))
     private void scheduleTickOnBlockUpdate(
             BlockState state,
             Direction direction,
             BlockState neighborState,
-            WorldAccess world,
+            LevelAccessor world,
             BlockPos pos,
             BlockPos neighborPos,
             CallbackInfoReturnable<BlockState> cir) {
         if (SkyAdditionsSettings.coralErosion && !this.isCoralWallFan()) {
-            world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+            world.scheduleTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
         }
     }
 }

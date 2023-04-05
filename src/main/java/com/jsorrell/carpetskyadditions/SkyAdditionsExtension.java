@@ -20,13 +20,15 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.world.Heightmap;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.levelgen.Heightmap;
 
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     public static final String MOD_ID = "carpetskyadditions";
@@ -51,12 +53,14 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
         // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
         SpawnRestrictionAccessor.register(
                 EntityType.PIGLIN_BRUTE,
-                SpawnRestriction.Location.NO_RESTRICTIONS,
-                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                SpawnPlacements.Type.NO_RESTRICTIONS,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 new PiglinBruteSpawnPredicate());
 
         Registry.register(
-                Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
+                BuiltInRegistries.CHUNK_GENERATOR,
+                new SkyAdditionsIdentifier("skyblock"),
+                SkyBlockChunkGenerator.CODEC);
         SkyAdditionsFeatures.registerAll();
         SkyAdditionsCriteria.registerAll();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
@@ -81,7 +85,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
     @Override
     public void registerCommands(
-            CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
+            CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         SkyIslandCommand.register(dispatcher);
     }
 

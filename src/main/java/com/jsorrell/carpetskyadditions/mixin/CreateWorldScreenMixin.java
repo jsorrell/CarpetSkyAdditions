@@ -6,16 +6,16 @@ import com.jsorrell.carpetskyadditions.helpers.DataConfigurationHelper;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.world.CreateWorldScreen;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.resource.DataConfiguration;
-import net.minecraft.world.dimension.DimensionOptionsRegistryHolder;
-import net.minecraft.world.gen.WorldPreset;
-import net.minecraft.world.gen.WorldPresets;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.WorldDataConfiguration;
+import net.minecraft.world.level.levelgen.WorldDimensions;
+import net.minecraft.world.level.levelgen.presets.WorldPreset;
+import net.minecraft.world.level.levelgen.presets.WorldPresets;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -26,24 +26,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class CreateWorldScreenMixin {
     // Try to reload config whenever Create New World is clicked
     @Inject(
-            method = "create(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/gui/screen/Screen;)V",
+            method = "openFresh(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)V",
             at = @At("HEAD"))
-    private static void loadConfigFromFile(MinecraftClient client, Screen parent, CallbackInfo ci) {
+    private static void loadConfigFromFile(Minecraft client, Screen parent, CallbackInfo ci) {
         AutoConfig.getConfigHolder(SkyAdditionsConfig.class).load();
     }
 
     @Redirect(
-            method = "create(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/gui/screen/Screen;)V",
+            method = "openFresh(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)V",
             at =
                     @At(
                             value = "FIELD",
                             opcode = Opcodes.GETSTATIC,
                             target =
-                                    "Lnet/minecraft/world/gen/WorldPresets;DEFAULT:Lnet/minecraft/registry/RegistryKey;"))
-    private static RegistryKey<WorldPreset> setDefaultSelectedWorldPreset() {
+                                    "Lnet/minecraft/world/level/levelgen/presets/WorldPresets;NORMAL:Lnet/minecraft/resources/ResourceKey;"))
+    private static ResourceKey<WorldPreset> setDefaultSelectedWorldPreset() {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
-        return config.defaultToSkyBlockWorld ? SkyAdditionsWorldPresets.SKYBLOCK : WorldPresets.DEFAULT;
+        return config.defaultToSkyBlockWorld ? SkyAdditionsWorldPresets.SKYBLOCK : WorldPresets.NORMAL;
     }
 
     @Redirect(
@@ -52,28 +52,28 @@ public class CreateWorldScreenMixin {
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/world/gen/WorldPresets;createDemoOptions(Lnet/minecraft/registry/DynamicRegistryManager;)Lnet/minecraft/world/dimension/DimensionOptionsRegistryHolder;"))
-    private static DimensionOptionsRegistryHolder setDefaultWorldGenSettings(DynamicRegistryManager drm) {
+                                    "Lnet/minecraft/world/level/levelgen/presets/WorldPresets;createNormalWorldDimensions(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/levelgen/WorldDimensions;"))
+    private static WorldDimensions setDefaultWorldGenSettings(RegistryAccess drm) {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
         if (config.defaultToSkyBlockWorld) {
-            return drm.get(RegistryKeys.WORLD_PRESET)
-                    .entryOf(SkyAdditionsWorldPresets.SKYBLOCK)
+            return drm.registryOrThrow(Registries.WORLD_PRESET)
+                    .getHolderOrThrow(SkyAdditionsWorldPresets.SKYBLOCK)
                     .value()
-                    .createDimensionsRegistryHolder();
+                    .createWorldDimensions();
         } else {
-            return WorldPresets.createDemoOptions(drm);
+            return WorldPresets.createNormalWorldDimensions(drm);
         }
     }
 
     @ModifyArg(
-            method = "create(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/gui/screen/Screen;)V",
+            method = "openFresh(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)V",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/client/gui/screen/world/CreateWorldScreen;createServerConfig(Lnet/minecraft/resource/ResourcePackManager;Lnet/minecraft/resource/DataConfiguration;)Lnet/minecraft/server/SaveLoading$ServerConfig;"))
-    private static DataConfiguration enableSkyAdditionsDatapacks(DataConfiguration dc) {
+                                    "Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;createDefaultLoadConfig(Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)Lnet/minecraft/server/WorldLoader$InitConfig;"))
+    private static WorldDataConfiguration enableSkyAdditionsDatapacks(WorldDataConfiguration dc) {
         return DataConfigurationHelper.updateDataConfiguration(dc);
     }
 }

@@ -1,7 +1,7 @@
 package com.jsorrell.carpetskyadditions.settings;
 
 import com.google.common.collect.Iterables;
-import com.jsorrell.carpetskyadditions.Build;
+import com.jsorrell.carpetskyadditions.SkyAdditionsExtension;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -17,7 +17,7 @@ public final class Fixers {
         Map<String, ArrayList<SettingFixer>> fixerMap = getFixerMap();
         if (fixerMap.size() == 0) return;
 
-        Path configPath = rootSavePath.resolve(Build.MODID + ".conf");
+        Path configPath = rootSavePath.resolve(SkyAdditionsExtension.MOD_ID + ".conf");
         // Read from File
         List<String> rules;
         try {

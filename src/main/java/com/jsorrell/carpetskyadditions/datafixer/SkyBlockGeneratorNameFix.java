@@ -6,7 +6,7 @@ import com.mojang.datafixers.TypeRewriteRule;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.datafixers.types.Type;
 import com.mojang.serialization.Dynamic;
-import net.minecraft.datafixer.TypeReferences;
+import net.minecraft.util.datafix.fixes.References;
 
 // Convert all instances of minecraft:skyblock to skyblock:skyblock
 public class SkyBlockGeneratorNameFix extends DataFix {
@@ -18,9 +18,9 @@ public class SkyBlockGeneratorNameFix extends DataFix {
 
     @Override
     protected TypeRewriteRule makeRule() {
-        Type<?> inputType = this.getInputSchema().getType(TypeReferences.WORLD_GEN_SETTINGS);
+        Type<?> inputType = this.getInputSchema().getType(References.WORLD_GEN_SETTINGS);
         OpticFinder<?> inputDimensionsField = inputType.findField("dimensions");
-        Type<?> outputType = this.getOutputSchema().getType(TypeReferences.WORLD_GEN_SETTINGS);
+        Type<?> outputType = this.getOutputSchema().getType(References.WORLD_GEN_SETTINGS);
         Type<?> outputDimensionsFieldType = outputType.findFieldType("dimensions");
         return this.fixTypeEverywhereTyped(
                 NAME,

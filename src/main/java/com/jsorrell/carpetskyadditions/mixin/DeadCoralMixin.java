@@ -2,54 +2,59 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DeadCoralToSandHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.block.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.BaseCoralFanBlock;
+import net.minecraft.world.level.block.BaseCoralPlantBlock;
+import net.minecraft.world.level.block.BaseCoralPlantTypeBlock;
+import net.minecraft.world.level.block.CoralFanBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin({DeadCoralBlock.class, DeadCoralFanBlock.class})
-public abstract class DeadCoralMixin extends CoralParentBlock {
-    public DeadCoralMixin(Settings settings) {
+@Mixin({BaseCoralPlantBlock.class, BaseCoralFanBlock.class})
+public abstract class DeadCoralMixin extends BaseCoralPlantTypeBlock {
+    public DeadCoralMixin(BlockBehaviour.Properties settings) {
         super(settings);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
         if (SkyAdditionsSettings.coralErosion) {
-            world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+            world.scheduleTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
         }
-        super.onBlockAdded(state, world, pos, oldState, notify);
+        super.onPlace(state, world, pos, oldState, notify);
     }
 
     @SuppressWarnings("ConstantConditions")
     private boolean isCoralFan() {
-        return (CoralParentBlock) this instanceof CoralFanBlock;
+        return (BaseCoralPlantTypeBlock) this instanceof CoralFanBlock;
     }
 
     public BlockState getStateForNeighborUpdate(
             BlockState state,
             Direction direction,
             BlockState neighborState,
-            WorldAccess world,
+            LevelAccessor world,
             BlockPos pos,
             BlockPos neighborPos) {
         if (SkyAdditionsSettings.coralErosion && !this.isCoralFan()) {
-            world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
+            world.scheduleTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(world.getRandom()));
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (SkyAdditionsSettings.coralErosion) {
             if (DeadCoralToSandHelper.tryDropSand(state, world, pos, random)) {
-                world.scheduleBlockTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));
+                world.scheduleTick(pos, this, DeadCoralToSandHelper.getSandDropDelay(random));
             }
         }
     }

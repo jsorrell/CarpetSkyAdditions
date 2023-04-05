@@ -4,24 +4,24 @@ import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.ai.brain.MemoryModuleState;
-import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.ai.brain.task.MultiTickTask;
-import net.minecraft.entity.ai.brain.task.RamImpactTask;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.passive.GoatEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.RamTarget;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.animal.goat.Goat;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,46 +30,45 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(RamImpactTask.class)
-public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends MultiTickTask<E> {
+@Mixin(RamTarget.class)
+public abstract class RamImpactTaskMixin<E extends PathfinderMob> extends Behavior<E> {
 
     @Shadow
     @Final
-    private Function<GoatEntity, SoundEvent> impactSoundFactory;
+    private Function<Goat, SoundEvent> getImpactSound;
 
     @Shadow
-    protected abstract void finishRam(ServerWorld world, GoatEntity goat);
+    protected abstract void finishRam(ServerLevel world, Goat goat);
 
-    public RamImpactTaskMixin(Map<MemoryModuleType<?>, MemoryModuleState> requiredMemoryState) {
+    public RamImpactTaskMixin(Map<MemoryModuleType<?>, MemoryStatus> requiredMemoryState) {
         super(requiredMemoryState);
     }
 
     @Inject(
-            method = "keepRunning(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/GoatEntity;J)V",
+            method = "tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/animal/goat/Goat;J)V",
             locals = LocalCapture.CAPTURE_FAILSOFT,
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/entity/ai/brain/Brain;getOptionalRegisteredMemory(Lnet/minecraft/entity/ai/brain/MemoryModuleType;)Ljava/util/Optional;",
+                                    "Lnet/minecraft/world/entity/ai/Brain;getMemory(Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Ljava/util/Optional;",
                             ordinal = 0),
             cancellable = true)
-    private void breakOpenNetherWart(ServerWorld world, GoatEntity rammer, long time, CallbackInfo ci) {
-        if (SkyAdditionsSettings.rammingWart && world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+    private void breakOpenNetherWart(ServerLevel world, Goat rammer, long time, CallbackInfo ci) {
+        if (SkyAdditionsSettings.rammingWart && world.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
             Optional<BlockPos> optionalWartPos = shouldBreakNetherWart(world, rammer);
             if (optionalWartPos.isPresent()) {
                 BlockPos wartPos = optionalWartPos.get();
-                world.playSoundFromEntity(
-                        null, rammer, this.impactSoundFactory.apply(rammer), SoundCategory.HOSTILE, 1.0f, 1.0f);
+                world.playSound(null, rammer, this.getImpactSound.apply(rammer), SoundSource.HOSTILE, 1.0f, 1.0f);
 
                 boolean blockRemoved = world.removeBlock(wartPos, false);
                 if (blockRemoved) {
-                    if (!world.isClient()) {
-                        Block.dropStack(world, wartPos, new ItemStack(Items.NETHER_WART, world.random.nextInt(2) + 1));
+                    if (!world.isClientSide) {
+                        Block.popResource(
+                                world, wartPos, new ItemStack(Items.NETHER_WART, world.random.nextInt(2) + 1));
                     }
-                    world.emitGameEvent(rammer, GameEvent.BLOCK_DESTROY, wartPos);
-                    world.playSound(
-                            null, wartPos, SoundEvents.BLOCK_WART_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    world.gameEvent(rammer, GameEvent.BLOCK_DESTROY, wartPos);
+                    world.playSound(null, wartPos, SoundEvents.WART_BLOCK_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
                 }
                 this.finishRam(world, rammer);
                 ci.cancel();
@@ -77,9 +76,9 @@ public abstract class RamImpactTaskMixin<E extends PathAwareEntity> extends Mult
         }
     }
 
-    private Optional<BlockPos> shouldBreakNetherWart(ServerWorld world, GoatEntity goat) {
-        Vec3d movementVector = goat.getVelocity().multiply(1, 0, 1).normalize();
-        BlockPos hitPos = BlockPos.ofFloored(goat.getPos().add(movementVector));
-        return world.getBlockState(hitPos).isOf(Blocks.NETHER_WART_BLOCK) ? Optional.of(hitPos) : Optional.empty();
+    private Optional<BlockPos> shouldBreakNetherWart(ServerLevel world, Goat goat) {
+        Vec3 movementVector = goat.getDeltaMovement().multiply(1, 0, 1).normalize();
+        BlockPos hitPos = BlockPos.containing(goat.position().add(movementVector));
+        return world.getBlockState(hitPos).is(Blocks.NETHER_WART_BLOCK) ? Optional.of(hitPos) : Optional.empty();
     }
 }

@@ -2,32 +2,32 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.CaveSpiderEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(SpiderEntity.class)
-public abstract class SpiderEntityMixin extends HostileEntity {
+@Mixin(Spider.class)
+public abstract class SpiderEntityMixin extends Monster {
 
-    protected SpiderEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+    protected SpiderEntityMixin(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
     }
 
     @SuppressWarnings("ConstantConditions")
-    private SpiderEntity asSpider() {
-        if ((HostileEntity) this instanceof SpiderEntity spider) {
+    private Spider asSpider() {
+        if ((Monster) this instanceof Spider spider) {
             return spider;
         } else {
             throw new AssertionError("Not spider");
@@ -35,34 +35,34 @@ public abstract class SpiderEntityMixin extends HostileEntity {
     }
 
     @Override
-    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
+    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (SkyAdditionsSettings.poisonousPotatoesConvertSpiders) {
-            ItemStack handStack = player.getStackInHand(hand);
-            if (handStack.isOf(Items.POISONOUS_POTATO) && this.getType() == EntityType.SPIDER) {
-                if (!player.getAbilities().creativeMode) {
-                    handStack.decrement(1);
+            ItemStack handStack = player.getItemInHand(hand);
+            if (handStack.is(Items.POISONOUS_POTATO) && this.getType() == EntityType.SPIDER) {
+                if (!player.getAbilities().instabuild) {
+                    handStack.shrink(1);
                 }
 
-                CaveSpiderEntity caveSpider = this.convertTo(EntityType.CAVE_SPIDER, true);
+                CaveSpider caveSpider = this.convertTo(EntityType.CAVE_SPIDER, true);
                 if (caveSpider == null) {
-                    return ActionResult.SUCCESS;
+                    return InteractionResult.SUCCESS;
                 }
 
                 // Copy status effects
-                this.getActiveStatusEffects().values().forEach(caveSpider::addStatusEffect);
+                this.getActiveEffects().forEach(caveSpider::addEffect);
                 // Add particles
-                caveSpider.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 0));
+                caveSpider.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
 
-                if (player instanceof ServerPlayerEntity serverPlayer) {
+                if (player instanceof ServerPlayer serverPlayer) {
                     SkyAdditionsCriteria.CONVERT_SPIDER.trigger(serverPlayer, this.asSpider(), caveSpider);
                 }
                 this.playSound(
-                        SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE,
+                        SoundEvents.ZOMBIE_VILLAGER_CURE,
                         1.0f + this.random.nextFloat(),
                         this.random.nextFloat() * 0.7f + 0.3f);
-                return ActionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
-        return super.interactMob(player, hand);
+        return super.mobInteract(player, hand);
     }
 }

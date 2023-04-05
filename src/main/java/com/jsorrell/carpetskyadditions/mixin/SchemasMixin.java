@@ -6,16 +6,16 @@ import com.jsorrell.carpetskyadditions.datafixer.SkyBlockGeneratorNameFix;
 import com.jsorrell.carpetskyadditions.datafixer.SkyBlockGeneratorNameFix2;
 import com.mojang.datafixers.DataFixerBuilder;
 import com.mojang.datafixers.schemas.Schema;
-import net.minecraft.datafixer.Schemas;
+import net.minecraft.util.datafix.DataFixers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Schemas.class)
+@Mixin(DataFixers.class)
 public abstract class SchemasMixin {
     @Inject(
-            method = "build",
+            method = "addFixers",
             at =
                     @At(
                             value = "INVOKE",
@@ -29,7 +29,7 @@ public abstract class SchemasMixin {
     }
 
     @Inject(
-            method = "build",
+            method = "addFixers",
             at =
                     @At(
                             value = "INVOKE",

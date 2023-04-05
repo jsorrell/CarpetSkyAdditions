@@ -6,10 +6,10 @@ import com.mojang.datafixers.schemas.Schema;
 import com.mojang.datafixers.types.templates.TypeTemplate;
 import java.util.Map;
 import java.util.function.Supplier;
-import net.minecraft.datafixer.TypeReferences;
-import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
+import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.util.datafix.schemas.NamespacedSchema;
 
-public class Schema3106 extends IdentifierNormalizingSchema {
+public class Schema3106 extends NamespacedSchema {
     public Schema3106(int versionKey, Schema parent) {
         super(versionKey, parent);
     }
@@ -27,13 +27,13 @@ public class Schema3106 extends IdentifierNormalizingSchema {
                         DSL.string(),
                         ImmutableMap.of(
                                 "minecraft:fixed",
-                                () -> DSL.fields("biome", TypeReferences.BIOME.in(schema)),
+                                () -> DSL.fields("biome", References.BIOME.in(schema)),
                                 "minecraft:multi_noise",
                                 () -> DSL.or(
-                                        DSL.fields("preset", getIdentifierType().template()),
-                                        DSL.list(DSL.fields("biome", TypeReferences.BIOME.in(schema)))),
+                                        DSL.fields("preset", namespacedString().template()),
+                                        DSL.list(DSL.fields("biome", References.BIOME.in(schema)))),
                                 "minecraft:checkerboard",
-                                () -> DSL.fields("biomes", DSL.list(TypeReferences.BIOME.in(schema))),
+                                () -> DSL.fields("biomes", DSL.list(References.BIOME.in(schema))),
                                 "minecraft:the_end",
                                 DSL::remainder)),
                 "settings",
@@ -41,19 +41,19 @@ public class Schema3106 extends IdentifierNormalizingSchema {
                         DSL.constType(DSL.string()),
                         DSL.optionalFields(
                                 "default_block",
-                                TypeReferences.BLOCK_NAME.in(schema),
+                                References.BLOCK_NAME.in(schema),
                                 "default_fluid",
-                                TypeReferences.BLOCK_NAME.in(schema))));
+                                References.BLOCK_NAME.in(schema))));
 
         // Add SkyBlock with same TypeTemplate as noise
         // TODO maybe just copy/edit this from the schema.getParent()?
         schema.registerType(
                 false,
-                TypeReferences.WORLD_GEN_SETTINGS,
+                References.WORLD_GEN_SETTINGS,
                 () -> DSL.fields(
                         "dimensions",
                         DSL.compoundList(
-                                DSL.constType(getIdentifierType()),
+                                DSL.constType(namespacedString()),
                                 DSL.fields(
                                         "generator",
                                         DSL.taggedChoiceLazy(
@@ -67,12 +67,12 @@ public class Schema3106 extends IdentifierNormalizingSchema {
                                                                 "settings",
                                                                 DSL.optionalFields(
                                                                         "biome",
-                                                                        TypeReferences.BIOME.in(schema),
+                                                                        References.BIOME.in(schema),
                                                                         "layers",
                                                                         DSL.list(
                                                                                 DSL.optionalFields(
                                                                                         "block",
-                                                                                        TypeReferences.BLOCK_NAME.in(
+                                                                                        References.BLOCK_NAME.in(
                                                                                                 schema))))),
                                                         "minecraft:noise",
                                                         noiseTemplate,

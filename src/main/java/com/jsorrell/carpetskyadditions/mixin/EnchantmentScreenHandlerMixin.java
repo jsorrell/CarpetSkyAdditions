@@ -4,57 +4,55 @@ import com.jsorrell.carpetskyadditions.helpers.AncientCityEnchantingTableHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import java.util.List;
 import java.util.function.Predicate;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.entity.mob.WardenEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.EnchantmentScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.monster.warden.Warden;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.EnchantmentMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(EnchantmentScreenHandler.class)
+@Mixin(EnchantmentMenu.class)
 public class EnchantmentScreenHandlerMixin {
     private static final double MAX_WARDEN_DISTANCE = 8.0;
 
     @Shadow
     @Final
-    private ScreenHandlerContext context;
+    private ContainerLevelAccess access;
 
     @Redirect(
-            method = "generateEnchantments",
+            method = "getEnchantmentList",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/enchantment/EnchantmentHelper;generateEnchantments(Lnet/minecraft/util/math/random/Random;Lnet/minecraft/item/ItemStack;IZ)Ljava/util/List;"))
-    private List<EnchantmentLevelEntry> addSwiftSneak(
-            Random random, ItemStack stack, int level, boolean treasureAllowed) {
+                                    "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;selectEnchantment(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/item/ItemStack;IZ)Ljava/util/List;"))
+    private List<EnchantmentInstance> addSwiftSneak(
+            RandomSource random, ItemStack stack, int level, boolean treasureAllowed) {
         if (SkyAdditionsSettings.renewableSwiftSneak) {
-            boolean hasWardenNearby = this.context
-                    .get((world, blockPos) -> {
-                        Box box = new Box(blockPos).expand(MAX_WARDEN_DISTANCE);
+            boolean hasWardenNearby = this.access
+                    .evaluate((world, blockPos) -> {
+                        AABB box = new AABB(blockPos).inflate(MAX_WARDEN_DISTANCE);
                         // Center of table's hitbox
-                        Vec3d tablePos = Vec3d.ofBottomCenter(blockPos).offset(Direction.UP, 0.375);
-                        Predicate<WardenEntity> rangePredicate =
-                                e -> e.getPos().isInRange(tablePos, MAX_WARDEN_DISTANCE);
-                        List<WardenEntity> wardenEntities =
-                                world.getEntitiesByClass(WardenEntity.class, box, rangePredicate);
+                        Vec3 tablePos = Vec3.atBottomCenterOf(blockPos).relative(Direction.UP, 0.375);
+                        Predicate<Warden> rangePredicate = e -> e.position().closerThan(tablePos, MAX_WARDEN_DISTANCE);
+                        List<Warden> wardenEntities = world.getEntitiesOfClass(Warden.class, box, rangePredicate);
                         return !wardenEntities.isEmpty();
                     })
                     .orElseThrow();
 
             if (hasWardenNearby) {
-                return AncientCityEnchantingTableHelper.generateEnchantments(random, stack, level, treasureAllowed);
+                return AncientCityEnchantingTableHelper.selectEnchantment(random, stack, level, treasureAllowed);
             }
         }
-        return EnchantmentHelper.generateEnchantments(random, stack, level, treasureAllowed);
+        return EnchantmentHelper.selectEnchantment(random, stack, level, treasureAllowed);
     }
 }

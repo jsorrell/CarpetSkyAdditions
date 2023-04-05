@@ -2,35 +2,34 @@ package com.jsorrell.carpetskyadditions.criterion;
 
 import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 
-public class GenerateGeodeCriterion extends AbstractCriterion<GenerateGeodeCriterion.Conditions> {
+public class GenerateGeodeCriterion extends SimpleCriterionTrigger<GenerateGeodeCriterion.Conditions> {
 
-    static final Identifier ID = new SkyAdditionsIdentifier("generate_geode");
+    static final ResourceLocation ID = new SkyAdditionsIdentifier("generate_geode");
 
     @Override
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return ID;
     }
 
-    public void trigger(ServerPlayerEntity player) {
+    public void trigger(ServerPlayer player) {
         this.trigger(player, conditions -> true);
     }
 
-    public Conditions conditionsFromJson(
-            JsonObject jsonObject,
-            EntityPredicate.Extended player,
-            AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+    @Override
+    public Conditions createInstance(
+            JsonObject json, EntityPredicate.Composite player, DeserializationContext context) {
         return new Conditions(player);
     }
 
-    public static class Conditions extends AbstractCriterionConditions {
-        public Conditions(EntityPredicate.Extended player) {
+    public static class Conditions extends AbstractCriterionTriggerInstance {
+        public Conditions(EntityPredicate.Composite player) {
             super(ID, player);
         }
     }

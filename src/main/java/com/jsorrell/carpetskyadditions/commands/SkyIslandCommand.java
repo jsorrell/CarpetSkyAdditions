@@ -1,7 +1,7 @@
 package com.jsorrell.carpetskyadditions.commands;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.commands.Commands.argument;
+import static net.minecraft.commands.Commands.literal;
 
 import carpet.utils.CommandHelper;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
@@ -18,23 +18,23 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ChunkTicketType;
-import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.CheckedRandom;
-import net.minecraft.util.math.random.ChunkRandom;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkStatus;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.TicketType;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkStatus;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class SkyIslandCommand {
@@ -43,22 +43,22 @@ public class SkyIslandCommand {
     private static final SimpleCommandExceptionType ISLAND_NOT_CREATED =
             new SimpleCommandExceptionType(SkyAdditionsText.translatable("commands.skyisland.not_created"));
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         int maxIslandNum = SkyIslandPositionContainer.getNumIslands();
 
-        LiteralArgumentBuilder<ServerCommandSource> command = literal("skyisland")
+        LiteralArgumentBuilder<CommandSourceStack> command = literal("skyisland")
                 .requires(source -> CommandHelper.canUseCommand(source, SkyAdditionsSettings.commandSkyIsland))
                 .then(literal("new").executes(c -> newIsland(c.getSource())))
                 .then(literal("join")
                         .then(argument("num", IntegerArgumentType.integer(1, maxIslandNum))
                                 .executes(c -> joinIsland(
                                         c.getSource(),
-                                        c.getSource().getPlayerOrThrow(),
+                                        c.getSource().getPlayerOrException(),
                                         IntegerArgumentType.getInteger(c, "num")))
-                                .then(argument("player", EntityArgumentType.player())
+                                .then(argument("player", EntityArgument.player())
                                         .executes(c -> joinIsland(
                                                 c.getSource(),
-                                                EntityArgumentType.getPlayer(c, "player"),
+                                                EntityArgument.getPlayer(c, "player"),
                                                 IntegerArgumentType.getInteger(c, "num"))))))
                 .then(literal("locate")
                         .then(argument("num", IntegerArgumentType.integer(1, maxIslandNum))
@@ -67,26 +67,27 @@ public class SkyIslandCommand {
         dispatcher.register(command);
     }
 
-    private static int locateIsland(ServerCommandSource source, int islandNum) throws CommandSyntaxException {
+    private static int locateIsland(CommandSourceStack source, int islandNum) throws CommandSyntaxException {
         ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum);
-        int x = chunkPos.getCenterX();
-        int z = chunkPos.getCenterZ();
-        Chunk chunk = source.getWorld().getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY);
+        int x = chunkPos.getMiddleBlockX();
+        int z = chunkPos.getMiddleBlockZ();
+        ChunkAccess chunk = source.getLevel().getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY);
         if (chunk.getStatus() != ChunkStatus.FULL) {
             throw ISLAND_NOT_CREATED.create();
         }
 
-        MutableText text = Texts.bracketed(SkyAdditionsText.translatable("commands.skyisland.locate.coordinates", x, z))
-                .styled(style -> style.withColor(Formatting.GREEN)
+        MutableComponent text = ComponentUtils.wrapInSquareBrackets(
+                        SkyAdditionsText.translatable("commands.skyisland.locate.coordinates", x, z))
+                .withStyle(style -> style.withColor(ChatFormatting.GREEN)
                         .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + x + " ~ " + z))
                         .withHoverEvent(new HoverEvent(
-                                HoverEvent.Action.SHOW_TEXT, Text.translatable("chat.coordinates.tooltip"))));
-        source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.locate.success", islandNum, text), false);
+                                HoverEvent.Action.SHOW_TEXT, Component.translatable("chat.coordinates.tooltip"))));
+        source.sendSuccess(SkyAdditionsText.translatable("commands.skyisland.locate.success", islandNum, text), false);
 
-        BlockPos sourcePos = BlockPos.ofFloored(source.getPosition());
+        BlockPos sourcePos = BlockPos.containing(source.getPosition());
         int xOff = sourcePos.getX() - x;
         int zOff = sourcePos.getZ() - z;
-        return MathHelper.floor(MathHelper.sqrt(xOff * xOff + zOff * zOff));
+        return Mth.floor(Mth.sqrt(xOff * xOff + zOff * zOff));
     }
 
     // First look for a sky_island configured feature
@@ -108,70 +109,67 @@ public class SkyIslandCommand {
         }
     }
 
-    private static int newIsland(ServerCommandSource source) throws CommandSyntaxException {
+    private static int newIsland(CommandSourceStack source) throws CommandSyntaxException {
         int max = SkyIslandPositionContainer.getNumIslands();
         Optional<ImmutablePair<Integer, ChunkPos>> islandOpt = IntStream.range(1, max)
                 .mapToObj(i -> ImmutablePair.of(i, SkyIslandPositionContainer.getChunk(i)))
                 .filter(i -> {
-                    Chunk chunk = source.getWorld().getChunk(i.right.x, i.right.z, ChunkStatus.EMPTY);
+                    ChunkAccess chunk = source.getLevel().getChunk(i.right.x, i.right.z, ChunkStatus.EMPTY);
                     return chunk.getStatus() == ChunkStatus.EMPTY;
                 })
                 .findFirst();
         if (islandOpt.isEmpty()) {
-            source.sendFeedback(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
+            source.sendSuccess(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
             return 0;
         }
         ImmutablePair<Integer, ChunkPos> island = islandOpt.get();
         ChunkPos chunkPos = island.right;
-        int x = chunkPos.getCenterX();
-        int z = chunkPos.getCenterZ();
+        int x = chunkPos.getMiddleBlockX();
+        int z = chunkPos.getMiddleBlockZ();
 
         // Load the target area
-        source.getWorld().getChunkManager().addTicket(ChunkTicketType.UNKNOWN, chunkPos, 2, chunkPos);
+        source.getLevel().getChunkSource().addRegionTicket(TicketType.UNKNOWN, chunkPos, 2, chunkPos);
         Registry<ConfiguredFeature<?, ?>> configuredFeatureRegistry =
-                source.getServer().getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE);
+                source.getServer().registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
         ConfiguredFeature<?, ?> skyIslandFeature = getIslandFeature(configuredFeatureRegistry);
-        ChunkRandom random = new ChunkRandom(new CheckedRandom(0));
-        random.setCarverSeed(source.getWorld().getSeed(), chunkPos.x, chunkPos.z);
+        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0));
+        random.setLargeFeatureSeed(source.getLevel().getSeed(), chunkPos.x, chunkPos.z);
 
-        if (!skyIslandFeature.generate(
-                source.getWorld(),
-                source.getWorld().getChunkManager().getChunkGenerator(),
-                random,
-                new BlockPos(x, 0, z))) {
+        if (!skyIslandFeature.place(
+                source.getLevel(), source.getLevel().getChunkSource().getGenerator(), random, new BlockPos(x, 0, z))) {
             throw FAILED_EXCEPTION.create();
         }
 
-        Text feedback = SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z);
-        source.sendFeedback(feedback, true);
+        Component feedback = SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z);
+        source.sendSuccess(feedback, true);
         return island.getLeft();
     }
 
-    private static int joinIsland(ServerCommandSource source, ServerPlayerEntity player, int islandNum)
+    private static int joinIsland(CommandSourceStack source, ServerPlayer player, int islandNum)
             throws CommandSyntaxException {
         ChunkPos chunkPos = SkyIslandPositionContainer.getChunk(islandNum);
-        int x = chunkPos.getCenterX();
-        int z = chunkPos.getCenterZ();
+        int x = chunkPos.getMiddleBlockX();
+        int z = chunkPos.getMiddleBlockZ();
         joinIsland(source, player, x, z);
         return 1;
     }
 
-    private static void joinIsland(ServerCommandSource source, ServerPlayerEntity player, int x, int z)
+    private static void joinIsland(CommandSourceStack source, ServerPlayer player, int x, int z)
             throws CommandSyntaxException {
         BlockPos pos = new BlockPos(x, 0, z);
         ChunkPos chunkPos = new ChunkPos(pos);
-        Chunk chunk = source.getWorld().getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY);
+        ChunkAccess chunk = source.getLevel().getChunk(chunkPos.x, chunkPos.z, ChunkStatus.EMPTY);
         int y;
-        Supplier<Integer> spawnHeight = () -> chunk.sampleHeightmap(Heightmap.Type.MOTION_BLOCKING, x, z) + 1;
-        if (chunk.getStatus() != ChunkStatus.FULL || (y = spawnHeight.get()) <= chunk.getBottomY()) {
+        Supplier<Integer> spawnHeight = () -> chunk.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z) + 1;
+        if (chunk.getStatus() != ChunkStatus.FULL || (y = spawnHeight.get()) <= chunk.getMinBuildHeight()) {
             throw ISLAND_NOT_CREATED.create();
         }
-        player.teleport(x + 0.5, y, z + 0.5);
+        player.teleportToWithTicket(x + 0.5, y, z + 0.5);
         if (!player.isFallFlying()) {
-            player.setVelocity(player.getVelocity().multiply(1.0, 0.0, 1.0));
+            player.setDeltaMovement(player.getDeltaMovement().multiply(1.0, 0.0, 1.0));
             player.setOnGround(true);
         }
-        player.setSpawnPoint(player.world.getRegistryKey(), new BlockPos(x, y, z), 0f, true, false);
+        player.setRespawnPosition(player.level.dimension(), new BlockPos(x, y, z), 0f, true, false);
     }
 
     public abstract static class SkyIslandPositionContainer {
