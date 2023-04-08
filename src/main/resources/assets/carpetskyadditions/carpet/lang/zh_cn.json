@@ -1,6 +1,7 @@
 {
   "carpetskyadditions.category.generation": "生成",
   "carpetskyadditions.category.wandering_trader": "流浪商人",
+  "carpetskyadditions.rule.skyspawnCommand.desc": "启用 /skyspawn 命令以生成新的出生平台",
   "carpetskyadditions.rule.generateEndPortals.desc": "在空岛世界中生成末地传送门框架",
   "carpetskyadditions.rule.generateSilverfishSpawners.desc": "在空岛世界中生成蠹虫刷怪笼",
   "carpetskyadditions.rule.generateAncientCityPortals.desc": "在空岛世界中生成远古城市传送门框架",
