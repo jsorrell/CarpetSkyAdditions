@@ -13,8 +13,8 @@ public class FieldPair {
     }
 
     FieldPair(FieldPair copy) {
-        this.name = copy.name;
-        this.value = copy.value;
+        name = copy.name;
+        value = copy.value;
     }
 
     FieldPair(String name, String value) {
@@ -39,17 +39,17 @@ public class FieldPair {
     }
 
     public String asConfigLine() {
-        return this.name + " " + this.value;
+        return name + " " + value;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof FieldPair otherPair)) return false;
-        return this.name.equals(otherPair.name) && this.value.equals(otherPair.value);
+        return name.equals(otherPair.name) && value.equals(otherPair.value);
     }
 
     @Override
     public String toString() {
-        return this.name + ": " + this.value;
+        return name + ": " + value;
     }
 }

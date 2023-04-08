@@ -1,8 +1,5 @@
 accessWidener	v1	named
-extendable	class	net/minecraft/world/gen/chunk/NoiseChunkGenerator
+extendable	class	net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 
-accessible	class	net/minecraft/village/TradeOffers$SellItemFactory
-accessible	class	net/minecraft/village/TradeOffers$ProcessItemFactory
-
-accessible	class	net/minecraft/entity/mob/EndermanEntity$PickUpBlockGoal
-accessible	class	net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal
+accessible	class	net/minecraft/world/entity/monster/EnderMan$EndermanTakeBlockGoal
+accessible	class	net/minecraft/world/entity/monster/EnderMan$EndermanLeaveBlockGoal

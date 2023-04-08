@@ -1,96 +1,94 @@
 package com.jsorrell.carpetskyadditions.gen;
 
 import java.util.Objects;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.MobSpawnerBlockEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.structure.StructurePiece;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.BlockBox;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
 
 public class SkyBlockStructures {
-    protected record StructureOrientation(BlockRotation rotation, BlockMirror mirror) {
-        private int applyXTransform(int x, int z, BlockBox boundingBox) {
-            if ((rotation == BlockRotation.NONE && mirror != BlockMirror.FRONT_BACK)
-                    || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.FRONT_BACK)) {
-                return boundingBox.getMinX() + x;
-            } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
-                return boundingBox.getMaxX() - x;
-            } else if ((rotation == BlockRotation.COUNTERCLOCKWISE_90 && mirror != BlockMirror.LEFT_RIGHT)
-                    || (rotation == BlockRotation.CLOCKWISE_90 && mirror == BlockMirror.LEFT_RIGHT)) {
-                return boundingBox.getMinX() + z;
+    protected record StructureOrientation(Rotation rotation, Mirror mirror) {
+        private int applyXTransform(int x, int z, BoundingBox boundingBox) {
+            if ((rotation == Rotation.NONE && mirror != Mirror.FRONT_BACK)
+                    || (rotation == Rotation.CLOCKWISE_180 && mirror == Mirror.FRONT_BACK)) {
+                return boundingBox.minX() + x;
+            } else if (rotation == Rotation.NONE || rotation == Rotation.CLOCKWISE_180) {
+                return boundingBox.maxX() - x;
+            } else if ((rotation == Rotation.COUNTERCLOCKWISE_90 && mirror != Mirror.LEFT_RIGHT)
+                    || (rotation == Rotation.CLOCKWISE_90 && mirror == Mirror.LEFT_RIGHT)) {
+                return boundingBox.minX() + z;
             } else {
-                return boundingBox.getMaxX() - z;
+                return boundingBox.maxX() - z;
             }
         }
 
-        private int applyZTransform(int x, int z, BlockBox boundingBox) {
-            if ((rotation == BlockRotation.NONE && mirror != BlockMirror.LEFT_RIGHT)
-                    || (rotation == BlockRotation.CLOCKWISE_180 && mirror == BlockMirror.LEFT_RIGHT)) {
-                return boundingBox.getMinZ() + z;
-            } else if (rotation == BlockRotation.NONE || rotation == BlockRotation.CLOCKWISE_180) {
-                return boundingBox.getMaxZ() - z;
-            } else if ((rotation == BlockRotation.CLOCKWISE_90 && mirror != BlockMirror.FRONT_BACK)
-                    || (rotation == BlockRotation.COUNTERCLOCKWISE_90 && mirror == BlockMirror.LEFT_RIGHT)) {
-                return boundingBox.getMinZ() + x;
+        private int applyZTransform(int x, int z, BoundingBox boundingBox) {
+            if ((rotation == Rotation.NONE && mirror != Mirror.LEFT_RIGHT)
+                    || (rotation == Rotation.CLOCKWISE_180 && mirror == Mirror.LEFT_RIGHT)) {
+                return boundingBox.minZ() + z;
+            } else if (rotation == Rotation.NONE || rotation == Rotation.CLOCKWISE_180) {
+                return boundingBox.maxZ() - z;
+            } else if ((rotation == Rotation.CLOCKWISE_90 && mirror != Mirror.FRONT_BACK)
+                    || (rotation == Rotation.COUNTERCLOCKWISE_90 && mirror == Mirror.LEFT_RIGHT)) {
+                return boundingBox.minZ() + x;
             } else {
-                return boundingBox.getMaxZ() - x;
+                return boundingBox.maxZ() - x;
             }
         }
     }
 
     protected abstract static class SkyBlockStructure {
-        protected BlockBox boundingBox;
+        protected BoundingBox boundingBox;
         protected StructureOrientation orientation;
-        protected BlockRotation rotation;
-        protected BlockMirror mirror;
+        protected Rotation rotation;
+        protected Mirror mirror;
 
         public SkyBlockStructure(StructurePiece piece) {
-            this.boundingBox = piece.getBoundingBox();
-            this.rotation = Objects.requireNonNullElse(piece.getRotation(), BlockRotation.NONE);
-            this.mirror = Objects.requireNonNullElse(piece.getMirror(), BlockMirror.NONE);
-            this.orientation = new StructureOrientation(this.rotation, this.mirror);
+            boundingBox = piece.getBoundingBox();
+            rotation = Objects.requireNonNullElse(piece.getRotation(), Rotation.NONE);
+            mirror = Objects.requireNonNullElse(piece.getMirror(), Mirror.NONE);
+            orientation = new StructureOrientation(rotation, mirror);
         }
 
         protected int applyXTransform(int x, int z) {
-            return this.orientation.applyXTransform(x, z, this.boundingBox);
+            return orientation.applyXTransform(x, z, boundingBox);
         }
 
         protected int applyYTransform(int y) {
-            return y + this.boundingBox.getMinY();
+            return y + boundingBox.minY();
         }
 
         protected int applyZTransform(int x, int z) {
-            return this.orientation.applyZTransform(x, z, this.boundingBox);
+            return orientation.applyZTransform(x, z, boundingBox);
         }
 
-        protected BlockPos.Mutable offsetPos(int x, int y, int z) {
-            return new BlockPos.Mutable(
-                    this.applyXTransform(x, z), this.applyYTransform(y), this.applyZTransform(x, z));
+        protected BlockPos.MutableBlockPos offsetPos(int x, int y, int z) {
+            return new BlockPos.MutableBlockPos(applyXTransform(x, z), applyYTransform(y), applyZTransform(x, z));
         }
 
-        protected void addBlock(ServerWorldAccess world, BlockState block, int x, int y, int z, BlockBox bounds) {
-            BlockPos.Mutable blockPos = this.offsetPos(x, y, z);
-            if (!bounds.contains(blockPos)) {
+        protected void addBlock(ServerLevelAccessor level, BlockState block, int x, int y, int z, BoundingBox bounds) {
+            BlockPos.MutableBlockPos blockPos = offsetPos(x, y, z);
+            if (!bounds.isInside(blockPos)) {
                 return;
             }
-            if (this.mirror != BlockMirror.NONE) {
-                block = block.mirror(this.mirror);
+            if (mirror != Mirror.NONE) {
+                block = block.mirror(mirror);
             }
-            if (this.rotation != BlockRotation.NONE) {
-                block = block.rotate(this.rotation);
+            if (rotation != Rotation.NONE) {
+                block = block.rotate(rotation);
             }
-            world.setBlockState(blockPos, block, Block.NOTIFY_LISTENERS);
+            level.setBlock(blockPos, block, Block.UPDATE_CLIENTS);
         }
 
         protected void fillBlocks(
-                ServerWorldAccess world,
+                ServerLevelAccessor level,
                 BlockState block,
                 int minX,
                 int minY,
@@ -98,17 +96,17 @@ public class SkyBlockStructures {
                 int maxX,
                 int maxY,
                 int maxZ,
-                BlockBox bounds) {
+                BoundingBox bounds) {
             for (int x = minX; x <= maxX; ++x) {
                 for (int y = minY; y <= maxY; ++y) {
                     for (int z = minZ; z <= maxZ; ++z) {
-                        this.addBlock(world, block, x, y, z, bounds);
+                        addBlock(level, block, x, y, z, bounds);
                     }
                 }
             }
         }
 
-        public abstract void generate(ServerWorldAccess world, BlockBox bounds, Random random);
+        public abstract void generate(ServerLevelAccessor level, BoundingBox bounds, RandomSource random);
     }
 
     public static class EndPortalStructure extends SkyBlockStructure {
@@ -117,11 +115,11 @@ public class SkyBlockStructures {
         }
 
         @Override
-        public void generate(ServerWorldAccess world, BlockBox bounds, Random random) {
-            BlockState northFrame = Blocks.END_PORTAL_FRAME.getDefaultState();
-            BlockState southFrame = northFrame.with(EndPortalFrameBlock.FACING, Direction.SOUTH);
-            BlockState eastFrame = northFrame.with(EndPortalFrameBlock.FACING, Direction.EAST);
-            BlockState westFrame = northFrame.with(EndPortalFrameBlock.FACING, Direction.WEST);
+        public void generate(ServerLevelAccessor level, BoundingBox bounds, RandomSource random) {
+            BlockState northFrame = Blocks.END_PORTAL_FRAME.defaultBlockState();
+            BlockState southFrame = northFrame.setValue(EndPortalFrameBlock.FACING, Direction.SOUTH);
+            BlockState eastFrame = northFrame.setValue(EndPortalFrameBlock.FACING, Direction.EAST);
+            BlockState westFrame = northFrame.setValue(EndPortalFrameBlock.FACING, Direction.WEST);
 
             boolean complete = true;
             boolean[] hasEye = new boolean[12];
@@ -130,21 +128,21 @@ public class SkyBlockStructures {
                 complete &= hasEye[l];
             }
 
-            this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[0]), 4, 3, 3, bounds);
-            this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[1]), 5, 3, 3, bounds);
-            this.addBlock(world, southFrame.with(EndPortalFrameBlock.EYE, hasEye[2]), 6, 3, 3, bounds);
-            this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[3]), 4, 3, 7, bounds);
-            this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[4]), 5, 3, 7, bounds);
-            this.addBlock(world, northFrame.with(EndPortalFrameBlock.EYE, hasEye[5]), 6, 3, 7, bounds);
-            this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[6]), 3, 3, 4, bounds);
-            this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[7]), 3, 3, 5, bounds);
-            this.addBlock(world, eastFrame.with(EndPortalFrameBlock.EYE, hasEye[8]), 3, 3, 6, bounds);
-            this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[9]), 7, 3, 4, bounds);
-            this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[10]), 7, 3, 5, bounds);
-            this.addBlock(world, westFrame.with(EndPortalFrameBlock.EYE, hasEye[11]), 7, 3, 6, bounds);
+            addBlock(level, southFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[0]), 4, 3, 3, bounds);
+            addBlock(level, southFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[1]), 5, 3, 3, bounds);
+            addBlock(level, southFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[2]), 6, 3, 3, bounds);
+            addBlock(level, northFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[3]), 4, 3, 7, bounds);
+            addBlock(level, northFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[4]), 5, 3, 7, bounds);
+            addBlock(level, northFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[5]), 6, 3, 7, bounds);
+            addBlock(level, eastFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[6]), 3, 3, 4, bounds);
+            addBlock(level, eastFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[7]), 3, 3, 5, bounds);
+            addBlock(level, eastFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[8]), 3, 3, 6, bounds);
+            addBlock(level, westFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[9]), 7, 3, 4, bounds);
+            addBlock(level, westFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[10]), 7, 3, 5, bounds);
+            addBlock(level, westFrame.setValue(EndPortalFrameBlock.HAS_EYE, hasEye[11]), 7, 3, 6, bounds);
 
             if (complete) {
-                this.fillBlocks(world, Blocks.END_PORTAL.getDefaultState(), 4, 3, 4, 6, 3, 6, bounds);
+                fillBlocks(level, Blocks.END_PORTAL.defaultBlockState(), 4, 3, 4, 6, 3, 6, bounds);
             }
         }
     }
@@ -155,19 +153,19 @@ public class SkyBlockStructures {
         }
 
         @Override
-        public void generate(ServerWorldAccess world, BlockBox bounds, Random random) {
+        public void generate(ServerLevelAccessor level, BoundingBox bounds, RandomSource random) {
             // Horizontal Sides
-            this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 17, 10, 13, 17, 31, bounds);
-            this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 24, 10, 13, 24, 31, bounds);
+            fillBlocks(level, Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), 13, 17, 10, 13, 17, 31, bounds);
+            fillBlocks(level, Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), 13, 24, 10, 13, 24, 31, bounds);
 
             // Vertical Sides
-            this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 10, 13, 23, 10, bounds);
-            this.fillBlocks(world, Blocks.REINFORCED_DEEPSLATE.getDefaultState(), 13, 18, 31, 13, 23, 31, bounds);
+            fillBlocks(level, Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), 13, 18, 10, 13, 23, 10, bounds);
+            fillBlocks(level, Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), 13, 18, 31, 13, 23, 31, bounds);
 
             // Sculk Shrieker
-            this.addBlock(
-                    world,
-                    Blocks.SCULK_SHRIEKER.getDefaultState().with(SculkShriekerBlock.CAN_SUMMON, true),
+            addBlock(
+                    level,
+                    Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON, true),
                     9,
                     8,
                     20,
@@ -186,14 +184,14 @@ public class SkyBlockStructures {
         }
 
         @Override
-        public void generate(ServerWorldAccess world, BlockBox bounds, Random random) {
-            BlockPos.Mutable spawnerAbsolutePos =
-                    this.offsetPos(spawnerPos.getX(), spawnerPos.getY(), spawnerPos.getZ());
-            if (bounds.contains(spawnerAbsolutePos)) {
-                world.setBlockState(spawnerAbsolutePos, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_LISTENERS);
-                BlockEntity blockEntity = world.getBlockEntity(spawnerAbsolutePos);
-                if (blockEntity instanceof MobSpawnerBlockEntity spawnerEntity) {
-                    spawnerEntity.setEntityType(spawnerType, random);
+        public void generate(ServerLevelAccessor level, BoundingBox bounds, RandomSource random) {
+            BlockPos.MutableBlockPos spawnerAbsolutePos =
+                    offsetPos(spawnerPos.getX(), spawnerPos.getY(), spawnerPos.getZ());
+            if (bounds.isInside(spawnerAbsolutePos)) {
+                level.setBlock(spawnerAbsolutePos, Blocks.SPAWNER.defaultBlockState(), Block.UPDATE_CLIENTS);
+                BlockEntity blockEntity = level.getBlockEntity(spawnerAbsolutePos);
+                if (blockEntity instanceof SpawnerBlockEntity spawnerEntity) {
+                    spawnerEntity.setEntityId(spawnerType, random);
                 }
             }
         }

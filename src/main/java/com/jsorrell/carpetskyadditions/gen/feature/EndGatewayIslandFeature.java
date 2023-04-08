@@ -2,46 +2,46 @@ package com.jsorrell.carpetskyadditions.gen.feature;
 
 import com.mojang.serialization.Codec;
 import java.util.Optional;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class EndGatewayIslandFeature extends Feature<DefaultFeatureConfig> {
-    public EndGatewayIslandFeature(Codec<DefaultFeatureConfig> codec) {
+public class EndGatewayIslandFeature extends Feature<NoneFeatureConfiguration> {
+    public EndGatewayIslandFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        if (!Feature.END_ISLAND.generate(context)) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        if (!Feature.END_ISLAND.place(context)) {
             return false;
         }
 
-        StructureWorldAccess world = context.getWorld();
+        WorldGenLevel level = context.level();
 
-        int x = context.getOrigin().getX();
-        int y = context.getOrigin().getY();
-        int z = context.getOrigin().getZ();
+        int x = context.origin().getX();
+        int y = context.origin().getY();
+        int z = context.origin().getZ();
 
         // Try to generate in a 11x11 area around the center of the island.
         // 20 tries should be more than enough, even for small islands.
         final int r = 5;
-        for (BlockPos pos : BlockPos.iterateRandomly(context.getRandom(), 20, x - r, y, z - r, x + r, y, z + r)) {
+        for (BlockPos pos : BlockPos.randomBetweenClosed(context.random(), 20, x - r, y, z - r, x + r, y, z + r)) {
             // Force not generating on edge
-            if (Direction.Type.HORIZONTAL.stream().noneMatch(dir -> world.isAir(pos.offset(dir)))
-                    && Feature.CHORUS_PLANT.generate(new FeatureContext<>(
+            if (Direction.Plane.HORIZONTAL.stream().noneMatch(dir -> level.isEmptyBlock(pos.relative(dir)))
+                    && Feature.CHORUS_PLANT.place(new FeaturePlaceContext<>(
                             Optional.empty(),
-                            world,
-                            context.getGenerator(),
-                            context.getRandom(),
-                            pos.up(),
-                            FeatureConfig.DEFAULT))) {
+                            level,
+                            context.chunkGenerator(),
+                            context.random(),
+                            pos.above(),
+                            FeatureConfiguration.NONE))) {
                 return true;
             }
         }
@@ -50,13 +50,15 @@ public class EndGatewayIslandFeature extends Feature<DefaultFeatureConfig> {
 
     // Finds a place to spawn a gateway that won't overwrite chorus
     // Allows a gateway that pops off chorus flowers
-    public static BlockPos findGatewayLocation(WorldView world, BlockPos origin) {
-        return BlockPos.streamOutwards(origin, 7, 0, 7)
-                .filter(pos -> world.getBlockState(pos).isOf(Blocks.END_STONE)
+    public static BlockPos findGatewayLocation(LevelReader level, BlockPos origin) {
+        return BlockPos.withinManhattanStream(origin, 7, 0, 7)
+                .filter(pos -> level.getBlockState(pos).is(Blocks.END_STONE)
                         && Direction.stream()
-                                .allMatch(direction -> world.isAir(pos.up(11).offset(direction)))
+                                .allMatch(direction ->
+                                        level.isEmptyBlock(pos.above(11).relative(direction)))
                         && Direction.stream()
-                                .allMatch(direction -> world.isAir(pos.up(9).offset(direction))))
+                                .allMatch(direction ->
+                                        level.isEmptyBlock(pos.above(9).relative(direction))))
                 .findFirst()
                 .orElse(origin);
     }

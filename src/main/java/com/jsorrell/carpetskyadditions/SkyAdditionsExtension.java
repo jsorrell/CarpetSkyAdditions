@@ -6,34 +6,37 @@ import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.commands.SkyIslandCommand;
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
-import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
+import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
 import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLogic;
-import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
+import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
 import com.mojang.brigadier.CommandDispatcher;
 import java.util.Map;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-import net.minecraft.world.Heightmap;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.levelgen.Heightmap;
 
 public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
+    public static final String MOD_ID = "carpetskyadditions";
+    public static final ModContainer MOD_CONTAINER =
+            FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow();
+    public static final String MOD_VERSION =
+            MOD_CONTAINER.getMetadata().getVersion().toString();
+    public static final String MOD_NAME = MOD_CONTAINER.getMetadata().getName();
+
     private static SettingsManager settingsManager;
 
     public SkyAdditionsExtension() {
@@ -42,49 +45,25 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
     @Override
     public void onInitialize() {
-        settingsManager = new SettingsManager(Build.VERSION, Build.MODID, Build.NAME);
+        settingsManager = new SettingsManager(MOD_VERSION, MOD_ID, MOD_NAME);
 
         AutoConfig.register(SkyAdditionsConfig.class, Toml4jConfigSerializer::new);
 
         // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
-        SpawnRestrictionAccessor.register(
+        SpawnPlacements.register(
                 EntityType.PIGLIN_BRUTE,
-                SpawnRestriction.Location.NO_RESTRICTIONS,
-                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                SpawnPlacements.Type.NO_RESTRICTIONS,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 new PiglinBruteSpawnPredicate());
+
         Registry.register(
-                Registries.CHUNK_GENERATOR, new SkyAdditionsIdentifier("skyblock"), SkyBlockChunkGenerator.CODEC);
+                BuiltInRegistries.CHUNK_GENERATOR,
+                new SkyAdditionsResourceLocation("skyblock"),
+                SkyBlockChunkGenerator.CODEC);
         SkyAdditionsFeatures.registerAll();
-        SkyAdditionsCriteria.registerAll();
+        SkyAdditionsCriteriaTriggers.registerAll();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
-
-        SkyAdditionsConfig config =
-                AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
-
-        // Add the embedded datapacks as an option on the create world screen
-        ModContainer modContainer =
-                FabricLoader.getInstance().getModContainer(Build.MODID).get();
-
-        if (!ResourceManagerHelper.registerBuiltinResourcePack(
-                new SkyAdditionsIdentifier("skyblock"),
-                modContainer,
-                Text.translatable("datapack.carpetskyadditions.skyblock"),
-                config.enableDatapackByDefault
-                        ? ResourcePackActivationType.DEFAULT_ENABLED
-                        : ResourcePackActivationType.NORMAL)) {
-            SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock\".");
-        }
-
-        if (!ResourceManagerHelper.registerBuiltinResourcePack(
-                new SkyAdditionsIdentifier("skyblock_acacia"),
-                modContainer,
-                Text.translatable("datapack.carpetskyadditions.acacia"),
-                config.enableDatapackByDefault
-                                && config.getInitialTreeType() == SkyAdditionsConfig.InitialTreeType.ACACIA
-                        ? ResourcePackActivationType.DEFAULT_ENABLED
-                        : ResourcePackActivationType.NORMAL)) {
-            SkyAdditionsSettings.LOG.warn("Could not register built-in datapack \"skyblock_acacia\".");
-        }
+        SkyAdditionsDataPacks.register();
     }
 
     @Override
@@ -100,17 +79,17 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return Translations.getTranslationFromResourcePath(
-                String.format("assets/%s/carpet/lang/%s.json", Build.MODID, lang));
+                String.format("assets/%s/carpet/lang/%s.json", MOD_ID, lang));
     }
 
     @Override
     public void registerCommands(
-            CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
+            CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         SkyIslandCommand.register(dispatcher);
     }
 
     @Override
     public String version() {
-        return Build.MODID + " " + Build.VERSION;
+        return MOD_ID + " " + MOD_VERSION;
     }
 }

@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.settings;
 
-import com.jsorrell.carpetskyadditions.Build;
+import com.jsorrell.carpetskyadditions.SkyAdditionsExtension;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +18,8 @@ public final class SkyBlockDefaults {
     public static void writeDefaults(Path rootSavePath) throws IOException {
         Path defaultsPath = FabricLoader.getInstance().getConfigDir().resolve("carpet");
         writeSkyBlockDefaults(
-                rootSavePath.resolve(Build.MODID + ".conf"), defaultsPath.resolve("default_" + Build.MODID + ".conf"));
+                rootSavePath.resolve(SkyAdditionsExtension.MOD_ID + ".conf"),
+                defaultsPath.resolve("default_" + SkyAdditionsExtension.MOD_ID + ".conf"));
         writeCarpetDefaults(rootSavePath.resolve("carpet.conf"), defaultsPath.resolve("default_carpet.conf"));
     }
 

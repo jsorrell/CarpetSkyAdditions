@@ -1,75 +1,74 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
 import java.util.Optional;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 public class DeepslateConversionHelper {
     public static final Potion CONVERSION_POTION = Potions.THICK;
 
     public static Optional<BlockState> canConvert(BlockState from) {
-        if (from.isOf(Blocks.STONE)) {
-            return Optional.of(Blocks.DEEPSLATE.getDefaultState());
+        if (from.is(Blocks.STONE)) {
+            return Optional.of(Blocks.DEEPSLATE.defaultBlockState());
         }
         return Optional.empty();
     }
 
     protected static double chanceFromDurationMultiplier(double mult) {
-        return MathHelper.clamp(2.0 * mult, 0, 1);
+        return Mth.clamp(2.0 * mult, 0, 1);
     }
 
     public static double getSplashConversionChance(double distance) {
         // vanilla calculation -- don't change
-        double mult = MathHelper.clamp(1.0 - distance / 4.0, 0, 1);
+        double mult = Mth.clamp(1.0 - distance / 4.0, 0, 1);
 
         return chanceFromDurationMultiplier(mult);
     }
 
-    public static void convertDeepslateAtSplash(World world, Vec3d hitPos) {
-        BlockPos.stream(Box.of(hitPos, 8.25, 4.25, 8.25)).forEach(pos -> {
-            BlockState state = world.getBlockState(pos);
+    public static void convertDeepslateAtSplash(Level level, Vec3 hitPos) {
+        BlockPos.betweenClosedStream(AABB.ofSize(hitPos, 8.25, 4.25, 8.25)).forEach(pos -> {
+            BlockState state = level.getBlockState(pos);
             Optional<BlockState> optionalConvertedState = canConvert(state);
             if (optionalConvertedState.isPresent()) {
-                double distance = Math.sqrt(pos.toCenterPos().squaredDistanceTo(hitPos));
-                if (world.random.nextDouble() < getSplashConversionChance(distance)) {
-                    world.setBlockState(pos, optionalConvertedState.get());
+                double distance = Math.sqrt(pos.getCenter().distanceToSqr(hitPos));
+                if (level.random.nextDouble() < getSplashConversionChance(distance)) {
+                    level.setBlockAndUpdate(pos, optionalConvertedState.get());
                 }
             }
         });
     }
 
-    public static void convertDeepslateInCloud(World world, Box box) {
-        BlockPos.stream(box).forEach(pos -> {
-            BlockState state = world.getBlockState(pos);
+    public static void convertDeepslateInCloud(Level level, AABB box) {
+        BlockPos.betweenClosedStream(box).forEach(pos -> {
+            BlockState state = level.getBlockState(pos);
             Optional<BlockState> optionalConvertedState = canConvert(state);
-            optionalConvertedState.ifPresent(blockState -> world.setBlockState(pos, blockState));
+            optionalConvertedState.ifPresent(blockState -> level.setBlockAndUpdate(pos, blockState));
         });
     }
 
-    public static boolean convertDeepslateWithBottle(World world, BlockPos blockPos, BlockPos eventPos) {
-        BlockState state = world.getBlockState(blockPos);
+    public static boolean convertDeepslateWithBottle(Level level, BlockPos blockPos, BlockPos eventPos) {
+        BlockState state = level.getBlockState(blockPos);
         Optional<BlockState> optionalConvertedState = canConvert(state);
         if (optionalConvertedState.isPresent()) {
-            if (!world.isClient) {
-                ServerWorld serverWorld = (ServerWorld) world;
+            if (level instanceof ServerLevel serverLevel) {
                 for (int i = 0; i < 5; ++i) {
-                    serverWorld.spawnParticles(
+                    serverLevel.sendParticles(
                             ParticleTypes.SPLASH,
-                            (double) eventPos.getX() + world.random.nextDouble(),
+                            (double) eventPos.getX() + level.random.nextDouble(),
                             eventPos.getY() + 1,
-                            (double) eventPos.getZ() + world.random.nextDouble(),
+                            (double) eventPos.getZ() + level.random.nextDouble(),
                             1,
                             0.0,
                             0.0,
@@ -77,9 +76,9 @@ public class DeepslateConversionHelper {
                             1.0);
                 }
             }
-            world.playSound(null, eventPos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.emitGameEvent(null, GameEvent.FLUID_PLACE, eventPos);
-            world.setBlockState(blockPos, optionalConvertedState.get());
+            level.playSound(null, eventPos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
+            level.gameEvent(null, GameEvent.FLUID_PLACE, eventPos);
+            level.setBlockAndUpdate(blockPos, optionalConvertedState.get());
             return true;
         }
         return false;

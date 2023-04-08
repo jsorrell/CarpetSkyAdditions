@@ -1,12 +1,15 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.block.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,46 +17,43 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SaplingBlock.class)
-public abstract class SaplingBlockMixin extends PlantBlock {
+public abstract class SaplingBlockMixin extends BushBlock {
 
-    public SaplingBlockMixin(Settings settings) {
+    public SaplingBlockMixin(BlockBehaviour.Properties settings) {
         super(settings);
     }
 
-    private boolean saplingIsOnSand(BlockView world, BlockPos pos) {
-        BlockState underBlock = world.getBlockState(pos.down());
-        return underBlock.isOf(Blocks.SAND) || underBlock.isOf(Blocks.RED_SAND);
+    private boolean saplingIsOnSand(BlockGetter level, BlockPos pos) {
+        BlockState underBlock = level.getBlockState(pos.below());
+        return underBlock.is(BlockTags.SAND);
     }
 
     @SuppressWarnings("ConstantConditions")
     private boolean isPropagule() {
-        return (PlantBlock) this instanceof PropaguleBlock;
+        return (BushBlock) this instanceof MangrovePropaguleBlock;
     }
 
     @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        if (SkyAdditionsSettings.saplingsDieOnSand) {
-            if (!this.isPropagule()) {
-                return floor.isOf(Blocks.SAND) || floor.isOf(Blocks.RED_SAND) || super.canPlantOnTop(floor, world, pos);
-            }
-        }
-        return super.canPlantOnTop(floor, world, pos);
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter level, BlockPos pos) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && !isPropagule() && floor.is(BlockTags.SAND)) return true;
+        return super.mayPlaceOn(floor, level, pos);
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void killIfOnSand(BlockState blockState, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
+    private void killIfOnSand(
+            BlockState blockState, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(level, pos)) {
             if (random.nextFloat() < 0.2) {
-                world.setBlockState(pos, Blocks.DEAD_BUSH.getDefaultState(), Block.NOTIFY_ALL);
+                level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), Block.UPDATE_ALL);
             }
             ci.cancel();
         }
     }
 
-    @Inject(method = "isFertilizable", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isValidBonemealTarget", at = @At("HEAD"), cancellable = true)
     private void stopBonemealingOnSand(
-            WorldView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
-        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
+            LevelReader level, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(level, pos)) {
             cir.setReturnValue(false);
         }
     }

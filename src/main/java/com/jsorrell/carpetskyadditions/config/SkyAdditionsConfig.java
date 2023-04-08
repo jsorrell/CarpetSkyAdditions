@@ -1,10 +1,10 @@
 package com.jsorrell.carpetskyadditions.config;
 
-import com.jsorrell.carpetskyadditions.Build;
+import com.jsorrell.carpetskyadditions.SkyAdditionsExtension;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 
-@Config(name = Build.MODID)
+@Config(name = SkyAdditionsExtension.MOD_ID)
 public class SkyAdditionsConfig implements ConfigData {
     public enum InitialTreeType {
         OAK,

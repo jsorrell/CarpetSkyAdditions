@@ -1,27 +1,27 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.entity.Entity;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.GameEventTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.listener.GameEventListener;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.GameEventTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gameevent.GameEventListener;
+import net.minecraft.world.level.gameevent.PositionSource;
+import net.minecraft.world.phys.Vec3;
 
 public class InstantListener implements GameEventListener {
     protected final PositionSource positionSource;
     protected final int range;
-    protected final Callback callback;
+    protected final InstantListenerConfig instantListenerConfig;
     protected boolean onCooldown;
 
-    public InstantListener(PositionSource positionSource, int range, InstantListener.Callback callback) {
+    public InstantListener(PositionSource positionSource, int range, InstantListenerConfig instantListenerConfig) {
         this.positionSource = positionSource;
         this.range = range;
-        this.callback = callback;
+        this.instantListenerConfig = instantListenerConfig;
     }
 
     public void tick() {
@@ -29,65 +29,65 @@ public class InstantListener implements GameEventListener {
     }
 
     @Override
-    public PositionSource getPositionSource() {
-        return this.positionSource;
+    public PositionSource getListenerSource() {
+        return positionSource;
     }
 
     @Override
-    public int getRange() {
-        return this.range;
+    public int getListenerRadius() {
+        return range;
     }
 
     @Override
-    public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d originPos) {
+    public boolean handleGameEvent(ServerLevel level, GameEvent event, GameEvent.Context context, Vec3 originPos) {
         if (onCooldown) {
             return false;
         }
 
-        if (!callback.canAccept(event, emitter)) {
+        if (!instantListenerConfig.canAccept(event, context)) {
             return false;
         }
 
-        callback.accept(world, this, originPos, event, emitter);
+        instantListenerConfig.accept(level, this, originPos, event, context);
         onCooldown = true;
         return true;
     }
 
-    public interface Callback {
+    public interface InstantListenerConfig {
         default TagKey<GameEvent> getTag() {
             return GameEventTags.VIBRATIONS;
         }
 
-        default boolean canAccept(GameEvent gameEvent, GameEvent.Emitter emitter) {
-            if (!gameEvent.isIn(this.getTag())) {
+        default boolean canAccept(GameEvent gameEvent, GameEvent.Context context) {
+            if (!gameEvent.is(getTag())) {
                 return false;
             }
-            Entity entity = emitter.sourceEntity();
+            Entity entity = context.sourceEntity();
             if (entity != null) {
                 if (entity.isSpectator()) {
                     return false;
                 }
-                if (entity.bypassesSteppingEffects() && gameEvent.isIn(GameEventTags.IGNORE_VIBRATIONS_SNEAKING)) {
-                    if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-                        Criteria.AVOID_VIBRATION.trigger(serverPlayerEntity);
+                if (entity.isSteppingCarefully() && gameEvent.is(GameEventTags.IGNORE_VIBRATIONS_SNEAKING)) {
+                    if (entity instanceof ServerPlayer serverPlayer) {
+                        CriteriaTriggers.AVOID_VIBRATION.trigger(serverPlayer);
                     }
                     return false;
                 }
-                if (entity.occludeVibrationSignals()) {
+                if (entity.dampensVibrations()) {
                     return false;
                 }
             }
-            if (emitter.affectedState() != null) {
-                return !emitter.affectedState().isIn(BlockTags.DAMPENS_VIBRATIONS);
+            if (context.affectedState() != null) {
+                return !context.affectedState().is(BlockTags.DAMPENS_VIBRATIONS);
             }
             return true;
         }
 
         void accept(
-                ServerWorld world,
+                ServerLevel level,
                 GameEventListener listener,
-                Vec3d originPos,
+                Vec3 originPos,
                 GameEvent gameEvent,
-                GameEvent.Emitter emitter);
+                GameEvent.Context context);
     }
 }

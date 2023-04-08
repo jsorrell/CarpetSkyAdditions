@@ -5,7 +5,7 @@ import com.mojang.datafixers.DataFix;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.datafixers.types.Type;
 import java.util.Map;
-import net.minecraft.datafixer.fix.MissingDimensionFix;
+import net.minecraft.util.datafix.fixes.MissingDimensionFix;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;

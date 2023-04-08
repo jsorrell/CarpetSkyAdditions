@@ -7,14 +7,14 @@ import carpet.api.settings.CarpetRule;
 import carpet.api.settings.Rule;
 import carpet.api.settings.Validator;
 import carpet.api.settings.Validators;
-import com.jsorrell.carpetskyadditions.Build;
+import com.jsorrell.carpetskyadditions.SkyAdditionsExtension;
 import java.util.Optional;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SkyAdditionsSettings {
-    public static final Logger LOG = LoggerFactory.getLogger(Build.NAME);
+    public static final Logger LOG = LoggerFactory.getLogger(SkyAdditionsExtension.MOD_NAME);
     public static final String GENERATION = "generation";
     public static final String WANDERING_TRADER = "wandering_trader";
 
@@ -193,7 +193,7 @@ public class SkyAdditionsSettings {
     private static class RenewableDeepslateSetting extends Validator<String> {
         @Override
         public String validate(
-                ServerCommandSource source, CarpetRule<String> currentRule, String newValue, String string) {
+                CommandSourceStack source, CarpetRule<String> currentRule, String newValue, String string) {
             SkyAdditionsSettings.doRenewableDeepslate = !"false".equalsIgnoreCase(newValue);
             SkyAdditionsSettings.renewableDeepslateFromSplash = "true".equalsIgnoreCase(newValue);
 
@@ -220,7 +220,7 @@ public class SkyAdditionsSettings {
     public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
         @Override
         public Double validate(
-                ServerCommandSource source, CarpetRule<Double> currentRule, Double newValue, String string) {
+                CommandSourceStack source, CarpetRule<Double> currentRule, Double newValue, String string) {
             return (0.025 <= newValue && newValue <= 1) ? newValue : null;
         }
 
@@ -240,7 +240,7 @@ public class SkyAdditionsSettings {
     /* Wandering Trader Spawn Rate */
     public static class POSITIVE_NUMBER<T extends Number> extends Validator<T> {
         @Override
-        public T validate(ServerCommandSource source, CarpetRule<T> currentRule, T newValue, String string) {
+        public T validate(CommandSourceStack source, CarpetRule<T> currentRule, T newValue, String string) {
             return 0 < newValue.doubleValue() ? newValue : null;
         }
 
