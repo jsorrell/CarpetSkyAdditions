@@ -8,11 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 ### Changed
-* Datapack settings changes now update without a client restart.
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+## [4.3.1] - 2023-04-08
+
+### Changed
+* Datapack settings changes now update without a client restart.
 
 ### Fixed
 * Ferns added to the Day Trader advancement for Acacia Tree starts (#101).
@@ -63,6 +69,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Anvils converting Coal into Diamonds now works better with larger-than-vanilla max stack sizes.
 * Nether portals once again only generate Netherrack/Nylium when forced.
 
-[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.0...HEAD
+[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.1...HEAD
+[4.3.1]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/jsorrell/carpetskyadditions/releases/tag/v4.2.0
