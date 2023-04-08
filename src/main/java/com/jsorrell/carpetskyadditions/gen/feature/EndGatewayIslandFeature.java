@@ -23,7 +23,7 @@ public class EndGatewayIslandFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         }
 
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
 
         int x = context.origin().getX();
         int y = context.origin().getY();
@@ -34,10 +34,10 @@ public class EndGatewayIslandFeature extends Feature<NoneFeatureConfiguration> {
         final int r = 5;
         for (BlockPos pos : BlockPos.randomBetweenClosed(context.random(), 20, x - r, y, z - r, x + r, y, z + r)) {
             // Force not generating on edge
-            if (Direction.Plane.HORIZONTAL.stream().noneMatch(dir -> world.isEmptyBlock(pos.relative(dir)))
+            if (Direction.Plane.HORIZONTAL.stream().noneMatch(dir -> level.isEmptyBlock(pos.relative(dir)))
                     && Feature.CHORUS_PLANT.place(new FeaturePlaceContext<>(
                             Optional.empty(),
-                            world,
+                            level,
                             context.chunkGenerator(),
                             context.random(),
                             pos.above(),
@@ -50,15 +50,15 @@ public class EndGatewayIslandFeature extends Feature<NoneFeatureConfiguration> {
 
     // Finds a place to spawn a gateway that won't overwrite chorus
     // Allows a gateway that pops off chorus flowers
-    public static BlockPos findGatewayLocation(LevelReader world, BlockPos origin) {
+    public static BlockPos findGatewayLocation(LevelReader level, BlockPos origin) {
         return BlockPos.withinManhattanStream(origin, 7, 0, 7)
-                .filter(pos -> world.getBlockState(pos).is(Blocks.END_STONE)
+                .filter(pos -> level.getBlockState(pos).is(Blocks.END_STONE)
                         && Direction.stream()
                                 .allMatch(direction ->
-                                        world.isEmptyBlock(pos.above(11).relative(direction)))
+                                        level.isEmptyBlock(pos.above(11).relative(direction)))
                         && Direction.stream()
                                 .allMatch(direction ->
-                                        world.isEmptyBlock(pos.above(9).relative(direction))))
+                                        level.isEmptyBlock(pos.above(9).relative(direction))))
                 .findFirst()
                 .orElse(origin);
     }

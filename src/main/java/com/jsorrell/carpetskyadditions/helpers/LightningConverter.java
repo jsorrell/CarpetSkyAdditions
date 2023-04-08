@@ -11,33 +11,33 @@ import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class LightningConverter {
-    public static void strike(Level world, BlockPos pos) {
-        BlockState rawHitBlock = world.getBlockState(pos);
+    public static void strike(Level level, BlockPos pos) {
+        BlockState rawHitBlock = level.getBlockState(pos);
         BlockPos hitBlockPos;
         BlockState hitBlock;
         if (rawHitBlock.is(Blocks.LIGHTNING_ROD)) {
             hitBlockPos =
                     pos.relative(rawHitBlock.getValue(LightningRodBlock.FACING).getOpposite());
-            hitBlock = world.getBlockState(hitBlockPos);
+            hitBlock = level.getBlockState(hitBlockPos);
         } else {
             hitBlockPos = pos;
             hitBlock = rawHitBlock;
         }
 
-        alchemizeVinesToGlowLichen(world, hitBlockPos, hitBlock);
+        alchemizeVinesToGlowLichen(level, hitBlockPos, hitBlock);
     }
 
-    protected static void alchemizeVinesToGlowLichen(Level world, BlockPos hitBlockPos, BlockState hitBlock) {
+    protected static void alchemizeVinesToGlowLichen(Level level, BlockPos hitBlockPos, BlockState hitBlock) {
         if (!(SkyAdditionsSettings.lightningElectrifiesVines && hitBlock.is(Blocks.GLOWSTONE))) return;
 
         for (Direction dir : Direction.values()) {
             BlockPos adjacentBlockPos = hitBlockPos.offset(dir.getNormal());
-            BlockState adjacentBlock = world.getBlockState(adjacentBlockPos);
+            BlockState adjacentBlock = level.getBlockState(adjacentBlockPos);
             Direction opDir = dir.getOpposite();
             if (adjacentBlock.is(Blocks.VINE) && adjacentBlock.getValue(VineBlock.getPropertyForFace(opDir))) {
                 BlockState glowLichen =
                         Blocks.GLOW_LICHEN.defaultBlockState().setValue(GlowLichenBlock.getFaceProperty(opDir), true);
-                world.setBlockAndUpdate(adjacentBlockPos, glowLichen);
+                level.setBlockAndUpdate(adjacentBlockPos, glowLichen);
             }
         }
     }

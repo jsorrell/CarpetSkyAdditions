@@ -6,7 +6,7 @@ import static net.minecraft.commands.Commands.literal;
 import carpet.utils.CommandHelper;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsConfiguredFeatures;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
-import com.jsorrell.carpetskyadditions.gen.feature.SpawnPlatformFeatureConfig;
+import com.jsorrell.carpetskyadditions.gen.feature.SpawnPlatformFeatureConfiguration;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsText;
 import com.mojang.brigadier.CommandDispatcher;
@@ -102,7 +102,7 @@ public class SkyIslandCommand {
         ConfiguredFeature<?, ?> spawnPlatformCF = cfr.getOrThrow(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM);
         // try to get the platform out
         if (spawnPlatformCF.feature().equals(SkyAdditionsFeatures.SPAWN_PLATFORM)) {
-            SpawnPlatformFeatureConfig config = (SpawnPlatformFeatureConfig) spawnPlatformCF.config();
+            SpawnPlatformFeatureConfiguration config = (SpawnPlatformFeatureConfiguration) spawnPlatformCF.config();
             return new ConfiguredFeature<>(SkyAdditionsFeatures.LOCATABLE_STRUCTURE, config.platformConfig());
         } else {
             return spawnPlatformCF;

@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
-import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
+import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.helpers.GeodeGenerator;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.core.BlockPos;
@@ -22,29 +22,29 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(LavaFluid.class)
 public class LavaFluidMixin {
     @Inject(method = "randomTick", locals = LocalCapture.CAPTURE_FAILSOFT, at = @At(value = "HEAD"))
-    private void tryCreateGeode(Level world, BlockPos pos, FluidState state, RandomSource random, CallbackInfo ci) {
+    private void tryCreateGeode(Level level, BlockPos pos, FluidState state, RandomSource random, CallbackInfo ci) {
         if (SkyAdditionsSettings.renewableBuddingAmethysts) {
             if (random.nextInt(GeodeGenerator.CONVERSION_RATE) == 0) {
-                if (GeodeGenerator.checkGeodeFormation(world, pos)) {
-                    world.setBlockAndUpdate(pos, Blocks.BUDDING_AMETHYST.defaultBlockState());
-                    world.playSound(
+                if (GeodeGenerator.checkGeodeFormation(level, pos)) {
+                    level.setBlockAndUpdate(pos, Blocks.BUDDING_AMETHYST.defaultBlockState());
+                    level.playSound(
                             null,
                             pos,
                             SoundEvents.LAVA_EXTINGUISH,
                             SoundSource.BLOCKS,
                             0.5f,
                             2.6f + (random.nextFloat() - random.nextFloat()) * 0.8f);
-                    world.playSound(
+                    level.playSound(
                             null,
                             pos,
                             SoundEvents.AMETHYST_BLOCK_PLACE,
                             SoundSource.BLOCKS,
                             1.0f,
-                            0.5f + world.random.nextFloat() * 1.2f);
+                            0.5f + level.random.nextFloat() * 1.2f);
 
                     AABB criteriaTriggerBox = new AABB(pos).inflate(50, 20, 50);
-                    world.getEntitiesOfClass(ServerPlayer.class, criteriaTriggerBox)
-                            .forEach(SkyAdditionsCriteria.GENERATE_GEODE::trigger);
+                    level.getEntitiesOfClass(ServerPlayer.class, criteriaTriggerBox)
+                            .forEach(SkyAdditionsCriteriaTriggers.GENERATE_GEODE::trigger);
                 }
             }
         }

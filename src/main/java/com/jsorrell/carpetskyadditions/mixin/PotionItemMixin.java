@@ -26,21 +26,21 @@ public class PotionItemMixin {
     @Inject(method = "useOn", at = @At("TAIL"), cancellable = true)
     private void convertStoneToDeepslate(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         if (SkyAdditionsSettings.doRenewableDeepslate) {
-            Level world = context.getLevel();
+            Level level = context.getLevel();
             BlockPos blockPos = context.getClickedPos();
             Player playerEntity = context.getPlayer();
             ItemStack itemStack = context.getItemInHand();
 
             if (context.getClickedFace() != Direction.DOWN
-                    && DeepslateConversionHelper.convertDeepslateWithBottle(world, blockPos, blockPos)) {
-                world.playSound(null, blockPos, SoundEvents.GENERIC_SPLASH, SoundSource.PLAYERS, 1.0f, 1.0f);
+                    && DeepslateConversionHelper.convertDeepslateWithBottle(level, blockPos, blockPos)) {
+                level.playSound(null, blockPos, SoundEvents.GENERIC_SPLASH, SoundSource.PLAYERS, 1.0f, 1.0f);
                 Objects.requireNonNull(playerEntity)
                         .setItemInHand(
                                 context.getHand(),
                                 ItemUtils.createFilledResult(
                                         itemStack, playerEntity, new ItemStack(Items.GLASS_BOTTLE)));
                 playerEntity.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
-                cir.setReturnValue(InteractionResult.sidedSuccess(world.isClientSide));
+                cir.setReturnValue(InteractionResult.sidedSuccess(level.isClientSide));
             }
         }
     }

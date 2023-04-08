@@ -16,28 +16,28 @@ public class PiglinBruteSpawnPredicate implements SpawnPlacements.SpawnPredicate
     @Override
     public boolean test(
             EntityType<PiglinBrute> type,
-            ServerLevelAccessor world,
+            ServerLevelAccessor level,
             MobSpawnType spawnReason,
             BlockPos pos,
             RandomSource random) {
         // Conditionally implement registering SpawnRestriction.Location.ON_GROUND
         if (CarpetSettings.piglinsSpawningInBastions) {
             BlockPos underBlockPos = pos.below();
-            BlockState underBlock = world.getBlockState(underBlockPos);
-            if (!underBlock.isValidSpawn(world, underBlockPos, type)) {
+            BlockState underBlock = level.getBlockState(underBlockPos);
+            if (!underBlock.isValidSpawn(level, underBlockPos, type)) {
                 return false;
             }
             BlockPos aboveBlockPos = pos.above();
             return NaturalSpawner.isValidEmptySpawnBlock(
-                            world, pos, world.getBlockState(pos), world.getFluidState(pos), type)
+                            level, pos, level.getBlockState(pos), level.getFluidState(pos), type)
                     && NaturalSpawner.isValidEmptySpawnBlock(
-                            world,
+                            level,
                             aboveBlockPos,
-                            world.getBlockState(aboveBlockPos),
-                            world.getFluidState(aboveBlockPos),
+                            level.getBlockState(aboveBlockPos),
+                            level.getFluidState(aboveBlockPos),
                             type)
                     // Mimic piglin spawning restrictions b/c that's the closest mob
-                    && Piglin.checkPiglinSpawnRules(EntityType.PIGLIN, world, spawnReason, pos, random);
+                    && Piglin.checkPiglinSpawnRules(EntityType.PIGLIN, level, spawnReason, pos, random);
         }
 
         return true;

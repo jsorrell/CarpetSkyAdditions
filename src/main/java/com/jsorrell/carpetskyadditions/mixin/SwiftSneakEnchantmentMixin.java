@@ -1,5 +1,6 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
+import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -14,6 +15,6 @@ public class SwiftSneakEnchantmentMixin extends Enchantment {
 
     @Override
     public int getMinCost(int level) {
-        return 14 + level * 7;
+        return SkyAdditionsSettings.renewableSwiftSneak ? 14 + level * 7 : super.getMinCost(level);
     }
 }

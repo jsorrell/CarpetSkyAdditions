@@ -23,22 +23,22 @@ public class DeadCoralToSandHelper {
         return 320 + random.nextInt(320);
     }
 
-    public static boolean tryDropSand(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        FluidState fluidState = world.getFluidState(pos);
+    public static boolean tryDropSand(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        FluidState fluidState = level.getFluidState(pos);
         if (!fluidState.is(Fluids.WATER)) {
             return false;
         }
 
-        Vec3 waterVelocity = fluidState.getFlow(world, pos);
+        Vec3 waterVelocity = fluidState.getFlow(level, pos);
         if (waterVelocity.equals(Vec3.ZERO)) {
             return false;
         }
 
-        if (!world.isClientSide) {
+        if (!level.isClientSide) {
             Vec3 sandVelocity = waterVelocity.scale(0.1);
             Item sandItem = state.getBlock().getLootTable().getPath().contains("fire") ? Items.RED_SAND : Items.SAND;
             ItemEntity itemEntity = new ItemEntity(
-                    world,
+                    level,
                     pos.getX() + 0.5,
                     pos.getY(),
                     pos.getZ() + 0.5,
@@ -47,12 +47,12 @@ public class DeadCoralToSandHelper {
                     sandVelocity.y(),
                     sandVelocity.z());
             itemEntity.setDefaultPickUpDelay();
-            world.addFreshEntity(itemEntity);
+            level.addFreshEntity(itemEntity);
         }
 
         if (random.nextFloat() < BREAK_CHANCE) {
-            world.removeBlock(pos, false);
-            world.playSound(
+            level.removeBlock(pos, false);
+            level.playSound(
                     null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 0.5f, 1f);
             return false;
         }

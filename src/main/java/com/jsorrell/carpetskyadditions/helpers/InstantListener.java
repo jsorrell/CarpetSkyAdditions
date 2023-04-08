@@ -15,13 +15,13 @@ import net.minecraft.world.phys.Vec3;
 public class InstantListener implements GameEventListener {
     protected final PositionSource positionSource;
     protected final int range;
-    protected final Callback callback;
+    protected final InstantListenerConfig instantListenerConfig;
     protected boolean onCooldown;
 
-    public InstantListener(PositionSource positionSource, int range, InstantListener.Callback callback) {
+    public InstantListener(PositionSource positionSource, int range, InstantListenerConfig instantListenerConfig) {
         this.positionSource = positionSource;
         this.range = range;
-        this.callback = callback;
+        this.instantListenerConfig = instantListenerConfig;
     }
 
     public void tick() {
@@ -30,46 +30,46 @@ public class InstantListener implements GameEventListener {
 
     @Override
     public PositionSource getListenerSource() {
-        return this.positionSource;
+        return positionSource;
     }
 
     @Override
     public int getListenerRadius() {
-        return this.range;
+        return range;
     }
 
     @Override
-    public boolean handleGameEvent(ServerLevel world, GameEvent event, GameEvent.Context emitter, Vec3 originPos) {
+    public boolean handleGameEvent(ServerLevel level, GameEvent event, GameEvent.Context context, Vec3 originPos) {
         if (onCooldown) {
             return false;
         }
 
-        if (!callback.canAccept(event, emitter)) {
+        if (!instantListenerConfig.canAccept(event, context)) {
             return false;
         }
 
-        callback.accept(world, this, originPos, event, emitter);
+        instantListenerConfig.accept(level, this, originPos, event, context);
         onCooldown = true;
         return true;
     }
 
-    public interface Callback {
+    public interface InstantListenerConfig {
         default TagKey<GameEvent> getTag() {
             return GameEventTags.VIBRATIONS;
         }
 
-        default boolean canAccept(GameEvent gameEvent, GameEvent.Context emitter) {
-            if (!gameEvent.is(this.getTag())) {
+        default boolean canAccept(GameEvent gameEvent, GameEvent.Context context) {
+            if (!gameEvent.is(getTag())) {
                 return false;
             }
-            Entity entity = emitter.sourceEntity();
+            Entity entity = context.sourceEntity();
             if (entity != null) {
                 if (entity.isSpectator()) {
                     return false;
                 }
                 if (entity.isSteppingCarefully() && gameEvent.is(GameEventTags.IGNORE_VIBRATIONS_SNEAKING)) {
-                    if (entity instanceof ServerPlayer serverPlayerEntity) {
-                        CriteriaTriggers.AVOID_VIBRATION.trigger(serverPlayerEntity);
+                    if (entity instanceof ServerPlayer serverPlayer) {
+                        CriteriaTriggers.AVOID_VIBRATION.trigger(serverPlayer);
                     }
                     return false;
                 }
@@ -77,17 +77,17 @@ public class InstantListener implements GameEventListener {
                     return false;
                 }
             }
-            if (emitter.affectedState() != null) {
-                return !emitter.affectedState().is(BlockTags.DAMPENS_VIBRATIONS);
+            if (context.affectedState() != null) {
+                return !context.affectedState().is(BlockTags.DAMPENS_VIBRATIONS);
             }
             return true;
         }
 
         void accept(
-                ServerLevel world,
+                ServerLevel level,
                 GameEventListener listener,
                 Vec3 originPos,
                 GameEvent gameEvent,
-                GameEvent.Context emitter);
+                GameEvent.Context context);
     }
 }

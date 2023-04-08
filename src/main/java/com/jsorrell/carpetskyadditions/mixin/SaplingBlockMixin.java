@@ -3,6 +3,7 @@ package com.jsorrell.carpetskyadditions.mixin;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -22,9 +23,9 @@ public abstract class SaplingBlockMixin extends BushBlock {
         super(settings);
     }
 
-    private boolean saplingIsOnSand(BlockGetter world, BlockPos pos) {
-        BlockState underBlock = world.getBlockState(pos.below());
-        return underBlock.is(Blocks.SAND) || underBlock.is(Blocks.RED_SAND);
+    private boolean saplingIsOnSand(BlockGetter level, BlockPos pos) {
+        BlockState underBlock = level.getBlockState(pos.below());
+        return underBlock.is(BlockTags.SAND);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -33,21 +34,17 @@ public abstract class SaplingBlockMixin extends BushBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
-        if (SkyAdditionsSettings.saplingsDieOnSand) {
-            if (!this.isPropagule()) {
-                return floor.is(Blocks.SAND) || floor.is(Blocks.RED_SAND) || super.mayPlaceOn(floor, world, pos);
-            }
-        }
-        return super.mayPlaceOn(floor, world, pos);
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter level, BlockPos pos) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && !isPropagule() && floor.is(BlockTags.SAND)) return true;
+        return super.mayPlaceOn(floor, level, pos);
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void killIfOnSand(
-            BlockState blockState, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
+            BlockState blockState, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(level, pos)) {
             if (random.nextFloat() < 0.2) {
-                world.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), Block.UPDATE_ALL);
+                level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), Block.UPDATE_ALL);
             }
             ci.cancel();
         }
@@ -55,8 +52,8 @@ public abstract class SaplingBlockMixin extends BushBlock {
 
     @Inject(method = "isValidBonemealTarget", at = @At("HEAD"), cancellable = true)
     private void stopBonemealingOnSand(
-            LevelReader world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
-        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(world, pos)) {
+            LevelReader level, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+        if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(level, pos)) {
             cir.setReturnValue(false);
         }
     }

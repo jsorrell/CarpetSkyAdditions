@@ -50,7 +50,7 @@ public abstract class MinecraftServerMixin {
 
     @Inject(method = "loadLevel", at = @At("HEAD"))
     private void fixSettingsFile(CallbackInfo ci) {
-        Path worldSavePath = this.getWorldPath(LevelResource.ROOT);
+        Path worldSavePath = getWorldPath(LevelResource.ROOT);
         // Fix existing settings
         try {
             Fixers.fixSettings(worldSavePath);
@@ -62,13 +62,13 @@ public abstract class MinecraftServerMixin {
         SkyAdditionsConfig config =
                 AutoConfig.getConfigHolder(SkyAdditionsConfig.class).get();
         if (config.autoEnableDefaultSettings
-                && this.registries
+                && registries
                                 .compositeAccess()
                                 .registryOrThrow(Registries.LEVEL_STEM)
                                 .getOrThrow(LevelStem.OVERWORLD)
                                 .generator()
                         instanceof SkyBlockChunkGenerator
-                && !this.worldData.overworldData().isInitialized()) {
+                && !worldData.overworldData().isInitialized()) {
             try {
                 SkyBlockDefaults.writeDefaults(worldSavePath);
             } catch (IOException e) {
@@ -89,27 +89,27 @@ public abstract class MinecraftServerMixin {
                             shift = At.Shift.AFTER),
             cancellable = true)
     private static void generateSpawnPlatform(
-            ServerLevel world,
-            ServerLevelData worldProperties,
+            ServerLevel level,
+            ServerLevelData levelData,
             boolean bonusChest,
             boolean debugWorld,
             CallbackInfo ci,
             ServerChunkCache serverChunkManager,
             ChunkPos spawnChunk,
             int spawnHeight) {
-        ServerChunkCache chunkManager = world.getChunkSource();
+        ServerChunkCache chunkManager = level.getChunkSource();
         ChunkGenerator chunkGenerator = chunkManager.getGenerator();
         if (!(chunkGenerator instanceof SkyBlockChunkGenerator)) return;
         BlockPos worldSpawn = spawnChunk.getMiddleBlockPosition(spawnHeight);
 
         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0));
-        random.setLargeFeatureSeed(world.getSeed(), spawnChunk.x, spawnChunk.z);
+        random.setLargeFeatureSeed(level.getSeed(), spawnChunk.x, spawnChunk.z);
 
-        Holder.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = world.registryAccess()
+        Holder.Reference<ConfiguredFeature<?, ?>> spawnPlatformFeature = level.registryAccess()
                 .registryOrThrow(Registries.CONFIGURED_FEATURE)
                 .getHolderOrThrow(SkyAdditionsConfiguredFeatures.SPAWN_PLATFORM);
 
-        if (!spawnPlatformFeature.value().place(world, chunkGenerator, random, worldSpawn)) {
+        if (!spawnPlatformFeature.value().place(level, chunkGenerator, random, worldSpawn)) {
             SkyAdditionsSettings.LOG.error("Couldn't generate spawn platform");
         }
 

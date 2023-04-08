@@ -34,13 +34,14 @@ public class EnderDragonFightMixin {
 
     @Inject(method = "spawnExitPortal", at = @At(value = "HEAD"))
     private void setExitPortalLocation(boolean previouslyKilled, CallbackInfo ci) {
-        if (this.level.getChunkSource().getGenerator() instanceof SkyBlockChunkGenerator chunkGenerator) {
+        if (level.getChunkSource().getGenerator() instanceof SkyBlockChunkGenerator chunkGenerator) {
             if (portalLocation == null) {
-                int y = chunkGenerator.getHeightInGround(
-                        EndPodiumFeature.END_PODIUM_LOCATION.getX(),
-                        EndPodiumFeature.END_PODIUM_LOCATION.getZ(),
-                        Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                        level);
+                int y = chunkGenerator.getBaseHeightInEquivalentNoiseWorld(
+                                EndPodiumFeature.END_PODIUM_LOCATION.getX(),
+                                EndPodiumFeature.END_PODIUM_LOCATION.getZ(),
+                                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                                level)
+                        - 1;
                 portalLocation = EndPodiumFeature.END_PODIUM_LOCATION.atY(y);
             }
         }
@@ -56,9 +57,8 @@ public class EnderDragonFightMixin {
     private void spawnShulkerOnDragonReKill(EnderDragon dragon, CallbackInfo ci) {
         if (SkyAdditionsSettings.shulkerSpawnsOnDragonKill) {
             // On top of bedrock pillar
-            BlockPos shulkerPosition = this.portalLocation.offset(0, 4, 0);
-            if (this.previouslyKilled
-                    && this.level.getBlockState(shulkerPosition).isAir()) {
+            BlockPos shulkerPosition = portalLocation.offset(0, 4, 0);
+            if (previouslyKilled && level.getBlockState(shulkerPosition).isAir()) {
                 Shulker shulker =
                         EntityType.SHULKER.create(level, null, null, shulkerPosition, MobSpawnType.EVENT, true, false);
                 if (shulker != null && level.noCollision(shulker)) {

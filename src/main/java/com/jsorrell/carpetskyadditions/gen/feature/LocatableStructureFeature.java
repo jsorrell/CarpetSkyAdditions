@@ -10,19 +10,19 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-public class LocatableStructureFeature extends Feature<LocatableStructureFeatureConfig> {
-    public LocatableStructureFeature(Codec<LocatableStructureFeatureConfig> codec) {
+public class LocatableStructureFeature extends Feature<LocatableStructureFeatureConfiguration> {
+    public LocatableStructureFeature(Codec<LocatableStructureFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<LocatableStructureFeatureConfig> context) {
-        WorldGenLevel world = context.level();
-        MinecraftServer server = world.getServer();
+    public boolean place(FeaturePlaceContext<LocatableStructureFeatureConfiguration> context) {
+        WorldGenLevel level = context.level();
+        MinecraftServer server = level.getServer();
         if (server == null) {
             return false;
         }
-        LocatableStructureFeatureConfig config = context.config();
+        LocatableStructureFeatureConfiguration config = context.config();
         StructureTemplate structure =
                 server.getStructureManager().get(config.structure()).orElse(null);
         if (structure == null) {
@@ -31,7 +31,7 @@ public class LocatableStructureFeature extends Feature<LocatableStructureFeature
         }
 
         return structure.placeInWorld(
-                world,
+                level,
                 context.origin().offset(config.pos()),
                 null,
                 new StructurePlaceSettings(),

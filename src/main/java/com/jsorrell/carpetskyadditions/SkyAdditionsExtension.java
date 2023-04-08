@@ -6,14 +6,13 @@ import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.commands.SkyIslandCommand;
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
-import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteria;
+import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
 import com.jsorrell.carpetskyadditions.helpers.PiglinBruteSpawnPredicate;
 import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsMinecartComparatorLogic;
-import com.jsorrell.carpetskyadditions.mixin.SpawnRestrictionAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import com.jsorrell.carpetskyadditions.util.SkyAdditionsIdentifier;
+import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
 import com.mojang.brigadier.CommandDispatcher;
 import java.util.Map;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -51,7 +50,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
         AutoConfig.register(SkyAdditionsConfig.class, Toml4jConfigSerializer::new);
 
         // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
-        SpawnRestrictionAccessor.register(
+        SpawnPlacements.register(
                 EntityType.PIGLIN_BRUTE,
                 SpawnPlacements.Type.NO_RESTRICTIONS,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -59,10 +58,10 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
 
         Registry.register(
                 BuiltInRegistries.CHUNK_GENERATOR,
-                new SkyAdditionsIdentifier("skyblock"),
+                new SkyAdditionsResourceLocation("skyblock"),
                 SkyBlockChunkGenerator.CODEC);
         SkyAdditionsFeatures.registerAll();
-        SkyAdditionsCriteria.registerAll();
+        SkyAdditionsCriteriaTriggers.registerAll();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
         SkyAdditionsDataPacks.register();
     }
