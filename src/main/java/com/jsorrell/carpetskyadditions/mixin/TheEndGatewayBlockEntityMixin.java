@@ -28,8 +28,7 @@ public class TheEndGatewayBlockEntityMixin {
                             value = "FIELD",
                             opcode = Opcodes.GETSTATIC,
                             target =
-                                    "Lnet/minecraft/data/worldgen/features/EndFeatures;END_ISLAND:Lnet/minecraft/resources/ResourceKey;"),
-            remap = false)
+                                    "Lnet/minecraft/data/worldgen/features/EndFeatures;END_ISLAND:Lnet/minecraft/resources/ResourceKey;"))
     private static ResourceKey<ConfiguredFeature<?, ?>> replaceGeneratedEndIslandFeature() {
         if (SkyAdditionsSettings.gatewaysSpawnChorus) {
             return SkyAdditionsConfiguredFeatures.GATEWAY_ISLAND;
