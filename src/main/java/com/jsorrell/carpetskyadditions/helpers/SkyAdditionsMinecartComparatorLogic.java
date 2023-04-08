@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
-import com.jsorrell.carpetskyadditions.fakes.VexEntityInterface;
+import com.jsorrell.carpetskyadditions.fakes.VexInterface;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogic;
 import net.minecraft.core.BlockPos;
@@ -12,7 +12,7 @@ public class SkyAdditionsMinecartComparatorLogic implements MinecartComparatorLo
     @Override
     public int getComparatorValue(Minecart minecart, BlockState state, BlockPos pos) {
         if (SkyAdditionsSettings.allayableVexes && minecart.getFirstPassenger() instanceof Vex vex) {
-            return ((VexEntityInterface) vex).getNextNote();
+            return ((VexInterface) vex).getAllayer().getNextNote();
         }
         return 0;
     }
