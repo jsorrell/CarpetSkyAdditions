@@ -1,1 +1,19 @@
-{}
+{
+  "generator.carpetskyadditions.skyblock": "SkyBlock",
+  "modmenu.descriptionTranslation.modmenu": "Generazione del mondo vuoto con nuovi modi per ottenere risorse",
+  "carpetskyadditions.config.title": "Impostazioni Carpet Sky Additions",
+  "datapack.carpetskyadditions.skyblock": "Carpet Sky Additions: SkyBlock",
+  "datapack.carpetskyadditions.acacia": "Carpet Sky Additions: Acacia",
+  "carpetskyadditions.tree.oak": "Quercia",
+  "carpetskyadditions.tree.acacia": "Acacia",
+  "commands.skyisland.locate.coordinates": "%d,%d",
+  "Arborist": "Arborista",
+  "Space Age": "Età Spaziale",
+  "SkyBlock": "SkyBlock",
+  "Florist": "Fioraio",
+  "It's Empty Too": "È Troppo Vuoto",
+  "Enter the Nether": "Entra nel Nether",
+  "Big Hero 6": "Big Hero 6",
+  "Water!": "Acqua!",
+  "Apple Tree": "Albero di Mela"
+}
