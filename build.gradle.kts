@@ -210,6 +210,7 @@ modrinth {
   uploadFile.set(tasks.remapJar)
   gameVersions.add(versions.minecraft)
   loaders.add("fabric")
+  loaders.add("quilt")
   changelog.set(
     provider {
       project.changelog.renderItem(project.changelog.get(versions.mod).withHeader(false).withEmptySections(false).withLinks(false))
