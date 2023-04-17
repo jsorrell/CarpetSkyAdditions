@@ -16,6 +16,8 @@
   "commands.skyisland.new.no_valid_positions": "未找到有效的岛屿位置",
   "commands.skyisland.new.failed": "无法生成新的岛屿",
   "commands.skyisland.not_created": "未创建新的岛屿",
+  "commands.skyisland.locate.success": "%d岛屿位置在%s",
+  "commands.skyisland.locate.coordinates": "%d,%d",
   "Arborist": "园林大师",
   "Buy all saplings from the Wandering Trader": "从流浪商人处换得所有种类的树苗",
   "Day Trader": "操盘手",
