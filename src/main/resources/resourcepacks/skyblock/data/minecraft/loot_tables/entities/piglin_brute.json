@@ -20,5 +20,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:entities/piglin_brute"
 }

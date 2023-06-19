@@ -60,18 +60,21 @@ public class VexAllayer implements InstantListener.InstantListenerConfig {
     protected void convertToAllay() {
         Allay allay = vex.convertTo(EntityType.ALLAY, false);
         if (allay != null) {
-            vex.level.playSound(
-                    null,
-                    vex.position().x(),
-                    vex.position().y(),
-                    vex.position().z(),
-                    SoundEvents.ZOMBIE_VILLAGER_CURE,
-                    SoundSource.HOSTILE,
-                    0.5f,
-                    2.6f + (vex.level.random.nextFloat() - vex.level.random.nextFloat()) * 0.8f);
+            float pitch =
+                    2.6f + (vex.level().random.nextFloat() - vex.level().random.nextFloat()) * 0.8f;
+            vex.level()
+                    .playSound(
+                            null,
+                            vex.position().x(),
+                            vex.position().y(),
+                            vex.position().z(),
+                            SoundEvents.ZOMBIE_VILLAGER_CURE,
+                            SoundSource.HOSTILE,
+                            0.5f,
+                            pitch);
 
             AABB criteriaTriggerBox = vex.getBoundingBox().inflate(20, 10, 20);
-            vex.level
+            vex.level()
                     .getEntitiesOfClass(ServerPlayer.class, criteriaTriggerBox)
                     .forEach(p -> SkyAdditionsCriteriaTriggers.ALLAY_VEX.trigger(p, vex, allay));
         }

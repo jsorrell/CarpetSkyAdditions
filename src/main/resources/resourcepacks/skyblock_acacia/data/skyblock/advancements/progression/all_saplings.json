@@ -84,6 +84,18 @@
           }
         ]
       }
+    },
+    "cherry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cherry_sapling"
+            ]
+          }
+        ]
+      }
     }
   }
 }

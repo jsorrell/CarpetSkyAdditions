@@ -39,5 +39,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:entities/endermite"
 }

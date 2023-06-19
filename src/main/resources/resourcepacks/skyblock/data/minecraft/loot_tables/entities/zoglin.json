@@ -10,16 +10,13 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 1,
                 "max": 3
-              },
-              "add": false
+              }
             },
             {
               "function": "minecraft:looting_enchant",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }
@@ -43,5 +40,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:entities/zoglin"
 }

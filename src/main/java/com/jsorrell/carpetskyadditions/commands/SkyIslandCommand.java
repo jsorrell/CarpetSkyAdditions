@@ -82,7 +82,8 @@ public class SkyIslandCommand {
                         .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + x + " ~ " + z))
                         .withHoverEvent(new HoverEvent(
                                 HoverEvent.Action.SHOW_TEXT, Component.translatable("chat.coordinates.tooltip"))));
-        source.sendSuccess(SkyAdditionsText.translatable("commands.skyisland.locate.success", islandNum, text), false);
+        source.sendSuccess(
+                () -> SkyAdditionsText.translatable("commands.skyisland.locate.success", islandNum, text), false);
 
         BlockPos sourcePos = BlockPos.containing(source.getPosition());
         int xOff = sourcePos.getX() - x;
@@ -119,7 +120,7 @@ public class SkyIslandCommand {
                 })
                 .findFirst();
         if (islandOpt.isEmpty()) {
-            source.sendSuccess(SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
+            source.sendSuccess(() -> SkyAdditionsText.translatable("commands.skyisland.new.no_valid_positions"), true);
             return 0;
         }
         ImmutablePair<Integer, ChunkPos> island = islandOpt.get();
@@ -140,7 +141,8 @@ public class SkyIslandCommand {
             throw FAILED_EXCEPTION.create();
         }
 
-        Component feedback = SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z);
+        Supplier<Component> feedback =
+                () -> SkyAdditionsText.translatable("commands.skyisland.new.success", island.getLeft(), x, z);
         source.sendSuccess(feedback, true);
         return island.getLeft();
     }
@@ -169,7 +171,7 @@ public class SkyIslandCommand {
             player.setDeltaMovement(player.getDeltaMovement().multiply(1.0, 0.0, 1.0));
             player.setOnGround(true);
         }
-        player.setRespawnPosition(player.level.dimension(), new BlockPos(x, y, z), 0f, true, false);
+        player.setRespawnPosition(player.level().dimension(), new BlockPos(x, y, z), 0f, true, false);
     }
 
     public abstract static class SkyIslandPositionContainer {

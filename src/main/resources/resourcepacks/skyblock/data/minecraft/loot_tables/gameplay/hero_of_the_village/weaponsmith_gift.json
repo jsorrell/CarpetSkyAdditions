@@ -26,5 +26,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:gameplay/hero_of_the_village/weaponsmith_gift"
 }

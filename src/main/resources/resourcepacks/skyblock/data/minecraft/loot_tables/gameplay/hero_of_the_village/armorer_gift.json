@@ -31,5 +31,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:gameplay/hero_of_the_village/armorer_gift"
 }

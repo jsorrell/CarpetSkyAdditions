@@ -34,10 +34,10 @@ public class DolphinFindHeartGoal extends Goal {
     protected Optional<BlockPos> determineTreasureLocation() {
         // Set Y to -64 to make it swim as low as possible
         BlockPos potentialTarget = new BlockPos(
-                dolphin.getBlockX() + dolphin.level.random.nextInt(16) - 8,
+                dolphin.getBlockX() + dolphin.level().random.nextInt(16) - 8,
                 -64,
-                dolphin.getBlockZ() + dolphin.level.random.nextInt(16) - 8);
-        if (dolphin.level.getBiome(potentialTarget.atY(dolphin.getBlockY())).is(BiomeTags.IS_OCEAN)) {
+                dolphin.getBlockZ() + dolphin.level().random.nextInt(16) - 8);
+        if (dolphin.level().getBiome(potentialTarget.atY(dolphin.getBlockY())).is(BiomeTags.IS_OCEAN)) {
             return Optional.of(potentialTarget);
         }
 
@@ -56,7 +56,7 @@ public class DolphinFindHeartGoal extends Goal {
 
     @Override
     public void start() {
-        if (!(dolphin.level instanceof ServerLevel level)) {
+        if (!(dolphin.level() instanceof ServerLevel level)) {
             return;
         }
         Optional<BlockPos> treasurePosOpt = determineTreasureLocation();
@@ -91,7 +91,7 @@ public class DolphinFindHeartGoal extends Goal {
 
     @Override
     public void tick() {
-        if (!(dolphin.level instanceof ServerLevel level)) {
+        if (!(dolphin.level() instanceof ServerLevel level)) {
             return;
         }
         if (!diggingPhase && dolphin.getNavigation().isDone()) {
@@ -112,8 +112,8 @@ public class DolphinFindHeartGoal extends Goal {
                 level.levelEvent(
                         LevelEvent.PARTICLES_DESTROY_BLOCK,
                         dolphin.blockPosition(),
-                        Block.getId(dolphin.level.getBlockState(
-                                dolphin.blockPosition().below())));
+                        Block.getId(dolphin.level()
+                                .getBlockState(dolphin.blockPosition().below())));
                 digCounter++;
             } else {
                 if (level.random.nextFloat() < CHANCE_TO_FIND_HEART_OF_THE_SEA) {

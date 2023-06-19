@@ -15,7 +15,7 @@ class Versions(properties: ExtraPropertiesExtension) {
 }
 
 plugins {
-  id("fabric-loom") version "1.1-SNAPSHOT"
+  id("fabric-loom") version "1.2-SNAPSHOT"
   id("com.diffplug.spotless") version "latest.release"
   id("io.github.juuxel.loom-quiltflower") version "latest.release"
   id("org.jetbrains.changelog") version "latest.release"

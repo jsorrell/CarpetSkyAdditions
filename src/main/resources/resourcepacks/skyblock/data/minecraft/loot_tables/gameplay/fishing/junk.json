@@ -17,8 +17,7 @@
               "damage": {
                 "min": 0,
                 "max": 0.9
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:leather_boots",
@@ -56,11 +55,9 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
-                "type": "minecraft:uniform",
-                "min": 0.0,
+                "min": 0,
                 "max": 0.9
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:fishing_rod",
@@ -80,7 +77,6 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "add": false,
               "count": 10,
               "function": "minecraft:set_count"
             }
@@ -101,7 +97,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -131,7 +127,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:location_check",
@@ -159,5 +155,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/junk"
 }

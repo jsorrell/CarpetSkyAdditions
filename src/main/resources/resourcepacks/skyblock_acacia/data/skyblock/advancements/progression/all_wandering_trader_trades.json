@@ -266,6 +266,18 @@
         ]
       }
     },
+    "has_cherry_sapling": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cherry_sapling"
+            ]
+          }
+        ]
+      }
+    },
     "has_rose_bush": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

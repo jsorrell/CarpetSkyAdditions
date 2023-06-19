@@ -29,7 +29,7 @@ public class AreaEffectCloudMixin {
         if (SkyAdditionsSettings.renewableDeepslateFromSplash) {
             AreaEffectCloud cloud = asCloud();
             if (cloud.getPotion() == DeepslateConversionHelper.CONVERSION_POTION) {
-                DeepslateConversionHelper.convertDeepslateInCloud(cloud.level, cloud.getBoundingBox());
+                DeepslateConversionHelper.convertDeepslateInCloud(cloud.level(), cloud.getBoundingBox());
             }
         }
     }

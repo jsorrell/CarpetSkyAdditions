@@ -24,19 +24,17 @@ public class AllayVexTrigger extends SimpleCriterionTrigger<AllayVexTrigger.Cond
     }
 
     @Override
-    public Conditions createInstance(
-            JsonObject json, EntityPredicate.Composite player, DeserializationContext context) {
-        EntityPredicate.Composite vexPredicate = EntityPredicate.Composite.fromJson(json, "vex", context);
-        EntityPredicate.Composite allayPredicate = EntityPredicate.Composite.fromJson(json, "allay", context);
+    public Conditions createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext context) {
+        ContextAwarePredicate vexPredicate = EntityPredicate.fromJson(json, "vex", context);
+        ContextAwarePredicate allayPredicate = EntityPredicate.fromJson(json, "allay", context);
         return new Conditions(player, vexPredicate, allayPredicate);
     }
 
     public static class Conditions extends AbstractCriterionTriggerInstance {
-        private final EntityPredicate.Composite vex;
-        private final EntityPredicate.Composite allay;
+        private final ContextAwarePredicate vex;
+        private final ContextAwarePredicate allay;
 
-        public Conditions(
-                EntityPredicate.Composite player, EntityPredicate.Composite vex, EntityPredicate.Composite allay) {
+        public Conditions(ContextAwarePredicate player, ContextAwarePredicate vex, ContextAwarePredicate allay) {
             super(ID, player);
             this.vex = vex;
             this.allay = allay;

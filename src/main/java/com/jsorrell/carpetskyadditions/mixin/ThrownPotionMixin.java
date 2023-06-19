@@ -43,7 +43,7 @@ public abstract class ThrownPotionMixin extends ThrowableItemProjectile {
                 Vec3 hitPos = hitResult.getType() == HitResult.Type.BLOCK ? hitResult.getLocation() : position();
                 if (isLingering()) {
                     // Create the cloud b/c vanilla doesn't when there are no potion effects
-                    AreaEffectCloud cloud = new AreaEffectCloud(level, hitPos.x(), hitPos.y(), hitPos.z());
+                    AreaEffectCloud cloud = new AreaEffectCloud(level(), hitPos.x(), hitPos.y(), hitPos.z());
                     cloud.setRadius(3.0f);
                     cloud.setWaitTime(10);
                     cloud.setRadiusPerTick(-cloud.getRadius() / cloud.getDuration());
@@ -52,9 +52,9 @@ public abstract class ThrownPotionMixin extends ThrowableItemProjectile {
                     if (nbt != null && nbt.contains("CustomPotionColor", Tag.TAG_ANY_NUMERIC)) {
                         cloud.setFixedColor(nbt.getInt("CustomPotionColor"));
                     }
-                    level.addFreshEntity(cloud);
+                    level().addFreshEntity(cloud);
                 } else {
-                    DeepslateConversionHelper.convertDeepslateAtSplash(level, hitPos);
+                    DeepslateConversionHelper.convertDeepslateAtSplash(level(), hitPos);
                 }
             }
         }

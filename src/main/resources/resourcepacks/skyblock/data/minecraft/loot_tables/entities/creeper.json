@@ -90,5 +90,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:entities/creeper"
 }

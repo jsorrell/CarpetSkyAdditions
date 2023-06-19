@@ -31,9 +31,9 @@ public abstract class ItemEntityMixin extends Entity {
         int numDiamonds = numCoalBlocks / 64;
         int remainingCoalBlocks = numCoalBlocks % 64;
         ItemEntity diamondEntity =
-                new ItemEntity(level, getX(), getY(), getZ(), new ItemStack(Items.DIAMOND, numDiamonds));
+                new ItemEntity(level(), getX(), getY(), getZ(), new ItemStack(Items.DIAMOND, numDiamonds));
         diamondEntity.setDefaultPickUpDelay();
-        level.addFreshEntity(diamondEntity);
+        level().addFreshEntity(diamondEntity);
 
         getItem().setCount(remainingCoalBlocks);
     }

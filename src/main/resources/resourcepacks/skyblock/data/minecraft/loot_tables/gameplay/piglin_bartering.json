@@ -69,11 +69,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 10,
                 "max": 36
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:iron_nugget",
@@ -85,11 +83,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 2,
                 "max": 4
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:ender_pearl",
@@ -101,11 +97,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 3,
                 "max": 9
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:string",
@@ -117,11 +111,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 5,
                 "max": 12
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:quartz",
@@ -138,11 +130,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 1,
                 "max": 3
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:crying_obsidian",
@@ -159,11 +149,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 2,
                 "max": 4
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:leather",
@@ -175,11 +163,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 2,
                 "max": 8
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:soul_sand",
@@ -191,11 +177,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 2,
                 "max": 8
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:nether_brick",
@@ -207,11 +191,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 6,
                 "max": 12
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:spectral_arrow",
@@ -223,11 +205,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 8,
                 "max": 16
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:gravel",
@@ -239,11 +219,9 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 8,
                 "max": 16
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:blackstone",
@@ -255,17 +233,16 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 1,
                 "max": 3
-              },
-              "add": false
+              }
             }
           ],
           "name": "minecraft:gilded_blackstone",
           "weight": 5
         }
-      ]
+      ],
+      "random_sequence": "minecraft:gameplay/piglin_bartering"
     }
   ]
 }

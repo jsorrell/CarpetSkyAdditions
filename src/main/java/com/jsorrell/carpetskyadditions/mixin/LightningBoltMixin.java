@@ -25,6 +25,6 @@ public abstract class LightningBoltMixin extends Entity {
             method = "tick",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LightningBolt;powerLightningRod()V"))
     private void onBlockStruck(CallbackInfo ci) {
-        LightningConverter.strike(level, getStrikePosition());
+        LightningConverter.strike(level(), getStrikePosition());
     }
 }

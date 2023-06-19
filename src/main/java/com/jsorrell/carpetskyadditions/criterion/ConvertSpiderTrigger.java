@@ -24,22 +24,18 @@ public class ConvertSpiderTrigger extends SimpleCriterionTrigger<ConvertSpiderTr
     }
 
     @Override
-    public Conditions createInstance(
-            JsonObject json, EntityPredicate.Composite player, DeserializationContext context) {
-        EntityPredicate.Composite spiderPredicate = EntityPredicate.Composite.fromJson(json, "spider", context);
-        EntityPredicate.Composite caveSpiderPredicate =
-                EntityPredicate.Composite.fromJson(json, "cave_spider", context);
+    public Conditions createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext context) {
+        ContextAwarePredicate spiderPredicate = EntityPredicate.fromJson(json, "spider", context);
+        ContextAwarePredicate caveSpiderPredicate = EntityPredicate.fromJson(json, "cave_spider", context);
         return new Conditions(player, spiderPredicate, caveSpiderPredicate);
     }
 
     public static class Conditions extends AbstractCriterionTriggerInstance {
-        private final EntityPredicate.Composite spider;
-        private final EntityPredicate.Composite caveSpider;
+        private final ContextAwarePredicate spider;
+        private final ContextAwarePredicate caveSpider;
 
         public Conditions(
-                EntityPredicate.Composite player,
-                EntityPredicate.Composite spider,
-                EntityPredicate.Composite caveSpider) {
+                ContextAwarePredicate player, ContextAwarePredicate spider, ContextAwarePredicate caveSpider) {
             super(ID, player);
             this.spider = spider;
             this.caveSpider = caveSpider;

@@ -2,10 +2,7 @@ package com.jsorrell.carpetskyadditions.criterion;
 
 import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
-import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
-import net.minecraft.advancements.critereon.DeserializationContext;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -23,13 +20,12 @@ public class GenerateGeodeTrigger extends SimpleCriterionTrigger<GenerateGeodeTr
     }
 
     @Override
-    public Conditions createInstance(
-            JsonObject json, EntityPredicate.Composite player, DeserializationContext context) {
+    public Conditions createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext context) {
         return new Conditions(player);
     }
 
     public static class Conditions extends AbstractCriterionTriggerInstance {
-        public Conditions(EntityPredicate.Composite player) {
+        public Conditions(ContextAwarePredicate player) {
             super(ID, player);
         }
     }

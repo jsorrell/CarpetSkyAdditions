@@ -10,7 +10,6 @@ import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.level.dimension.end.EndDragonFight;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.EndPodiumFeature;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
@@ -37,12 +36,9 @@ public class EnderDragonFightMixin {
         if (level.getChunkSource().getGenerator() instanceof SkyBlockChunkGenerator chunkGenerator) {
             if (portalLocation == null) {
                 int y = chunkGenerator.getBaseHeightInEquivalentNoiseWorld(
-                                EndPodiumFeature.END_PODIUM_LOCATION.getX(),
-                                EndPodiumFeature.END_PODIUM_LOCATION.getZ(),
-                                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                                level)
+                                0, 0, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, level)
                         - 1;
-                portalLocation = EndPodiumFeature.END_PODIUM_LOCATION.atY(y);
+                portalLocation = BlockPos.ZERO.atY(y);
             }
         }
     }

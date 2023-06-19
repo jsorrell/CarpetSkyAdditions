@@ -15,6 +15,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+## [4.3.2] - 2023-06-19
+
+### Added
+* Support for 1.20 and 1.20.1
+
+### Changed
+* Arborist and Day Trader advancements now require cherry saplings
+
 ## [4.3.1] - 2023-04-08
 
 ### Changed
@@ -69,7 +77,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Anvils converting Coal into Diamonds now works better with larger-than-vanilla max stack sizes.
 * Nether portals once again only generate Netherrack/Nylium when forced.
 
-[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.1...HEAD
+[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.2...HEAD
+[4.3.2]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.1...v4.3.2
 [4.3.1]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/jsorrell/carpetskyadditions/releases/tag/v4.2.0

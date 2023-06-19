@@ -58,7 +58,7 @@ public abstract class VexMixin extends Monster implements InstantListener.Instan
 
     @Override
     public void updateDynamicGameEventListener(BiConsumer<DynamicGameEventListener<?>, ServerLevel> listenerConsumer) {
-        if (level instanceof ServerLevel serverLevel) {
+        if (level() instanceof ServerLevel serverLevel) {
             listenerConsumer.accept(vexAllayer.getGameEventHandler(), serverLevel);
         }
     }
