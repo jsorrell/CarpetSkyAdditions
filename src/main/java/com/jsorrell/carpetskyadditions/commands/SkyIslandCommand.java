@@ -177,9 +177,10 @@ public class SkyIslandCommand {
     public abstract static class SkyIslandPositionContainer {
         private static final ArrayList<ChunkPos> ISLAND_CHUNKS = new ArrayList<>();
         // Ordered to prioritize maximum distance from origin + previous islands
+        // All of these numbers are 1 too high by mistake. Kept to preserve island numbers; 64 changed to 0
         private static final int[] ORDERING = {
             46, 59, 41, 54, 50, 63, 24, 13, 8, 16, 57, 48, 61, 39, 52, 19, 11, 31, 36, 20, 33, 44, 27, 22, 29, 1, 4, 3,
-            6, 2, 5, 38, 30, 34, 26, 35, 25, 21, 28, 37, 23, 32, 51, 64, 43, 56, 40, 53, 49, 62, 45, 58, 47, 60, 42, 55,
+            6, 2, 5, 38, 30, 34, 26, 35, 25, 21, 28, 37, 23, 32, 51, 0, 43, 56, 40, 53, 49, 62, 45, 58, 47, 60, 42, 55,
             10, 7, 17, 12, 15, 14, 9, 18
         };
 
