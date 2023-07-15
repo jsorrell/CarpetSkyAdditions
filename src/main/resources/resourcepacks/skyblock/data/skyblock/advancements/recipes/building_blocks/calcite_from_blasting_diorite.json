@@ -30,5 +30,6 @@
       "has_diorite",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:deepslate_coal_ore"
+      "skyblock:deepslate_gold_ore"
     ]
   },
   "criteria": {
-    "has_coal": {
+    "has_gold": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:coal"
+              "minecraft:gold_ingot"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:deepslate_coal_ore"
+        "recipe": "skyblock:deepslate_gold_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_coal",
+      "has_gold",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

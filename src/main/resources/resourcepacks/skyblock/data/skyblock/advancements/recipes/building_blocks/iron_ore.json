@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:gold_ore"
+      "skyblock:iron_ore"
     ]
   },
   "criteria": {
-    "has_gold": {
+    "has_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:gold_ingot"
+              "minecraft:iron_ingot"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:gold_ore"
+        "recipe": "skyblock:iron_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_gold",
+      "has_iron",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

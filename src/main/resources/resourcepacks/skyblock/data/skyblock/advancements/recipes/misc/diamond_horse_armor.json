@@ -30,5 +30,6 @@
       "has_diamond",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

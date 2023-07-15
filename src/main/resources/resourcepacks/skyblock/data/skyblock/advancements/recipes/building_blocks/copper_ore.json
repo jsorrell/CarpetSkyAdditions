@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:emerald_ore"
+      "skyblock:copper_ore"
     ]
   },
   "criteria": {
-    "has_emerald": {
+    "has_copper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:emerald"
+              "minecraft:copper_block"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:emerald_ore"
+        "recipe": "skyblock:copper_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_emerald",
+      "has_copper",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

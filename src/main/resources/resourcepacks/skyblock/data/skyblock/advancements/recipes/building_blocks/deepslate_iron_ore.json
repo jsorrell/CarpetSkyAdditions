@@ -30,5 +30,6 @@
       "has_iron",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

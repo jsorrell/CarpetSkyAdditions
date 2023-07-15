@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:diamond_ore"
+      "skyblock:deepslate_emerald_ore"
     ]
   },
   "criteria": {
-    "has_diamond": {
+    "has_emerald": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:diamond"
+              "minecraft:emerald"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:diamond_ore"
+        "recipe": "skyblock:deepslate_emerald_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_diamond",
+      "has_emerald",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

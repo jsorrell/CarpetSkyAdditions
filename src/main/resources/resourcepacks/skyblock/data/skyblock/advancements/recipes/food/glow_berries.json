@@ -30,5 +30,6 @@
       "has_sweet_berries",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

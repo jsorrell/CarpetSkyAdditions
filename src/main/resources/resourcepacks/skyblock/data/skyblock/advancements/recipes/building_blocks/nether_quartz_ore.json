@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:lapis_ore"
+      "skyblock:nether_quartz_ore"
     ]
   },
   "criteria": {
-    "has_lapis": {
+    "has_quartz": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:lapis_block"
+              "minecraft:quartz"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:lapis_ore"
+        "recipe": "skyblock:nether_quartz_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_lapis",
+      "has_quartz",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

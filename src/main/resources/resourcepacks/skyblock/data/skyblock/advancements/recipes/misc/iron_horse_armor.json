@@ -30,5 +30,6 @@
       "has_iron_ingot",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "skyblock:copper_ore"
+      "skyblock:redstone_ore"
     ]
   },
   "criteria": {
-    "has_copper": {
+    "has_redstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:copper_block"
+              "minecraft:redstone_block"
             ]
           }
         ]
@@ -21,14 +21,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "skyblock:copper_ore"
+        "recipe": "skyblock:redstone_ore"
       }
     }
   },
   "requirements": [
     [
-      "has_copper",
+      "has_redstone",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }
