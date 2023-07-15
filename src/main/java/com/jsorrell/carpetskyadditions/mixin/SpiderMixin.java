@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
-import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteriaTriggers;
+import com.jsorrell.carpetskyadditions.advancements.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;

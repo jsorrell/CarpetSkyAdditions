@@ -1,6 +1,6 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
-import com.jsorrell.carpetskyadditions.criterion.SkyAdditionsCriteriaTriggers;
+import com.jsorrell.carpetskyadditions.advancements.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

@@ -1,4 +1,4 @@
-package com.jsorrell.carpetskyadditions.criterion;
+package com.jsorrell.carpetskyadditions.advancements.criterion;
 
 import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;

@@ -1,4 +1,4 @@
-package com.jsorrell.carpetskyadditions.criterion;
+package com.jsorrell.carpetskyadditions.advancements.criterion;
 
 import net.minecraft.advancements.CriteriaTriggers;
 
