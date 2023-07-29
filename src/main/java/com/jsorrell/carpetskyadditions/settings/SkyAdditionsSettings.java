@@ -220,6 +220,8 @@ public class SkyAdditionsSettings {
     @SkyAdditionsSetting("true")
     public static boolean traderCamels = false;
 
+    @Rule(categories = FEATURE)
+    @SkyAdditionsSetting("true")
     public static boolean sniffersFromDrowneds = false;
 
     private static class SuspiciousSniffersSetting extends Validator<String> {

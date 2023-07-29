@@ -41,6 +41,7 @@
     "SpiderMixin",
     "TheEndGatewayBlockEntityMixin",
     "ThrownPotionMixin",
+    "TurtleEggBlockMixin",
     "VexMixin",
     "WanderingTraderAccessor",
     "WanderingTraderMixin",
