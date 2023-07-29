@@ -7,6 +7,7 @@
     "AreaEffectCloudMixin",
     "BaseCoralMixin",
     "BaseCoralWallFanBlockMixin",
+    "CamelMixin",
     "ChunkGeneratorAccessor",
     "DispensePotionBehaviorMixin",
     "DolphinMixin",
@@ -38,6 +39,7 @@
     "TheEndGatewayBlockEntityMixin",
     "ThrownPotionMixin",
     "VexMixin",
+    "WanderingTraderAccessor",
     "WanderingTraderMixin",
     "WanderingTraderSpawnerMixin",
     "WorldGenSettingsHeightAndBiomeFixMixin"

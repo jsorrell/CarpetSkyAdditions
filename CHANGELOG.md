@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+* New `traderCamels` setting
+  * Allows Camels to be obtained.
+  * When enabled, Wandering Traders that spawn in Deserts and Badlands will spawn riding Camels.
+  * Enabled by default on new SkyBlock worlds.
+    * To enable on old worlds, run `/carpetskyadditions setDefault traderCamels true`.
 
 ### Changed
 

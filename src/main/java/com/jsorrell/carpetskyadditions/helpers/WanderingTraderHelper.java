@@ -11,7 +11,7 @@ import java.util.List;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
 
-public class WanderingTrader {
+public class WanderingTraderHelper {
     public static Int2ObjectMap<VillagerTrades.ItemListing[]> getTrades() {
         List<VillagerTrades.ItemListing> tier1Trades =
                 new ArrayList<>(Arrays.asList(VillagerTrades.WANDERING_TRADER_TRADES.get(1)));

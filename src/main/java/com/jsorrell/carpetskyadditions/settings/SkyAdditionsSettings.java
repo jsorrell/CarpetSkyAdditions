@@ -216,6 +216,10 @@ public class SkyAdditionsSettings {
     @SkyAdditionsSetting("true")
     public static boolean renewableSwiftSneak = false;
 
+    @Rule(categories = FEATURE)
+    @SkyAdditionsSetting("true")
+    public static boolean traderCamels = false;
+
     /* Wandering Trader Spawn Chance */
     public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
         @Override

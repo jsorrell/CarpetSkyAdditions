@@ -251,6 +251,21 @@ Use a Poisonous Potato on a Spider to convert it to a Cave Spider.
 
 ---
 
+#### Wandering Traders Can Spawn Riding Camels ####
+
+Provides *Camels*
+
+Disable with ```/carpetskyadditions removeDefault traderCamels```
+
+When a Wandering Trader spawns in a Desert or Badlands biome (tag `carpetskyadditions:wandering_trader_spawns_on_camel`),
+it will not have Trader Llamas, but will ride a Camel.
+
+The Camel will despawn when the Wandering Trader does if the Trader is still riding it.
+
+While the Wandering Trader is riding, the Camel can't be ridden, fed, or leashed.
+
+---
+
 #### Wandering Traders Sell Lava  ####
 
 Provides *Lava*
