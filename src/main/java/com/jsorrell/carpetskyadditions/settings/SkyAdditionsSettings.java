@@ -220,6 +220,30 @@ public class SkyAdditionsSettings {
     @SkyAdditionsSetting("true")
     public static boolean traderCamels = false;
 
+    public static boolean sniffersFromDrowneds = false;
+
+    private static class SuspiciousSniffersSetting extends Validator<String> {
+        @Override
+        public String validate(
+                CommandSourceStack source, CarpetRule<String> currentRule, String newValue, String string) {
+            SkyAdditionsSettings.doSuspiciousSniffers = !"false".equalsIgnoreCase(newValue);
+            SkyAdditionsSettings.ironFromSniffers = "true".equalsIgnoreCase(newValue);
+
+            return newValue;
+        }
+    }
+
+    @Rule(
+            categories = FEATURE,
+            options = {"true", "false", "no_iron"},
+            validators = SuspiciousSniffersSetting.class)
+    @SkyAdditionsSetting("true")
+    @SuppressWarnings("unused")
+    public static String suspiciousSniffers = "false";
+
+    public static boolean doSuspiciousSniffers = false;
+    public static boolean ironFromSniffers = false;
+
     /* Wandering Trader Spawn Chance */
     public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
         @Override

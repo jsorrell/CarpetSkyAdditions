@@ -11,6 +11,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   * When enabled, Wandering Traders that spawn in Deserts and Badlands will spawn riding Camels.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault traderCamels true`.
+* New `sniffersFromDrowneds` setting
+  * Allows Sniffer Eggs to be obtained.
+  * When enabled, Drowned may spawn holding Sniffer Eggs that they place when they stomp Turtle Eggs.
+  * Enabled by default on new SkyBlock worlds.
+    * To enable on old worlds, run `/carpetskyadditions setDefault sniffersFromDrowneds true`.
+* New `suspiciousSniffers` setting
+  * Allows Suspicious Sand and Suspicious Gravel to be obtained.
+  * When enabled, Sniffers may convert Sand and Gravel into their suspicious version
+    when digging them inside a structure that generates it.
+  * Enabled by default on new SkyBlock worlds.
+    * To enable on old worlds, run `/carpetskyadditions setDefault suspiciousSniffers true`.
 
 ### Changed
 

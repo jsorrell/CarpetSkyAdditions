@@ -231,6 +231,44 @@ Bats and Dolphins drop an Echo Shard when killed by a Warden's Sonic Boom attack
 
 ---
 
+#### Drowneds Foster Sniffer Eggs ####
+
+Provides *Sniffer Eggs*
+
+Disable with ```/carpetskyadditions removeDefault sniffersFromDrowneds```
+
+Drowneds have a 1% chance to spawn with a Sniffer Egg in their offhand.
+
+This Egg will never drop when the Drowned dies.
+
+Instead, when a Drowned holding a Sniffer Egg stomps on a Turtle Egg,
+it will replace the destroyed Egg with the Sniffer Egg.
+
+---
+
+#### Sniffers are Suspicious ####
+
+Provides *Suspicious Sand* and *Suspicious Gravel*
+
+Disable with ```/carpetskyadditions removeDefault suspiciousSniffers```
+
+Disable only Iron Nugget drops with ```/carpetskyadditions setDefault suspiciousSniffers no_iron```
+
+Sniffers will dig in Sand, Red Sand, Suspicious Sand, Gravel, and Suspicious Gravel.
+
+They dig up Iron Nuggets from these materials.
+This Iron Nugget is more for lore than as an Iron source,
+but it can provide a passive Iron source before an Iron Golem farm is built.
+
+Digging has a 10% chance to convert Sand into Suspicious Sand when it's within a Desert Pyramid or Warm Ocean Ruin
+and a 10% chance to convert Gravel into Suspicious Gravel when it's within a Trail Ruin or Cold Ocean Ruin.
+
+Suspicious blocks will have the loot table of the structure they are created in.
+In Trail Ruins, it will have a 20% chance to have the rare Trail Ruins loot table.
+In a Desert Pyramid, it will have a 20% chance to have a Desert Well loot table.
+
+---
+
 #### Enchanting Tables Near Wardens can Enchant Items with Swift Sneak ####
 
 Provides *Swift Sneak*
