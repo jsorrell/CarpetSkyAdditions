@@ -5,6 +5,8 @@ import com.jsorrell.carpetskyadditions.fakes.CamelInterface;
 import com.jsorrell.carpetskyadditions.helpers.TraderCamelHelper;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -48,7 +50,19 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
 
     @Override
     public boolean canBeLeashed(Player player) {
-        return !isTraderCamel() && super.canBeLeashed(player);
+        boolean normallyCanBeLeashed = super.canBeLeashed(player);
+        boolean canBeLeashed = normallyCanBeLeashed && !isTraderCamel();
+        if (normallyCanBeLeashed && !canBeLeashed) {
+            // TODO improve this
+            // When mod is only installed serverside, the client thinks camels can be leashed.
+            // This causes desync, which we can somewhat mitigate by instantly telling the lead to break.
+            // This still causes the lead to be "used" client side (ie stack decreased),
+            // but is fixed by moving the stack, relogging, etc.
+            if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+                serverLevel.getChunkSource().broadcast(this, new ClientboundSetEntityLinkPacket(this, null));
+            }
+        }
+        return canBeLeashed;
     }
 
     @Inject(method = "canAddPassenger", at = @At("HEAD"), cancellable = true)
@@ -83,6 +97,7 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
         brain = makeBrain(getBlankBrainDynamic());
     }
 
+    // This only works with the mod on the client side
     @Redirect(method = "positionRider", at = @At(value = "NEW", args = "class=net/minecraft/world/phys/Vec3"))
     protected Vec3 moveTraderForward(double x, double y, double z) {
         if (isTraderCamel()) {
@@ -91,6 +106,7 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
         return new Vec3(x, y, z);
     }
 
+    // This only works with the mod on the client side
     @Inject(
             method = "positionRider",
             at =
