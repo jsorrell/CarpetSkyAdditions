@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:spire_armor_trim_smithing_template"
+    },
+    "title": {
+      "translate": "SkyBlock Challenges"
+    },
+    "description": {
+      "translate": "SkyBlock Challenges with Rewards"
+    },
+    "show_toast": false,
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/gray_concrete.png"
+  },
+  "criteria": {
+    "join_skyblock_world": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

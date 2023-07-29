@@ -1,0 +1,45 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/dune_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:chiseled_sandstone"
+    },
+    "title": {
+      "translate": "Way of the Ancients"
+    },
+    "description": {
+      "translate": "Build a Desert Pyramid and Sacrifice a Husk on the Blue Terracotta"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "desert_pyramid_sacrifice": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:husk",
+              "stepping_on": {
+                "block": {
+                  "blocks": [
+                    "minecraft:blue_terracotta"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "condition": "carpetskyadditions:desert_pyramid_exists",
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  }
+}

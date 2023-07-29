@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+* 11 challenge advancements, allowing prevously unobtainable smithing templates to be obtained upon completion.
+* Vanilla War Pigs advancement is now disabled.
 * New `traderCamels` setting
   * Allows Camels to be obtained.
   * When enabled, Wandering Traders that spawn in Deserts and Badlands will spawn riding Camels.

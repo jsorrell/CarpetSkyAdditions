@@ -1,0 +1,31 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/vex_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:filled_map",
+      "nbt": "{\"display\": {\"MapColor\": 5393476}}"
+    },
+    "title": {
+      "translate": "Treasure Map to Nowhere"
+    },
+    "description": {
+      "translate": "Follow a Woodland Explorer Map to a Woodland Mansion"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "enter_mansion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "location": {
+            "structure": "minecraft:mansion"
+          }
+        }
+      }
+    }
+  }
+}

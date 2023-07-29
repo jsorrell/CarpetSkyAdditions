@@ -194,8 +194,158 @@ destroyed.
 
 ---
 
-#### War Pigs Advancement Changed ####
+#### Netherite Upgrade Smithing Template is Craftable ####
 
-In a SkyBlock world, the War Pigs advancement is unobtainable because it requires generated chests.
+Provides *Netherite Upgrade Smithing Template*
 
-This datapack fixes that by changing the advancement to require killing a Piglin Brute.
+Disable by deleting ```data/skyblock/recipes/netherite_upgrade_smithing_template_from_netherite.json```
+
+A Netherite Upgrade Smithing Template is crafted from the duplication recipe
+with the Smithing Template replaced with a Netherite Ingot.
+
+![Netherite Upgrade Smithing Template Crafting Recipe](../screenshots/netherite_upgrade_smithing_template_recipe.png?raw=true "Template Recipe")
+
+---
+
+### Advancements ###
+
+The datapack adds numerous advancements to guide progression.
+
+It also adds multiple challenge advancements that provide Armor Trim Smithing Templates as rewards upon completion.
+
+The challenge advancements are documented below.
+
+#### Seeing Patterns Everywhere ####
+
+Completing rewards *Sentry Armor Trim Smithing Template*
+
+Granted upon obtaining all Banner Patterns.
+
+---
+
+#### Let There Be Light ####
+
+Completing rewards *Eye Armor Trim Smithing Template*
+
+Granted upon obtaining all Light Sources in the following list:
+- Torch and Soul Torch
+- Lantern and Soul Lantern
+- Campfire and Soul Campfire
+- Candle and all Colored Candles
+- Glowstone
+- Jack o'Lantern
+- Shroomlight
+- Sea Lantern
+- All Froglights
+- Lava Bucket
+- Redstone Lamp
+- Glow Berries
+- Glow Lichen
+- Sea Pickle
+- End Rod
+- Furnace, Blast Furnace, and Smoker
+- Brewing Stand
+- Crying Obsidian
+- Respawn Anchor
+- Redstone Ore and Deepslate Redstone Ore
+- Enchanting Table
+- Ender Chest
+- Redstone Torch
+- Sculk Sensor and Calibrated Sculk Sensor
+- Sculk Catalyst
+- Amethyst Cluster and all sized Buds
+- Magma Block
+- Brown Mushroom
+- Beacon
+- Conduit
+- Dragon Egg
+
+---
+
+#### End City Builder ####
+
+Completing rewards *Spire Armor Trim Smithing Template*
+
+Granted upon crafting or stonecutting all Purpur Blocks, Pillars, Stairs, and Slabs while levitated.
+
+---
+
+#### Treasure Map to Nowhere ####
+
+Completing rewards *Vex Armor Trim Smithing Template*
+
+Granted upon entering a Woodland Mansion bounding box.
+
+The spirit of this challenge is to follow a treasure map from a villager,
+but looking up the coordinates would work too.
+
+---
+
+#### Wither Art Thou ####
+
+Completing rewards *Rib Armor Trim Smithing Template*
+
+Granted upon killing a Wither within the (small) bounding box of a Nether Fortress.
+
+---
+
+#### Air Tunes ####
+
+Completing rewards *Silence Armor Trim Smithing Template*
+
+Granted upon playing all music discs in a Jukebox.
+
+Music discs must be clicked onto a Jukebox, not hoppered in.
+
+---
+
+#### Way of the Ancients ####
+
+Completing rewards *Dune Armor Trim Smithing Template*
+
+An exact replica Desert Pyramid must be built as described [here](https://minecraft.fandom.com/wiki/Desert_pyramid/Structure).
+The structure can face any direction. Only layers from the Blue Terracotta layer to the top matter.
+
+The advancement is granted when a Husk is sacrificed on the Blue Terracotta in the center of the pyramid.
+
+---
+
+#### Sky Pirate ###
+
+Completing rewards *Coast Armor Trim Smithing Template*
+
+Granted upon traveling 30km in a boat.
+
+---
+
+#### War Pigs ####
+
+Completing rewards *Snout Armor Trim Smithing Template*
+
+Granted upon killing a Piglin Brute while riding a Pig and wearing a Piglin Head.
+
+The vanilla War Pigs advancement is impossible; this serves as its replacement.
+
+---
+
+#### Resistance Isn't Futile ####
+
+Completing rewards *Ward Armor Trim Smithing Template*
+
+Granted upon getting hit by a Warden while wearing full Protection 4 Netherite Armor
+and affected by Resistance 4.
+
+---
+
+#### Doctor Dolittle ####
+
+Completing rewards *Wild Armor Trim Smithing Template*
+
+Granted after
+- Giving an Allay an item
+- Getting buffed by an Axolotl
+- Feeding or getting buffed by a Dolphin
+- Breeding Foxes
+- Feeding an Ocelot
+- Riding a Camel, Pig, Skeleton Horse, and Strider
+- Taming a Cat, Donkey, Horse, Llama, Mule, Parrot, Trader Llama, and Wolf

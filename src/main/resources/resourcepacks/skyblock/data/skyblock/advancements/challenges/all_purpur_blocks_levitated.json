@@ -1,0 +1,114 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/spire_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:purpur_block"
+    },
+    "title": {
+      "translate": "End City Builder"
+    },
+    "description": {
+      "translate": "Craft Every Type of Purpur Block While Levitating"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "craft_purpur_block": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_block"
+      }
+    },
+    "craft_purpur_slab": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_slab"
+      }
+    },
+    "cut_purpur_slab": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_slab_from_purpur_block_stonecutting"
+      }
+    },
+    "craft_purpur_pillar": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_pillar"
+      }
+    },
+    "cut_purpur_pillar": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_pillar_from_purpur_block_stonecutting"
+      }
+    },
+    "craft_purpur_stairs": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_stairs"
+      }
+    },
+    "cut_purpur_stairs": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "player": {
+          "effects": {
+            "minecraft:levitation": {}
+          }
+        },
+        "recipe_id": "minecraft:purpur_stairs_from_purpur_block_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "craft_purpur_block"
+    ],
+    [
+      "craft_purpur_slab",
+      "cut_purpur_slab"
+    ],
+    [
+      "craft_purpur_pillar",
+      "cut_purpur_pillar"
+    ],
+    [
+      "craft_purpur_stairs",
+      "cut_purpur_stairs"
+    ]
+  ]
+}

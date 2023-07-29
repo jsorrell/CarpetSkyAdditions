@@ -1,0 +1,53 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/snout_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:golden_axe",
+      "nbt": "{Enchantments:[{lvl:5s, id:\"minecraft:sharpness\"}]}"
+    },
+    "title": {
+      "translate": "War Pigs"
+    },
+    "description": {
+      "translate": "Kill a Piglin Brute while wearing a Piglin Head and Riding a Pig"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "kill_piglin_brute": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:piglin_brute"
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": [
+                    "minecraft:piglin_head"
+                  ]
+                }
+              },
+              "vehicle": {
+                "type": "minecraft:pig"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

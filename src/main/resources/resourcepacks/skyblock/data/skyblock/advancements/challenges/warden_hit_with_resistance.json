@@ -1,0 +1,92 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/ward_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_chestplate",
+      "nbt": "{Enchantments:[{id:\"minecraft:protection\",lvl:4}]}"
+    },
+    "title": {
+      "translate": "Resistance Isn't Futile"
+    },
+    "description": {
+      "translate": "Get Hit by a Warden While Maximally Protected"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "warden_hit": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "source_entity": {
+            "type": "warden"
+          }
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": [
+                    "minecraft:netherite_helmet"
+                  ],
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:protection",
+                      "levels": 4
+                    }
+                  ]
+                },
+                "chest": {
+                  "items": [
+                    "minecraft:netherite_chestplate"
+                  ],
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:protection",
+                      "levels": 4
+                    }
+                  ]
+                },
+                "legs": {
+                  "items": [
+                    "minecraft:netherite_leggings"
+                  ],
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:protection",
+                      "levels": 4
+                    }
+                  ]
+                },
+                "feet": {
+                  "items": [
+                    "minecraft:netherite_boots"
+                  ],
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:protection",
+                      "levels": 4
+                    }
+                  ]
+                }
+              },
+              "effects": {
+                "minecraft:resistance": {
+                  "amplifier": {
+                    "min": 3
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

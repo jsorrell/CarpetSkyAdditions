@@ -1,0 +1,37 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/rib_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:wither_rose"
+    },
+    "title": {
+      "translate": "Wither Art Thou"
+    },
+    "description": {
+      "translate": "Kill a Wither inside a Nether Fortress"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "kill_wither": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:wither",
+              "location": {
+                "structure": "minecraft:fortress"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

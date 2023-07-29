@@ -1,24 +1,8 @@
 {
   "parent": "minecraft:nether/find_bastion",
-  "display": {
-    "icon": {
-      "item": "minecraft:golden_axe"
-    },
-    "title": {
-      "translate": "advancements.nether.loot_bastion.title"
-    },
-    "description": {
-      "translate": "Kill a Piglin Brute that spawns in a Bastion Remnant"
-    }
-  },
   "criteria": {
-    "kill_piglin_brute": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "minecraft:piglin_brute"
-        }
-      }
+    "impossible": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

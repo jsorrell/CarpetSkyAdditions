@@ -1,0 +1,39 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/coast_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:cherry_boat"
+    },
+    "title": {
+      "translate": "Sky Pirate"
+    },
+    "description": {
+      "translate": "Travel 30km in a boat"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:boat_one_cm",
+                "value": {
+                  "min": 3000000
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

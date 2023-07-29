@@ -1,0 +1,92 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/sentry_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:flower_banner_pattern"
+    },
+    "title": {
+      "translate": "Seeing Patterns Everywhere"
+    },
+    "description": {
+      "translate": "Obtain all banner patterns"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_flower_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:flower_banner_pattern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_creeper_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:creeper_banner_pattern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_skull_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:skull_banner_pattern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_mojang_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:mojang_banner_pattern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_globe_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:globe_banner_pattern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_piglin_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:piglin_banner_pattern"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/wild_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:sniffer_egg"
+    },
+    "title": {
+      "translate": "Doctor Dolittle"
+    },
+    "description": {
+      "translate": "Earn the Trust of All Possible Mobs"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "give_allay_item": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:allay",
+          "equipment": {
+            "mainhand": {
+              "count": {
+                "min": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "get_buffed_by_axolotl": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "source": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:axolotl"
+            }
+          }
+        ]
+      }
+    },
+    "ride_camel": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": {
+          "vehicle": {
+            "type": "minecraft:camel"
+          }
+        }
+      }
+    },
+    "cat": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:cat"
+        }
+      }
+    },
+    "feed_dolphin": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:dolphin"
+        }
+      }
+    },
+    "get_buffed_by_dolphin": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "source": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:dolphin"
+            }
+          }
+        ]
+      }
+    },
+    "donkey": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:donkey"
+        }
+      }
+    },
+    "breed_fox": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "child": {
+          "type": "minecraft:fox"
+        }
+      }
+    },
+    "horse": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:horse"
+        }
+      }
+    },
+    "llama": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:llama"
+        }
+      }
+    },
+    "mule": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:mule"
+        }
+      }
+    },
+    "feed_ocelot": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:ocelot"
+        }
+      }
+    },
+    "parrot": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:parrot"
+        }
+      }
+    },
+    "ride_pig": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": {
+          "vehicle": {
+            "type": "minecraft:pig"
+          }
+        }
+      }
+    },
+    "ride_skeleton_horse": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": {
+          "vehicle": {
+            "type": "minecraft:skeleton_horse"
+          }
+        }
+      }
+    },
+    "ride_strider": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": {
+          "vehicle": {
+            "type": "minecraft:strider"
+          }
+        }
+      }
+    },
+    "trader_llama": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:trader_llama"
+        }
+      }
+    },
+    "wolf": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:wolf"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "give_allay_item"
+    ],
+    [
+      "get_buffed_by_axolotl"
+    ],
+    [
+      "ride_camel"
+    ],
+    [
+      "cat"
+    ],
+    [
+      "feed_dolphin",
+      "get_buffed_by_dolphin"
+    ],
+    [
+      "donkey"
+    ],
+    [
+      "breed_fox"
+    ],
+    [
+      "horse"
+    ],
+    [
+      "llama"
+    ],
+    [
+      "mule"
+    ],
+    [
+      "feed_ocelot"
+    ],
+    [
+      "parrot"
+    ],
+    [
+      "ride_pig"
+    ],
+    [
+      "ride_skeleton_horse"
+    ],
+    [
+      "ride_strider"
+    ],
+    [
+      "trader_llama"
+    ],
+    [
+      "wolf"
+    ]
+  ]
+}
