@@ -13,19 +13,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   * When enabled, Wandering Traders that spawn in Deserts and Badlands will spawn riding Camels.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault traderCamels true`.
+* New advancement "Hump Day Trader" that activates when a camel is ridden.
 * New `sniffersFromDrowneds` setting
   * Allows Sniffer Eggs to be obtained.
   * When enabled, Drowned may spawn holding Sniffer Eggs that they place when they stomp Turtle Eggs.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault sniffersFromDrowneds true`.
+* New advancement "Prehistoric Foster Parent" that activates when a Sniffer Egg is obtained.
 * New `suspiciousSniffers` setting
   * Allows Suspicious Sand and Suspicious Gravel to be obtained.
   * When enabled, Sniffers may convert Sand and Gravel into their suspicious version
     when digging them inside a structure that generates it.
+  * Added new advancements  that activates when a Sniffer Egg is obtained.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault suspiciousSniffers true`.
+* New advancement "Whiff of Treasure" that activates when Suspicious Sand or Gravel is brushed.
+* New advancement "Master Archaeologist" that activates when all exclusive Archaeology loot is obtained.
 
 ### Changed
+* Beetroot seeds removed from Day Trader advancement because they are also obtainable through archaeology.
 
 ### Deprecated
 
