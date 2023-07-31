@@ -1,0 +1,27 @@
+{
+  "parent": "skyblock:progression/wandering_trader",
+  "display": {
+    "icon": {
+      "item": "minecraft:cactus"
+    },
+    "title": {
+      "translate": "Hump Day Trader"
+    },
+    "description": {
+      "translate": "Commandeer a Desert Wandering Trader's Camel"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "ride_camel": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": {
+          "vehicle": {
+            "type": "minecraft:camel"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "parent": "skyblock:progression/sniffer_egg",
+  "display": {
+    "icon": {
+      "item": "minecraft:prize_pottery_sherd"
+    },
+    "title": {
+      "translate": "Whiff of Treasure"
+    },
+    "description": {
+      "translate": "Find loot in Suspicious Sand or Gravel discovered by a Sniffer"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "desert_pyramid": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/desert_pyramid"
+      }
+    },
+    "desert_well": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/desert_well"
+      }
+    },
+    "ocean_ruin_cold": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/ocean_ruin_cold"
+      }
+    },
+    "ocean_ruin_warm": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/ocean_ruin_warm"
+      }
+    },
+    "trail_ruins_common": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/trail_ruins_common"
+      }
+    },
+    "trail_ruins_rare": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "minecraft:archaeology/trail_ruins_rare"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "desert_pyramid",
+      "desert_well",
+      "ocean_ruin_cold",
+      "ocean_ruin_warm",
+      "trail_ruins_common",
+      "trail_ruins_rare"
+    ]
+  ]
+}

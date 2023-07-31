@@ -1,0 +1,29 @@
+{
+  "parent": "skyblock:progression/kill_drowned",
+  "display": {
+    "icon": {
+      "item": "minecraft:sniffer_egg"
+    },
+    "title": {
+      "translate": "Prehistoric Foster Parent"
+    },
+    "description": {
+      "translate": "Get a Sniffer Egg when a Drowned holding one destroys a Turtle Egg"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_sniffer_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sniffer_egg"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
