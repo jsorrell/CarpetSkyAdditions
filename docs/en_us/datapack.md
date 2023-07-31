@@ -337,7 +337,7 @@ and affected by Resistance 4.
 
 ---
 
-#### Spy in the Wild ####
+#### Spy in the Sky ####
 
 Completing rewards *Wild Armor Trim Smithing Template*
 
