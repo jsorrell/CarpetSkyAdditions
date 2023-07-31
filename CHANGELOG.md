@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Removed
 
 ### Fixed
+* #125 where trying to generate island number 44 with the /skyisland would cause a crash.
 
 ## [4.3.2] - 2023-06-19
 
