@@ -337,15 +337,39 @@ and affected by Resistance 4.
 
 ---
 
-#### Doctor Dolittle ####
+#### Spy in the Wild ####
 
 Completing rewards *Wild Armor Trim Smithing Template*
 
-Granted after
-- Giving an Allay an item
-- Getting buffed by an Axolotl
-- Feeding or getting buffed by a Dolphin
-- Breeding Foxes
-- Feeding an Ocelot
-- Riding a Camel, Pig, Skeleton Horse, and Strider
-- Taming a Cat, Donkey, Horse, Llama, Mule, Parrot, Trader Llama, and Wolf
+Granted after looking through a Spyglass at all animals in the following list:
+- Axolotl
+- Bat
+- Bee
+- Camel
+- Cat
+- Spider and Cave Spider
+- Chicken
+- Cod, Salmon, Pufferfish, and Tropical Fish
+- Cow
+- Dolphin
+- Horse, Donkey, and Mule
+- Endermite
+- Fox
+- Frog and Tadpole
+- Squid and Glow Squid
+- Goat
+- Hoglin
+- Llama
+- Mooshroom
+- Ocelot
+- Panda
+- Parrot
+- Pig
+- Polar Bear
+- Rabbit
+- Sheep
+- Silverfish
+- Sniffer
+- Strider
+- Turtle
+- Wolf

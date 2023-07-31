@@ -1,0 +1,722 @@
+{
+  "parent": "skyblock:challenges/root",
+  "rewards": {
+    "function": "skyblock:advancement_rewards/wild_armor_trim_smithing_template"
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:spyglass"
+    },
+    "title": {
+      "translate": "Spy in the Wild"
+    },
+    "description": {
+      "translate": "Look at every animal through a Spyglass"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "axolotl": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:axolotl"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "bat": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:bat"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "bee": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:bee"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "camel": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:camel"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "cat": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:cat"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "cave_spider": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:cave_spider"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "chicken": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:chicken"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "cod": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:cod"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "cow": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:cow"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "dolphin": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:dolphin"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "donkey": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:donkey"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "endermite": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:endermite"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "fox": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:fox"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "frog": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:frog"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "glow_squid": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:glow_squid"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "goat": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:goat"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "hoglin": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:hoglin"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "horse": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:horse"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "llama": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:llama"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "mooshroom": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:mooshroom"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "mule": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:mule"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "ocelot": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:ocelot"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "panda": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:panda"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "parrot": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:parrot"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "pig": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:pig"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "polar_bear": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:polar_bear"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "pufferfish": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:pufferfish"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "rabbit": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:rabbit"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "salmon": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:salmon"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "sheep": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:sheep"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "silverfish": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:silverfish"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "sniffer": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:sniffer"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "spider": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:spider"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "squid": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:squid"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "strider": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:strider"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "tadpole": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:tadpole"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "tropical_fish": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:tropical_fish"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "turtle": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:turtle"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    },
+    "wolf": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:wolf"
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        }
+      }
+    }
+  }
+}
