@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/all_saplings",
   "display": {
     "icon": {
-      "item": "minecraft:tube_coral_block"
+      "item": "minecraft:pumpkin"
     },
     "title": {
       "translate": "Day Trader"

@@ -9,6 +9,7 @@
     "BaseCoralWallFanBlockMixin",
     "CamelMixin",
     "ChunkGeneratorAccessor",
+    "BlocksMixin",
     "DispensePotionBehaviorMixin",
     "DolphinMixin",
     "DrownedMixin",

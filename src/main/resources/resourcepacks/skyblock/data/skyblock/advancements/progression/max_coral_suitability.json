@@ -1,0 +1,32 @@
+{
+  "parent": "skyblock:progression/spread_coral",
+  "display": {
+    "icon": {
+      "item": "minecraft:brain_coral_block"
+    },
+    "title": {
+      "translate": "Coral Utopia"
+    },
+    "description": {
+      "translate": "Place Calcite where Corals would flourish"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "high_suitability": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "carpetskyadditions:location_check",
+            "predicate": {
+              "coral_suitability": {
+                "min": 0.99
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

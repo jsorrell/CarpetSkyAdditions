@@ -306,6 +306,29 @@ Note: When installed only on the server side, the Trader will appear to be stand
 instead of sitting. Also, feeding or leashing the ridden Camel will appear use the Cactus or Lead.
 This is client side only, but I recommend not trying to mess with the Trader's Camel.
 
+#### Coral can Spread to Calcite ####
+
+Provides additional *Coral Blocks*
+
+Disable with ```/carpetskyadditions removeDefault spreadingCoral```
+
+When a Calcite block has at least 8 of the same type of Coral block within a 3x3 around it,
+it can convert to that Coral block upon a random tick (if it would survive).
+
+The chance of conversion depends on the suitability of the location.
+The suitability is based on the [generation temperature and continentalness parameters](https://minecraft.fandom.com/wiki/Biome#Overworld_3).
+The ideal spot is defined as a temperature of 0.65 and a continentalness of -0.3,
+which translates to just off the coast, in warm locations.
+These values are visible on the F3 screen in singleplayer.
+Non-overworld biomes have minimum suitability.
+
+When most suitable, conversion takes about 2 minutes on average.
+When least suitable, it averages almost 2 hours.
+
+In SkyBlock worlds, Coral Blocks are normally very limited,
+as they can only be obtained through the Wandering Trader, 8 at a time.
+This allows farming and heavier use of them.
+
 ---
 
 #### Wandering Traders Sell Lava  ####

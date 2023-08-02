@@ -35,8 +35,13 @@
             }
           },
           {
-            "condition": "carpetskyadditions:desert_pyramid_exists",
-            "entity": "this"
+            "condition": "carpetskyadditions:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "stepping_on": {
+                "is_desert_pyramid_blue_terracotta": true
+              }
+            }
           }
         ]
       }

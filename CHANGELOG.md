@@ -29,9 +29,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     * To enable on old worlds, run `/carpetskyadditions setDefault suspiciousSniffers true`.
 * New advancement "Whiff of Treasure" that activates when Suspicious Sand or Gravel is brushed.
 * New advancement "Master Archaeologist" that activates when all exclusive Archaeology loot is obtained.
+* New `spreadingCoral` setting
+  * Allows additions Coral Blocks to be obtained.
+  * When enabled, Calcite can convert to a Coral Block when there are nearby Coral Blocks.
+  * Enabled by default on new SkyBlock worlds.
+    * To enable on old worlds, run `/carpetskyadditions setDefault spreadingCoral true`.
+* New advancement "Reef Builder" that actives when placing Calcite where Coral can spread to it.
+* New advancement "Coral Utopia" that actives when placing Calcite at high Coral suitability.
 
 ### Changed
 * Beetroot seeds removed from Day Trader advancement because they are also obtainable through archaeology.
+* Changed icon of "Day Trader" advancement to Pumpkin.
+* Changed icon of "Cooking Stone in a Stone Oven" to Tuff.
 
 ### Deprecated
 

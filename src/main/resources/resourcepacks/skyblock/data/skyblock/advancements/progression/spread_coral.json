@@ -1,0 +1,34 @@
+{
+  "parent": "skyblock:progression/blasted_rock",
+  "display": {
+    "icon": {
+      "item": "minecraft:calcite"
+    },
+    "title": {
+      "translate": "Reef Builder"
+    },
+    "description": {
+      "translate": "Place Calcite where Coral can spread to it"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "placed_convertible_calcite": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "minecraft:calcite"
+          },
+          {
+            "condition": "carpetskyadditions:location_check",
+            "predicate": {
+              "coral_convertible": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}
