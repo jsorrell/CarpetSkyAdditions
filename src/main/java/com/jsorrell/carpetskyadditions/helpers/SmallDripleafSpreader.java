@@ -15,29 +15,34 @@ public abstract class SmallDripleafSpreader {
     private static final int MAX_DENSITY = 7;
     private static final float SPREAD_CHANCE = 0.15f;
 
-    public static boolean canTick(BlockState state) {
-        return state.getValue(SmallDripleafBlock.HALF) == DoubleBlockHalf.LOWER
+    public static boolean isSpreadableState(BlockState state) {
+        return state.is(Blocks.SMALL_DRIPLEAF)
+                && state.getValue(SmallDripleafBlock.HALF) == DoubleBlockHalf.LOWER
                 && state.getValue(BlockStateProperties.WATERLOGGED);
     }
 
-    public static boolean canPropagate(BlockState state, ServerLevel level, BlockPos pos) {
-        return canTick(state)
+    public static boolean canSpreadFrom(BlockState state, ServerLevel level, BlockPos pos) {
+        if (!isSpreadableState(state)) return false;
+        BlockPos top = pos.above();
+        BlockState topState = level.getBlockState(top);
+        return topState.getValue(SmallDripleafBlock.HALF) == DoubleBlockHalf.UPPER
+                && !topState.getValue(BlockStateProperties.WATERLOGGED)
                 && level.getBlockState(pos.below()).is(Blocks.CLAY)
-                && level.getMaxLocalRawBrightness(pos.above()) == REQUIRED_LIGHT
-                && !level.getBlockState(pos.above()).getValue(BlockStateProperties.WATERLOGGED);
+                && level.getMaxLocalRawBrightness(top) == REQUIRED_LIGHT;
     }
 
-    protected static boolean canPropagateTo(ServerLevel level, BlockPos pos) {
-        return level.getBlockState(pos).is(Blocks.WATER)
+    protected static boolean canSpreadTo(ServerLevel level, BlockPos pos) {
+        if (!level.getBlockState(pos).is(Blocks.WATER)) return false;
+        BlockPos top = pos.above();
+        return !level.isOutsideBuildHeight(top)
+                && level.isEmptyBlock(top)
                 && level.getBlockState(pos.below()).is(Blocks.CLAY)
-                && !level.isOutsideBuildHeight(pos.above())
-                && level.isEmptyBlock(pos.above())
-                && level.getMaxLocalRawBrightness(pos.above()) == REQUIRED_LIGHT
+                && level.getMaxLocalRawBrightness(top) == REQUIRED_LIGHT
                 && getDensity(level, pos) <= MAX_DENSITY;
     }
 
     protected static int getDensity(ServerLevel level, BlockPos pos) {
-        return (int) BlockPos.betweenClosedStream(new BlockPos(-2, 0, -2), new BlockPos(2, 2, 2))
+        return (int) BlockPos.betweenClosedStream(-2, 0, -2, 2, 1, 2)
                 .map(pos::offset)
                 .filter(p -> level.getBlockState(p).is(Blocks.SMALL_DRIPLEAF))
                 .count();
@@ -62,16 +67,16 @@ public abstract class SmallDripleafSpreader {
         level.setBlockAndUpdate(pos.above(), topState);
     }
 
-    public static void tryPropagate(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public static void trySpread(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (SPREAD_CHANCE < random.nextFloat()) return;
-        if (!canPropagate(state, level, pos)) return;
+        if (!canSpreadFrom(state, level, pos)) return;
 
         for (int i = 0; i < 3; i++) {
             int xOffset = binomialOffset(5, random);
             int yOffset = binomialOffset(2, random);
             int zOffset = binomialOffset(5, random);
             BlockPos tryPos = pos.offset(xOffset, yOffset, zOffset);
-            if (canPropagateTo(level, tryPos)) {
+            if (canSpreadTo(level, tryPos)) {
                 placeNewDripleaf(level, tryPos, random);
                 return;
             }

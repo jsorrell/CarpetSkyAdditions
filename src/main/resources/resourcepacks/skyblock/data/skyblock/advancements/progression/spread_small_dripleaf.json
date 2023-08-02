@@ -1,0 +1,30 @@
+{
+  "parent": "skyblock:progression/wandering_trader",
+  "display": {
+    "icon": {
+      "item": "minecraft:small_dripleaf"
+    },
+    "title": {
+      "translate": "Perfect Growing Conditions"
+    },
+    "description": {
+      "translate": "Place a Small Dripleaf where it can spread"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "place_spreadable_dripleaf": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "carpetskyadditions:location_check",
+            "predicate": {
+              "small_dripleaf_spreadable": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}

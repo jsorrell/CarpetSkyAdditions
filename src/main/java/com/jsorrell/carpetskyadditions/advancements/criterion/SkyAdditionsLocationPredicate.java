@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.helpers.CoralSpreader;
+import com.jsorrell.carpetskyadditions.helpers.SmallDripleafSpreader;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
 import java.util.Arrays;
 import java.util.List;
@@ -28,29 +29,22 @@ import net.minecraft.world.phys.AABB;
 
 public class SkyAdditionsLocationPredicate {
     public static final SkyAdditionsLocationPredicate ANY =
-            new SkyAdditionsLocationPredicate(null, null, MinMaxBounds.Doubles.ANY);
+            new SkyAdditionsLocationPredicate(null, null, MinMaxBounds.Doubles.ANY, null);
 
     private final MinMaxBounds.Doubles coralSuitability;
     private final Boolean coralConvertible;
     private final Boolean desertPyramidCheck;
+    private final Boolean smallDripleafCanSpread;
 
     public SkyAdditionsLocationPredicate(
-            Boolean desertPyramidCheck, Boolean coralConvertible, MinMaxBounds.Doubles coralSuitability) {
+            Boolean desertPyramidCheck,
+            Boolean coralConvertible,
+            MinMaxBounds.Doubles coralSuitability,
+            Boolean smallDripleafCanSpread) {
         this.desertPyramidCheck = desertPyramidCheck;
         this.coralConvertible = coralConvertible;
         this.coralSuitability = coralSuitability;
-    }
-
-    public static SkyAdditionsLocationPredicate checkForDesertPyramid(boolean desertPyramidCheck) {
-        return new SkyAdditionsLocationPredicate(desertPyramidCheck, null, MinMaxBounds.Doubles.ANY);
-    }
-
-    public static SkyAdditionsLocationPredicate isCoralConvertible(boolean coralConvertible) {
-        return new SkyAdditionsLocationPredicate(null, coralConvertible, MinMaxBounds.Doubles.ANY);
-    }
-
-    public static SkyAdditionsLocationPredicate hasCoralSuitability(MinMaxBounds.Doubles coralSuitability) {
-        return new SkyAdditionsLocationPredicate(null, null, coralSuitability);
+        this.smallDripleafCanSpread = smallDripleafCanSpread;
     }
 
     private boolean doDesertPyramidCheck(ServerLevel level, BlockPos blueTerracottaPos, boolean sendDebugMessage) {
@@ -123,20 +117,28 @@ public class SkyAdditionsLocationPredicate {
     }
 
     public boolean matches(ServerLevel level, double x, double y, double z) {
+        BlockPos blockPos = BlockPos.containing(x, y, z);
         if (desertPyramidCheck != null) {
-            if (doDesertPyramidCheck(level, BlockPos.containing(x, y, z), desertPyramidCheck) != desertPyramidCheck) {
+            if (doDesertPyramidCheck(level, blockPos, desertPyramidCheck) != desertPyramidCheck) {
                 return false;
             }
         }
 
         if (coralConvertible != null) {
-            if (CoralSpreader.isConvertible(level, BlockPos.containing(x, y, z)) != coralConvertible) {
+            if (CoralSpreader.isConvertible(level, blockPos) != coralConvertible) {
                 return false;
             }
         }
 
-        if (!coralSuitability.matches(CoralSpreader.calculateCoralSuitability(level, BlockPos.containing(x, y, z)))) {
+        if (!coralSuitability.matches(CoralSpreader.calculateCoralSuitability(level, blockPos))) {
             return false;
+        }
+
+        if (smallDripleafCanSpread != null) {
+            if (SmallDripleafSpreader.canSpreadFrom(level.getBlockState(blockPos), level, blockPos)
+                    != smallDripleafCanSpread) {
+                return false;
+            }
         }
 
         return true;
@@ -155,6 +157,9 @@ public class SkyAdditionsLocationPredicate {
         if (!coralSuitability.isAny()) {
             jsonObject.add("coral_suitability", coralSuitability.serializeToJson());
         }
+        if (smallDripleafCanSpread != null) {
+            jsonObject.addProperty("small_dripleaf_spreadable", smallDripleafCanSpread);
+        }
         return jsonObject;
     }
 
@@ -171,6 +176,11 @@ public class SkyAdditionsLocationPredicate {
             coralConvertible = GsonHelper.getAsBoolean(jsonObject, "coral_convertible");
         }
         MinMaxBounds.Doubles coralSuitability = MinMaxBounds.Doubles.fromJson(jsonObject.get("coral_suitability"));
-        return new SkyAdditionsLocationPredicate(desertPyramidCheck, coralConvertible, coralSuitability);
+        Boolean smallDripleafCanSpread = null;
+        if (jsonObject.has("small_dripleaf_spreadable")) {
+            smallDripleafCanSpread = GsonHelper.getAsBoolean(jsonObject, "small_dripleaf_spreadable");
+        }
+        return new SkyAdditionsLocationPredicate(
+                desertPyramidCheck, coralConvertible, coralSuitability, smallDripleafCanSpread);
     }
 }

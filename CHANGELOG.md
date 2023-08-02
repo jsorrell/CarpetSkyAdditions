@@ -29,6 +29,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     * To enable on old worlds, run `/carpetskyadditions setDefault suspiciousSniffers true`.
 * New advancement "Whiff of Treasure" that activates when Suspicious Sand or Gravel is brushed.
 * New advancement "Master Archaeologist" that activates when all exclusive Archaeology loot is obtained.
+* New `spreadingSmallDripleaves` setting
+  * Allows additions Small Dripleaves to be obtained.
+  * When enabled, half-submerged Dripleaves on Clay with a light level of exactly 5 on top can spread.
+  * Enabled by default on new SkyBlock worlds.
+    * To enable on old worlds, run `/carpetskyadditions setDefault spreadingSmallDripleaves true`.
+* New advancement "Perfect Growing Conditions" that actives when placing a Small Dripleaf where it can spread.
 * New `spreadingCoral` setting
   * Allows additions Coral Blocks to be obtained.
   * When enabled, Calcite can convert to a Coral Block when there are nearby Coral Blocks.

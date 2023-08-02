@@ -18,12 +18,12 @@ public abstract class SmallDripleafBlockMixin extends DoublePlantBlock {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return SmallDripleafSpreader.canTick(state);
+        return SmallDripleafSpreader.isSpreadableState(state);
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!SkyAdditionsSettings.spreadingSmallDripleaves) return;
-        SmallDripleafSpreader.tryPropagate(state, level, pos, random);
+        SmallDripleafSpreader.trySpread(state, level, pos, random);
     }
 }
