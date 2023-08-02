@@ -36,6 +36,8 @@
   "carpetskyadditions.rule.suspiciousSniffers.desc": "Sniffers can convert Sand and Gravel into their suspicious version",
   "carpetskyadditions.rule.suspiciousSniffers.extra.0": "When Sniffers dig Sand or Gravel in a structure where Suspicious Sand or Gravel generates, it will be converted.",
   "carpetskyadditions.rule.suspiciousSniffers.extra.1": "With no_iron: No Iron Nugget is dropped when Sniffers dig",
+  "carpetskyadditions.rule.spreadingSmallDripleaves.desc": "Allows Small Dripleaves to slowly spread to neraby blocks when in the right conditions.",
+  "carpetskyadditions.rule.spreadingSmallDripleaves.extra.1": "Requires them to be on Clay, half-submerged, with the top at light level 5",
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.desc": "Max Wandering Trader spawn chance",
   "carpetskyadditions.rule.maxWanderingTraderSpawnChance.extra.0": "This starts at 0.025 and increases by 0.025 each time a trader spawn fails until the max chance is reached.",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "How often the Wandering Trader attempts to spawn in ticks"

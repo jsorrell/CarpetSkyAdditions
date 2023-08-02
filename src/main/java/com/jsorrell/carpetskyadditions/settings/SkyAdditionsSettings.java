@@ -246,6 +246,10 @@ public class SkyAdditionsSettings {
     public static boolean doSuspiciousSniffers = false;
     public static boolean ironFromSniffers = false;
 
+    @Rule(categories = FEATURE)
+    @SkyAdditionsSetting("true")
+    public static boolean spreadingSmallDripleaves = false;
+
     /* Wandering Trader Spawn Chance */
     public static class WanderingTraderSpawnChanceValidator extends Validator<Double> {
         @Override

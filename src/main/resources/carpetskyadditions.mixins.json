@@ -36,6 +36,7 @@
     "SchemaV2832Mixin",
     "ServerPropertiesHandlerMixin",
     "SinglePoolElementAccessor",
+    "SmallDripleafBlockMixin",
     "SnifferMixin",
     "SonicBoomMixin",
     "SpiderMixin",
