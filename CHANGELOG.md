@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [4.4.0] - 2023-08-03
 
 ### Added
-* 11 challenge advancements, allowing prevously unobtainable smithing templates to be obtained upon completion.
+* 11 challenge advancements, allowing previously unobtainable smithing templates to be obtained upon completion.
 * Vanilla War Pigs advancement is now disabled.
 * New `traderCamels` setting
   * Allows Camels to be obtained.
@@ -36,24 +36,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   * Allows Suspicious Sand and Suspicious Gravel to be obtained.
   * When enabled, Sniffers may convert Sand and Gravel into their suspicious version
     when digging them inside a structure that generates it.
-  * Added new advancements  that activates when a Sniffer Egg is obtained.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault suspiciousSniffers true`.
 * New advancement "Whiff of Treasure" that activates when Suspicious Sand or Gravel is brushed.
 * New advancement "Master Archaeologist" that activates when all exclusive Archaeology loot is obtained.
 * New `spreadingSmallDripleaves` setting
-  * Allows additions Small Dripleaves to be obtained.
+  * Allows additionals Small Dripleaves to be obtained.
   * When enabled, half-submerged Dripleaves on Clay with a light level of exactly 5 on top can spread.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault spreadingSmallDripleaves true`.
 * New advancement "Perfect Growing Conditions" that actives when placing a Small Dripleaf where it can spread.
 * New `spreadingCoral` setting
-  * Allows additions Coral Blocks to be obtained.
+  * Allows additionals Coral Blocks to be obtained.
   * When enabled, Calcite can convert to a Coral Block when there are nearby Coral Blocks.
   * Enabled by default on new SkyBlock worlds.
     * To enable on old worlds, run `/carpetskyadditions setDefault spreadingCoral true`.
-* New advancement "Reef Builder" that actives when placing Calcite where Coral can spread to it.
-* New advancement "Coral Utopia" that actives when placing Calcite at high Coral suitability.
+* New advancement "Reef Builder" that activates when placing Calcite where Coral can spread to it.
+* New advancement "Coral Utopia" that activates when placing Calcite at high Coral suitability.
 
 ### Changed
 * Beetroot seeds removed from Day Trader advancement because they are also obtainable through archaeology.

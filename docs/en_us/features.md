@@ -306,6 +306,8 @@ Note: When installed only on the server side, the Trader will appear to be stand
 instead of sitting. Also, feeding or leashing the ridden Camel will appear use the Cactus or Lead.
 This is client side only, but I recommend not trying to mess with the Trader's Camel.
 
+---
+
 #### Small Dripleaves Can Propogate ####
 
 Provides additional *Small Dripleaves*
@@ -323,6 +325,8 @@ It can only spread to locations with a maximum of 15 Small Dripleaf blocks (both
 In SkyBlock worlds, Small Dripleaves are normally very limited,
 as they can only be obtained through the Wandering Trader, 10 at a time.
 This allows farming and heavier use of them.
+
+---
 
 #### Coral can Spread to Calcite ####
 
