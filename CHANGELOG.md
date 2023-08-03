@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [4.4.0] - 2023-08-03
+
+### Added
 * 11 challenge advancements, allowing prevously unobtainable smithing templates to be obtained upon completion.
 * Vanilla War Pigs advancement is now disabled.
 * New `traderCamels` setting
@@ -47,10 +59,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Beetroot seeds removed from Day Trader advancement because they are also obtainable through archaeology.
 * Changed icon of "Day Trader" advancement to Pumpkin.
 * Changed icon of "Cooking Stone in a Stone Oven" to Tuff.
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 * #125 where trying to generate island number 44 with the /skyisland would cause a crash.
@@ -117,7 +125,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Anvils converting Coal into Diamonds now works better with larger-than-vanilla max stack sizes.
 * Nether portals once again only generate Netherrack/Nylium when forced.
 
-[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.2...HEAD
+[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.4.0...HEAD
+[4.4.0]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.2...v4.4.0
 [4.3.2]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.1...v4.3.2
 [4.3.1]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.2.0...v4.3.0
