@@ -17,7 +17,6 @@
   "commands.skyisland.new.failed": "無法生成新的島嶼",
   "commands.skyisland.not_created": "未創建島嶼",
   "commands.skyisland.locate.success": "%d島嶼位置在%s",
-  "commands.skyisland.locate.coordinates": "%d,%d",
   "Arborist": "園林大師",
   "Buy all saplings from the Wandering Trader": "從流浪商人處換得所有種類的樹苗",
   "Day Trader": "操盤手",
@@ -68,7 +67,6 @@
   "Get a pair of Elytra from a flying Endermite": "從浮空的終界蟎身上得到一對鞘翅",
   "Emerald City": "翡翠城",
   "Trade for Emeralds": "通過交易取得綠寶石",
-  "Get Emeralds from Foxes": "從狐狸獲取綠寶石",
   "Hello Kitty": "貓的報恩",
   "Receive an Enchanted Golden Apple from a Cat in the morning": "在貓咪的晨起贈禮中獲得一個附魔金蘋果",
   "Who Planted This Here?": "誰種在這的?",
@@ -182,6 +180,5 @@
   "Death of a Gardener": "戴夫的胡蘿蔔",
   "Get a Carrot or Potato from a Zombie and start a farm for breeding Pigs": "從僵屍的掉落物中獲取胡蘿蔔和馬鈴薯，然後建造農場開始養豬",
   "Apple Tree": "蘋果樹",
-  "Buy an Oak Sapling or 4 Dark Oak Saplings from a Wandering Trader": "從流浪商人那裡購買一個橡木樹苗或者四個深色橡木樹苗",
-  "Kill a Piglin Brute that spawns in a Bastion Remnant": "在堡壘遺跡中擊敗一隻豬布林蠻兵"
+  "Buy an Oak Sapling or 4 Dark Oak Saplings from a Wandering Trader": "從流浪商人那裡購買一個橡木樹苗或者四個深色橡木樹苗"
 }
