@@ -12,7 +12,7 @@
   "datapack.carpetskyadditions.acacia": "地毯空岛附加模组：金合欢空岛",
   "carpetskyadditions.tree.oak": "橡木",
   "carpetskyadditions.tree.acacia": "金合欢",
-  "commands.skyisland.new.success": "已成功在（%d,%d）生成新岛屿%d",
+  "commands.skyisland.new.success": "已成功在 (%2$d, %3$d) 生成新岛屿 #%1$d",
   "commands.skyisland.new.no_valid_positions": "未找到有效的岛屿位置",
   "commands.skyisland.new.failed": "无法生成新的岛屿",
   "commands.skyisland.not_created": "未创建岛屿",
