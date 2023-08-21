@@ -15,6 +15,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+## [4.4.1] - 2023-08-21
+
+### Fixed
+* #136 where any potion bottle could convert Stone to Deepslate on click
+* #139 where placing any block could trigger "Coral Utopia"
+
 ## [4.4.0] - 2023-08-03
 
 ### Added
@@ -124,7 +130,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Anvils converting Coal into Diamonds now works better with larger-than-vanilla max stack sizes.
 * Nether portals once again only generate Netherrack/Nylium when forced.
 
-[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.4.0...HEAD
+[Unreleased]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.4.1...HEAD
+[4.4.1]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.4.0...v4.4.1
 [4.4.0]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.2...v4.4.0
 [4.3.2]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.1...v4.3.2
 [4.3.1]: https://github.com/jsorrell/CarpetSkyAdditions/compare/v4.3.0...v4.3.1
