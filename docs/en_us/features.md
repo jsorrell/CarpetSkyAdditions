@@ -342,7 +342,18 @@ The suitability is based on the [generation temperature and continentalness para
 The ideal spot is defined as a temperature of 0.65 and a continentalness of -0.3,
 which translates to just off the coast, in warm locations.
 These values are visible on the F3 screen in singleplayer.
-Non-overworld biomes have minimum suitability.
+The algorithm is:
+```
+if dimension is not overworld then
+    suitability = 0
+else if flat world then
+    suitability = 0.5
+else
+    # This value is clamped between 0 and 1
+    suitability = 1 - ((temperature - 0.65)^2 + (continentalness + 0.3)^2)
+```
+
+The chance of conversion upon a random tick is `suitability * 0.49 + 0.01`.
 
 When most suitable, conversion takes about 2 minutes on average.
 When least suitable, it averages almost 2 hours.
