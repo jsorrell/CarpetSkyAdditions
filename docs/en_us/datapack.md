@@ -303,7 +303,7 @@ Music discs must be clicked onto a Jukebox, not hoppered in.
 
 Completing rewards *Dune Armor Trim Smithing Template*
 
-An exact replica Desert Pyramid must be built as described [here](https://minecraft.fandom.com/wiki/Desert_pyramid/Structure).
+An exact replica Desert Pyramid must be built as described [here](https://minecraft.wiki/w/Desert_pyramid/Structure).
 The structure can face any direction. Only layers from the Blue Terracotta layer to the top matter.
 
 The advancement is granted when a Husk is sacrificed on the Blue Terracotta in the center of the pyramid.

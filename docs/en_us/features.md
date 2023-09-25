@@ -338,7 +338,7 @@ When a Calcite block has at least 8 of the same type of Coral block within a 3x3
 it can convert to that Coral block upon a random tick (if it would survive).
 
 The chance of conversion depends on the suitability of the location.
-The suitability is based on the [generation temperature and continentalness parameters](https://minecraft.fandom.com/wiki/Biome#Overworld_3).
+The suitability is based on the [generation temperature and continentalness parameters](https://minecraft.wiki/w/Biome#Overworld_3).
 The ideal spot is defined as a temperature of 0.65 and a continentalness of -0.3,
 which translates to just off the coast, in warm locations.
 These values are visible on the F3 screen in singleplayer.
