@@ -1,1 +1,8 @@
-{}
+{
+  "generator.carpetskyadditions.skyblock": "SkyBlock",
+  "modmenu.descriptionTranslation.modmenu": "Une génération de monde vide, avec de nouvelles façons d'obtenir certaines ressources",
+  "carpetskyadditions.config.title": "Paramètres de Carpet Sky Additions",
+  "carpetskyadditions.config.category.newWorld": "Paramètres du nouveau monde",
+  "carpetskyadditions.config.option.defaultToSkyBlockWorld": "Sélectionner monde SkyBlock par défaut",
+  "carpetskyadditions.config.option.enableDatapackByDefault": "Activer le datapack SkyBlock par défaut"
+}
