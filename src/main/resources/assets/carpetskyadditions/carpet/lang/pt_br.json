@@ -1,1 +1,16 @@
-{}
+{
+  "carpetskyadditions.category.generation": "geração",
+  "carpetskyadditions.category.wandering_trader": "vendedor Ambulante",
+  "carpetskyadditions.rule.commandSkyIsland.desc": "Habilita o comando /skyisland para gerar novas plataformas de spawn",
+  "carpetskyadditions.rule.generateEndPortals.desc": "Gera Portais do End em um mundo SkyBlock",
+  "carpetskyadditions.rule.generateSilverfishSpawners.desc": "Gera spawners de traça num mundo skyblock",
+  "carpetskyadditions.rule.generateAncientCityPortals.desc": "Gera portais da Cidade Ancestral em um mundo Skyblock",
+  "carpetskyadditions.rule.generateMagmaCubeSpawners.desc": "Gera spawners de Cubos de Magma num mundo Skyblock",
+  "carpetskyadditions.rule.generateRandomEndGateways.desc": "Gera Gateways do End aleatórios nas ilhas exteriores num mundo Skyblock",
+  "carpetskyadditions.rule.tallFlowersFromWanderingTrader.desc": "Habilita o Vendedor Ambulante vender flores altas",
+  "carpetskyadditions.rule.lavaFromWanderingTrader.desc": "Habilita o Vendedor Ambulante vender Lava",
+  "carpetskyadditions.rule.lightningElectrifiesVines.desc": "Faz raios transformar vinhas presas a pedra luminosa em Líquen Brilhante ao atingir a Glowstone",
+  "carpetskyadditions.rule.lightningElectrifiesVines.extra.0": "O Raio Também pode atingir o Para-Raio encima da Glowstone.",
+  "carpetskyadditions.rule.renewableBuddingAmethysts.desc": "Faz com que a lava se transforme em uma Drusa de Ametista quando cercada por Calcita e Basalto Liso",
+  "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "Com que frequência o Wandering Trader tenta nascer em ticks"
+}
