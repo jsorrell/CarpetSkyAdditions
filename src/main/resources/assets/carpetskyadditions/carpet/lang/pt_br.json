@@ -21,5 +21,12 @@
   "carpetskyadditions.rule.poisonousPotatoesConvertSpiders.desc": "Faz com que as Aranhas se transformem Aranhas da Caverna quando clicadas com o botão direito quando segurando uma Batata Venenosa",
   "carpetskyadditions.rule.saplingsDieOnSand.desc": "Permite que as Mudas sejam colocadas na Areia, mas em breve se transformam em Arbusto seco",
   "carpetskyadditions.rule.renewableEchoShards.desc": "Faz com que criaturas com o Ecolocalização (morcegos e golfinhos) soltem Fragmentos de Eco quando mortos pelo Ataque Sônico de um Defensor (Warden)",
+  "carpetskyadditions.rule.allayableVexes.desc": "Permite que os Vexes se transformem em Allays quando tocado uma sequência correta no Bloco de Notas",
+  "carpetskyadditions.rule.coralErosion.desc": "Faz o Coral Morto corroer, se transformando em Areia, quando a água flui para fora dele",
+  "carpetskyadditions.rule.hugeMushroomsSpreadMycelium.desc": "Fazem Cogumelos espalharem o Micélio nas variantes do bloco de Terra próximos quando utilizado o pó de osso em Cogumelos Gigantes",
+  "carpetskyadditions.rule.renewableNetherrack.desc": "Faz Netherrack ou Nicélio gerar em torno dos Portais do Nether que geram no meio do ar",
+  "carpetskyadditions.rule.renewableNetherrack.extra.0": "O que gera depende do bioma, com os Nicélios gerando nas suas respectivas florestas e a Netherrack em outros lugares",
+  "carpetskyadditions.rule.renewableDeepslate.desc": "Permite que Poções Espessas (Thick Potion) convertam Pedra em Ardósia, seja clicando com o botão direito ou usando uma poção arremessável",
+  "carpetskyadditions.rule.renewableDeepslate.extra.0": "Com no_splash: conversão de poções arremessáveis está desativada.",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "Com que frequência o Wandering Trader tenta nascer em ticks"
 }
