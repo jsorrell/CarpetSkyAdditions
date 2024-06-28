@@ -12,5 +12,14 @@
   "carpetskyadditions.rule.lightningElectrifiesVines.desc": "Faz raios transformar vinhas presas a pedra luminosa em Líquen Brilhante ao atingir a Glowstone",
   "carpetskyadditions.rule.lightningElectrifiesVines.extra.0": "O Raio Também pode atingir o Para-Raio encima da Glowstone.",
   "carpetskyadditions.rule.renewableBuddingAmethysts.desc": "Faz com que a lava se transforme em uma Drusa de Ametista quando cercada por Calcita e Basalto Liso",
+  "carpetskyadditions.rule.renewableHeartsOfTheSea.desc": "Permite que golfinhos encontrem Coração do Mar quando oferecido um Peixe",
+  "carpetskyadditions.rule.renewableDragonHeads.desc": "Faz com que Dragões Ender derrubem suas cabeças quando mortos por Creepers Carregados",
+  "carpetskyadditions.rule.shulkerSpawnsOnDragonKill.desc": "Faz um Shulker surgir no Pilar de Bedrock quando o Dragão Ender é morto novamente",
+  "carpetskyadditions.rule.renewableDiamonds.desc": "Permite que Bigornas caiam em pilhas de Blocos de Carvão para convertê-los em Diamantes",
+  "carpetskyadditions.rule.rammingWart.desc": "Permite que o ataque da Cabra quebre Blocos de Fungo do Nether em Fungos do Nether",
+  "carpetskyadditions.rule.foxesSpawnWithSweetBerriesChance.desc": "Probabilidade de surgir uma Raposa com Bagas Doces",
+  "carpetskyadditions.rule.poisonousPotatoesConvertSpiders.desc": "Faz com que as Aranhas se transformem Aranhas da Caverna quando clicadas com o botão direito quando segurando uma Batata Venenosa",
+  "carpetskyadditions.rule.saplingsDieOnSand.desc": "Permite que as Mudas sejam colocadas na Areia, mas em breve se transformam em Arbusto seco",
+  "carpetskyadditions.rule.renewableEchoShards.desc": "Faz com que criaturas com o Ecolocalização (morcegos e golfinhos) soltem Fragmentos de Eco quando mortos pelo Ataque Sônico de um Defensor (Warden)",
   "carpetskyadditions.rule.wanderingTraderSpawnRate.desc": "Com que frequência o Wandering Trader tenta nascer em ticks"
 }
