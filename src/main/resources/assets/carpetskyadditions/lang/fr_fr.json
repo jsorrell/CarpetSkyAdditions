@@ -6,7 +6,7 @@
   "carpetskyadditions.config.option.defaultToSkyBlockWorld": "Sélectionner monde SkyBlock par défaut",
   "carpetskyadditions.config.option.enableDatapackByDefault": "Activer le pack de données SkyBlock par défaut",
   "carpetskyadditions.config.option.initialTreeType": "Le type de l'arbre initial qui est sélectionné par défaut",
-  "carpetskyadditions.config.option.initialTreeType.tooltip": "Seulement utiliser si le pack de données est activé par défaut ",
+  "carpetskyadditions.config.option.initialTreeType.tooltip": "Seulement utiliser si le pack de données est activé par défaut",
   "carpetskyadditions.config.option.autoEnableDefaultSettings": "Activer les paramètres par défaut automatiquement lors du premier chargement d'un monde SkyBlock",
   "datapack.carpetskyadditions.skyblock": "Carpet Sky Additions : SkyBlock",
   "datapack.carpetskyadditions.acacia": "Carpet Sky Additions : Acacia",
