@@ -6,13 +6,13 @@ import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.helpers.CoralSpreader;
 import com.jsorrell.carpetskyadditions.helpers.SmallDripleafSpreader;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
+import com.jsorrell.carpetskyadditions.util.SkyAdditionsText;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -90,7 +90,7 @@ public class SkyAdditionsLocationPredicate {
                                                 .filter(e -> currentState.getValue(e.getKey()) != e.getValue())
                                                 .findAny()
                                                 .orElseThrow();
-                                message = Component.translatable(
+                                message = SkyAdditionsText.translatable(
                                         "message.desert_pyramid_incorrect_state",
                                         requiredBlock.pos().getX(),
                                         requiredBlock.pos().getY(),
@@ -98,7 +98,7 @@ public class SkyAdditionsLocationPredicate {
                                         incorrectProperty.getKey().getName(),
                                         incorrectProperty.getValue());
                             } else {
-                                message = Component.translatable(
+                                message = SkyAdditionsText.translatable(
                                         "message.desert_pyramid_incorrect_block",
                                         requiredBlock.pos().getX(),
                                         requiredBlock.pos().getY(),

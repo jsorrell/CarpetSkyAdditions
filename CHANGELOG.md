@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Removed
 
 ### Fixed
+* Desert Pyramid hint now works on English servers without translations pack
 
 ## [4.4.1] - 2023-08-21
 
