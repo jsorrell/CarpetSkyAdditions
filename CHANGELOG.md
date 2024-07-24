@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * Command that immediately tries to spawn a Wandering Trader nearby (for testing)
 
 ### Changed
+* Kill Zombie advancement now accepts killing Husks
+* Kill Skeleton advancement now accepts killing Strays
 
 ### Deprecated
 

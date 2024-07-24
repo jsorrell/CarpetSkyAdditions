@@ -20,7 +20,10 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "minecraft:zombie"
+              "type": [
+                "minecraft:zombie",
+                "minecraft:husk"
+              ]
             }
           }
         ]
