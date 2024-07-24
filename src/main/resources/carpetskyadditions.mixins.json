@@ -32,7 +32,7 @@
     "RamTargetMixin",
     "RemoveBlockGoalMixin",
     "SaplingBlockMixin",
-    "SchemasMixin",
+    "DataFixersMixin",
     "SchemaV2551Mixin",
     "SchemaV2832Mixin",
     "ServerPropertiesHandlerMixin",

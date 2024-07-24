@@ -13,18 +13,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DataFixers.class)
-public abstract class SchemasMixin {
+public abstract class DataFixersMixin {
     @Inject(
             method = "addFixers",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lcom/mojang/datafixers/DataFixerBuilder;addFixer(Lcom/mojang/datafixers/DataFix;)V",
-                            ordinal = 225,
+                                    "Lcom/mojang/datafixers/DataFixerBuilder;addSchema(ILjava/util/function/BiFunction;)Lcom/mojang/datafixers/schemas/Schema;",
+                            ordinal = 149,
                             remap = false))
     private static void addSkyBlockGeneratorNameFix(DataFixerBuilder builder, CallbackInfo ci) {
-        Schema schema3079 = builder.addSchema(3079, 1, V3079::new);
+        Schema schema3079 = builder.addSchema(3079, V3079::new);
         builder.addFixer(new SkyBlockGeneratorNameFix(schema3079));
     }
 
@@ -34,8 +34,8 @@ public abstract class SchemasMixin {
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lcom/mojang/datafixers/DataFixerBuilder;addFixer(Lcom/mojang/datafixers/DataFix;)V",
-                            ordinal = 241,
+                                    "Lcom/mojang/datafixers/DataFixerBuilder;addSchema(ILjava/util/function/BiFunction;)Lcom/mojang/datafixers/schemas/Schema;",
+                            ordinal = 159,
                             remap = false))
     private static void addSkyBlockGeneratorNameFix2(DataFixerBuilder builder, CallbackInfo ci) {
         Schema schema3106 = builder.addSchema(3106, V3106::new);

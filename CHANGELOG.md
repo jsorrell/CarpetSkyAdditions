@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 * Desert Pyramid hint now works on English servers without translations pack
+* #143 where the game crashes when opening old worlds
 
 ## [4.4.1] - 2023-08-21
 
