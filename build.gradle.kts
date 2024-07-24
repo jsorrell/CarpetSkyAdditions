@@ -2,7 +2,7 @@ import com.diffplug.gradle.spotless.YamlExtension.JacksonYamlGradleConfig
 
 class Versions(properties: ExtraPropertiesExtension) {
   val mod = properties["mod_version"] as String
-  val java = JavaVersion.toVersion(properties["java_version"] as String)
+  val java: JavaVersion = JavaVersion.toVersion(properties["java_version"] as String)
   val minecraft = properties["minecraft_version"] as String
   val minecraftCompatibility = properties["compatible_minecraft_versions"] as String
   val project = "$minecraft-$mod"
@@ -80,11 +80,12 @@ base {
 
 tasks {
   processResources {
-    val templateContext = mapOf(
-      "name" to project.extra["mod_name"],
-      "version" to version,
-      "mc_compatibility" to versions.minecraftCompatibility,
-    )
+    val templateContext =
+      mapOf(
+        "name" to project.extra["mod_name"],
+        "version" to version,
+        "mc_compatibility" to versions.minecraftCompatibility,
+      )
 
     inputs.properties(templateContext)
     filesMatching("fabric.mod.json") {
@@ -175,7 +176,7 @@ spotless {
 
   json {
     target("**/*.json")
-    targetExclude("$buildDir/**", "run/**")
+    targetExclude("${layout.buildDirectory}/**", "run/**")
     gson().indentWithSpaces(2)
   }
 
@@ -190,9 +191,9 @@ changelog {
   repositoryUrl.set(project.extra["repository"] as String)
   introduction.set(
     """
-        All notable changes to this project will be documented in this file.
+    All notable changes to this project will be documented in this file.
 
-        The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+    The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     """.trimIndent(),
   )
   groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed"))
@@ -204,7 +205,7 @@ changelog {
 modrinth {
   token.set(providers.environmentVariable("MODRINTH_TOKEN"))
   projectId.set("carpet-sky-additions")
-  versionNumber.set(providers.gradleProperty("mod_version"))
+  versionNumber.set(versions.project)
   versionName.set("${versions.mod} for Minecraft ${versions.minecraft}")
   versionType.set("release")
   uploadFile.set(tasks.remapJar)
