@@ -10,12 +10,12 @@ jobs:
         - "windows-latest"
     runs-on: "${{ matrix.os }}"
     steps:
-    - uses: "actions/checkout@v3"
-    - uses: "actions/setup-java@v3"
+    - uses: "actions/checkout@v4"
+    - uses: "actions/setup-java@v4"
       with:
         distribution: "temurin"
-        java-version: 17
+        java-version: 21
     - name: "Set up Gradle"
-      uses: "gradle/gradle-build-action@v2"
+      uses: "gradle/gradle-build-action@v3"
     - name: "Execute Gradle Build"
       run: "./gradlew build"
