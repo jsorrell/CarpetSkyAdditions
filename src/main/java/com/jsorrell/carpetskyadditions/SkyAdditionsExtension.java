@@ -64,6 +64,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
                 SkyBlockChunkGenerator.CODEC);
         SkyAdditionsFeatures.registerAll();
         SkyAdditionsCriteriaTriggers.registerAll();
+        SkyAdditionsCriteriaTriggers.bootstrap();
         SkyAdditionsLootItemConditions.bootstrap();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
         SkyAdditionsDataPacks.register();

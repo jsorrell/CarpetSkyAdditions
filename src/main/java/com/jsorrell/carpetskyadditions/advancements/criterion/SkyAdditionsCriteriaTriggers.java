@@ -1,15 +1,14 @@
 package com.jsorrell.carpetskyadditions.advancements.criterion;
 
+import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.critereon.PlayerTrigger;
 
 public class SkyAdditionsCriteriaTriggers {
-    public static final GenerateGeodeTrigger GENERATE_GEODE = new GenerateGeodeTrigger();
-    public static final ConvertSpiderTrigger CONVERT_SPIDER = new ConvertSpiderTrigger();
-    public static final AllayVexTrigger ALLAY_VEX = new AllayVexTrigger();
+    public static final PlayerTrigger GENERATE_GEODE =
+            CriteriaTriggers.register(new PlayerTrigger(new SkyAdditionsResourceLocation("generate_geode")));
+    public static final ConvertSpiderTrigger CONVERT_SPIDER = CriteriaTriggers.register(new ConvertSpiderTrigger());
+    public static final AllayVexTrigger ALLAY_VEX = CriteriaTriggers.register(new AllayVexTrigger());
 
-    public static void registerAll() {
-        CriteriaTriggers.register(GENERATE_GEODE);
-        CriteriaTriggers.register(CONVERT_SPIDER);
-        CriteriaTriggers.register(ALLAY_VEX);
-    }
+    public static void bootstrap() {}
 }
