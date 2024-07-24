@@ -1,21 +1,13 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
-import com.jsorrell.carpetskyadditions.helpers.TraderCamelHelper;
+import com.jsorrell.carpetskyadditions.helpers.TraderSpawnerHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.animal.camel.Camel;
-import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.npc.WanderingTraderSpawner;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.storage.ServerLevelData;
 import org.spongepowered.asm.mixin.Final;
@@ -66,68 +58,20 @@ public abstract class WanderingTraderSpawnerMixin {
         return 100 < spawnChance ? 0 : random.nextInt(bound);
     }
 
-    @Unique
-    private boolean hasEnoughSpace(BlockGetter level, BlockPos pos) {
-        for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, 0, -1), pos.offset(1, 2, 1))) {
-            if (!level.getBlockState(blockPos)
-                    .getCollisionShape(level, blockPos)
-                    .isEmpty()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     @Inject(
             method = "spawn",
             at =
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/world/entity/npc/WanderingTraderSpawner;hasEnoughSpace(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z"),
+                                    "Lnet/minecraft/server/level/ServerLevel;getPoiManager()Lnet/minecraft/world/entity/ai/village/poi/PoiManager;"),
             cancellable = true,
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private void spawnTrader(
-            ServerLevel serverLevel,
-            CallbackInfoReturnable<Boolean> cir,
-            Player player,
-            BlockPos playerPos,
-            int i,
-            PoiManager poiManager,
-            Optional<BlockPos> optional,
-            BlockPos playerOrMeetingPos,
-            BlockPos spawnPos) {
-        if (!TraderCamelHelper.tradersRideCamelsAt(serverLevel, spawnPos)) {
-            return;
-        }
-
-        if (hasEnoughSpace(serverLevel, spawnPos)) {
-            if (serverLevel.getBiome(spawnPos).is(BiomeTags.WITHOUT_WANDERING_TRADER_SPAWNS)) {
-                cir.setReturnValue(false);
-                return;
-            }
-
-            Camel traderCamel = EntityType.CAMEL.spawn(serverLevel, spawnPos, MobSpawnType.EVENT);
-            if (traderCamel != null) {
-                WanderingTrader wanderingTrader = EntityType.WANDERING_TRADER.create(serverLevel);
-                if (wanderingTrader != null) {
-                    serverLevelData.setWanderingTraderId(wanderingTrader.getUUID());
-                    wanderingTrader.setDespawnDelay(48000);
-
-                    traderCamel.equipSaddle(null);
-                    wanderingTrader.moveTo(
-                            traderCamel.getX(), traderCamel.getY(), traderCamel.getZ(), traderCamel.getYRot(), 0.0F);
-                    wanderingTrader.startRiding(traderCamel, true);
-                    wanderingTrader.setWanderTarget(playerOrMeetingPos);
-                    wanderingTrader.restrictTo(playerOrMeetingPos, 16);
-                    serverLevel.addFreshEntity(wanderingTrader);
-                    cir.setReturnValue(true);
-                    return;
-                }
-                cir.setReturnValue(false);
-            }
-        }
+            ServerLevel serverLevel, CallbackInfoReturnable<Boolean> cir, Player player, BlockPos playerPos, int i) {
+        boolean spawned = TraderSpawnerHelper.spawnTrader(serverLevel, this.random, playerPos) != null;
+        cir.setReturnValue(spawned);
+        cir.cancel();
     }
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)

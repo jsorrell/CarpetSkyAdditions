@@ -7,6 +7,7 @@ import carpet.utils.Translations;
 import com.jsorrell.carpetskyadditions.advancements.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.advancements.predicates.SkyAdditionsLootItemConditions;
 import com.jsorrell.carpetskyadditions.commands.SkyIslandCommand;
+import com.jsorrell.carpetskyadditions.commands.SpawnTraderCommand;
 import com.jsorrell.carpetskyadditions.config.SkyAdditionsConfig;
 import com.jsorrell.carpetskyadditions.gen.SkyBlockChunkGenerator;
 import com.jsorrell.carpetskyadditions.gen.feature.SkyAdditionsFeatures;
@@ -88,6 +89,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
     public void registerCommands(
             CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         SkyIslandCommand.register(dispatcher);
+        SpawnTraderCommand.register(dispatcher);
     }
 
     @Override
