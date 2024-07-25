@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class TraderSpawnerHelper {
     public static WanderingTrader spawnTrader(ServerLevel serverLevel, RandomSource random, BlockPos sourcePos) {
-        System.out.println("spawning trader");
         PoiManager poiManager = serverLevel.getPoiManager();
         Optional<BlockPos> poiPos = poiManager.find(
                 holder -> holder.is(PoiTypes.MEETING), blockPosx -> true, sourcePos, 48, PoiManager.Occupancy.ANY);
