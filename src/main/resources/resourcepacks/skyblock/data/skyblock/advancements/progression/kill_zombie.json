@@ -17,14 +17,23 @@
       "conditions": {
         "entity": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": [
-                "minecraft:zombie",
-                "minecraft:husk"
-              ]
-            }
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "minecraft:zombie"
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "minecraft:husk"
+                }
+              }
+            ]
           }
         ]
       }

@@ -17,14 +17,23 @@
       "conditions": {
         "entity": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": [
-                "minecraft:skeleton",
-                "minecraft:stray"
-              ]
-            }
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "minecraft:skeleton"
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "minecraft:stray"
+                }
+              }
+            ]
           }
         ]
       }
