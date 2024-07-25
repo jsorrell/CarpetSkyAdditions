@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/gravel",
   "display": {
     "icon": {
-      "item": "minecraft:soul_sand"
+      "id": "minecraft:soul_sand"
     },
     "title": {
       "translate": "Bubbler"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_sand"
-            ]
+            "items": "minecraft:soul_sand"
           }
         ]
       }

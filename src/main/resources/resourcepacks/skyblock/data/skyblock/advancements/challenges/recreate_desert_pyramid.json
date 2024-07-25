@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:chiseled_sandstone"
+      "id": "minecraft:chiseled_sandstone"
     },
     "title": {
       "translate": "Way of the Ancients"

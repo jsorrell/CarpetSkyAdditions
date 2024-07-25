@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/wandering_trader",
   "display": {
     "icon": {
-      "item": "minecraft:apple"
+      "id": "minecraft:apple"
     },
     "title": {
       "translate": "Apple Tree"

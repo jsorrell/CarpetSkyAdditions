@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/wandering_trader",
   "display": {
     "icon": {
-      "item": "minecraft:rose_bush"
+      "id": "minecraft:rose_bush"
     },
     "title": {
       "translate": "Florist"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:rose_bush"
-            ]
+            "items": "minecraft:rose_bush"
           }
         ]
       }
@@ -30,9 +28,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sunflower"
-            ]
+            "items": "minecraft:sunflower"
           }
         ]
       }
@@ -42,9 +38,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lilac"
-            ]
+            "items": "minecraft:lilac"
           }
         ]
       }
@@ -54,9 +48,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:peony"
-            ]
+            "items": "minecraft:peony"
           }
         ]
       }

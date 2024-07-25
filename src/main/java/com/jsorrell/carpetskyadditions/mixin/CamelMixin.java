@@ -15,7 +15,7 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.joml.Vector3f;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
@@ -94,11 +94,11 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
     // This only works with the mod on the client side
     @Redirect(
             method = "getPassengerAttachmentPoint",
-            at = @At(value = "NEW", target = "(FFF)Lorg/joml/Vector3f;", remap = false))
-    protected Vector3f moveTraderForward(float x, float y, float z) {
+            at = @At(value = "NEW", target = "(DDD)Lnet/minecraft/world/phys/Vec3;", remap = false))
+    protected Vec3 moveTraderForward(double x, double y, double z) {
         if (isTraderCamel()) {
-            return new Vector3f(x, y - 0.45f, z + 0.09f);
+            return new Vec3(x, y - 0.45, z + 0.09);
         }
-        return new Vector3f(x, y, z);
+        return new Vec3(x, y, z);
     }
 }

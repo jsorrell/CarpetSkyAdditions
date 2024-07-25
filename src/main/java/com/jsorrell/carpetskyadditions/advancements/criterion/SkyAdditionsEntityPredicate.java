@@ -4,18 +4,19 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Optional;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
 public record SkyAdditionsEntityPredicate(
         Optional<SkyAdditionsLocationPredicate> location, Optional<SkyAdditionsLocationPredicate> steppingOnLocation) {
-    public static final Codec<SkyAdditionsEntityPredicate> CODEC = ExtraCodecs.recursive(
+    public static final Codec<SkyAdditionsEntityPredicate> CODEC = Codec.recursive(
             "SkyAdditionsEntityPredicate",
             codec -> RecordCodecBuilder.create(instance -> instance.group(
-                            ExtraCodecs.strictOptionalField(SkyAdditionsLocationPredicate.CODEC, "location")
+                            SkyAdditionsLocationPredicate.CODEC
+                                    .optionalFieldOf("location")
                                     .forGetter(SkyAdditionsEntityPredicate::location),
-                            ExtraCodecs.strictOptionalField(SkyAdditionsLocationPredicate.CODEC, "stepping_on")
+                            SkyAdditionsLocationPredicate.CODEC
+                                    .optionalFieldOf("stepping_on")
                                     .forGetter(SkyAdditionsEntityPredicate::steppingOnLocation))
                     .apply(instance, SkyAdditionsEntityPredicate::new)));
 

@@ -3,9 +3,10 @@ package com.jsorrell.carpetskyadditions.advancements.criterion;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Optional;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -29,11 +30,12 @@ public class AllayVexTrigger extends SimpleCriterionTrigger<AllayVexTrigger.Trig
             implements SimpleInstance {
 
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "player")
+                        EntityPredicate.ADVANCEMENT_CODEC
+                                .optionalFieldOf("player")
                                 .forGetter(TriggerInstance::player),
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "vex")
-                                .forGetter(TriggerInstance::vex),
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "allay")
+                        EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("vex").forGetter(TriggerInstance::vex),
+                        EntityPredicate.ADVANCEMENT_CODEC
+                                .optionalFieldOf("allay")
                                 .forGetter(TriggerInstance::allay))
                 .apply(instance, TriggerInstance::new));
 

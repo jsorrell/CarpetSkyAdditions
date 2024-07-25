@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sweet_berries"
-            ]
+            "items": "minecraft:sweet_berries"
           }
         ]
       }

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/sniffer_egg",
   "display": {
     "icon": {
-      "item": "minecraft:prize_pottery_sherd"
+      "id": "minecraft:prize_pottery_sherd"
     },
     "title": {
       "translate": "Whiff of Treasure"

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/sapling",
   "display": {
     "icon": {
-      "item": "minecraft:acacia_trapdoor"
+      "id": "minecraft:acacia_trapdoor"
     },
     "title": {
       "translate": "Crawling Down"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:acacia_trapdoor"
-            ]
+            "items": "minecraft:acacia_trapdoor"
           }
         ]
       }

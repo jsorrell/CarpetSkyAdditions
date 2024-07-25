@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:flower_banner_pattern"
+      "id": "minecraft:flower_banner_pattern"
     },
     "title": {
       "translate": "Seeing Patterns Everywhere"
@@ -21,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:flower_banner_pattern"
-            ]
+            "items": "minecraft:flower_banner_pattern"
           }
         ]
       }
@@ -33,9 +31,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:creeper_banner_pattern"
-            ]
+            "items": "minecraft:creeper_banner_pattern"
           }
         ]
       }
@@ -45,9 +41,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:skull_banner_pattern"
-            ]
+            "items": "minecraft:skull_banner_pattern"
           }
         ]
       }
@@ -57,9 +51,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:mojang_banner_pattern"
-            ]
+            "items": "minecraft:mojang_banner_pattern"
           }
         ]
       }
@@ -69,9 +61,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:globe_banner_pattern"
-            ]
+            "items": "minecraft:globe_banner_pattern"
           }
         ]
       }
@@ -81,9 +71,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:piglin_banner_pattern"
-            ]
+            "items": "minecraft:piglin_banner_pattern"
           }
         ]
       }

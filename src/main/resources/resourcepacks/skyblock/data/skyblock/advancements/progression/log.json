@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/root",
   "display": {
     "icon": {
-      "item": "minecraft:oak_log"
+      "id": "minecraft:oak_log"
     },
     "title": {
       "translate": "The First of Many"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:oak_log"
-            ]
+            "items": "minecraft:oak_log"
           }
         ]
       }

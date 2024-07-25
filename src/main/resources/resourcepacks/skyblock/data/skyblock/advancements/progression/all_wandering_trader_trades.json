@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/all_saplings",
   "display": {
     "icon": {
-      "item": "minecraft:pumpkin"
+      "id": "minecraft:pumpkin"
     },
     "title": {
       "translate": "Day Trader"
@@ -31,9 +31,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:melon_seeds"
-            ]
+            "items": "minecraft:melon_seeds"
           }
         ]
       }
@@ -43,9 +41,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sugar_cane"
-            ]
+            "items": "minecraft:sugar_cane"
           }
         ]
       }
@@ -55,9 +51,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:small_dripleaf"
-            ]
+            "items": "minecraft:small_dripleaf"
           }
         ]
       }
@@ -67,9 +61,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:pointed_dripstone"
-            ]
+            "items": "minecraft:pointed_dripstone"
           }
         ]
       }
@@ -79,9 +71,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:moss_block"
-            ]
+            "items": "minecraft:moss_block"
           }
         ]
       }
@@ -91,9 +81,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sea_pickle"
-            ]
+            "items": "minecraft:sea_pickle"
           }
         ]
       }
@@ -103,9 +91,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:kelp"
-            ]
+            "items": "minecraft:kelp"
           }
         ]
       }
@@ -115,9 +101,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cactus"
-            ]
+            "items": "minecraft:cactus"
           }
         ]
       }
@@ -127,9 +111,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:tube_coral_block"
-            ]
+            "items": "minecraft:tube_coral_block"
           }
         ]
       }
@@ -139,9 +121,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brain_coral_block"
-            ]
+            "items": "minecraft:brain_coral_block"
           }
         ]
       }
@@ -151,9 +131,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bubble_coral_block"
-            ]
+            "items": "minecraft:bubble_coral_block"
           }
         ]
       }
@@ -163,9 +141,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:fire_coral_block"
-            ]
+            "items": "minecraft:fire_coral_block"
           }
         ]
       }
@@ -175,9 +151,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:horn_coral_block"
-            ]
+            "items": "minecraft:horn_coral_block"
           }
         ]
       }
@@ -187,9 +161,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:spruce_sapling"
-            ]
+            "items": "minecraft:spruce_sapling"
           }
         ]
       }
@@ -199,9 +171,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:birch_sapling"
-            ]
+            "items": "minecraft:birch_sapling"
           }
         ]
       }
@@ -211,9 +181,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:jungle_sapling"
-            ]
+            "items": "minecraft:jungle_sapling"
           }
         ]
       }
@@ -223,9 +191,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:acacia_sapling"
-            ]
+            "items": "minecraft:acacia_sapling"
           }
         ]
       }
@@ -235,9 +201,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:dark_oak_sapling"
-            ]
+            "items": "minecraft:dark_oak_sapling"
           }
         ]
       }
@@ -247,9 +211,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:mangrove_propagule"
-            ]
+            "items": "minecraft:mangrove_propagule"
           }
         ]
       }
@@ -259,9 +221,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cherry_sapling"
-            ]
+            "items": "minecraft:cherry_sapling"
           }
         ]
       }
@@ -271,9 +231,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:rose_bush"
-            ]
+            "items": "minecraft:rose_bush"
           }
         ]
       }
@@ -283,9 +241,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sunflower"
-            ]
+            "items": "minecraft:sunflower"
           }
         ]
       }
@@ -295,9 +251,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lilac"
-            ]
+            "items": "minecraft:lilac"
           }
         ]
       }
@@ -307,9 +261,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:peony"
-            ]
+            "items": "minecraft:peony"
           }
         ]
       }
@@ -319,9 +271,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:fern"
-            ]
+            "items": "minecraft:fern"
           }
         ]
       }

@@ -2,8 +2,12 @@
   "parent": "skyblock:progression/go_down",
   "display": {
     "icon": {
-      "item": "minecraft:potion",
-      "nbt": "{Potion:\"minecraft:healing\"}"
+      "id": "minecraft:potion",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:healing"
+        }
+      }
     },
     "title": {
       "translate": "Witch Hunt"

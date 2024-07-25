@@ -2,8 +2,12 @@
   "parent": "skyblock:progression/kill_zombie",
   "display": {
     "icon": {
-      "item": "minecraft:golden_shovel",
-      "nbt": "{Enchantments:[{id:\"minecraft:silk_touch\"}]}"
+      "id": "minecraft:golden_shovel",
+      "components": {
+        "minecraft:enchantments": {
+          "minecraft:silk_touch": 1
+        }
+      }
     },
     "title": {
       "translate": "Easier than Endermen"
@@ -19,11 +23,13 @@
       "conditions": {
         "items": [
           {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:silk_touch"
-              }
-            ]
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch"
+                }
+              ]
+            }
           }
         ]
       }

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/coal",
   "display": {
     "icon": {
-      "item": "minecraft:diamond"
+      "id": "minecraft:diamond"
     },
     "title": {
       "translate": "Synthetic Diamonds!"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:diamond"
-            ]
+            "items": "minecraft:diamond"
           }
         ]
       }

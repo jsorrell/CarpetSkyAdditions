@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/kill_witch",
   "display": {
     "icon": {
-      "item": "minecraft:glowstone"
+      "id": "minecraft:glowstone"
     },
     "title": {
       "translate": "And Then There Was Light"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glowstone"
-            ]
+            "items": "minecraft:glowstone"
           }
         ]
       }

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/log",
   "display": {
     "icon": {
-      "item": "minecraft:acacia_sapling"
+      "id": "minecraft:acacia_sapling"
     },
     "title": {
       "translate": "The Circle of Life"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:acacia_sapling"
-            ]
+            "items": "minecraft:acacia_sapling"
           }
         ]
       }

@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:purpur_block"
+      "id": "minecraft:purpur_block"
     },
     "title": {
       "translate": "End City Builder"

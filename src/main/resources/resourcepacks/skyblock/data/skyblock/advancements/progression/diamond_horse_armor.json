@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/diamond",
   "display": {
     "icon": {
-      "item": "minecraft:diamond_horse_armor"
+      "id": "minecraft:diamond_horse_armor"
     },
     "title": {
       "translate": "Cover Shadowfax With Diamonds"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:diamond_horse_armor"
-            ]
+            "items": "minecraft:diamond_horse_armor"
           }
         ]
       }

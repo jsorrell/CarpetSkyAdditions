@@ -1,10 +1,9 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
-import static com.jsorrell.carpetskyadditions.helpers.SkyAdditionsEnchantmentHelper.SWIFT_SNEAK_ENCHANTABLE_TAG;
-
+import com.jsorrell.carpetskyadditions.SkyAdditionsDataComponents;
 import com.jsorrell.carpetskyadditions.helpers.SkyAdditionsEnchantmentHelper;
 import java.util.List;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -26,14 +25,14 @@ public class EnchantmentHelperMixin {
                             target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"),
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private static void forceAllowSwiftSneak(
+            FeatureFlagSet featureFlagSet,
             int modifiedEnchantingLevel,
             ItemStack stack,
             boolean allowTreasure,
             CallbackInfoReturnable<List<EnchantmentInstance>> cir,
-            List<EnchantmentInstance> enchantmentList,
-            Item item) {
-        if (stack.hasTag() && stack.getTag().contains(SWIFT_SNEAK_ENCHANTABLE_TAG)) {
-            if (Enchantments.SWIFT_SNEAK.category.canEnchant(stack.getItem()) || stack.is(Items.BOOK)) {
+            List<EnchantmentInstance> enchantmentList) {
+        if (Boolean.TRUE.equals(stack.get(SkyAdditionsDataComponents.SWIFT_SNEAK_ENCHANTABLE_COMPONENT))) {
+            if (Enchantments.SWIFT_SNEAK.canEnchant(stack) || stack.is(Items.BOOK)) {
                 for (int level = 3; 1 <= level; --level) {
                     if (SkyAdditionsEnchantmentHelper.getSwiftSneakMinCost(level) <= modifiedEnchantingLevel
                             && modifiedEnchantingLevel <= SkyAdditionsEnchantmentHelper.getSwiftSneakMaxCost(level)) {

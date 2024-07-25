@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/sculk_catalyst",
   "display": {
     "icon": {
-      "item": "minecraft:echo_shard"
+      "id": "minecraft:echo_shard"
     },
     "title": {
       "translate": "Echolocation Overload"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:echo_shard"
-            ]
+            "items": "minecraft:echo_shard"
           }
         ]
       }

@@ -2,6 +2,7 @@ package com.jsorrell.carpetskyadditions.helpers;
 
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -17,7 +18,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class DeepslateConversionHelper {
-    public static final Potion CONVERSION_POTION = Potions.THICK;
+    public static final Holder<Potion> CONVERSION_POTION = Potions.THICK;
 
     public static Optional<BlockState> canConvert(BlockState from) {
         if (from.is(Blocks.STONE)) {

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/gold_nugget",
   "display": {
     "icon": {
-      "item": "minecraft:golden_apple"
+      "id": "minecraft:golden_apple"
     },
     "title": {
       "translate": "Panacea"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:golden_apple"
-            ]
+            "items": "minecraft:golden_apple"
           }
         ]
       }

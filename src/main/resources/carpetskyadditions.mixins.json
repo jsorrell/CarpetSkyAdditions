@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.jsorrell.carpetskyadditions.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractHugeMushroomFeatureMixin",
     "AreaEffectCloudMixin",

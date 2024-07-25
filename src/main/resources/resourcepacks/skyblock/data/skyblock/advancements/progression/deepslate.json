@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/cobblestone",
   "display": {
     "icon": {
-      "item": "minecraft:deepslate"
+      "id": "minecraft:deepslate"
     },
     "title": {
       "translate": "That's Deep, Bro"

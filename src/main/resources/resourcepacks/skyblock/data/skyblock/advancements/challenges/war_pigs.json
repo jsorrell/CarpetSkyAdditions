@@ -5,8 +5,12 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:golden_axe",
-      "nbt": "{Enchantments:[{lvl:5s, id:\"minecraft:sharpness\"}]}"
+      "id": "minecraft:golden_axe",
+      "components": {
+        "minecraft:enchantments": {
+          "minecraft:sharpness": 5
+        }
+      }
     },
     "title": {
       "translate": "War Pigs"
@@ -36,9 +40,7 @@
             "predicate": {
               "equipment": {
                 "head": {
-                  "items": [
-                    "minecraft:piglin_head"
-                  ]
+                  "items": "minecraft:piglin_head"
                 }
               },
               "vehicle": {

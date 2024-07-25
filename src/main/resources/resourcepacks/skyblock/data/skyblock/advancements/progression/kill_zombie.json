@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/go_down",
   "display": {
     "icon": {
-      "item": "minecraft:rotten_flesh"
+      "id": "minecraft:rotten_flesh"
     },
     "title": {
       "translate": "The Evil Dead"
@@ -15,27 +15,12 @@
     "kill_zombie": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:any_of",
-            "terms": [
-              {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "type": "minecraft:zombie"
-                }
-              },
-              {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "type": "minecraft:husk"
-                }
-              }
-            ]
-          }
-        ]
+        "entity": {
+          "type": [
+            "minecraft:zombie",
+            "minecraft:husk"
+          ]
+        }
       }
     }
   }

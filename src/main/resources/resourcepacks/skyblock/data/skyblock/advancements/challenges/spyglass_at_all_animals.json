@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:spyglass"
+      "id": "minecraft:spyglass"
     },
     "title": {
       "translate": "Spy in the Sky"
@@ -16,6 +16,22 @@
     "frame": "challenge"
   },
   "criteria": {
+    "armadillo": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "looking_at": {
+              "type": "minecraft:armadillo"
+            }
+          }
+        },
+        "item": {
+          "items": "minecraft:spyglass"
+        }
+      }
+    },
     "axolotl": {
       "trigger": "minecraft:using_item",
       "conditions": {
@@ -28,9 +44,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -46,9 +60,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -64,9 +76,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -82,9 +92,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -100,9 +108,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -118,9 +124,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -136,9 +140,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -154,9 +156,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -172,9 +172,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -190,9 +188,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -208,9 +204,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -226,9 +220,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -244,9 +236,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -262,9 +252,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -280,9 +268,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -298,9 +284,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -316,9 +300,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -334,9 +316,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -352,9 +332,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -370,9 +348,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -388,9 +364,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -406,9 +380,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -424,9 +396,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -442,9 +412,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -460,9 +428,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -478,9 +444,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -496,9 +460,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -514,9 +476,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -532,9 +492,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -550,9 +508,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -568,9 +524,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -586,9 +540,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -604,9 +556,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -622,9 +572,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -640,9 +588,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -658,9 +604,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -676,9 +620,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -694,9 +636,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     },
@@ -712,9 +652,7 @@
           }
         },
         "item": {
-          "items": [
-            "minecraft:spyglass"
-          ]
+          "items": "minecraft:spyglass"
         }
       }
     }

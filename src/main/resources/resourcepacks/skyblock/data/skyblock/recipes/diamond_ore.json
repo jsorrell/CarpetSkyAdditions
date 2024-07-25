@@ -16,6 +16,6 @@
     }
   },
   "result": {
-    "item": "minecraft:diamond_ore"
+    "id": "minecraft:diamond_ore"
   }
 }

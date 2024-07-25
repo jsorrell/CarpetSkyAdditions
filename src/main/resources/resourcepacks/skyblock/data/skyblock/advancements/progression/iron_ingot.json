@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/kill_zombie",
   "display": {
     "icon": {
-      "item": "minecraft:iron_ingot"
+      "id": "minecraft:iron_ingot"
     },
     "title": {
       "translate": "Steal Hardware"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:iron_ingot"
-            ]
+            "items": "minecraft:iron_ingot"
           }
         ]
       }

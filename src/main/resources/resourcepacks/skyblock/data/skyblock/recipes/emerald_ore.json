@@ -16,6 +16,6 @@
     }
   },
   "result": {
-    "item": "minecraft:emerald_ore"
+    "id": "minecraft:emerald_ore"
   }
 }

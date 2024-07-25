@@ -5,8 +5,12 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:netherite_chestplate",
-      "nbt": "{Enchantments:[{id:\"minecraft:protection\",lvl:4}]}"
+      "id": "minecraft:netherite_chestplate",
+      "components": {
+        "minecraft:enchantments": {
+          "minecraft:protection": 4
+        }
+      }
     },
     "title": {
       "translate": "Resistance Isn't Futile"
@@ -32,48 +36,36 @@
             "predicate": {
               "equipment": {
                 "head": {
-                  "items": [
-                    "minecraft:netherite_helmet"
-                  ],
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:protection",
-                      "levels": 4
+                  "items": "minecraft:netherite_helmet",
+                  "components": {
+                    "minecraft:enchantments": {
+                      "minecraft:protection": 4
                     }
-                  ]
+                  }
                 },
                 "chest": {
-                  "items": [
-                    "minecraft:netherite_chestplate"
-                  ],
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:protection",
-                      "levels": 4
+                  "items": "minecraft:netherite_chestplate",
+                  "components": {
+                    "minecraft:enchantments": {
+                      "minecraft:protection": 4
                     }
-                  ]
+                  }
                 },
                 "legs": {
-                  "items": [
-                    "minecraft:netherite_leggings"
-                  ],
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:protection",
-                      "levels": 4
+                  "items": "minecraft:netherite_leggings",
+                  "components": {
+                    "minecraft:enchantments": {
+                      "minecraft:protection": 4
                     }
-                  ]
+                  }
                 },
                 "feet": {
-                  "items": [
-                    "minecraft:netherite_boots"
-                  ],
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:protection",
-                      "levels": 4
+                  "items": "minecraft:netherite_boots",
+                  "components": {
+                    "minecraft:enchantments": {
+                      "minecraft:protection": 4
                     }
-                  ]
+                  }
                 }
               },
               "effects": {

@@ -2,8 +2,12 @@
   "parent": "skyblock:progression/diamond",
   "display": {
     "icon": {
-      "item": "minecraft:netherite_leggings",
-      "nbt": "{Enchantments:[{lvl:3s, id:\"minecraft:swift_sneak\"}]}"
+      "id": "minecraft:netherite_leggings",
+      "components": {
+        "minecraft:enchantments": {
+          "minecraft:swift_sneak": 3
+        }
+      }
     },
     "title": {
       "translate": "Silent but Deadly"
@@ -19,11 +23,13 @@
       "conditions": {
         "items": [
           {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:swift_sneak"
-              }
-            ]
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantment": "minecraft:swift_sneak"
+                }
+              ]
+            }
           }
         ]
       }

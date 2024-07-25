@@ -4,7 +4,7 @@ import com.jsorrell.carpetskyadditions.mixin.ChunkGeneratorAccessor;
 import com.jsorrell.carpetskyadditions.mixin.JigsawStructureAccessor;
 import com.jsorrell.carpetskyadditions.mixin.SinglePoolElementAccessor;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
@@ -43,7 +43,7 @@ import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.structures.StrongholdStructure;
 
 public class SkyBlockChunkGenerator extends NoiseBasedChunkGenerator {
-    public static final Codec<SkyBlockChunkGenerator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+    public static final MapCodec<SkyBlockChunkGenerator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                     BiomeSource.CODEC.fieldOf("biome_source").forGetter(SkyBlockChunkGenerator::getBiomeSource),
                     NoiseGeneratorSettings.CODEC
                             .fieldOf("settings")
@@ -55,7 +55,7 @@ public class SkyBlockChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    protected Codec<? extends ChunkGenerator> codec() {
+    protected MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
     }
 

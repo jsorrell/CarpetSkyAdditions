@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/go_down",
   "display": {
     "icon": {
-      "item": "minecraft:cobweb"
+      "id": "minecraft:cobweb"
     },
     "title": {
       "translate": "World Wide Web"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cobweb"
-            ]
+            "items": "minecraft:cobweb"
           }
         ]
       }

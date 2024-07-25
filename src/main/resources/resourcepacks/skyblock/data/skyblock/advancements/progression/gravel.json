@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_nether",
   "display": {
     "icon": {
-      "item": "minecraft:gravel"
+      "id": "minecraft:gravel"
     },
     "title": {
       "translate": "Graveler"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gravel"
-            ]
+            "items": "minecraft:gravel"
           }
         ]
       }

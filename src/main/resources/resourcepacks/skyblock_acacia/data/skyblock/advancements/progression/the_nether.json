@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/lava_bucket",
   "display": {
     "icon": {
-      "item": "minecraft:red_nether_bricks"
+      "id": "minecraft:red_nether_bricks"
     },
     "title": {
       "translate": "It's Empty Too"

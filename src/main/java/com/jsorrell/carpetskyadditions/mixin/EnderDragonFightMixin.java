@@ -56,7 +56,7 @@ public class EnderDragonFightMixin {
             BlockPos shulkerPosition = portalLocation.offset(0, 4, 0);
             if (previouslyKilled && level.getBlockState(shulkerPosition).isAir()) {
                 Shulker shulker =
-                        EntityType.SHULKER.create(level, null, null, shulkerPosition, MobSpawnType.EVENT, true, false);
+                        EntityType.SHULKER.create(level, null, shulkerPosition, MobSpawnType.EVENT, true, false);
                 if (shulker != null && level.noCollision(shulker)) {
                     level.addFreshEntity(shulker);
                 }

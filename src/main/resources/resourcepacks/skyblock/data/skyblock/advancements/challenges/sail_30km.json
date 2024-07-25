@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:cherry_boat"
+      "id": "minecraft:cherry_boat"
     },
     "title": {
       "translate": "Sky Pirate"

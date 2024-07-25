@@ -5,6 +5,7 @@ import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import java.util.Objects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PotionItem;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,7 +30,9 @@ public class PotionItemMixin {
         if (SkyAdditionsSettings.doRenewableDeepslate) {
             ItemStack itemStack = context.getItemInHand();
 
-            if (PotionUtils.getPotion(itemStack) == DeepslateConversionHelper.CONVERSION_POTION) {
+            PotionContents potionContents =
+                    itemStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+            if (potionContents.is(DeepslateConversionHelper.CONVERSION_POTION)) {
                 Level level = context.getLevel();
                 BlockPos blockPos = context.getClickedPos();
                 Player playerEntity = context.getPlayer();

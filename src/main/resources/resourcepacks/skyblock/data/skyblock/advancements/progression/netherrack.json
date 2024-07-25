@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_nether",
   "display": {
     "icon": {
-      "item": "minecraft:netherrack"
+      "id": "minecraft:netherrack"
     },
     "title": {
       "translate": "Mirackulous Appearance"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:netherrack"
-            ]
+            "items": "minecraft:netherrack"
           }
         ]
       }

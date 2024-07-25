@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/kill_drowned",
   "display": {
     "icon": {
-      "item": "minecraft:lightning_rod"
+      "id": "minecraft:lightning_rod"
     },
     "title": {
       "translate": "Storm Tamer"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lightning_rod"
-            ]
+            "items": "minecraft:lightning_rod"
           }
         ]
       }

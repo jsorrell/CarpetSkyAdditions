@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/bone_meal",
   "display": {
     "icon": {
-      "item": "minecraft:bone_block"
+      "id": "minecraft:bone_block"
     },
     "title": {
       "translate": "Lightning-Proof"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bone_block"
-            ]
+            "items": "minecraft:bone_block"
           }
         ]
       }

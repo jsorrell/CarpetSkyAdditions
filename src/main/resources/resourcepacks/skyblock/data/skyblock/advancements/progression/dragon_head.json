@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_end",
   "display": {
     "icon": {
-      "item": "minecraft:dragon_head"
+      "id": "minecraft:dragon_head"
     },
     "title": {
       "translate": "Creepers... and Dragons"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:dragon_head"
-            ]
+            "items": "minecraft:dragon_head"
           }
         ]
       }

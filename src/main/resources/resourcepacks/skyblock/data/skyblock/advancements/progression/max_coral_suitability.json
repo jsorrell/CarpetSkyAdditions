@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/spread_coral",
   "display": {
     "icon": {
-      "item": "minecraft:brain_coral_block"
+      "id": "minecraft:brain_coral_block"
     },
     "title": {
       "translate": "Coral Utopia"

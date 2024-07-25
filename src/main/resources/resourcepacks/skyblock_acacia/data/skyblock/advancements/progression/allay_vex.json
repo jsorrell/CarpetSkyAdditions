@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/cure_zombie_villager",
   "display": {
     "icon": {
-      "item": "minecraft:note_block"
+      "id": "minecraft:note_block"
     },
     "title": {
       "translate": "Relaxing Music"

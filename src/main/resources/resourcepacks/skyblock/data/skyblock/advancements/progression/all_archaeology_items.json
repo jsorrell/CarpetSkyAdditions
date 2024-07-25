@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/generate_suspicious_loot_table",
   "display": {
     "icon": {
-      "item": "minecraft:wayfinder_armor_trim_smithing_template"
+      "id": "minecraft:wayfinder_armor_trim_smithing_template"
     },
     "title": {
       "translate": "Master Archaeologist"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:angler_pottery_sherd"
-            ]
+            "items": "minecraft:angler_pottery_sherd"
           }
         ]
       }
@@ -30,9 +28,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:archer_pottery_sherd"
-            ]
+            "items": "minecraft:archer_pottery_sherd"
           }
         ]
       }
@@ -42,9 +38,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:arms_up_pottery_sherd"
-            ]
+            "items": "minecraft:arms_up_pottery_sherd"
           }
         ]
       }
@@ -54,9 +48,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:blade_pottery_sherd"
-            ]
+            "items": "minecraft:blade_pottery_sherd"
           }
         ]
       }
@@ -66,9 +58,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brewer_pottery_sherd"
-            ]
+            "items": "minecraft:brewer_pottery_sherd"
           }
         ]
       }
@@ -78,9 +68,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:burn_pottery_sherd"
-            ]
+            "items": "minecraft:burn_pottery_sherd"
           }
         ]
       }
@@ -90,9 +78,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:danger_pottery_sherd"
-            ]
+            "items": "minecraft:danger_pottery_sherd"
           }
         ]
       }
@@ -102,9 +88,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:explorer_pottery_sherd"
-            ]
+            "items": "minecraft:explorer_pottery_sherd"
           }
         ]
       }
@@ -114,9 +98,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:friend_pottery_sherd"
-            ]
+            "items": "minecraft:friend_pottery_sherd"
           }
         ]
       }
@@ -126,9 +108,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:heart_pottery_sherd"
-            ]
+            "items": "minecraft:heart_pottery_sherd"
           }
         ]
       }
@@ -138,9 +118,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:heartbreak_pottery_sherd"
-            ]
+            "items": "minecraft:heartbreak_pottery_sherd"
           }
         ]
       }
@@ -150,9 +128,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:howl_pottery_sherd"
-            ]
+            "items": "minecraft:howl_pottery_sherd"
           }
         ]
       }
@@ -162,9 +138,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:miner_pottery_sherd"
-            ]
+            "items": "minecraft:miner_pottery_sherd"
           }
         ]
       }
@@ -174,9 +148,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:mourner_pottery_sherd"
-            ]
+            "items": "minecraft:mourner_pottery_sherd"
           }
         ]
       }
@@ -186,9 +158,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:plenty_pottery_sherd"
-            ]
+            "items": "minecraft:plenty_pottery_sherd"
           }
         ]
       }
@@ -198,9 +168,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:prize_pottery_sherd"
-            ]
+            "items": "minecraft:prize_pottery_sherd"
           }
         ]
       }
@@ -210,9 +178,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sheaf_pottery_sherd"
-            ]
+            "items": "minecraft:sheaf_pottery_sherd"
           }
         ]
       }
@@ -222,9 +188,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:shelter_pottery_sherd"
-            ]
+            "items": "minecraft:shelter_pottery_sherd"
           }
         ]
       }
@@ -234,9 +198,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:skull_pottery_sherd"
-            ]
+            "items": "minecraft:skull_pottery_sherd"
           }
         ]
       }
@@ -246,9 +208,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:snort_pottery_sherd"
-            ]
+            "items": "minecraft:snort_pottery_sherd"
           }
         ]
       }
@@ -258,9 +218,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:host_armor_trim_smithing_template"
-            ]
+            "items": "minecraft:host_armor_trim_smithing_template"
           }
         ]
       }
@@ -270,9 +228,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:raiser_armor_trim_smithing_template"
-            ]
+            "items": "minecraft:raiser_armor_trim_smithing_template"
           }
         ]
       }
@@ -282,9 +238,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:shaper_armor_trim_smithing_template"
-            ]
+            "items": "minecraft:shaper_armor_trim_smithing_template"
           }
         ]
       }
@@ -294,9 +248,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:wayfinder_armor_trim_smithing_template"
-            ]
+            "items": "minecraft:wayfinder_armor_trim_smithing_template"
           }
         ]
       }
@@ -306,9 +258,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:music_disc_relic"
-            ]
+            "items": "minecraft:music_disc_relic"
           }
         ]
       }

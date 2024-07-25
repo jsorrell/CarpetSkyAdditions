@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:spire_armor_trim_smithing_template"
+      "id": "minecraft:spire_armor_trim_smithing_template"
     },
     "title": {
       "translate": "SkyBlock Challenges"

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_nether",
   "display": {
     "icon": {
-      "item": "minecraft:piglin_banner_pattern"
+      "id": "minecraft:piglin_banner_pattern"
     },
     "title": {
       "translate": "Why'd It Have That?"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:piglin_banner_pattern"
-            ]
+            "items": "minecraft:piglin_banner_pattern"
           }
         ]
       }

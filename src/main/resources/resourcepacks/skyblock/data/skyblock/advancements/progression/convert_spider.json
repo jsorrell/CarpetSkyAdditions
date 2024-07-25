@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/zombie_crop",
   "display": {
     "icon": {
-      "item": "minecraft:poisonous_potato"
+      "id": "minecraft:poisonous_potato"
     },
     "title": {
       "translate": "Spider Scientist"

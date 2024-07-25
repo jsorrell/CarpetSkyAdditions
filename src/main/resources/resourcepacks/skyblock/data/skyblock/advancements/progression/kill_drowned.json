@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/water_bucket",
   "display": {
     "icon": {
-      "item": "minecraft:copper_ingot"
+      "id": "minecraft:copper_ingot"
     },
     "title": {
       "translate": "Aquaman's Nemesis"

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/water_bucket",
   "display": {
     "icon": {
-      "item": "minecraft:sponge"
+      "id": "minecraft:sponge"
     },
     "title": {
       "translate": "Too Much Water!"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sponge"
-            ]
+            "items": "minecraft:sponge"
           }
         ]
       }

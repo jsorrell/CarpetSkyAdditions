@@ -2,8 +2,12 @@
   "parent": "skyblock:progression/golden_apple",
   "display": {
     "icon": {
-      "item": "minecraft:splash_potion",
-      "nbt": "{Potion:\"minecraft:weakness\"}"
+      "id": "minecraft:splash_potion",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:weakness"
+        }
+      }
     },
     "title": {
       "translate": "Witch Cannon"

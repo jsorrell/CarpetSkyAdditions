@@ -2,14 +2,13 @@ package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.helpers.DeepslateConversionHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -31,27 +30,25 @@ public abstract class ThrownPotionMixin extends ThrowableItemProjectile {
 
     @Inject(
             method = "onHit",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target =
-                                    "Lnet/minecraft/world/item/alchemy/PotionUtils;getMobEffects(Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/alchemy/PotionContents;hasEffects()Z"),
             locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void onThickPotionCollision(HitResult hitResult, CallbackInfo ci, ItemStack stack, Potion potion) {
+    private void onThickPotionCollision(
+            HitResult hitResult, CallbackInfo ci, ItemStack stack, PotionContents potionContents) {
         if (SkyAdditionsSettings.renewableDeepslateFromSplash) {
-            if (potion == DeepslateConversionHelper.CONVERSION_POTION) {
+            if (potionContents.is(DeepslateConversionHelper.CONVERSION_POTION)) {
                 Vec3 hitPos = hitResult.getType() == HitResult.Type.BLOCK ? hitResult.getLocation() : position();
                 if (isLingering()) {
                     // Create the cloud b/c vanilla doesn't when there are no potion effects
                     AreaEffectCloud cloud = new AreaEffectCloud(level(), hitPos.x(), hitPos.y(), hitPos.z());
-                    cloud.setRadius(3.0f);
+                    if (getOwner() instanceof LivingEntity livingEntity) {
+                        cloud.setOwner(livingEntity);
+                    }
+
+                    cloud.setRadius(3.0F);
+                    cloud.setRadiusOnUse(-0.5F);
                     cloud.setWaitTime(10);
                     cloud.setRadiusPerTick(-cloud.getRadius() / cloud.getDuration());
-                    cloud.setPotion(potion);
-                    CompoundTag nbt = stack.getTag();
-                    if (nbt != null && nbt.contains("CustomPotionColor", Tag.TAG_ANY_NUMERIC)) {
-                        cloud.setFixedColor(nbt.getInt("CustomPotionColor"));
-                    }
+                    cloud.setPotionContents(potionContents);
                     level().addFreshEntity(cloud);
                 } else {
                     DeepslateConversionHelper.convertDeepslateAtSplash(level(), hitPos);

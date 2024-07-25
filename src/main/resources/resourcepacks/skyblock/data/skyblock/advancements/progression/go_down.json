@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/trapdoor",
   "display": {
     "icon": {
-      "item": "minecraft:bedrock"
+      "id": "minecraft:bedrock"
     },
     "title": {
       "translate": "Get Down!"

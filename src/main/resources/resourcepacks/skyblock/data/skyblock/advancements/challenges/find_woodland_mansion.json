@@ -5,8 +5,10 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:filled_map",
-      "nbt": "{\"display\": {\"MapColor\": 5393476}}"
+      "id": "minecraft:filled_map",
+      "components": {
+        "minecraft:map_color": 5393476
+      }
     },
     "title": {
       "translate": "Treasure Map to Nowhere"
@@ -22,7 +24,7 @@
       "conditions": {
         "player": {
           "location": {
-            "structure": "minecraft:mansion"
+            "structures": "minecraft:mansion"
           }
         }
       }

@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:jukebox"
+      "id": "minecraft:jukebox"
     },
     "title": {
       "translate": "Air Tunes"

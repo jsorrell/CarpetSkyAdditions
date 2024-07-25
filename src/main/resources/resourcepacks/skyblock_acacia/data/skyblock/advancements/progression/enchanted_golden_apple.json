@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/cure_zombie_villager",
   "display": {
     "icon": {
-      "item": "minecraft:enchanted_golden_apple"
+      "id": "minecraft:enchanted_golden_apple"
     },
     "title": {
       "translate": "Hello Kitty"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:enchanted_golden_apple"
-            ]
+            "items": "minecraft:enchanted_golden_apple"
           }
         ]
       }

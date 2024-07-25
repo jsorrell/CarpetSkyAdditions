@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/sand",
   "display": {
     "icon": {
-      "item": "minecraft:heart_of_the_sea"
+      "id": "minecraft:heart_of_the_sea"
     },
     "title": {
       "translate": "Heart of a Dolphin"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:heart_of_the_sea"
-            ]
+            "items": "minecraft:heart_of_the_sea"
           }
         ]
       }

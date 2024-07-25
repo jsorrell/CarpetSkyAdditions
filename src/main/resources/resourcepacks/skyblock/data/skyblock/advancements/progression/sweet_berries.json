@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/silk_touch",
   "display": {
     "icon": {
-      "item": "minecraft:sweet_berries"
+      "id": "minecraft:sweet_berries"
     },
     "title": {
       "translate": "Snatched from the Jaws"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sweet_berries"
-            ]
+            "items": "minecraft:sweet_berries"
           }
         ]
       }

@@ -1,15 +1,15 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
 import static com.jsorrell.carpetskyadditions.helpers.SkyAdditionsEnchantmentHelper.MAX_WARDEN_DISTANCE_FOR_SWIFT_SNEAK;
-import static com.jsorrell.carpetskyadditions.helpers.SkyAdditionsEnchantmentHelper.SWIFT_SNEAK_ENCHANTABLE_TAG;
 
+import com.jsorrell.carpetskyadditions.SkyAdditionsDataComponents;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.ByteTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.monster.warden.Warden;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.EnchantmentMenu;
 import net.minecraft.world.item.ItemStack;
@@ -36,9 +36,9 @@ public class EnchantmentMenuMixin {
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;selectEnchantment(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/item/ItemStack;IZ)Ljava/util/List;"))
+                                    "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;selectEnchantment(Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/item/ItemStack;IZ)Ljava/util/List;"))
     private List<EnchantmentInstance> addSwiftSneak(
-            RandomSource random, ItemStack stack, int level, boolean allowTreasure) {
+            FeatureFlagSet featureFlagSet, RandomSource random, ItemStack stack, int level, boolean allowTreasure) {
         if (SkyAdditionsSettings.renewableSwiftSneak) {
             boolean hasWardenNearby = access.evaluate((world, blockPos) -> {
                         AABB box = new AABB(blockPos).inflate(MAX_WARDEN_DISTANCE_FOR_SWIFT_SNEAK);
@@ -52,10 +52,10 @@ public class EnchantmentMenuMixin {
                     .orElseThrow();
 
             if (hasWardenNearby) {
-                stack = new ItemStack(stack.getItem(), stack.getCount());
-                stack.addTagElement(SWIFT_SNEAK_ENCHANTABLE_TAG, ByteTag.ONE);
+                stack = stack.copy();
+                stack.set(SkyAdditionsDataComponents.SWIFT_SNEAK_ENCHANTABLE_COMPONENT, true);
             }
         }
-        return EnchantmentHelper.selectEnchantment(random, stack, level, allowTreasure);
+        return EnchantmentHelper.selectEnchantment(featureFlagSet, random, stack, level, allowTreasure);
     }
 }

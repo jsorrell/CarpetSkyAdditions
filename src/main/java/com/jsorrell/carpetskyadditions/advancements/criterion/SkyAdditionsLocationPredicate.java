@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import net.minecraft.ChatFormatting;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
@@ -34,13 +33,17 @@ public record SkyAdditionsLocationPredicate(
         Optional<Boolean> smallDripleafCanSpread) {
     public static final Codec<SkyAdditionsLocationPredicate> CODEC =
             RecordCodecBuilder.create(instance -> instance.group(
-                            ExtraCodecs.strictOptionalField(Codec.BOOL, "is_desert_pyramid_blue_terracotta")
+                            Codec.BOOL
+                                    .optionalFieldOf("is_desert_pyramid_blue_terracotta")
                                     .forGetter(SkyAdditionsLocationPredicate::desertPyramidCheck),
-                            ExtraCodecs.strictOptionalField(Codec.BOOL, "coral_convertible")
+                            Codec.BOOL
+                                    .optionalFieldOf("coral_convertible")
                                     .forGetter(SkyAdditionsLocationPredicate::coralConvertible),
-                            ExtraCodecs.strictOptionalField(MinMaxBounds.Doubles.CODEC, "coral_suitability")
+                            MinMaxBounds.Doubles.CODEC
+                                    .optionalFieldOf("coral_suitability")
                                     .forGetter(SkyAdditionsLocationPredicate::coralSuitability),
-                            ExtraCodecs.strictOptionalField(Codec.BOOL, "small_dripleaf_spreadable")
+                            Codec.BOOL
+                                    .optionalFieldOf("small_dripleaf_spreadable")
                                     .forGetter(SkyAdditionsLocationPredicate::smallDripleafCanSpread))
                     .apply(instance, SkyAdditionsLocationPredicate::new));
 

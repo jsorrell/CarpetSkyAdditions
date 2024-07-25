@@ -4,7 +4,9 @@
   "ingredient": {
     "item": "minecraft:andesite"
   },
-  "result": "minecraft:tuff",
+  "result": {
+    "id": "minecraft:tuff"
+  },
   "experience": 0.1,
   "cookingtime": 100
 }

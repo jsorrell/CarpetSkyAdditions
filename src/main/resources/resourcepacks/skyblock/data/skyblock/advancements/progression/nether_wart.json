@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/netherrack",
   "display": {
     "icon": {
-      "item": "minecraft:nether_wart"
+      "id": "minecraft:nether_wart"
     },
     "title": {
       "translate": "Billy, I Need You"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:nether_wart"
-            ]
+            "items": "minecraft:nether_wart"
           }
         ]
       }

@@ -25,7 +25,7 @@ public abstract class CoralSpreader {
 
     // Returns a suitability value in the range of 0 to 1
     public static double calculateCoralSuitability(ServerLevel level, BlockPos pos) {
-        if (level.dimensionTypeId() != BuiltinDimensionTypes.OVERWORLD) {
+        if (level.dimensionTypeRegistration() != BuiltinDimensionTypes.OVERWORLD) {
             return 0;
         }
 
@@ -82,7 +82,6 @@ public abstract class CoralSpreader {
         }
 
         @Override
-        @SuppressWarnings("deprecation")
         public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
             if (!SkyAdditionsSettings.spreadingCoral) return;
             if (!Blocks.TUBE_CORAL_BLOCK.defaultBlockState().canSurvive(level, pos)) return;

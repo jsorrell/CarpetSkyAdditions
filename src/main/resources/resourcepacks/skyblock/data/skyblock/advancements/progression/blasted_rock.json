@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/quartz",
   "display": {
     "icon": {
-      "item": "minecraft:tuff"
+      "id": "minecraft:tuff"
     },
     "title": {
       "translate": "Cooking Stone in a Stone Oven"

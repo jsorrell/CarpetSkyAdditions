@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/cauldron",
   "display": {
     "icon": {
-      "item": "minecraft:water_bucket"
+      "id": "minecraft:water_bucket"
     },
     "title": {
       "translate": "Water!"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:water_bucket"
-            ]
+            "items": "minecraft:water_bucket"
           }
         ]
       }

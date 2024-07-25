@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/kill_zombie",
   "display": {
     "icon": {
-      "item": "minecraft:carrot"
+      "id": "minecraft:carrot"
     },
     "title": {
       "translate": "Death of a Gardener"

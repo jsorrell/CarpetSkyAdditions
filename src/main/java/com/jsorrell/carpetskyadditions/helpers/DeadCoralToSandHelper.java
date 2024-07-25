@@ -36,7 +36,8 @@ public class DeadCoralToSandHelper {
 
         if (!level.isClientSide) {
             Vec3 sandVelocity = waterVelocity.scale(0.1);
-            Item sandItem = state.getBlock().getLootTable().getPath().contains("fire") ? Items.RED_SAND : Items.SAND;
+            Item sandItem =
+                    state.getBlock().getLootTable().location().getPath().contains("fire") ? Items.RED_SAND : Items.SAND;
             ItemEntity itemEntity = new ItemEntity(
                     level,
                     pos.getX() + 0.5,

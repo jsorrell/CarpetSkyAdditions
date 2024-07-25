@@ -28,6 +28,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 
@@ -54,7 +55,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
         // Restrict Piglin Brute spawning when piglinsSpawningInBastions is true
         SpawnPlacements.register(
                 EntityType.PIGLIN_BRUTE,
-                SpawnPlacements.Type.NO_RESTRICTIONS,
+                SpawnPlacementTypes.NO_RESTRICTIONS,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 new PiglinBruteSpawnPredicate());
 
@@ -65,6 +66,7 @@ public class SkyAdditionsExtension implements CarpetExtension, ModInitializer {
         SkyAdditionsFeatures.bootstrap();
         SkyAdditionsCriteriaTriggers.bootstrap();
         SkyAdditionsLootItemConditions.bootstrap();
+        SkyAdditionsDataComponents.bootstrap();
         MinecartComparatorLogicRegistry.register(EntityType.MINECART, new SkyAdditionsMinecartComparatorLogic());
         SkyAdditionsDataPacks.register();
     }

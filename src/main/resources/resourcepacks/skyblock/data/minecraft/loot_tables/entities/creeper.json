@@ -41,7 +41,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "structure": "minecraft:ancient_city"
+                    "structures": "minecraft:ancient_city"
                   }
                 }
               ]
@@ -54,7 +54,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "structure": "minecraft:bastion_remnant"
+                    "structures": "minecraft:bastion_remnant"
                   }
                 }
               ]
@@ -67,7 +67,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "structure": "minecraft:stronghold"
+                    "structures": "minecraft:stronghold"
                   }
                 }
               ]

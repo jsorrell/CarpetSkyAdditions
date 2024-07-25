@@ -2,8 +2,43 @@
   "parent": "skyblock:progression/cure_zombie_villager",
   "display": {
     "icon": {
-      "item": "minecraft:white_banner",
-      "nbt": "{BlockEntityTag:{Patterns:[{Color:9,Pattern:\"mr\"},{Color:8,Pattern:\"bs\"},{Color:7,Pattern:\"cs\"},{Color:8,Pattern:\"bo\"},{Color:15,Pattern:\"ms\"},{Color:8,Pattern:\"hh\"},{Color:8,Pattern:\"mc\"},{Color:15,Pattern:\"bo\"}],id:\"minecraft:banner\"},HideFlags:32,display:{Name:'{\"color\":\"gold\",\"translate\":\"block.minecraft.ominous_banner\"}'}}"
+      "id": "minecraft:white_banner",
+      "components": {
+        "minecraft:banner_patterns": [
+          {
+            "color": "cyan",
+            "pattern": "rhombus"
+          },
+          {
+            "color": "light_gray",
+            "pattern": "stripe_bottom"
+          },
+          {
+            "color": "gray",
+            "pattern": "stripe_center"
+          },
+          {
+            "color": "light_gray",
+            "pattern": "border"
+          },
+          {
+            "color": "black",
+            "pattern": "stripe_middle"
+          },
+          {
+            "color": "light_gray",
+            "pattern": "half_horizontal"
+          },
+          {
+            "color": "light_gray",
+            "pattern": "circle"
+          },
+          {
+            "color": "black",
+            "pattern": "border"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "Big Hero 6"

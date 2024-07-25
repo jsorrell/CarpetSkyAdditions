@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_nether",
   "display": {
     "icon": {
-      "item": "minecraft:music_disc_pigstep"
+      "id": "minecraft:music_disc_pigstep"
     },
     "title": {
       "translate": "Chart Topper"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:music_disc_pigstep"
-            ]
+            "items": "minecraft:music_disc_pigstep"
           }
         ]
       }

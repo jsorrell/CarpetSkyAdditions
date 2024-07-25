@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/go_down",
   "display": {
     "icon": {
-      "item": "minecraft:bow"
+      "id": "minecraft:bow"
     },
     "title": {
       "translate": "Beware of Knockback"
@@ -15,27 +15,12 @@
     "kill_skeleton": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:any_of",
-            "terms": [
-              {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "type": "minecraft:skeleton"
-                }
-              },
-              {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "type": "minecraft:stray"
-                }
-              }
-            ]
-          }
-        ]
+        "entity": {
+          "type": [
+            "minecraft:skeleton",
+            "minecraft:stray"
+          ]
+        }
       }
     }
   }

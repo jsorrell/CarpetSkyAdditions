@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/wandering_trader",
   "display": {
     "icon": {
-      "item": "minecraft:cactus"
+      "id": "minecraft:cactus"
     },
     "title": {
       "translate": "Hump Day Trader"

@@ -16,6 +16,6 @@
     }
   },
   "result": {
-    "item": "minecraft:coal_ore"
+    "id": "minecraft:coal_ore"
   }
 }

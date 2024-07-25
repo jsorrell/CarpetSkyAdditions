@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/blasted_rock",
   "display": {
     "icon": {
-      "item": "minecraft:calcite"
+      "id": "minecraft:calcite"
     },
     "title": {
       "translate": "Reef Builder"

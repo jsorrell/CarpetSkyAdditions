@@ -3,9 +3,9 @@ package com.jsorrell.carpetskyadditions.mixin;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Fox.class)
-public abstract class FoxMixin extends Entity {
-    private FoxMixin(EntityType<?> type, Level level) {
+public abstract class FoxMixin extends Animal {
+    private FoxMixin(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }
 

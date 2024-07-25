@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/lightning_rod",
   "display": {
     "icon": {
-      "item": "minecraft:gold_nugget"
+      "id": "minecraft:gold_nugget"
     },
     "title": {
       "translate": "IT'S ALIV... er Undead"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gold_nugget"
-            ]
+            "items": "minecraft:gold_nugget"
           }
         ]
       }

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/boat_with_witch",
   "display": {
     "icon": {
-      "item": "minecraft:bell"
+      "id": "minecraft:bell"
     },
     "title": {
       "translate": "Trade Doctor"

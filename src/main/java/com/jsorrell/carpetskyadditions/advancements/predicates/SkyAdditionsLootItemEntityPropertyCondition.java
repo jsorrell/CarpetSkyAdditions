@@ -2,11 +2,10 @@ package com.jsorrell.carpetskyadditions.advancements.predicates;
 
 import com.google.common.collect.ImmutableSet;
 import com.jsorrell.carpetskyadditions.advancements.criterion.SkyAdditionsEntityPredicate;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Optional;
 import java.util.Set;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
@@ -18,9 +17,10 @@ import net.minecraft.world.phys.Vec3;
 public record SkyAdditionsLootItemEntityPropertyCondition(
         Optional<SkyAdditionsEntityPredicate> predicate, LootContext.EntityTarget entityTarget)
         implements LootItemCondition {
-    public static final Codec<SkyAdditionsLootItemEntityPropertyCondition> CODEC =
-            RecordCodecBuilder.create(instance -> instance.group(
-                            ExtraCodecs.strictOptionalField(SkyAdditionsEntityPredicate.CODEC, "predicate")
+    public static final MapCodec<SkyAdditionsLootItemEntityPropertyCondition> CODEC =
+            RecordCodecBuilder.mapCodec(instance -> instance.group(
+                            SkyAdditionsEntityPredicate.CODEC
+                                    .optionalFieldOf("predicate")
                                     .forGetter(SkyAdditionsLootItemEntityPropertyCondition::predicate),
                             LootContext.EntityTarget.CODEC
                                     .fieldOf("entity")

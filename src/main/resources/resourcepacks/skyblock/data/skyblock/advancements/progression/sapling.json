@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/log",
   "display": {
     "icon": {
-      "item": "minecraft:oak_sapling"
+      "id": "minecraft:oak_sapling"
     },
     "title": {
       "translate": "The Circle of Life"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:oak_sapling"
-            ]
+            "items": "minecraft:oak_sapling"
           }
         ]
       }

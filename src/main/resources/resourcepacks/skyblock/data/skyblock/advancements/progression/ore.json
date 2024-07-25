@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/cobblestone",
   "display": {
     "icon": {
-      "item": "minecraft:diamond_ore"
+      "id": "minecraft:diamond_ore"
     },
     "title": {
       "translate": "Decorative Ores"

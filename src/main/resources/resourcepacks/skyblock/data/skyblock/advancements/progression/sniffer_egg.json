@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/kill_drowned",
   "display": {
     "icon": {
-      "item": "minecraft:sniffer_egg"
+      "id": "minecraft:sniffer_egg"
     },
     "title": {
       "translate": "Prehistoric Foster Parent"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sniffer_egg"
-            ]
+            "items": "minecraft:sniffer_egg"
           }
         ]
       }

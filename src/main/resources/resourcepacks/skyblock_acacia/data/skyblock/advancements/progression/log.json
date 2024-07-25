@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/root",
   "display": {
     "icon": {
-      "item": "minecraft:acacia_log"
+      "id": "minecraft:acacia_log"
     },
     "title": {
       "translate": "The First of Many"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:acacia_log"
-            ]
+            "items": "minecraft:acacia_log"
           }
         ]
       }

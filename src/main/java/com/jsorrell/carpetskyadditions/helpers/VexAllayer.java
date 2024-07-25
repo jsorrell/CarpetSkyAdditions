@@ -3,6 +3,7 @@ package com.jsorrell.carpetskyadditions.helpers;
 import com.jsorrell.carpetskyadditions.advancements.criterion.SkyAdditionsCriteriaTriggers;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -151,7 +152,7 @@ public class VexAllayer implements InstantListener.InstantListenerConfig {
             ServerLevel level,
             GameEventListener listener,
             Vec3 originPos,
-            GameEvent gameEvent,
+            Holder<GameEvent> gameEvent,
             GameEvent.Context emitter) {
         if (SkyAdditionsSettings.allayableVexes && gameEvent == GameEvent.NOTE_BLOCK_PLAY) {
             BlockState noteBlockState = level.getBlockState(BlockPos.containing(originPos));

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/quartz",
   "display": {
     "icon": {
-      "item": "minecraft:gilded_blackstone"
+      "id": "minecraft:gilded_blackstone"
     },
     "title": {
       "translate": "Barter 100"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:blackstone"
-            ]
+            "items": "minecraft:blackstone"
           }
         ]
       }
@@ -30,9 +28,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gravel"
-            ]
+            "items": "minecraft:gravel"
           }
         ]
       }
@@ -42,9 +38,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_sand"
-            ]
+            "items": "minecraft:soul_sand"
           }
         ]
       }
@@ -54,9 +48,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:crying_obsidian"
-            ]
+            "items": "minecraft:crying_obsidian"
           }
         ]
       }
@@ -66,11 +58,13 @@
       "conditions": {
         "items": [
           {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:soul_speed"
-              }
-            ]
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantment": "minecraft:soul_speed"
+                }
+              ]
+            }
           }
         ]
       }
@@ -80,11 +74,13 @@
       "conditions": {
         "items": [
           {
-            "stored_enchantments": [
-              {
-                "enchantment": "minecraft:soul_speed"
-              }
-            ]
+            "predicates": {
+              "minecraft:stored_enchantments": [
+                {
+                  "enchantment": "minecraft:soul_speed"
+                }
+              ]
+            }
           }
         ]
       }
@@ -94,9 +90,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gilded_blackstone"
-            ]
+            "items": "minecraft:gilded_blackstone"
           }
         ]
       }

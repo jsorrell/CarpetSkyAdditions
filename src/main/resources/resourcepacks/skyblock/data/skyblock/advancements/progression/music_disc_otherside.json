@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/music_disc_pigstep",
   "display": {
     "icon": {
-      "item": "minecraft:music_disc_otherside"
+      "id": "minecraft:music_disc_otherside"
     },
     "title": {
       "translate": "Otherworldy Sounds"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:music_disc_otherside"
-            ]
+            "items": "minecraft:music_disc_otherside"
           }
         ]
       }

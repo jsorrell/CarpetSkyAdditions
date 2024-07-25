@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/lightning_rod",
   "display": {
     "icon": {
-      "item": "minecraft:glow_lichen"
+      "id": "minecraft:glow_lichen"
     },
     "title": {
       "translate": "Electrifying"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glow_lichen"
-            ]
+            "items": "minecraft:glow_lichen"
           }
         ]
       }

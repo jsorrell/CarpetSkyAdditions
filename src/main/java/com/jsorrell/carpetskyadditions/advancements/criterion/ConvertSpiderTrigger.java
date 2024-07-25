@@ -3,9 +3,10 @@ package com.jsorrell.carpetskyadditions.advancements.criterion;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Optional;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.monster.CaveSpider;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -28,11 +29,14 @@ public class ConvertSpiderTrigger extends SimpleCriterionTrigger<ConvertSpiderTr
             Optional<ContextAwarePredicate> caveSpider)
             implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "player")
+                        EntityPredicate.ADVANCEMENT_CODEC
+                                .optionalFieldOf("player")
                                 .forGetter(TriggerInstance::player),
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "spider")
+                        EntityPredicate.ADVANCEMENT_CODEC
+                                .optionalFieldOf("spider")
                                 .forGetter(TriggerInstance::spider),
-                        ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "cave_spider")
+                        EntityPredicate.ADVANCEMENT_CODEC
+                                .optionalFieldOf("cave_spider")
                                 .forGetter(TriggerInstance::caveSpider))
                 .apply(instance, TriggerInstance::new));
 

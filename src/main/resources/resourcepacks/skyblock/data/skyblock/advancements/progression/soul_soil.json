@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/soul_sand",
   "display": {
     "icon": {
-      "item": "minecraft:soul_soil"
+      "id": "minecraft:soul_soil"
     },
     "title": {
       "translate": "A Changing Soul"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_soil"
-            ]
+            "items": "minecraft:soul_soil"
           }
         ]
       }

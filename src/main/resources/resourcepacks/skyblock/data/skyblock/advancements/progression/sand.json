@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/water_bucket",
   "display": {
     "icon": {
-      "item": "minecraft:sand"
+      "id": "minecraft:sand"
     },
     "title": {
       "translate": "It Gets Everywhere"

@@ -2,8 +2,23 @@
   "parent": "skyblock:progression/emerald",
   "display": {
     "icon": {
-      "item": "minecraft:red_banner",
-      "nbt": "{BlockEntityTag:{Patterns:[{Pattern:ss,Color:4},{Pattern:ls,Color:11},{Pattern:rs,Color:11}]}}"
+      "id": "minecraft:red_banner",
+      "components": {
+        "minecraft:banner_patterns": [
+          {
+            "color": "yellow",
+            "pattern": "small_stripes"
+          },
+          {
+            "color": "blue",
+            "pattern": "stripe_left"
+          },
+          {
+            "color": "blue",
+            "pattern": "stripe_right"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "Thank You, Come Again"

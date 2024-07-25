@@ -1,6 +1,7 @@
 package com.jsorrell.carpetskyadditions.helpers;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
@@ -39,7 +40,8 @@ public class InstantListener implements GameEventListener {
     }
 
     @Override
-    public boolean handleGameEvent(ServerLevel level, GameEvent event, GameEvent.Context context, Vec3 originPos) {
+    public boolean handleGameEvent(
+            ServerLevel level, Holder<GameEvent> event, GameEvent.Context context, Vec3 originPos) {
         if (onCooldown) {
             return false;
         }
@@ -58,7 +60,7 @@ public class InstantListener implements GameEventListener {
             return GameEventTags.VIBRATIONS;
         }
 
-        default boolean canAccept(GameEvent gameEvent, GameEvent.Context context) {
+        default boolean canAccept(Holder<GameEvent> gameEvent, GameEvent.Context context) {
             if (!gameEvent.is(getTag())) {
                 return false;
             }
@@ -87,7 +89,7 @@ public class InstantListener implements GameEventListener {
                 ServerLevel level,
                 GameEventListener listener,
                 Vec3 originPos,
-                GameEvent gameEvent,
+                Holder<GameEvent> gameEvent,
                 GameEvent.Context context);
     }
 }

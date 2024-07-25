@@ -1,7 +1,6 @@
 package com.jsorrell.carpetskyadditions.mixin;
 
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
@@ -29,7 +28,6 @@ public class DrownedMixin extends Zombie {
             DifficultyInstance difficulty,
             MobSpawnType reason,
             SpawnGroupData spawnData,
-            CompoundTag dataTag,
             CallbackInfoReturnable<SpawnGroupData> cir) {
         if (SkyAdditionsSettings.sniffersFromDrowneds
                 && getItemBySlot(EquipmentSlot.OFFHAND).isEmpty()

@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/the_end",
   "display": {
     "icon": {
-      "item": "minecraft:chorus_flower"
+      "id": "minecraft:chorus_flower"
     },
     "title": {
       "translate": "Who Planted This Here?"

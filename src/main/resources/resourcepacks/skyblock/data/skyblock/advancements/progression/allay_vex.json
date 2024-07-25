@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/emerald",
   "display": {
     "icon": {
-      "item": "minecraft:note_block"
+      "id": "minecraft:note_block"
     },
     "title": {
       "translate": "Relaxing Music"

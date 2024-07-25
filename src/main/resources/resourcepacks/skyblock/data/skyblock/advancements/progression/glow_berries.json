@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/sweet_berries",
   "display": {
     "icon": {
-      "item": "minecraft:glow_berries"
+      "id": "minecraft:glow_berries"
     },
     "title": {
       "translate": "Glowification"
@@ -18,9 +18,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glow_berries"
-            ]
+            "items": "minecraft:glow_berries"
           }
         ]
       }

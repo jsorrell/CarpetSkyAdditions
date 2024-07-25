@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/iron_ingot",
   "display": {
     "icon": {
-      "item": "minecraft:cauldron"
+      "id": "minecraft:cauldron"
     },
     "title": {
       "translate": "Please Rain..."
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cauldron"
-            ]
+            "items": "minecraft:cauldron"
           }
         ]
       }

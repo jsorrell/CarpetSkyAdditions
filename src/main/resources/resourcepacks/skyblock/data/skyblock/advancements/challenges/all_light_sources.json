@@ -5,7 +5,7 @@
   },
   "display": {
     "icon": {
-      "item": "minecraft:torch"
+      "id": "minecraft:torch"
     },
     "title": {
       "translate": "Let There Be Light"
@@ -33,9 +33,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:conduit"
-            ]
+            "items": "minecraft:conduit"
           }
         ]
       }
@@ -45,9 +43,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sea_pickle"
-            ]
+            "items": "minecraft:sea_pickle"
           }
         ]
       }
@@ -57,9 +53,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:ochre_froglight"
-            ]
+            "items": "minecraft:ochre_froglight"
           }
         ]
       }
@@ -69,9 +63,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:verdant_froglight"
-            ]
+            "items": "minecraft:verdant_froglight"
           }
         ]
       }
@@ -81,9 +73,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:pearlescent_froglight"
-            ]
+            "items": "minecraft:pearlescent_froglight"
           }
         ]
       }
@@ -93,9 +83,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glowstone"
-            ]
+            "items": "minecraft:glowstone"
           }
         ]
       }
@@ -105,9 +93,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:jack_o_lantern"
-            ]
+            "items": "minecraft:jack_o_lantern"
           }
         ]
       }
@@ -117,9 +103,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lantern"
-            ]
+            "items": "minecraft:lantern"
           }
         ]
       }
@@ -129,9 +113,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lava_bucket"
-            ]
+            "items": "minecraft:lava_bucket"
           }
         ]
       }
@@ -141,9 +123,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:campfire"
-            ]
+            "items": "minecraft:campfire"
           }
         ]
       }
@@ -153,9 +133,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:redstone_lamp"
-            ]
+            "items": "minecraft:redstone_lamp"
           }
         ]
       }
@@ -165,9 +143,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:respawn_anchor"
-            ]
+            "items": "minecraft:respawn_anchor"
           }
         ]
       }
@@ -177,9 +153,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sea_lantern"
-            ]
+            "items": "minecraft:sea_lantern"
           }
         ]
       }
@@ -189,9 +163,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:shroomlight"
-            ]
+            "items": "minecraft:shroomlight"
           }
         ]
       }
@@ -201,9 +173,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glow_berries"
-            ]
+            "items": "minecraft:glow_berries"
           }
         ]
       }
@@ -213,9 +183,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:end_rod"
-            ]
+            "items": "minecraft:end_rod"
           }
         ]
       }
@@ -225,9 +193,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:torch"
-            ]
+            "items": "minecraft:torch"
           }
         ]
       }
@@ -237,9 +203,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:furnace"
-            ]
+            "items": "minecraft:furnace"
           }
         ]
       }
@@ -249,9 +213,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:blast_furnace"
-            ]
+            "items": "minecraft:blast_furnace"
           }
         ]
       }
@@ -261,9 +223,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:smoker"
-            ]
+            "items": "minecraft:smoker"
           }
         ]
       }
@@ -273,9 +233,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:candle"
-            ]
+            "items": "minecraft:candle"
           }
         ]
       }
@@ -285,9 +243,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:white_candle"
-            ]
+            "items": "minecraft:white_candle"
           }
         ]
       }
@@ -297,9 +253,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:light_gray_candle"
-            ]
+            "items": "minecraft:light_gray_candle"
           }
         ]
       }
@@ -309,9 +263,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gray_candle"
-            ]
+            "items": "minecraft:gray_candle"
           }
         ]
       }
@@ -321,9 +273,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:black_candle"
-            ]
+            "items": "minecraft:black_candle"
           }
         ]
       }
@@ -333,9 +283,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brown_candle"
-            ]
+            "items": "minecraft:brown_candle"
           }
         ]
       }
@@ -345,9 +293,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:red_candle"
-            ]
+            "items": "minecraft:red_candle"
           }
         ]
       }
@@ -357,9 +303,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:orange_candle"
-            ]
+            "items": "minecraft:orange_candle"
           }
         ]
       }
@@ -369,9 +313,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:yellow_candle"
-            ]
+            "items": "minecraft:yellow_candle"
           }
         ]
       }
@@ -381,9 +323,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:lime_candle"
-            ]
+            "items": "minecraft:lime_candle"
           }
         ]
       }
@@ -393,9 +333,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:green_candle"
-            ]
+            "items": "minecraft:green_candle"
           }
         ]
       }
@@ -405,9 +343,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cyan_candle"
-            ]
+            "items": "minecraft:cyan_candle"
           }
         ]
       }
@@ -417,9 +353,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:light_blue_candle"
-            ]
+            "items": "minecraft:light_blue_candle"
           }
         ]
       }
@@ -429,9 +363,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:blue_candle"
-            ]
+            "items": "minecraft:blue_candle"
           }
         ]
       }
@@ -441,9 +373,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:purple_candle"
-            ]
+            "items": "minecraft:purple_candle"
           }
         ]
       }
@@ -453,9 +383,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:magenta_candle"
-            ]
+            "items": "minecraft:magenta_candle"
           }
         ]
       }
@@ -465,9 +393,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:pink_candle"
-            ]
+            "items": "minecraft:pink_candle"
           }
         ]
       }
@@ -477,9 +403,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:crying_obsidian"
-            ]
+            "items": "minecraft:crying_obsidian"
           }
         ]
       }
@@ -489,9 +413,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_campfire"
-            ]
+            "items": "minecraft:soul_campfire"
           }
         ]
       }
@@ -501,9 +423,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_lantern"
-            ]
+            "items": "minecraft:soul_lantern"
           }
         ]
       }
@@ -513,9 +433,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:soul_torch"
-            ]
+            "items": "minecraft:soul_torch"
           }
         ]
       }
@@ -525,9 +443,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:deepslate_redstone_ore"
-            ]
+            "items": "minecraft:deepslate_redstone_ore"
           }
         ]
       }
@@ -537,9 +453,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:redstone_ore"
-            ]
+            "items": "minecraft:redstone_ore"
           }
         ]
       }
@@ -549,9 +463,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:enchanting_table"
-            ]
+            "items": "minecraft:enchanting_table"
           }
         ]
       }
@@ -561,9 +473,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:ender_chest"
-            ]
+            "items": "minecraft:ender_chest"
           }
         ]
       }
@@ -573,9 +483,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:glow_lichen"
-            ]
+            "items": "minecraft:glow_lichen"
           }
         ]
       }
@@ -585,9 +493,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:redstone_torch"
-            ]
+            "items": "minecraft:redstone_torch"
           }
         ]
       }
@@ -597,9 +503,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sculk_catalyst"
-            ]
+            "items": "minecraft:sculk_catalyst"
           }
         ]
       }
@@ -609,9 +513,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:amethyst_cluster"
-            ]
+            "items": "minecraft:amethyst_cluster"
           }
         ]
       }
@@ -621,9 +523,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:large_amethyst_bud"
-            ]
+            "items": "minecraft:large_amethyst_bud"
           }
         ]
       }
@@ -633,9 +533,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:magma_block"
-            ]
+            "items": "minecraft:magma_block"
           }
         ]
       }
@@ -645,9 +543,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:medium_amethyst_bud"
-            ]
+            "items": "minecraft:medium_amethyst_bud"
           }
         ]
       }
@@ -657,9 +553,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brewing_stand"
-            ]
+            "items": "minecraft:brewing_stand"
           }
         ]
       }
@@ -669,9 +563,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brown_mushroom"
-            ]
+            "items": "minecraft:brown_mushroom"
           }
         ]
       }
@@ -681,9 +573,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:dragon_egg"
-            ]
+            "items": "minecraft:dragon_egg"
           }
         ]
       }
@@ -693,9 +583,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:sculk_sensor"
-            ]
+            "items": "minecraft:sculk_sensor"
           }
         ]
       }
@@ -705,9 +593,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:calibrated_sculk_sensor"
-            ]
+            "items": "minecraft:calibrated_sculk_sensor"
           }
         ]
       }
@@ -717,9 +603,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:small_amethyst_bud"
-            ]
+            "items": "minecraft:small_amethyst_bud"
           }
         ]
       }

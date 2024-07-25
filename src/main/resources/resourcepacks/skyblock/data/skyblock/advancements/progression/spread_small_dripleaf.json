@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/wandering_trader",
   "display": {
     "icon": {
-      "item": "minecraft:small_dripleaf"
+      "id": "minecraft:small_dripleaf"
     },
     "title": {
       "translate": "Perfect Growing Conditions"

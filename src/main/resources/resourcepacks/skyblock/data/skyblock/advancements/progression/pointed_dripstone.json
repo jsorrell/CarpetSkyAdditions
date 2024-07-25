@@ -2,7 +2,7 @@
   "parent": "skyblock:progression/wandering_trader",
   "display": {
     "icon": {
-      "item": "minecraft:pointed_dripstone"
+      "id": "minecraft:pointed_dripstone"
     },
     "title": {
       "translate": "What's The Point?"
@@ -17,9 +17,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:pointed_dripstone"
-            ]
+            "items": "minecraft:pointed_dripstone"
           }
         ]
       }

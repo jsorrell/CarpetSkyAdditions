@@ -7,6 +7,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.animal.camel.Camel;
 import net.minecraft.world.entity.animal.horse.TraderLlama;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.ServerLevelData;
 import org.jetbrains.annotations.Nullable;
@@ -100,14 +100,14 @@ public class TraderSpawnerHelper {
     private static BlockPos findSpawnPositionNear(
             ServerLevel level, RandomSource random, BlockPos pos, int maxDistance) {
         BlockPos spawnPos = null;
+        SpawnPlacementType spawnPlacementType = SpawnPlacements.getPlacementType(EntityType.WANDERING_TRADER);
 
         for (int i = 0; i < 10; i++) {
             int j = pos.getX() + random.nextInt(maxDistance * 2) - maxDistance;
             int k = pos.getZ() + random.nextInt(maxDistance * 2) - maxDistance;
             int l = level.getHeight(Heightmap.Types.WORLD_SURFACE, j, k);
             BlockPos blockPos2 = new BlockPos(j, l, k);
-            if (NaturalSpawner.isSpawnPositionOk(
-                    SpawnPlacements.Type.ON_GROUND, level, blockPos2, EntityType.WANDERING_TRADER)) {
+            if (spawnPlacementType.isSpawnPositionOk(level, blockPos2, EntityType.WANDERING_TRADER)) {
                 spawnPos = blockPos2;
                 break;
             }

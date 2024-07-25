@@ -16,6 +16,6 @@
     }
   },
   "result": {
-    "item": "minecraft:nether_quartz_ore"
+    "id": "minecraft:nether_quartz_ore"
   }
 }
