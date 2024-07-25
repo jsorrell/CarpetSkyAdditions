@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -23,11 +24,13 @@ public abstract class SaplingBlockMixin extends BushBlock {
         super(settings);
     }
 
+    @Unique
     private boolean saplingIsOnSand(BlockGetter level, BlockPos pos) {
         BlockState underBlock = level.getBlockState(pos.below());
         return underBlock.is(BlockTags.SAND);
     }
 
+    @Unique
     @SuppressWarnings("ConstantConditions")
     private boolean isPropagule() {
         return (BushBlock) this instanceof MangrovePropaguleBlock;
@@ -52,7 +55,7 @@ public abstract class SaplingBlockMixin extends BushBlock {
 
     @Inject(method = "isValidBonemealTarget", at = @At("HEAD"), cancellable = true)
     private void stopBonemealingOnSand(
-            LevelReader level, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+            LevelReader level, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (SkyAdditionsSettings.saplingsDieOnSand && saplingIsOnSand(level, pos)) {
             cir.setReturnValue(false);
         }

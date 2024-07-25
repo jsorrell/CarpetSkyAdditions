@@ -9,26 +9,20 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.camel.Camel;
 import net.minecraft.world.entity.animal.camel.CamelAi;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Camel.class)
 public abstract class CamelMixin extends AbstractHorse implements CamelInterface {
-    @Shadow
-    public abstract LivingEntity getControllingPassenger();
-
     protected CamelMixin(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
     }
@@ -98,27 +92,13 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
     }
 
     // This only works with the mod on the client side
-    @Redirect(method = "positionRider", at = @At(value = "NEW", args = "class=net/minecraft/world/phys/Vec3"))
-    protected Vec3 moveTraderForward(double x, double y, double z) {
+    @Redirect(
+            method = "getPassengerAttachmentPoint",
+            at = @At(value = "NEW", target = "(FFF)Lorg/joml/Vector3f;", remap = false))
+    protected Vector3f moveTraderForward(float x, float y, float z) {
         if (isTraderCamel()) {
-            return new Vec3(x, y, z + 0.09);
+            return new Vector3f(x, y - 0.45f, z + 0.09f);
         }
-        return new Vec3(x, y, z);
-    }
-
-    // This only works with the mod on the client side
-    @Inject(
-            method = "positionRider",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target =
-                                    "Lnet/minecraft/world/entity/animal/camel/Camel;clampRotation(Lnet/minecraft/world/entity/Entity;)V"),
-            cancellable = true)
-    protected void fixTraderRotation(Entity passenger, MoveFunction callback, CallbackInfo ci) {
-        if (isTraderCamel()) {
-            getControllingPassenger().yBodyRot = yBodyRot;
-            ci.cancel();
-        }
+        return new Vector3f(x, y, z);
     }
 }

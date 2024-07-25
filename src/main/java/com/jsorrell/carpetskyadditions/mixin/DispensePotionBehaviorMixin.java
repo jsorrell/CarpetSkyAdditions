@@ -3,8 +3,8 @@ package com.jsorrell.carpetskyadditions.mixin;
 import com.jsorrell.carpetskyadditions.helpers.DeepslateConversionHelper;
 import com.jsorrell.carpetskyadditions.settings.SkyAdditionsSettings;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -22,9 +22,9 @@ public class DispensePotionBehaviorMixin {
             BlockSource pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
         if (SkyAdditionsSettings.doRenewableDeepslate) {
             if (PotionUtils.getPotion(stack) == DeepslateConversionHelper.CONVERSION_POTION) {
-                ServerLevel level = pointer.getLevel();
-                BlockPos dispenserPos = pointer.getPos();
-                Direction dispenserFacing = pointer.getBlockState().getValue(DispenserBlock.FACING);
+                ServerLevel level = pointer.level();
+                BlockPos dispenserPos = pointer.pos();
+                Direction dispenserFacing = pointer.state().getValue(DispenserBlock.FACING);
                 BlockPos targetPos = dispenserPos.relative(dispenserFacing);
                 if (DeepslateConversionHelper.convertDeepslateWithBottle(level, targetPos, dispenserPos)) {
                     cir.setReturnValue(new ItemStack(Items.GLASS_BOTTLE));

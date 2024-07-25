@@ -29,7 +29,7 @@ public class WanderingTraderHelper {
 
         if (SkyAdditionsSettings.lavaFromWanderingTrader) {
             tier2Trades.add(
-                    new VillagerTrades.ItemsAndEmeraldsToItems(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 1, 1));
+                    new VillagerTrades.ItemsAndEmeraldsToItems(Items.BUCKET, 1, 16, Items.LAVA_BUCKET, 1, 1, 1, 0.05f));
         }
 
         return new Int2ObjectOpenHashMap<>(ImmutableMap.of(

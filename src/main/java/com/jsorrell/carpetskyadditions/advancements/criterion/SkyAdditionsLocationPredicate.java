@@ -1,15 +1,15 @@
 package com.jsorrell.carpetskyadditions.advancements.criterion;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 import com.jsorrell.carpetskyadditions.helpers.CoralSpreader;
 import com.jsorrell.carpetskyadditions.helpers.SmallDripleafSpreader;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsResourceLocation;
 import com.jsorrell.carpetskyadditions.util.SkyAdditionsText;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
@@ -17,7 +17,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
@@ -27,25 +27,22 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.phys.AABB;
 
-public class SkyAdditionsLocationPredicate {
-    public static final SkyAdditionsLocationPredicate ANY =
-            new SkyAdditionsLocationPredicate(null, null, MinMaxBounds.Doubles.ANY, null);
-
-    private final MinMaxBounds.Doubles coralSuitability;
-    private final Boolean coralConvertible;
-    private final Boolean desertPyramidCheck;
-    private final Boolean smallDripleafCanSpread;
-
-    public SkyAdditionsLocationPredicate(
-            Boolean desertPyramidCheck,
-            Boolean coralConvertible,
-            MinMaxBounds.Doubles coralSuitability,
-            Boolean smallDripleafCanSpread) {
-        this.desertPyramidCheck = desertPyramidCheck;
-        this.coralConvertible = coralConvertible;
-        this.coralSuitability = coralSuitability;
-        this.smallDripleafCanSpread = smallDripleafCanSpread;
-    }
+public record SkyAdditionsLocationPredicate(
+        Optional<Boolean> desertPyramidCheck,
+        Optional<Boolean> coralConvertible,
+        Optional<MinMaxBounds.Doubles> coralSuitability,
+        Optional<Boolean> smallDripleafCanSpread) {
+    public static final Codec<SkyAdditionsLocationPredicate> CODEC =
+            RecordCodecBuilder.create(instance -> instance.group(
+                            ExtraCodecs.strictOptionalField(Codec.BOOL, "is_desert_pyramid_blue_terracotta")
+                                    .forGetter(SkyAdditionsLocationPredicate::desertPyramidCheck),
+                            ExtraCodecs.strictOptionalField(Codec.BOOL, "coral_convertible")
+                                    .forGetter(SkyAdditionsLocationPredicate::coralConvertible),
+                            ExtraCodecs.strictOptionalField(MinMaxBounds.Doubles.CODEC, "coral_suitability")
+                                    .forGetter(SkyAdditionsLocationPredicate::coralSuitability),
+                            ExtraCodecs.strictOptionalField(Codec.BOOL, "small_dripleaf_spreadable")
+                                    .forGetter(SkyAdditionsLocationPredicate::smallDripleafCanSpread))
+                    .apply(instance, SkyAdditionsLocationPredicate::new));
 
     private boolean doDesertPyramidCheck(ServerLevel level, BlockPos blueTerracottaPos, boolean sendDebugMessage) {
         StructureTemplate template = level.getServer()
@@ -118,69 +115,31 @@ public class SkyAdditionsLocationPredicate {
 
     public boolean matches(ServerLevel level, double x, double y, double z) {
         BlockPos blockPos = BlockPos.containing(x, y, z);
-        if (desertPyramidCheck != null) {
-            if (doDesertPyramidCheck(level, blockPos, desertPyramidCheck) != desertPyramidCheck) {
+        if (desertPyramidCheck.isPresent()) {
+            if (doDesertPyramidCheck(level, blockPos, desertPyramidCheck.get()) != desertPyramidCheck.get()) {
                 return false;
             }
         }
 
-        if (coralConvertible != null) {
-            if (CoralSpreader.isConvertible(level, blockPos) != coralConvertible) {
+        if (coralConvertible.isPresent()) {
+            if (CoralSpreader.isConvertible(level, blockPos) != coralConvertible.get()) {
                 return false;
             }
         }
 
-        if (!coralSuitability.matches(CoralSpreader.calculateCoralSuitability(level, blockPos))) {
-            return false;
+        if (coralSuitability.isPresent()) {
+            if (!coralSuitability.get().matches(CoralSpreader.calculateCoralSuitability(level, blockPos))) {
+                return false;
+            }
         }
 
-        if (smallDripleafCanSpread != null) {
+        if (smallDripleafCanSpread.isPresent()) {
             if (SmallDripleafSpreader.canSpreadFrom(level.getBlockState(blockPos), level, blockPos)
-                    != smallDripleafCanSpread) {
+                    != smallDripleafCanSpread.get()) {
                 return false;
             }
         }
 
         return true;
-    }
-
-    public JsonElement serializeToJson() {
-        if (this == ANY) return JsonNull.INSTANCE;
-
-        JsonObject jsonObject = new JsonObject();
-        if (desertPyramidCheck != null) {
-            jsonObject.addProperty("is_desert_pyramid_blue_terracotta", desertPyramidCheck);
-        }
-        if (coralConvertible != null) {
-            jsonObject.addProperty("coral_convertible", desertPyramidCheck);
-        }
-        if (!coralSuitability.isAny()) {
-            jsonObject.add("coral_suitability", coralSuitability.serializeToJson());
-        }
-        if (smallDripleafCanSpread != null) {
-            jsonObject.addProperty("small_dripleaf_spreadable", smallDripleafCanSpread);
-        }
-        return jsonObject;
-    }
-
-    public static SkyAdditionsLocationPredicate fromJson(JsonElement json) {
-        if (json == null || json.isJsonNull()) return ANY;
-
-        JsonObject jsonObject = GsonHelper.convertToJsonObject(json, "location");
-        Boolean desertPyramidCheck = null;
-        if (jsonObject.has("is_desert_pyramid_blue_terracotta")) {
-            desertPyramidCheck = GsonHelper.getAsBoolean(jsonObject, "is_desert_pyramid_blue_terracotta");
-        }
-        Boolean coralConvertible = null;
-        if (jsonObject.has("coral_convertible")) {
-            coralConvertible = GsonHelper.getAsBoolean(jsonObject, "coral_convertible");
-        }
-        MinMaxBounds.Doubles coralSuitability = MinMaxBounds.Doubles.fromJson(jsonObject.get("coral_suitability"));
-        Boolean smallDripleafCanSpread = null;
-        if (jsonObject.has("small_dripleaf_spreadable")) {
-            smallDripleafCanSpread = GsonHelper.getAsBoolean(jsonObject, "small_dripleaf_spreadable");
-        }
-        return new SkyAdditionsLocationPredicate(
-                desertPyramidCheck, coralConvertible, coralSuitability, smallDripleafCanSpread);
     }
 }
