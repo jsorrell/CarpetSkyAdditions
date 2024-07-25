@@ -94,7 +94,7 @@ public abstract class CamelMixin extends AbstractHorse implements CamelInterface
     // This only works with the mod on the client side
     @Redirect(
             method = "getPassengerAttachmentPoint",
-            at = @At(value = "NEW", target = "(DDD)Lnet/minecraft/world/phys/Vec3;", remap = false))
+            at = @At(value = "NEW", target = "(DDD)Lnet/minecraft/world/phys/Vec3;"))
     protected Vec3 moveTraderForward(double x, double y, double z) {
         if (isTraderCamel()) {
             return new Vec3(x, y - 0.45, z + 0.09);
