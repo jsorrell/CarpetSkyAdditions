@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 * Kill Zombie advancement now accepts killing Husks
 * Kill Skeleton advancement now accepts killing Strays
+* Kill Spider advancement now accepts killing Cave Spiders
 
 ### Deprecated
 
