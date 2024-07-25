@@ -10,8 +10,9 @@ import net.minecraft.world.phys.Vec3;
 
 public record SkyAdditionsEntityPredicate(
         Optional<SkyAdditionsLocationPredicate> location, Optional<SkyAdditionsLocationPredicate> steppingOnLocation) {
-    public static final Codec<SkyAdditionsEntityPredicate> CODEC =
-            ExtraCodecs.recursive(codec -> RecordCodecBuilder.create(instance -> instance.group(
+    public static final Codec<SkyAdditionsEntityPredicate> CODEC = ExtraCodecs.recursive(
+            "SkyAdditionsEntityPredicate",
+            codec -> RecordCodecBuilder.create(instance -> instance.group(
                             ExtraCodecs.strictOptionalField(SkyAdditionsLocationPredicate.CODEC, "location")
                                     .forGetter(SkyAdditionsEntityPredicate::location),
                             ExtraCodecs.strictOptionalField(SkyAdditionsLocationPredicate.CODEC, "stepping_on")
